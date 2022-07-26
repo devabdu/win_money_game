@@ -36,11 +36,18 @@ class MainPageState extends State<FirstXOScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+    // backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+    backgroundColor: Colors.deepPurple,
     appBar: AppBar(
-      centerTitle: true,
-      backgroundColor: Color.fromRGBO(16, 13, 34, 1),
-      title: Text('Tic Tac Toe'),
+      //centerTitle: true,
+      //backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+      backgroundColor: Colors.amberAccent,
+      iconTheme: const IconThemeData(
+        color: Colors.deepPurple,
+      ),
+      title: const Text('Tic Tac Toe',
+        style: TextStyle(color: Colors.deepPurple),
+      ),
     ),
     body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
