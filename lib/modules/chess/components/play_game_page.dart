@@ -35,11 +35,16 @@ class _PlayGamePageState extends State<PlayGamePage> {
     return Scaffold(
       backgroundColor: Colors.deepPurple,
       appBar: AppBar(
-        backgroundColor: Colors.amberAccent,
-        title: const Text(
-          "Chess Game",
-          style: TextStyle(color: Colors.deepPurple),
-        ),
+          backgroundColor: Colors.amberAccent,
+          iconTheme: const IconThemeData(
+            color: Colors.deepPurple,
+          ),
+          title: const Text('Chess Game',
+            style: TextStyle(color: Colors.deepPurple),
+          ),
+          actions: [
+          IconButton(onPressed: (){}, icon: const Icon(Icons.logout_outlined),color: Colors.deepPurple,),
+          ]
       ),
       body: SafeArea(
         child: ListView(
