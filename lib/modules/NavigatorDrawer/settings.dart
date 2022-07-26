@@ -51,7 +51,7 @@ class SettingsScreen extends StatelessWidget {
                     Text(
                       'Name',
                       style: TextStyle(
-                        color: Colors.amberAccent,
+                        color: Colors.white,
                         fontSize: 17,
                         fontWeight: FontWeight.w300,
                       ),
@@ -62,7 +62,7 @@ class SettingsScreen extends StatelessWidget {
                     Text(
                       'Mostafa ahmed',
                       style: TextStyle(
-                        color: Colors.amberAccent,
+                        color: Colors.white,
                         fontSize: 19,
                         fontWeight: FontWeight.w400,
                       ),
@@ -78,7 +78,7 @@ class SettingsScreen extends StatelessWidget {
             const Text(
               'Email',
               style: TextStyle(
-                color: Colors.amberAccent,
+                color: Colors.white,
                 fontSize: 17,
                 fontWeight: FontWeight.w300,
               ),
@@ -86,9 +86,9 @@ class SettingsScreen extends StatelessWidget {
             Row(
               children: [
                 const Text(
-                  'Mostafa Ahmed',
+                  'Mostafaahmed@gmail.com',
                   style: TextStyle(
-                    color: Colors.amberAccent,
+                    color: Colors.white,
                     fontSize: 19,
                     fontWeight: FontWeight.w400,
                   ),
@@ -113,7 +113,7 @@ class SettingsScreen extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 25,
                                       fontWeight: FontWeight.w500,
-                                      color: Colors.amberAccent,
+                                      color: Colors.white,
                                     ),
                                   ),
                                   const SizedBox(
@@ -155,7 +155,7 @@ class SettingsScreen extends StatelessWidget {
                   },
                   icon: const Icon(
                     Icons.edit_outlined,
-                    color: Colors.amberAccent,
+                    color: Colors.white,
                   ),
                 ),
               ],
