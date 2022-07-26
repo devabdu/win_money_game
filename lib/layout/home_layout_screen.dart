@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.dart';
 import 'package:win_money_game/modules/chess/components/home_screen.dart';
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
+import 'package:win_money_game/modules/xo/selecct_level_xo_screen.dart';
 import 'package:win_money_game/shared/component/component.dart';
-
-import '../modules/xo/first_xo_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -32,7 +31,7 @@ class MainScreen extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              navigateTo(context, FirstXOScreen());
+              navigateTo(context, const SelectLevelXoScreen());
             },
             child: Image.asset("assets/images/xo.png",
               width: double.infinity,
