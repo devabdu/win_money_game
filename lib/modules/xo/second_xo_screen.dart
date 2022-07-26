@@ -8,7 +8,6 @@ class Player {
 }
 
 class SecondXOScreen extends StatefulWidget {
-
   @override
   MainPageState createState() => MainPageState();
 }
@@ -28,23 +27,37 @@ class MainPageState extends State<SecondXOScreen> {
   }
 
   void setEmptyFields() => setState(() => matrix = List.generate(
-    countMatrix,
+        countMatrix,
         (_) => List.generate(countMatrix, (_) => Player.none),
-  ));
+      ));
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    backgroundColor: Color.fromRGBO(16, 13, 34, 1),
-    appBar: AppBar(
-      centerTitle: true,
-      backgroundColor: Color.fromRGBO(16, 13, 34, 1),
-      title: Text('Tic Tac Toe'),
-    ),
-    body: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x)),
-    ),
-  );
+        //backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+        backgroundColor: Colors.deepPurple,
+        appBar: AppBar(
+            //centerTitle: true,
+            //backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+            backgroundColor: Colors.amberAccent,
+            iconTheme: const IconThemeData(
+              color: Colors.deepPurple,
+            ),
+            title: const Text(
+              'Tic Tac Toe',
+              style: TextStyle(color: Colors.deepPurple),
+            ),
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.logout_outlined),
+                color: Colors.deepPurple,
+              ),
+            ]),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x)),
+        ),
+      );
 
   Widget buildRow(int x) {
     final values = matrix[x];
@@ -53,7 +66,7 @@ class MainPageState extends State<SecondXOScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: Xo_Utils.modelBuilder(
         values,
-            (y, value) => buildField(x, y),
+        (y, value) => buildField(x, y),
       ),
     );
   }
@@ -61,9 +74,9 @@ class MainPageState extends State<SecondXOScreen> {
   Color getShadowColor(String value) {
     switch (value) {
       case Player.O:
-        return Colors.red;
+        return Colors.amberAccent;
       case Player.X:
-        return Colors.blue;
+        return Colors.deepPurple;
       default:
         return Color.fromRGBO(16, 13, 34, 1);
     }
@@ -88,17 +101,17 @@ class MainPageState extends State<SecondXOScreen> {
         child: AnimatedSize(
           duration: const Duration(milliseconds: 200),
           child: Text(
-              value,
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                shadows: [
-                  Shadow(
-                    blurRadius: 40,
-                    color: color,
-                  ),
-                ],
-              ),
+            value,
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              shadows: [
+                Shadow(
+                  blurRadius: 40,
+                  color: color,
+                ),
+              ],
+            ),
           ),
         ),
         onPressed: () => selectField(value, x, y),
@@ -143,29 +156,31 @@ class MainPageState extends State<SecondXOScreen> {
   }
 
   Future showEndDialog(String title) => showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (context) => AlertDialog(
-      backgroundColor: Color.fromRGBO(54, 51, 76, 1.0),
-      title: Text(title,
-        style: TextStyle(
-          color: Colors.white,
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+          backgroundColor: Color.fromRGBO(54, 51, 76, 1.0),
+          title: Text(
+            title,
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          content: Text(
+            'Press to Restart the Game',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                setEmptyFields();
+                Navigator.of(context).pop();
+              },
+              child: Text('Restart'),
+            )
+          ],
         ),
-      ),
-      content: Text('Press to Restart the Game',
-        style: TextStyle(
-          color: Colors.white,
-        ),
-      ),
-      actions: [
-        ElevatedButton(
-          onPressed: () {
-            setEmptyFields();
-            Navigator.of(context).pop();
-          },
-          child: Text('Restart'),
-        )
-      ],
-    ),
-  );
+      );
 }
