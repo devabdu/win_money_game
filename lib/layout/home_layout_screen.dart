@@ -16,6 +16,9 @@ class MainScreen extends StatelessWidget {
       drawer: const NavigationDrawerWidget(),
       appBar: AppBar(
         backgroundColor: Colors.amberAccent,
+        iconTheme: const IconThemeData(
+          color: Colors.deepPurple, //change your color here
+        ),
         title: const Text("Win Money",
           style: TextStyle(color: Colors.deepPurple),
         ),
