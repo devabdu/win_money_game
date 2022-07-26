@@ -58,7 +58,7 @@ class SelectLevelXoScreen extends StatelessWidget {
               },
               backgroundColorBox: Colors.amberAccent,
               textColor: Colors.deepPurple,
-              text: 'play Game 4x4',
+              text: 'play Game 5x5',
               width: 300,
               isUpperCase: false,
             ),
