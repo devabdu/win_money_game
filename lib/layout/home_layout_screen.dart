@@ -19,7 +19,6 @@ class MainScreen extends StatelessWidget {
         iconTheme: const IconThemeData(
           color: Colors.deepPurple,
         ),
-        centerTitle: true,
         title: const Text("Win Money",
           style: TextStyle(color: Colors.deepPurple),
         ),
