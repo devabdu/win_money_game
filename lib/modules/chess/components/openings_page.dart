@@ -36,6 +36,9 @@ class _OpeningsPageState extends State<OpeningsPage> {
         title: const Text("Chess Openings",
           style: TextStyle(color: Colors.deepPurple),
         ),
+        iconTheme: const IconThemeData(
+          color: Colors.deepPurple,
+        ),
       ),
       body: ListView.builder(
         itemCount: openings.length,
