@@ -15,7 +15,7 @@ class ThirdXOScreen extends StatefulWidget {
 
 class MainPageState extends State<ThirdXOScreen> {
   static final countMatrix = 5;
-  static final double size = 32;
+  static final double size = 62;
 
   String lastMove = Player.none;
   late List<List<String>> matrix;
@@ -34,11 +34,26 @@ class MainPageState extends State<ThirdXOScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+    //backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+    backgroundColor: Colors.deepPurple,
     appBar: AppBar(
-      centerTitle: true,
-      backgroundColor: Color.fromRGBO(16, 13, 34, 1),
-      title: Text('Tic Tac Toe'),
+      // centerTitle: true,
+      // backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+        backgroundColor: Colors.amberAccent,
+        iconTheme: const IconThemeData(
+          color: Colors.deepPurple,
+        ),
+        title: const Text(
+          'Tic Tac Toe',
+          style: TextStyle(color: Colors.deepPurple),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.logout_outlined),
+            color: Colors.deepPurple,
+          ),
+        ]
     ),
     body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -61,9 +76,9 @@ class MainPageState extends State<ThirdXOScreen> {
   Color getShadowColor(String value) {
     switch (value) {
       case Player.O:
-        return Colors.red;
+        return Colors.amberAccent;
       case Player.X:
-        return Colors.blue;
+        return Colors.deepPurple;
       default:
         return Color.fromRGBO(16, 13, 34, 1);
     }

@@ -14,7 +14,7 @@ class SecondXOScreen extends StatefulWidget {
 
 class MainPageState extends State<SecondXOScreen> {
   static final countMatrix = 4;
-  static final double size = 52;
+  static final double size = 82;
 
   String lastMove = Player.none;
   late List<List<String>> matrix;
@@ -52,7 +52,8 @@ class MainPageState extends State<SecondXOScreen> {
                 icon: const Icon(Icons.logout_outlined),
                 color: Colors.deepPurple,
               ),
-            ]),
+            ]
+        ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x)),

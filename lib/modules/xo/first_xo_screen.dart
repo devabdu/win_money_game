@@ -17,7 +17,7 @@ class FirstXOScreen extends StatefulWidget {
 
 class MainPageState extends State<FirstXOScreen> {
   static final countMatrix = 3;
-  static final double size = 92;
+  static final double size = 112;
 
   String lastMove = Player.none;
   late List<List<String>> matrix;
