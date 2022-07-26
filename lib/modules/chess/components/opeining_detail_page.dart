@@ -18,14 +18,16 @@ class _OpeningDetailPageState extends State<OpeningDetailPage> {
     return Scaffold(
       backgroundColor: Colors.deepPurple,
       appBar: AppBar(
-        backgroundColor: Colors.amberAccent,
-        title:
-        Text(
-          openings[widget.position].name,
-          style: const TextStyle(
+          backgroundColor: Colors.amberAccent,
+          iconTheme: const IconThemeData(
             color: Colors.deepPurple,
           ),
-        ),
+          title: Text(
+            openings[widget.position].name,
+            style: const TextStyle(
+              color: Colors.deepPurple,
+            ),
+          ),
       ),
       body: ListView(
         children: [
@@ -35,17 +37,16 @@ class _OpeningDetailPageState extends State<OpeningDetailPage> {
               openings[widget.position].moveNotation,
               style: const TextStyle(
                   fontSize: 18.0,
-                color: Colors.white,
-                fontWeight: FontWeight.bold
-              ),
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(openings[widget.position].information,
-              style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.white),),
+            child: Text(
+              openings[widget.position].information,
+              style: const TextStyle(fontSize: 16, color: Colors.white),
+            ),
           ),
         ],
       ),
