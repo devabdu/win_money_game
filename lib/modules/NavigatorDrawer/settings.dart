@@ -13,6 +13,9 @@ class SettingsScreen extends StatelessWidget {
       backgroundColor: Colors.deepPurple,
       appBar: AppBar(
         backgroundColor: Colors.amberAccent,
+        iconTheme: const IconThemeData(
+          color: Colors.deepPurple,
+        ),
         title: const Text(
             'Settings',
           style: TextStyle(
@@ -67,29 +70,6 @@ class SettingsScreen extends StatelessWidget {
                   ],
                 ),
               ],
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            //phone
-            const Text(
-              'Phone Number',
-              style: TextStyle(
-                color: Colors.amberAccent,
-                fontSize: 17,
-                fontWeight: FontWeight.w300,
-              ),
-            ),
-            const SizedBox(
-              height: 11,
-            ),
-            const Text(
-              '01005402577',
-              style: TextStyle(
-                color: Colors.amberAccent,
-                fontSize: 19,
-                fontWeight: FontWeight.w400,
-              ),
             ),
             const SizedBox(
               height: 50,
