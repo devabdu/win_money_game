@@ -46,20 +46,106 @@ class _PlayGamePageState extends State<PlayGamePage> {
           IconButton(onPressed: (){}, icon: const Icon(Icons.logout_outlined),color: Colors.deepPurple,),
           ]
       ),
-      body: SafeArea(
-        child: ListView(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SafeArea(
+                child: Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 170),
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: [
+                              const CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 22,
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundImage: NetworkImage(
+                                      'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Text(
+                                'Second player',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  // fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(width: 5),
+                              IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.mic_rounded,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ))
+            ),
             _buildChessBoard(),
+            SafeArea(
+                child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20,),
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: [
+                              const CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 22,
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundImage: NetworkImage(
+                                      'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Text(
+                                'First Player',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  // fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(width: 5),
+                              IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.mic_rounded,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ))),
             _buildNotationAndOptions(),
           ],
         ),
-      ),
     );
   }
 
   Widget _buildChessBoard() {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 130.0),
+      padding: EdgeInsets.symmetric(vertical: 20.0),
       child: ChessBoard(
         controller: controller,
         boardColor: BoardColor.orange,
@@ -70,73 +156,76 @@ class _PlayGamePageState extends State<PlayGamePage> {
   }
 
   Widget _buildNotationAndOptions() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: defaultButton(
-                  function:  () {
-                    _resetGame();
-                  },
-                  text: "Reset game",
-                  isUpperCase: false,
-                  textColor: Colors.deepPurple,
-                  backgroundColorBox: Colors.amberAccent,
-                  width: 170
+    return Padding(
+      padding: const EdgeInsets.only(top: 60, bottom: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                child: defaultButton(
+                    function:  () {
+                      _resetGame();
+                    },
+                    text: "Reset game",
+                    isUpperCase: false,
+                    textColor: Colors.deepPurple,
+                    backgroundColorBox: Colors.amberAccent,
+                    width: 170
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: defaultButton(
-                  function:  () {
-                    _undoMove();
-                  },
-                  text: "Undo Move",
-                  isUpperCase: false,
-                  textColor: Colors.deepPurple,
-                  backgroundColorBox: Colors.amberAccent,
-                  width: 170
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                child: defaultButton(
+                    function:  () {
+                      _undoMove();
+                    },
+                    text: "Undo Move",
+                    isUpperCase: false,
+                    textColor: Colors.deepPurple,
+                    backgroundColorBox: Colors.amberAccent,
+                    width: 170
+                ),
               ),
-            ),
 
-            // Expanded(
-            //   child: Padding(
-            //     padding: const EdgeInsets.symmetric(horizontal:10),
-            //     child: FlatButton(
-            //       height: 50,
-            //       color: Colors.amberAccent,
-            //       textColor: Colors.deepPurple,
-            //       onPressed: () {
-            //         _resetGame();
-            //       },
-            //       child: Text("Reset game"),
-            //     ),
-            //   ),
-            // ),
-            // Expanded(
-            //   child: Padding(
-            //     padding: const EdgeInsets.symmetric(horizontal: 10),
-            //     child: FlatButton(
-            //       height: 50,
-            //       color: Colors.amberAccent,
-            //       textColor: Colors.deepPurple,
-            //       onPressed: () {
-            //         _undoMove();
-            //       },
-            //       child: Text("Undo Move"),
-            //     ),
-            //   ),
-            // ),
-          ],
-        ),
-        Column(
-          children: _buildMovesList(),
-        )
-      ],
+              // Expanded(
+              //   child: Padding(
+              //     padding: const EdgeInsets.symmetric(horizontal:10),
+              //     child: FlatButton(
+              //       height: 50,
+              //       color: Colors.amberAccent,
+              //       textColor: Colors.deepPurple,
+              //       onPressed: () {
+              //         _resetGame();
+              //       },
+              //       child: Text("Reset game"),
+              //     ),
+              //   ),
+              // ),
+              // Expanded(
+              //   child: Padding(
+              //     padding: const EdgeInsets.symmetric(horizontal: 10),
+              //     child: FlatButton(
+              //       height: 50,
+              //       color: Colors.amberAccent,
+              //       textColor: Colors.deepPurple,
+              //       onPressed: () {
+              //         _undoMove();
+              //       },
+              //       child: Text("Undo Move"),
+              //     ),
+              //   ),
+              // ),
+            ],
+          ),
+          Column(
+            children: _buildMovesList(),
+          )
+        ],
+      ),
     );
   }
   void _showDialog(String? winColor) {
