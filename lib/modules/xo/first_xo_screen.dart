@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:win_money_game/modules/xo/xo_utils.dart';
 
-
 class Player {
   static const none = '';
   static const X = 'X';
@@ -10,7 +9,6 @@ class Player {
 }
 
 class FirstXOScreen extends StatefulWidget {
-
   @override
   MainPageState createState() => MainPageState();
 }
@@ -30,33 +28,118 @@ class MainPageState extends State<FirstXOScreen> {
   }
 
   void setEmptyFields() => setState(() => matrix = List.generate(
-    countMatrix,
+        countMatrix,
         (_) => List.generate(countMatrix, (_) => Player.none),
-  ));
+      ));
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    // backgroundColor: Color.fromRGBO(16, 13, 34, 1),
-    backgroundColor: Colors.deepPurple,
-    appBar: AppBar(
-      //centerTitle: true,
-      //backgroundColor: Color.fromRGBO(16, 13, 34, 1),
-      backgroundColor: Colors.amberAccent,
-      iconTheme: const IconThemeData(
-        color: Colors.deepPurple,
-      ),
-      title: const Text('Tic Tac Toe',
-        style: TextStyle(color: Colors.deepPurple),
-      ),
-      actions: [
-        IconButton(onPressed: (){}, icon: const Icon(Icons.logout_outlined),color: Colors.deepPurple,),
-      ],
-    ),
-    body: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x)),
-    ),
-  );
+        // backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+        backgroundColor: Colors.deepPurple,
+        appBar: AppBar(
+          //centerTitle: true,
+          //backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+          backgroundColor: Colors.amberAccent,
+          iconTheme: const IconThemeData(
+            color: Colors.deepPurple,
+          ),
+          title: const Text(
+            'Tic Tac Toe',
+            style: TextStyle(color: Colors.deepPurple),
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.logout_outlined),
+              color: Colors.deepPurple,
+            ),
+          ],
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SafeArea(
+                child: Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 20, left: 180),
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: [
+                              const CircleAvatar(
+                                radius: 20,
+                                backgroundImage: NetworkImage(
+                                    'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Text(
+                                'Second player',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  // fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(width: 5),
+                              IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.mic_rounded,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ))),
+            ...Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x)),
+            SafeArea(
+                child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20, top: 20),
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: [
+                              const CircleAvatar(
+                                radius: 20,
+                                backgroundImage: NetworkImage(
+                                    'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Text(
+                                'First Player',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  // fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(width: 5),
+                              IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.mic_rounded,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ))),
+          ],
+        ),
+      );
 
   Widget buildRow(int x) {
     final values = matrix[x];
@@ -65,7 +148,7 @@ class MainPageState extends State<FirstXOScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: Xo_Utils.modelBuilder(
         values,
-            (y, value) => buildField(x, y),
+        (y, value) => buildField(x, y),
       ),
     );
   }
@@ -100,17 +183,17 @@ class MainPageState extends State<FirstXOScreen> {
         child: AnimatedSize(
           duration: const Duration(milliseconds: 200),
           child: Text(
-              value,
-              style: TextStyle(
-                fontSize: 62,
-                fontWeight: FontWeight.bold,
-                  shadows: [
-                    Shadow(
-                      blurRadius: 40,
-                      color: color,
-                    ),
-                  ],
-              ),
+            value,
+            style: TextStyle(
+              fontSize: 62,
+              fontWeight: FontWeight.bold,
+              shadows: [
+                Shadow(
+                  blurRadius: 40,
+                  color: color,
+                ),
+              ],
+            ),
           ),
         ),
         onPressed: () => selectField(value, x, y),
@@ -155,29 +238,31 @@ class MainPageState extends State<FirstXOScreen> {
   }
 
   Future showEndDialog(String title) => showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (context) => AlertDialog(
-      backgroundColor: Color.fromRGBO(54, 51, 76, 1.0),
-      title: Text(title,
-      style: TextStyle(
-        color: Colors.white,
-      ),
-      ),
-      content: Text('Press to Restart the Game',
-        style: TextStyle(
-          color: Colors.white,
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+          backgroundColor: Color.fromRGBO(54, 51, 76, 1.0),
+          title: Text(
+            title,
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          content: Text(
+            'Press to Restart the Game',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                setEmptyFields();
+                Navigator.of(context).pop();
+              },
+              child: Text('Restart'),
+            )
+          ],
         ),
-      ),
-      actions: [
-        ElevatedButton(
-          onPressed: () {
-            setEmptyFields();
-            Navigator.of(context).pop();
-          },
-          child: Text('Restart'),
-        )
-      ],
-    ),
-  );
+      );
 }
