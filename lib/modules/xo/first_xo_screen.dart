@@ -48,6 +48,9 @@ class MainPageState extends State<FirstXOScreen> {
       title: const Text('Tic Tac Toe',
         style: TextStyle(color: Colors.deepPurple),
       ),
+      actions: [
+        IconButton(onPressed: (){}, icon: const Icon(Icons.logout_outlined),color: Colors.deepPurple,),
+      ],
     ),
     body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -70,9 +73,9 @@ class MainPageState extends State<FirstXOScreen> {
   Color getShadowColor(String value) {
     switch (value) {
       case Player.O:
-        return Colors.red;
+        return Colors.amberAccent;
       case Player.X:
-        return Colors.blue;
+        return Colors.deepPurple;
       default:
         return Color.fromRGBO(16, 13, 34, 1);
     }
