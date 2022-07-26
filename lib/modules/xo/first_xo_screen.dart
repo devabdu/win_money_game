@@ -62,15 +62,19 @@ class MainPageState extends State<FirstXOScreen> {
                 child: Align(
                     alignment: Alignment.topRight,
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 20, left: 180),
+                      padding: const EdgeInsets.only(bottom: 20, left: 170),
                       child: Column(
                         children: <Widget>[
                           Row(
                             children: [
                               const CircleAvatar(
-                                radius: 20,
-                                backgroundImage: NetworkImage(
-                                    'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                                backgroundColor: Colors.white,
+                                radius: 22,
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundImage: NetworkImage(
+                                      'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                                ),
                               ),
                               const SizedBox(
                                 width: 10,
@@ -108,9 +112,13 @@ class MainPageState extends State<FirstXOScreen> {
                           Row(
                             children: [
                               const CircleAvatar(
-                                radius: 20,
-                                backgroundImage: NetworkImage(
-                                    'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                                backgroundColor: Colors.white,
+                                radius: 22,
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundImage: NetworkImage(
+                                      'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                                ),
                               ),
                               const SizedBox(
                                 width: 10,
