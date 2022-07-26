@@ -17,8 +17,9 @@ class MainScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.amberAccent,
         iconTheme: const IconThemeData(
-          color: Colors.deepPurple, //change your color here
+          color: Colors.deepPurple,
         ),
+        centerTitle: true,
         title: const Text("Win Money",
           style: TextStyle(color: Colors.deepPurple),
         ),
