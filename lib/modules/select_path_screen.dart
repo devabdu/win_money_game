@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:win_money_game/layout/home_layout_screen.dart';
 import 'package:win_money_game/shared/component/component.dart';
@@ -13,33 +14,92 @@ class SelectPathScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(
-            children: [
-              Padding(padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {
-                    navigateTo(context, const HomeLayoutScreen());
-                  },
-                  child: Image.asset(
-                    "assets/images/Tasaly.png",
-                    width: 250,
-                    height: 400,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+            child: InkWell(
+              onTap: () {
+                showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text(
+                      'Play for fun',
+                      style: TextStyle(
+                          color: Colors.deepPurple,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    content: const Text(
+                      'Without Adds and earn money',
+                      style: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                    backgroundColor: Colors.amberAccent,
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Cancel'),
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () =>
+                            navigateTo(context, const HomeLayoutScreen()),
+                        child: const Text('OK'),
+                      ),
+                    ],
                   ),
-                ),
+                );
+              },
+              splashColor: Colors.deepPurple,
+              child: Image.asset(
+                "assets/images/Tasaly.png",
+                width: double.infinity,
+                height: 300,
               ),
-              Padding(padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {
-                    navigateTo(context, const HomeLayoutScreen());
-                  },
-                  child: Image.asset(
-                    "assets/images/Tasaly.png",
-                    width: 250,
-                    height: 400,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+            child: InkWell(
+              onTap: () {
+                showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text(
+                      'Play for win money',
+                      style: TextStyle(
+                          color: Colors.deepPurple,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    content: const Text(
+                      'With Adds and earn money',
+                      style: TextStyle(
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                    backgroundColor: Colors.amberAccent,
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Cancel'),
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () =>
+                            navigateTo(context, const HomeLayoutScreen()),
+                        child: const Text('OK'),
+                      ),
+                    ],
                   ),
-                ),
+                );
+              },
+              splashColor: Colors.deepPurple,
+              child: Image.asset(
+                "assets/images/rebh.png",
+                width: double.infinity,
+                height: 300,
               ),
-            ],
+            ),
           ),
         ],
       ),

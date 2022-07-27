@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:win_money_game/layout/home_layout_screen.dart';
+import 'package:win_money_game/modules/select_path_screen.dart';
 import 'package:win_money_game/shared/component/component.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -37,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
               label: const Text('Login using Facebook'),
               icon: const Icon(Icons.facebook),
               onPressed: (){
-                navigateTo(context, MainScreen());
+                navigateTo(context, SelectPathScreen());
               },
             ),
             const SizedBox(height: 20,),
@@ -54,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
               label: const Text('Login using Gmail'),
               icon: const Icon(Icons.email),
               onPressed: (){
-                navigateTo(context, MainScreen());
+                navigateTo(context, HomeLayoutScreen());
               },
             ),
           ],
