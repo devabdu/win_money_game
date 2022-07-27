@@ -82,6 +82,8 @@ flutter:
      - assets/images/xo.png
      - assets/images/Ludo_board.png
      - assets/images/ludo_board2.png
+     - assets/images/Tasaly.png
+     - assets/images/rebh.png
      - assets/win-money.json
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
