@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:win_money_game/layout/home_layout_screen.dart';
 import 'package:win_money_game/modules/ludo/game_engine/model/dice_model.dart';
 import 'package:win_money_game/modules/ludo/game_engine/model/game_state.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/dice.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/gameplay.dart';
+import 'package:win_money_game/modules/splash_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(create: (context)=>DiceModel()),
           ],
         // child: MyHomePage(title: 'Flutter Demo Home Page')
-        child: MainScreen(),
+        child: SplashScreen(),
 
       ),
     );
