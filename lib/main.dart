@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(create: (context)=>GameState()),
             ChangeNotifierProvider(create: (context)=>DiceModel()),
           ],
-        // child: MyHomePage(title: 'Flutter Demo Home Page')
-        child: SplashScreen(),
+         child: MyHomePage(title: 'Flutter Demo Home Page')
+        //child: SplashScreen(),
 
       ),
     );
