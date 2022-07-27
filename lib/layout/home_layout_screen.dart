@@ -5,8 +5,8 @@ import 'package:win_money_game/modules/ludo/ludo_screen.dart';
 import 'package:win_money_game/modules/xo/selecct_level_xo_screen.dart';
 import 'package:win_money_game/shared/component/component.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
+class HomeLayoutScreen extends StatelessWidget {
+  const HomeLayoutScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
