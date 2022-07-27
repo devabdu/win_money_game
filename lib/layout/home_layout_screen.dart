@@ -18,48 +18,85 @@ class MainScreen extends StatelessWidget {
         iconTheme: const IconThemeData(
           color: Colors.deepPurple,
         ),
-        title: const Text("Win Money",
-          style: TextStyle(color: Colors.deepPurple),
-        ),
+        // title: const Text("Win Money Game",
+        //   style: TextStyle(color: Colors.deepPurple),
+        // ),
         actions: [
-          IconButton(onPressed: (){}, icon: const Icon(Icons.shopping_bag_rounded),color: Colors.deepPurple,),
+          Padding(
+            padding: const EdgeInsets.only(top:4),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:const [
+                Icon(Icons.monetization_on,
+                  color: Colors.deepPurple,
+                  size: 25,
+                ),
+                SizedBox(
+                  width: 5.0,
+                ),
+                Text(
+                  '5,00000000000',
+                  style:TextStyle(
+                    color: Colors.deepPurple,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18
+                  ),
+                ),
+              ],
+            ),
+          ),
+          IconButton(onPressed: (){}, icon: const Icon(Icons.shopping_bag_rounded,),color: Colors.deepPurple,),
         ],
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          InkWell(
-            onTap: () {
-              navigateTo(context, const SelectLevelXoScreen());
-            },
-            child: Image.asset("assets/images/xo.png",
-              width: double.infinity,
-              height: 180,
+          // SafeArea(
+          //     child: Padding(
+          //       padding: const EdgeInsets.only(top: 10,left: 320),
+          //       child:
+          //     ),
+          // ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 30,
             ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          InkWell(
-            onTap: () {
-              navigateTo(context, MainMenuScreen());
-            },
-            child: Image.asset("assets/images/chess.png",
-              width: double.infinity,
-              height: 180,
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          InkWell(
-            onTap: () {
-              navigateTo(context, LudoScreen());
-            },
-            child: Image.asset("assets/images/LUDO Game.png",
-              width: double.infinity,
-              height: 180,
+            child: Column(
+              children: [
+                InkWell(
+                  onTap: () {
+                    navigateTo(context, const SelectLevelXoScreen());
+                  },
+                  child: Image.asset("assets/images/xo.png",
+                    width: double.infinity,
+                    height: 180,
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () {
+                    navigateTo(context, MainMenuScreen());
+                  },
+                  child: Image.asset("assets/images/chess.png",
+                    width: double.infinity,
+                    height: 180,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                InkWell(
+                  onTap: () {
+                    navigateTo(context, LudoScreen());
+                  },
+                  child: Image.asset("assets/images/LUDO Game.png",
+                    width: double.infinity,
+                    height: 180,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
