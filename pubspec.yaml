@@ -41,6 +41,7 @@ dependencies:
   chess: ^0.7.0
   flutter_chess_board: ^1.0.1
   chess_vectors_flutter: ^1.0.16
+  percent_indicator: ^4.2.2
 
 dev_dependencies:
   flutter_test:

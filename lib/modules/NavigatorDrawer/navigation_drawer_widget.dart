@@ -2,6 +2,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/drawer_item.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/help.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/settings.dart';
@@ -108,7 +109,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children:  [
                 Text(
                   'Mostafa Ahmed',
                   style: TextStyle(
@@ -119,13 +120,23 @@ class NavigationDrawerWidget extends StatelessWidget {
                 SizedBox(
                   height: 5,
                 ),
-                Text(
-                  "level: 1",
-                  style: TextStyle(
-                    color: Colors.deepPurple,
-                    fontSize: 15,
+                Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child:  LinearPercentIndicator(
+                    width: 140.0,
+                    lineHeight: 14.0,
+                    percent: 0.5,
+                    center: Text(
+                      "50.0%",
+                      style:  TextStyle(fontSize: 12.0),
+                    ),
+                    //trailing: Icon(Icons.mood),
+                    linearStrokeCap: LinearStrokeCap.roundAll,
+                    backgroundColor: Colors.grey,
+                    progressColor: Colors.blue,
                   ),
                 ),
+
               ],
             ),
           ],
