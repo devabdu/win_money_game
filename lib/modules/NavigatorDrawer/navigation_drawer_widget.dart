@@ -108,35 +108,19 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children:  [
                 Text(
-                  'Mostafa Ahmed',
+                  'Mostafa',
                   style: TextStyle(
                     color: Colors.deepPurple,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                  ),),
-                SizedBox(
-                  height: 5,
-                ),
-                Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child:  LinearPercentIndicator(
-                    width: 140.0,
-                    lineHeight: 14.0,
-                    percent: 0.5,
-                    center: Text(
-                      "50.0%",
-                      style:  TextStyle(fontSize: 12.0),
-                    ),
-                    //trailing: Icon(Icons.mood),
-                    linearStrokeCap: LinearStrokeCap.roundAll,
-                    backgroundColor: Colors.grey,
-                    progressColor: Colors.blue,
                   ),
                 ),
-
+                // SizedBox(
+                //   height: 5,
+                // ),
               ],
             ),
           ],
