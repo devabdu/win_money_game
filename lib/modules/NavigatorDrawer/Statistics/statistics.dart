@@ -16,251 +16,249 @@ class StatisticsScreen extends StatelessWidget {
             style: TextStyle(color: Colors.deepPurple),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 50
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Tasaly Statistics',
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.amberAccent,
-                  fontWeight: FontWeight.w800,
-                ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Tasaly Statistics',
+              style: TextStyle(
+                fontSize: 25,
+                color: Colors.amberAccent,
+                fontWeight: FontWeight.w800,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: const [
-                        Text(
-                          'XO',
-                          style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.amberAccent,
-                            fontWeight: FontWeight.w600,
-                          ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: const [
+                      Text(
+                        'XO',
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.amberAccent,
+                          fontWeight: FontWeight.w600,
                         ),
-                        SizedBox(
-                          height: 10,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Wins',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w400,
                         ),
-                        Text(
-                          'Wins',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 19,
-                            fontWeight: FontWeight.w400,
-                          ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        '50 of 100',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w300,
                         ),
-                        SizedBox(
-                          height: 5,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: const [
+                      Text(
+                        'Chess',
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.amberAccent,
+                          fontWeight: FontWeight.w600,
                         ),
-                        Text(
-                          '50 of 100',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w300,
-                          ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Wins',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w400,
                         ),
-                      ],
-                    ),
-                    Column(
-                      children: const [
-                        Text(
-                          'Chess',
-                          style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.amberAccent,
-                            fontWeight: FontWeight.w600,
-                          ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        '50 of 100',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w300,
                         ),
-                        SizedBox(
-                          height: 10,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: const [
+                      Text(
+                        'Ludo',
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.amberAccent,
+                          fontWeight: FontWeight.w600,
                         ),
-                        Text(
-                          'Wins',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 19,
-                            fontWeight: FontWeight.w400,
-                          ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Wins',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w400,
                         ),
-                        SizedBox(
-                          height: 5,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        '50 of 100',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w300,
                         ),
-                        Text(
-                          '50 of 100',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: const [
-                        Text(
-                          'Ludo',
-                          style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.amberAccent,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Wins',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 19,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          '50 of 100',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              const Text(
-                'Rebh Statistics',
-                style: TextStyle(
-                  fontSize: 25,
-                  color: Colors.amberAccent,
-                  fontWeight: FontWeight.w800,
-                ),
+            ),
+            const SizedBox(
+              height: 125,
+            ),
+            const Text(
+              'Rebh Statistics',
+              style: TextStyle(
+                fontSize: 25,
+                color: Colors.amberAccent,
+                fontWeight: FontWeight.w800,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: const [
-                        Text(
-                          'XO',
-                          style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.amberAccent,
-                            fontWeight: FontWeight.w600,
-                          ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: const [
+                      Text(
+                        'XO',
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.amberAccent,
+                          fontWeight: FontWeight.w600,
                         ),
-                        SizedBox(
-                          height: 10,
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Wins',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w400,
                         ),
-                        Text(
-                          'Wins',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 19,
-                            fontWeight: FontWeight.w400,
-                          ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        '50 of 100',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w300,
                         ),
-                        SizedBox(
-                          height: 5,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: const [
+                      Text(
+                        'Chess',
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.amberAccent,
+                          fontWeight: FontWeight.w600,
                         ),
-                        Text(
-                          '50 of 100',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w300,
-                          ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Wins',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w400,
                         ),
-                      ],
-                    ),
-                    Column(
-                      children: const [
-                        Text(
-                          'Chess',
-                          style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.amberAccent,
-                            fontWeight: FontWeight.w600,
-                          ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        '50 of 100',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w300,
                         ),
-                        SizedBox(
-                          height: 10,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: const [
+                      Text(
+                        'Ludo',
+                        style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.amberAccent,
+                          fontWeight: FontWeight.w600,
                         ),
-                        Text(
-                          'Wins',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 19,
-                            fontWeight: FontWeight.w400,
-                          ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Wins',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w400,
                         ),
-                        SizedBox(
-                          height: 5,
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        '50 of 100',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.w300,
                         ),
-                        Text(
-                          '50 of 100',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: const [
-                        Text(
-                          'Ludo',
-                          style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.amberAccent,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Wins',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 19,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          '50 of 100',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.w300,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
     );
   }
