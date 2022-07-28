@@ -7,7 +7,7 @@ import 'package:win_money_game/modules/NavigatorDrawer/drawer_item.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/help.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/profile.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/settings.dart';
-import 'package:win_money_game/modules/NavigatorDrawer/statics.dart';
+import 'package:win_money_game/modules/NavigatorDrawer/Statistics/statistics.dart';
 import 'package:win_money_game/shared/component/component.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
