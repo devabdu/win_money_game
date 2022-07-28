@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:win_money_game/shared/component/component.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -34,22 +35,58 @@ class ProfileScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //name and pic
+            const Center(
+              child: CircleAvatar(
+                radius: 47,
+                backgroundColor: Colors.white,
+                child: CircleAvatar(
+                  radius: 45,
+                  backgroundImage: NetworkImage('https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            const Text(
+              'Name',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+            Row(
+              children: [
+                const Text(
+                  'Mostafaahmed@gmail.com',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 19,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                const Spacer(),
+                IconButton(
+                  onPressed: (){},
+                  icon: const Icon(
+                    Icons.edit_outlined,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 40,
+            ),
             Row(
               children:
               [
-                const CircleAvatar(
-                  radius: 35,
-                  backgroundImage: NetworkImage('https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text(
-                      'Name',
+                      'Level ',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 17,
@@ -60,7 +97,7 @@ class ProfileScreen extends StatelessWidget {
                       height: 10,
                     ),
                     Text(
-                      'Mostafa ahmed',
+                      '100',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 19,
@@ -69,10 +106,49 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  width: 10,
+                ),
+
+                LinearPercentIndicator(
+                  alignment: MainAxisAlignment.start,
+                  width: 200.0,
+                  lineHeight: 20.0,
+                  percent: 0.5,
+                  center: const Text(
+                    "50.0%",
+                    style:  TextStyle(fontSize: 12.0),
+                  ),
+                  //trailing: Icon(Icons.mood),
+                  linearStrokeCap: LinearStrokeCap.round,
+                  backgroundColor: Colors.white,
+                  progressColor: Colors.amberAccent,
+                ),
               ],
             ),
             const SizedBox(
-              height: 50,
+              height: 40,
+            ),
+            Row(
+              children: const [
+                Icon(Icons.monetization_on,
+                  color: Colors.amberAccent,
+                ),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Text(
+                  '5,00000000000',
+                  style:TextStyle(
+                      color: Colors.amberAccent,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 19
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 40,
             ),
             //email
             const Text(

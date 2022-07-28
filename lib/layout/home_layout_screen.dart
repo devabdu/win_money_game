@@ -51,12 +51,6 @@ class HomeLayoutScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // SafeArea(
-          //     child: Padding(
-          //       padding: const EdgeInsets.only(top: 10,left: 320),
-          //       child:
-          //     ),
-          // ),
           Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 30,
