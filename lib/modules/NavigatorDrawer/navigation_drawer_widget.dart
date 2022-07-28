@@ -6,6 +6,8 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/drawer_item.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/help.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/profile.dart';
+import 'package:win_money_game/modules/NavigatorDrawer/settings.dart';
+import 'package:win_money_game/modules/NavigatorDrawer/statics.dart';
 import 'package:win_money_game/shared/component/component.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
@@ -32,9 +34,17 @@ class NavigationDrawerWidget extends StatelessWidget {
                 height: 30,
               ),
               DrawerItem(
+                icon: Icons.stacked_bar_chart_outlined,
+                title: 'Statistics',
+                onTap: () => onItemPressed(context, index: 0),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              DrawerItem(
                 icon: Icons.settings,
                 title: 'Settings',
-                onTap: () => onItemPressed(context, index: 0),
+                onTap: () => onItemPressed(context, index: 1),
               ),
               const SizedBox(
                 height: 30,
@@ -42,7 +52,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               DrawerItem(
                 icon: Icons.help_outline,
                 title: 'Help',
-                onTap: () => onItemPressed(context, index: 1),
+                onTap: () => onItemPressed(context, index: 2),
               ),
               const SizedBox(
                 height: 30,),
@@ -58,7 +68,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                 title: 'SignOut',
                 titleColor: Colors.deepPurple,
                 iconColor: Colors.deepPurple,
-                onTap: () => onItemPressed(context, index: 2),
+                onTap: () => onItemPressed(context, index: 3),
               ),
             ],
           ),
@@ -74,12 +84,15 @@ class NavigationDrawerWidget extends StatelessWidget {
     switch(index)
     {
       case 0:
-        navigateTo(context, ProfileScreen());
+        navigateTo(context, const StatisticsScreen());
         break;
       case 1:
-        navigateTo(context, const HelpScreen());
+        navigateTo(context, const SettingsScreen());
         break;
       case 2:
+        navigateTo(context, const HelpScreen());
+        break;
+      case 3:
         navigateTo(context, (){});
         break;
     }
