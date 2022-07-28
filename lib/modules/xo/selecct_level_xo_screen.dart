@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:win_money_game/modules/chess/responsive/responsive.dart';
 import 'package:win_money_game/modules/xo/first_xo_screen.dart';
 import 'package:win_money_game/modules/xo/second_xo_screen.dart';
+import 'package:win_money_game/modules/xo/select_bet_screen.dart';
 import 'package:win_money_game/modules/xo/third_xo_screen.dart';
 import 'package:win_money_game/shared/component/component.dart';
 
@@ -25,7 +26,7 @@ class SelectLevelXoScreen extends StatelessWidget {
 
             defaultButton(
               function: () {
-                navigateTo(context, FirstXOScreen());
+                navigateTo(context, XoSelectBetScreen());
               },
               backgroundColorBox: Colors.amberAccent,
               textColor: Colors.deepPurple,
