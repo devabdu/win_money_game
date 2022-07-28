@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/drawer_item.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/help.dart';
-import 'package:win_money_game/modules/NavigatorDrawer/settings.dart';
+import 'package:win_money_game/modules/NavigatorDrawer/profile.dart';
 import 'package:win_money_game/shared/component/component.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
@@ -74,7 +74,7 @@ class NavigationDrawerWidget extends StatelessWidget {
     switch(index)
     {
       case 0:
-        navigateTo(context, SettingsScreen());
+        navigateTo(context, ProfileScreen());
         break;
       case 1:
         navigateTo(context, const HelpScreen());
@@ -89,7 +89,7 @@ class NavigationDrawerWidget extends StatelessWidget {
   {
     return MaterialButton(
 
-      onPressed: (){navigateTo(context, SettingsScreen());},
+      onPressed: (){navigateTo(context, ProfileScreen());},
       child: Padding(
         padding: const EdgeInsets.only(right: 10),
         child: Row(
@@ -107,10 +107,10 @@ class NavigationDrawerWidget extends StatelessWidget {
               width: 10,
             ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children:  [
-                Text(
+                const Text(
                   'Mostafa',
                   style: TextStyle(
                     color: Colors.deepPurple,
@@ -118,9 +118,33 @@ class NavigationDrawerWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                // SizedBox(
-                //   height: 5,
-                // ),
+                const SizedBox(
+                  height: 5,
+                ),
+                LinearPercentIndicator(
+                  alignment: MainAxisAlignment.start,
+                  width: 140.0,
+                  lineHeight: 14.0,
+                  percent: 0.5,
+                  center: Text(
+                    "50.0%",
+                    style:  TextStyle(fontSize: 12.0),
+                  ),
+                  //trailing: Icon(Icons.mood),
+                  linearStrokeCap: LinearStrokeCap.roundAll,
+                  backgroundColor: Colors.white,
+                  progressColor: Colors.deepPurple,
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                const Text(
+                  'Level: 100',
+                  style: TextStyle(
+                    color: Colors.deepPurple,
+                    fontSize: 20,
+                  ),
+                ),
               ],
             ),
           ],
