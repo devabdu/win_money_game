@@ -86,41 +86,51 @@ class NavigationDrawerWidget extends StatelessWidget {
 
   Widget headerWidget(context)
   {
-    return Row(
-      children:
-      [
-        const CircleAvatar(
-          radius: 30,
-          backgroundImage: NetworkImage('https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
-        ),
-        const SizedBox(
-          width: 10,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
-            Text(
-              'Mostafa Ahmed',
-              style: TextStyle(
-                color: Colors.deepPurple,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),),
-            SizedBox(
-              height: 5,
-            ),
-            Text(
-              'mostafaahmed@gmail.com',
-              style: TextStyle(
-                color: Colors.deepPurple,
-                fontSize: 15,
+    return MaterialButton(
 
+      onPressed: (){navigateTo(context, SettingsScreen());},
+      child: Padding(
+        padding: const EdgeInsets.only(right: 10),
+        child: Row(
+          children:
+          [
+            const CircleAvatar(
+              backgroundColor: Colors.white,
+              radius: 32,
+              child: CircleAvatar(
+                radius: 30,
+                backgroundImage: NetworkImage('https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
               ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Mostafa Ahmed',
+                  style: TextStyle(
+                    color: Colors.deepPurple,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  "level: 1",
+                  style: TextStyle(
+                    color: Colors.deepPurple,
+                    fontSize: 15,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
-      ],
+      ),
     );
   }
 }
