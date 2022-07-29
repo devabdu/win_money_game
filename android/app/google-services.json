@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "630067440176",
+    "project_id": "win-money-game",
+    "storage_bucket": "win-money-game.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630067440176:android:708ffaff32f97d21731bf5",
+        "android_client_info": {
+          "package_name": "com.example.win_money_game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630067440176-l8hgqaduskt9lvujqnubsmteugaa5e39.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.win_money_game",
+            "certificate_hash": "c706f762131dfdfdb226ea7c9a188f493c192db9"
+          }
+        },
+        {
+          "client_id": "630067440176-rnj27ra9sth2evq3ju83vjk82hk182a2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmPOf9TcDwOk4cyjbHQY_3TleI-xHf0ZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630067440176-rnj27ra9sth2evq3ju83vjk82hk182a2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
