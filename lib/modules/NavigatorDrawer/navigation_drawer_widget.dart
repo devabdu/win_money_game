@@ -1,13 +1,16 @@
 /*import 'dart:html';*/
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/drawer_item.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/help.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/profile.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/settings.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/Statistics/statistics.dart';
+import 'package:win_money_game/modules/login/provider/google_sign_in.dart';
 import 'package:win_money_game/shared/component/component.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
@@ -15,6 +18,7 @@ class NavigationDrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Drawer(
       child: Material(
         color: Colors.amberAccent,
@@ -93,13 +97,15 @@ class NavigationDrawerWidget extends StatelessWidget {
         navigateTo(context, const HelpScreen());
         break;
       case 3:
-        navigateTo(context, (){});
+        final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+        provider.googleLogout();
         break;
     }
   }
 
   Widget headerWidget(context)
   {
+    final user = FirebaseAuth.instance.currentUser!;
     return MaterialButton(
 
       onPressed: (){navigateTo(context, ProfileScreen());},
@@ -123,8 +129,8 @@ class NavigationDrawerWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children:  [
-                const Text(
-                  'Mostafa',
+                Text(
+                  user.displayName!,
                   style: TextStyle(
                     color: Colors.deepPurple,
                     fontSize: 20,
