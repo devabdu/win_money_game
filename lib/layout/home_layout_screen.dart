@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.dart';
 import 'package:win_money_game/modules/chess/components/home_screen.dart';
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
-import 'package:win_money_game/modules/xo/selecct_level_xo_screen.dart';
+import 'package:win_money_game/modules/xo/xo_selecct_level_xo_screen.dart';
 import 'package:win_money_game/shared/component/component.dart';
 
 class HomeLayoutScreen extends StatelessWidget {
