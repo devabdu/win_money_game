@@ -5,6 +5,20 @@ bool select3x3 = false;
 bool select4x4 = false;
 bool select5x5 = false;
 
+final List <String> images = [
+
+  'assets/images/50_coins.png',
+  'assets/images/100_coins.png',
+  'assets/images/500_coins.png',
+  'assets/images/1k_coins.png',
+  'assets/images/2.5k_coins.png',
+  'assets/images/5k_coins.png',
+  'assets/images/10k_coins.png',
+  'assets/images/25k_coins.png',
+  'assets/images/50k_coins.png',
+  'assets/images/100k_coins.png',
+];
+
 void navigateTo(context, widget) =>
     Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
 
