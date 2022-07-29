@@ -28,7 +28,7 @@ class XoSelectBetScreen extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       margin: const EdgeInsets.symmetric(horizontal: 5.0),
                       decoration: const BoxDecoration(
-                          color: Colors.amber
+                          color: Colors.amberAccent
                       ),
                       child: InkWell(
                         child: Image.asset(i,fit: BoxFit.cover,),
