@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:win_money_game/shared/component/component.dart';
@@ -10,6 +11,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
     return Scaffold(
       backgroundColor: Colors.deepPurple,
       appBar: AppBar(
@@ -56,25 +58,16 @@ class ProfileScreen extends StatelessWidget {
                 fontWeight: FontWeight.w300,
               ),
             ),
-            Row(
-              children: [
-                const Text(
-                  'Mostafaahmed@gmail.com',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 19,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                const Spacer(),
-                IconButton(
-                  onPressed: (){},
-                  icon: const Icon(
-                    Icons.edit_outlined,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
+            SizedBox(
+              height: 8.0,
+            ),
+            Text(
+              user.displayName!,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 19,
+                fontWeight: FontWeight.w400,
+              ),
             ),
             const SizedBox(
               height: 40,
@@ -159,82 +152,16 @@ class ProfileScreen extends StatelessWidget {
                 fontWeight: FontWeight.w300,
               ),
             ),
-            Row(
-              children: [
-                const Text(
-                  'Mostafaahmed@gmail.com',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 19,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                const Spacer(),
-                IconButton(
-                  onPressed: (){
-                    showModalBottomSheet(
-                        isScrollControlled: true,
-                        context: context,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        builder: (context) {
-                          return Padding(
-                              padding: const EdgeInsets.all(20),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const Text(
-                                    "What's your email?",
-                                    style: TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 30,
-                                  ),
-                                  Container(
-                                    padding: const EdgeInsets.all(8),
-                                    child: Padding(
-                                      padding:  EdgeInsets.only(
-                                          bottom: MediaQuery.of(context).viewInsets.bottom
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          defaultFormField(
-                                            controller: emailController!,
-                                            type: TextInputType.emailAddress,
-                                            validate: (value){},
-                                            label: 'Email Address',
-                                          ),
-                                          const SizedBox(
-                                            height: 60,
-                                          ),
-                                          defaultButton(
-                                            function: (){},
-                                            text: 'Update',
-                                            isUpperCase: false,
-                                            textColor: Colors.white,
-                                            backgroundColorBox: Colors.teal,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )
-                          );
-                        }
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.edit_outlined,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
+            SizedBox(
+              height: 8.0,
+            ),
+            Text(
+              user.email!,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 19,
+                fontWeight: FontWeight.w400,
+              ),
             ),
           ],
         ),
