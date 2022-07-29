@@ -86,6 +86,17 @@ flutter:
      - assets/images/Tasaly.png
      - assets/images/rebh.png
      - assets/win-money.json
+     - assets/images/50_coins.png
+     - assets/images/100_coins.png
+     - assets/images/500_coins.png
+     - assets/images/1k_coins.png
+     - assets/images/2.5k_coins.png
+     - assets/images/5k_coins.png
+     - assets/images/10k_coins.png
+     - assets/images/25k_coins.png
+     - assets/images/50k_coins.png
+     - assets/images/100k_coins.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
