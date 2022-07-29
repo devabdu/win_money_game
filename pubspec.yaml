@@ -43,6 +43,11 @@ dependencies:
   chess_vectors_flutter: ^1.0.16
   percent_indicator: ^4.2.2
   carousel_slider: ^4.1.1
+  firebase_auth: ^3.6.1
+  firebase_core: ^1.20.0
+  google_sign_in: ^5.4.0
+  font_awesome_flutter: ^10.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

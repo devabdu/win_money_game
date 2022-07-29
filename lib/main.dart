@@ -1,12 +1,21 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:win_money_game/modules/login/login_screen.dart';
+import 'package:win_money_game/modules/login/provider/google_sign_in.dart';
 import 'package:win_money_game/modules/ludo/game_engine/model/dice_model.dart';
 import 'package:win_money_game/modules/ludo/game_engine/model/game_state.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/dice.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/gameplay.dart';
-import 'package:win_money_game/modules/splash_screen.dart';
+import 'package:win_money_game/modules/Splash%20Screen/splash_screen.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -22,10 +31,11 @@ class MyApp extends StatelessWidget {
           providers: [
             ChangeNotifierProvider(create: (context)=>GameState()),
             ChangeNotifierProvider(create: (context)=>DiceModel()),
+            ChangeNotifierProvider(create: (context)=>GoogleSignInProvider()),
           ],
          //child: MyHomePage(title: 'Flutter Demo Home Page')
-        child: SplashScreen(),
-
+        // child: SplashScreen(),
+        child: LoginScreen(),
       ),
     );
   }
