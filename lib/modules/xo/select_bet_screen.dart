@@ -7,9 +7,17 @@ class XoSelectBetScreen extends StatelessWidget {
   XoSelectBetScreen({Key? key}) : super(key: key);
 
   final List <String> xoImage = [
-    'assets/images/xo.png',
-    'assets/images/xo.png',
-    'assets/images/xo.png',
+
+    'assets/images/50_coins.png',
+    'assets/images/100_coins.png',
+    'assets/images/500_coins.png',
+    'assets/images/1k_coins.png',
+    'assets/images/2.5k_coins.png',
+    'assets/images/5k_coins.png',
+    'assets/images/10k_coins.png',
+    'assets/images/25k_coins.png',
+    'assets/images/50k_coins.png',
+    'assets/images/100k_coins.png',
   ];
 
   @override
