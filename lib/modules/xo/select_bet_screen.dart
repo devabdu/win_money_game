@@ -25,7 +25,7 @@ class XoSelectBetScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: Colors.deepPurple[500],
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
