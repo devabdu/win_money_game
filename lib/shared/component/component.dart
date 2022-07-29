@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+
+bool select3x3 = false;
+bool select4x4 = false;
+bool select5x5 = false;
+
 void navigateTo(context, widget) =>
     Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
 

@@ -16,16 +16,12 @@ class SelectLevelXoScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // CustomButton(
-            //   // onTap: () => Navigator.of(context).pushReplacementNamed('/play_game_page'),
-            //   onTap: (){
-            //     navigateTo(context, PlayGamePage());
-            //   },
-            //   text: 'Play Game',
-            // ),
-
             defaultButton(
               function: () {
+                select3x3 = true;
+                select4x4 = false;
+                select5x5 = false;
+                print(select3x3);
                 navigateTo(context, XoSelectBetScreen());
               },
               backgroundColorBox: Colors.amberAccent,
@@ -35,16 +31,13 @@ class SelectLevelXoScreen extends StatelessWidget {
               isUpperCase: false,
             ),
             const SizedBox(height: 20),
-            // CustomButton(
-            //   // onTap: () => Navigator.of(context).pushReplacementNamed('/openings'),
-            //   onTap: () {
-            //     navigateTo(context, OpeningsPage());
-            //   },
-            //   text: 'Learn Chess Openings',
-            // ),
             defaultButton(
               function: () {
-                navigateTo(context, SecondXOScreen());
+                select3x3 = false;
+                select4x4 = true;
+                select5x5 = false;
+                print(select4x4);
+                navigateTo(context, XoSelectBetScreen());
               },
               backgroundColorBox: Colors.amberAccent,
               textColor: Colors.deepPurple,
@@ -55,7 +48,11 @@ class SelectLevelXoScreen extends StatelessWidget {
             const SizedBox(height: 20),
             defaultButton(
               function: () {
-                navigateTo(context, ThirdXOScreen());
+                select3x3 = false;
+                select4x4 = false;
+                select5x5 = true;
+                print(select5x5);
+                navigateTo(context, XoSelectBetScreen());
               },
               backgroundColorBox: Colors.amberAccent,
               textColor: Colors.deepPurple,
