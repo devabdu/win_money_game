@@ -101,6 +101,7 @@ flutter:
      - assets/images/25k_coins.png
      - assets/images/50k_coins.png
      - assets/images/100k_coins.png
+     - assets/images/avatar.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
