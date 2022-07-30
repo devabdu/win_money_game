@@ -121,7 +121,9 @@ class NavigationDrawerWidget extends StatelessWidget {
               radius: 32,
               child: CircleAvatar(
                 radius: 30,
-                backgroundImage: NetworkImage('https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+               // backgroundImage: NetworkImage('https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+              backgroundImage: AssetImage('assets/images/avatar.jpg',
+              ),
               ),
             ),
             const SizedBox(

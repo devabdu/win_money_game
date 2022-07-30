@@ -22,6 +22,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      supportedLocales: const [
+        Locale('en', 'US')
+      ],
+      // localizationsDelegates: [
+      //   CountryLocalications.delefate,
+      // ],
       debugShowCheckedModeBanner: false,
       title: 'Win Money',
       theme: ThemeData(

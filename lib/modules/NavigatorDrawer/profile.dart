@@ -1,13 +1,19 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:win_money_game/shared/component/component.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
 
+class _ProfileScreenState extends State<ProfileScreen> {
   // var formKey = GlobalKey<FormState>();
-
-   TextEditingController? emailController;
+  String editName = '';
+  TextEditingController? editNameController;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +26,9 @@ class ProfileScreen extends StatelessWidget {
           color: Colors.deepPurple,
         ),
         title: const Text(
-            'Profile',
+          'Profile',
           style: TextStyle(
-            color:Colors.deepPurple,
+            color: Colors.deepPurple,
           ),
         ),
         //centerTitle: true,
@@ -43,7 +49,8 @@ class ProfileScreen extends StatelessWidget {
                 backgroundColor: Colors.white,
                 child: CircleAvatar(
                   radius: 45,
-                  backgroundImage: NetworkImage('https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                  //backgroundImage: NetworkImage('https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                  backgroundImage: AssetImage('assets/images/avatar.jpg'),
                 ),
               ),
             ),
@@ -58,7 +65,7 @@ class ProfileScreen extends StatelessWidget {
                 fontWeight: FontWeight.w300,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 8.0,
             ),
             Text(
@@ -73,8 +80,7 @@ class ProfileScreen extends StatelessWidget {
               height: 40,
             ),
             Row(
-              children:
-              [
+              children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
@@ -102,7 +108,6 @@ class ProfileScreen extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-
                 LinearPercentIndicator(
                   alignment: MainAxisAlignment.start,
                   width: 200.0,
@@ -110,7 +115,7 @@ class ProfileScreen extends StatelessWidget {
                   percent: 0.5,
                   center: const Text(
                     "50.0%",
-                    style:  TextStyle(fontSize: 12.0),
+                    style: TextStyle(fontSize: 12.0),
                   ),
                   //trailing: Icon(Icons.mood),
                   linearStrokeCap: LinearStrokeCap.round,
@@ -124,7 +129,8 @@ class ProfileScreen extends StatelessWidget {
             ),
             Row(
               children: const [
-                Icon(Icons.monetization_on,
+                Icon(
+                  Icons.monetization_on,
                   color: Colors.amberAccent,
                 ),
                 SizedBox(
@@ -132,11 +138,10 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 Text(
                   '5,00000000000',
-                  style:TextStyle(
+                  style: TextStyle(
                       color: Colors.amberAccent,
                       fontWeight: FontWeight.w400,
-                      fontSize: 19
-                  ),
+                      fontSize: 19),
                 ),
               ],
             ),
@@ -152,15 +157,138 @@ class ProfileScreen extends StatelessWidget {
                 fontWeight: FontWeight.w300,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 8.0,
             ),
             Text(
               user.email!,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 19,
                 fontWeight: FontWeight.w400,
+              ),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            Center(
+              child: defaultButton(
+                function: () {
+                  showModalBottomSheet(
+                      isScrollControlled: true,
+                      context: context,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      builder: (context) {
+                        return Container(
+                          padding: const EdgeInsets.all(20),
+                          color: Colors.amberAccent,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                bottom: MediaQuery.of(context).viewInsets.bottom
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                // SafeArea(
+                                //     child: Align(
+                                //       alignment: AlignmentDirectional.topEnd,
+                                //       child: IconButton(
+                                //         onPressed: (){
+                                //           navigateBack(context, ProfileScreen());
+                                //         },
+                                //         icon: const Icon(
+                                //           Icons.cancel,
+                                //           color: Colors.deepPurple,
+                                //           size: 30,
+                                //         ),
+                                //       ),
+                                //     )
+                                // ),
+                                const Text(
+                                  "Edit Profile",
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.deepPurple,
+                                  ),
+                                ),
+                                const Divider(
+                                  color: Colors.white,
+                                  thickness: 1,
+                                  indent: 20,
+                                  endIndent: 30,
+                                ),
+                                const SizedBox(
+                                  height: 40,
+                                ),
+                                Row(
+                                  children: [
+                                    const Text(
+                                      'Edit Name:',
+                                      style: TextStyle(
+                                          color: Colors.deepPurple,
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      color: Colors.white,
+                                      width: 150,
+                                      height: 30,
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  children: [
+                                    const Text(
+                                      'Country:',
+                                      style: TextStyle(
+                                          color: Colors.deepPurple,
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.w400),
+                                    ),
+                                    const SizedBox(
+                                      width: 5,
+                                    ),
+                                    CountryCodePicker(
+                                      initialSelection: 'EG',
+                                      showCountryOnly: false,
+                                      showOnlyCountryWhenClosed: false,
+                                      hideMainText: true,
+                                      hideSearch: false,
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 40,
+                                ),
+                                defaultButton(
+                                  function: (){},
+                                  text: 'Save',
+                                  isUpperCase: false,
+                                  textColor: Colors.white,
+                                  width: 150,
+                                  backgroundColorBox: Colors.deepPurple,
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                },
+                text: 'Edit',
+                isUpperCase: false,
+                textColor: Colors.deepPurple,
+                width: 150,
+                backgroundColorBox: Colors.amberAccent,
               ),
             ),
           ],
