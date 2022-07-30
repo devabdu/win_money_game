@@ -62,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
               height: 8.0,
             ),
             Text(
-              user.displayName!,
+              getFirstWord(user.displayName!).capitalize(),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 19,
