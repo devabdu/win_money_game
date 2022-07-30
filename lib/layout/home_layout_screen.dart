@@ -49,51 +49,51 @@ class HomeLayoutScreen extends StatelessWidget {
           IconButton(onPressed: (){}, icon: const Icon(Icons.shopping_bag_rounded,),color: Colors.deepPurple,),
         ],
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 30,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 90,
+          horizontal: 100
+        ),
+        child: Column(
+          children: [
+            InkWell(
+              onTap: () {
+                navigateTo(context, const SelectLevelXoScreen());
+              },
+              child: Image.asset("assets/images/xo.png",
+                fit: BoxFit.fill,
+                width: 200,
+                height: 180,
+              ),
             ),
-            child: Column(
-              children: [
-                InkWell(
-                  onTap: () {
-                    navigateTo(context, const SelectLevelXoScreen());
-                  },
-                  child: Image.asset("assets/images/xo.png",
-                    width: double.infinity,
-                    height: 180,
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                InkWell(
-                  onTap: () {
-                    navigateTo(context, MainMenuScreen());
-                  },
-                  child: Image.asset("assets/images/chess.png",
-                    width: double.infinity,
-                    height: 180,
-                  ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                InkWell(
-                  onTap: () {
-                    navigateTo(context, LudoScreen());
-                  },
-                  child: Image.asset("assets/images/LUDO Game.png",
-                    width: double.infinity,
-                    height: 180,
-                  ),
-                ),
-              ],
+            const SizedBox(
+              height: 30,
             ),
-          ),
-        ],
+            InkWell(
+              onTap: () {
+                navigateTo(context, MainMenuScreen());
+              },
+              child: Image.asset("assets/images/chess.png",
+                fit: BoxFit.fill,
+                width: 200,
+                height: 180,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              onTap: () {
+                navigateTo(context, LudoScreen());
+              },
+              child: Image.asset("assets/images/LUDO Game.png",
+                fit: BoxFit.fill,
+                width: 200,
+                height: 180,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

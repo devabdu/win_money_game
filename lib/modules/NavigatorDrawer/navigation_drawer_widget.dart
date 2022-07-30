@@ -33,6 +33,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               const Divider(
                 thickness: 1,
                 height: 10,
+                color: Colors.white,
               ),
               const SizedBox(
                 height: 30,
@@ -63,6 +64,7 @@ class NavigationDrawerWidget extends StatelessWidget {
               const Divider(
                 thickness: 1,
                 height: 10,
+                color: Colors.white,
               ),
               const SizedBox(
                 height: 30,
@@ -125,46 +127,50 @@ class NavigationDrawerWidget extends StatelessWidget {
             const SizedBox(
               width: 10,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children:  [
-                Text(
-                  user.displayName!,
-                  style: TextStyle(
-                    color: Colors.deepPurple,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children:  [
+                  Text(
+                    user.displayName!,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: Colors.deepPurple,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                LinearPercentIndicator(
-                  alignment: MainAxisAlignment.start,
-                  width: 140.0,
-                  lineHeight: 14.0,
-                  percent: 0.5,
-                  center: Text(
-                    "50.0%",
-                    style:  TextStyle(fontSize: 12.0),
+                  const SizedBox(
+                    height: 5,
                   ),
-                  //trailing: Icon(Icons.mood),
-                  linearStrokeCap: LinearStrokeCap.roundAll,
-                  backgroundColor: Colors.white,
-                  progressColor: Colors.deepPurple,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                const Text(
-                  'Level: 100',
-                  style: TextStyle(
-                    color: Colors.deepPurple,
-                    fontSize: 20,
+                  LinearPercentIndicator(
+                    alignment: MainAxisAlignment.start,
+                    width: 140.0,
+                    lineHeight: 14.0,
+                    percent: 0.5,
+                    center: Text(
+                      "50.0%",
+                      style:  TextStyle(fontSize: 12.0),
+                    ),
+                    //trailing: Icon(Icons.mood),
+                    linearStrokeCap: LinearStrokeCap.roundAll,
+                    backgroundColor: Colors.white,
+                    progressColor: Colors.deepPurple,
                   ),
-                ),
-              ],
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  const Text(
+                    'Level: 100',
+                    style: TextStyle(
+                      color: Colors.deepPurple,
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
