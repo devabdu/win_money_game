@@ -69,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               height: 8.0,
             ),
             Text(
-              user.displayName!,
+              getFirstWord(user.displayName!).capitalize(),
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 19,

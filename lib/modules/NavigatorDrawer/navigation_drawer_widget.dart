@@ -135,7 +135,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children:  [
                   Text(
-                    user.displayName!,
+                    getFirstWord(user.displayName!).capitalize(),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

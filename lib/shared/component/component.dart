@@ -36,6 +36,21 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
   },
 );
 
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+  }
+}
+
+String getFirstWord(String inputString) {
+List<String> wordList = inputString.split(" ");
+if (wordList.isNotEmpty) {
+return wordList[0];
+} else {
+return ' ';
+}
+}
+
 Widget defaultButton({
   double height = 45.0,
   double? width,
