@@ -3,11 +3,22 @@ import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.
 import 'package:win_money_game/modules/chess/components/home_screen.dart';
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
 import 'package:win_money_game/modules/xo/xo_selecct_level_xo_screen.dart';
+import 'package:win_money_game/shared/audio_manager.dart';
 import 'package:win_money_game/shared/component/component.dart';
 
-class HomeLayoutScreen extends StatelessWidget {
+class HomeLayoutScreen extends StatefulWidget {
   const HomeLayoutScreen({Key? key}) : super(key: key);
 
+  @override
+  State<HomeLayoutScreen> createState() => _HomeLayoutScreenState();
+}
+
+class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
+
+  @override
+  void initState() {
+     AudioManager.init();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

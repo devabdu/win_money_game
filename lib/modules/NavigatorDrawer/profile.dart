@@ -267,6 +267,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     ),
                                   ],
                                 ),
+                                const Text(
+                                  'Avatar:',
+                                  style: TextStyle(
+                                      color: Colors.deepPurple,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                // Container(
+                                //   child: ,
+                                // ),
                                 const SizedBox(
                                   height: 40,
                                 ),

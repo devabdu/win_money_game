@@ -8,11 +8,14 @@ import 'package:win_money_game/modules/ludo/game_engine/model/game_state.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/dice.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/gameplay.dart';
 import 'package:win_money_game/modules/Splash%20Screen/splash_screen.dart';
+import 'package:win_money_game/shared/audio_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
+
+  await AudioManager.init();
 
   runApp(MyApp());
 }
@@ -20,14 +23,12 @@ void main() async {
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
+
   Widget build(BuildContext context) {
     return MaterialApp(
       supportedLocales: const [
         Locale('en', 'US')
       ],
-      // localizationsDelegates: [
-      //   CountryLocalications.delefate,
-      // ],
       debugShowCheckedModeBanner: false,
       title: 'Win Money',
       theme: ThemeData(
