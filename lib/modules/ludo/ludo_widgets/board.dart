@@ -32,7 +32,7 @@ class Board extends StatelessWidget {
         child: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/images/ludo_board2.png"),
+              image: AssetImage("assets/images/ludo_board3.jpg"),
               fit: BoxFit.fill,
             ),
           ),

@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(create: (context)=>GoogleSignInProvider()),
           ],
          //child: MyHomePage(title: 'Flutter Demo Home Page')
-        // child: SplashScreen(),
+        //child: SplashScreen(),
         child: LoginScreen(),
       ),
     );

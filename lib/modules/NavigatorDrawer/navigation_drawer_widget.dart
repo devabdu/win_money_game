@@ -7,7 +7,7 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/drawer_item.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/help.dart';
-import 'package:win_money_game/modules/NavigatorDrawer/profile.dart';
+import 'package:win_money_game/modules/NavigatorDrawer/Profile/profile.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/settings.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/Statistics/statistics.dart';
 import 'package:win_money_game/modules/login/provider/google_sign_in.dart';
@@ -116,16 +116,12 @@ class NavigationDrawerWidget extends StatelessWidget {
         child: Row(
           children:
           [
-            const CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: 32,
-              child: CircleAvatar(
-                radius: 30,
-               // backgroundImage: NetworkImage('https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
-              backgroundImage: AssetImage('assets/images/avatar.jpg',
-              ),
-              ),
-            ),
+             CircleAvatar(
+              radius: 30,
+               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+               backgroundImage: const AssetImage('assets/images/avatar_7.png',
+               ),
+             ),
             const SizedBox(
               width: 10,
             ),
@@ -138,7 +134,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                     getFirstWord(user.displayName!).capitalize(),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.deepPurple,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -152,7 +148,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                     width: 140.0,
                     lineHeight: 14.0,
                     percent: 0.5,
-                    center: Text(
+                    center: const Text(
                       "50.0%",
                       style:  TextStyle(fontSize: 12.0),
                     ),

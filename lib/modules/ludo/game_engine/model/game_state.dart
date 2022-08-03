@@ -41,7 +41,7 @@ class GameState with ChangeNotifier {
       Position(8, 13),
       Position(12, 8),
       Position(13, 6),
-      Position(8, 2)
+      Position(8, 2),
     ];
     this.greenInitital = [];
     this.yellowInitital = [];

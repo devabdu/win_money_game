@@ -104,8 +104,16 @@ flutter:
      - assets/images/25k_coins.png
      - assets/images/50k_coins.png
      - assets/images/100k_coins.png
-     - assets/images/avatar.jpg
+     - assets/images/avatar_1.png
+     - assets/images/avatar_2.png
+     - assets/images/avatar_3.png
+     - assets/images/avatar_4.png
+     - assets/images/avatar_5.png
+     - assets/images/avatar_6.png
+     - assets/images/avatar_7.png
+     - assets/images/avatar_8.png
      - assets/audio/music.ogg.mp3
+     - assets/images/ludo_board3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
