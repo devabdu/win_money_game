@@ -11,12 +11,7 @@ class HomeLayoutScreen extends StatefulWidget {
   const HomeLayoutScreen({Key? key}) : super(key: key);
 
   @override
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-=======
->>>>>>> 86f575b78a779e92fc94fb3726ccf0dfa6de9cc5
   State<HomeLayoutScreen> createState() => _HomeLayoutScreenState();
 }
 
@@ -27,10 +22,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
      AudioManager.init();
   }
   @override
-<<<<<<< HEAD
->>>>>>> 86f575b78a779e92fc94fb3726ccf0dfa6de9cc5
-=======
->>>>>>> 86f575b78a779e92fc94fb3726ccf0dfa6de9cc5
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepPurple,
