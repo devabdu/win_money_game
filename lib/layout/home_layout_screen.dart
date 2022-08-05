@@ -4,11 +4,13 @@ import 'package:win_money_game/modules/chess/components/home_screen.dart';
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
 import 'package:win_money_game/modules/xo/xo_selecct_level_xo_screen.dart';
 import 'package:win_money_game/shared/component/component.dart';
+import 'package:win_money_game/Provider/test_ads.dart';
 
 class HomeLayoutScreen extends StatelessWidget {
   const HomeLayoutScreen({Key? key}) : super(key: key);
 
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepPurple,
@@ -69,22 +71,32 @@ class HomeLayoutScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
+            // InkWell(
+            //   onTap: () {
+            //     navigateTo(context, MainMenuScreen());
+            //   },
+            //   child: Image.asset("assets/images/chess.png",
+            //     fit: BoxFit.fill,
+            //     width: 200,
+            //     height: 180,
+            //   ),
+            // ),
+            // const SizedBox(
+            //   height: 10,
+            // ),
+            // InkWell(
+            //   onTap: () {
+            //     navigateTo(context, LudoScreen());
+            //   },
+            //   child: Image.asset("assets/images/LUDO Game.png",
+            //     fit: BoxFit.fill,
+            //     width: 200,
+            //     height: 180,
+            //   ),
+            // ),
             InkWell(
               onTap: () {
-                navigateTo(context, MainMenuScreen());
-              },
-              child: Image.asset("assets/images/chess.png",
-                fit: BoxFit.fill,
-                width: 200,
-                height: 180,
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            InkWell(
-              onTap: () {
-                navigateTo(context, LudoScreen());
+                navigateTo(context, MyMaterialApp());
               },
               child: Image.asset("assets/images/LUDO Game.png",
                 fit: BoxFit.fill,
