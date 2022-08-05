@@ -91,29 +91,29 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
             const SizedBox(
               height: 30,
             ),
-            // InkWell(
-            //   onTap: () {
-            //     navigateTo(context, MainMenuScreen());
-            //   },
-            //   child: Image.asset("assets/images/chess.png",
-            //     fit: BoxFit.fill,
-            //     width: 200,
-            //     height: 180,
-            //   ),
-            // ),
-            // const SizedBox(
-            //   height: 10,
-            // ),
-            // InkWell(
-            //   onTap: () {
-            //     navigateTo(context, LudoScreen());
-            //   },
-            //   child: Image.asset("assets/images/LUDO Game.png",
-            //     fit: BoxFit.fill,
-            //     width: 200,
-            //     height: 180,
-            //   ),
-            // ),
+            InkWell(
+              onTap: () {
+                navigateTo(context, MainMenuScreen());
+              },
+              child: Image.asset("assets/images/chess.png",
+                fit: BoxFit.fill,
+                width: 200,
+                height: 180,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            InkWell(
+              onTap: () {
+                navigateTo(context, LudoScreen());
+              },
+              child: Image.asset("assets/images/LUDO Game.png",
+                fit: BoxFit.fill,
+                width: 200,
+                height: 180,
+              ),
+            ),
             InkWell(
               onTap: () {
                 navigateTo(context, MyMaterialApp());
