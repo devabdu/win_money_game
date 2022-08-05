@@ -33,7 +33,7 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
 
     // You should execute `Admob.requestTrackingAuthorization()` here before showing any ad.
 
-    bannerSize = AdmobBannerSize.BANNER;
+    bannerSize = AdmobBannerSize.BANNER; //initializing banner size
 
     interstitialAd = AdmobInterstitial(
       adUnitId: AdsManager.interstitialAdUnitIdEx,
@@ -41,8 +41,7 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
         if (event == AdmobAdEvent.closed) interstitialAd.load();
         handleEvent(event, args, 'Interstitial');
       },
-    );
-    print(interstitialAd);
+    ); //interstital Ad init
 
     rewardAd = AdmobReward(
       adUnitId: AdsManager.rewardedAdUnitIdEx,
@@ -50,7 +49,7 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
         if (event == AdmobAdEvent.closed) rewardAd.load();
         handleEvent(event, args, 'Reward');
       },
-    );
+    ); //rewardAd init
 
     interstitialAd.load();
     rewardAd.load();
@@ -72,7 +71,7 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
         showSnackBar('Admob $adType failed to load. :(');
         break;
       case AdmobAdEvent.rewarded:
-        showDialog(
+        showDialog( //msg shown when finishing the 7 sec video ad
           context: scaffoldState.currentContext!,
           builder: (BuildContext context) {
             return WillPopScope(
@@ -86,7 +85,7 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
                   children: <Widget>[
                     Text('Reward callback fired. Thanks Andrew!'),
                     Text('Type: ${args!['type']}'),
-                    Text('Amount: ${args['amount']}'),
+                    Text('Amount: ${args['amount']}'), //amount to be stored in db
                   ],
                 ),
               ),
@@ -136,7 +135,7 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
                             onPressed: () async {
                               final isLoaded = await interstitialAd.isLoaded;
                               if (isLoaded ?? false) {
-                                interstitialAd.show();
+                                interstitialAd.show(); //interstital ad show
                               } else {
                                 showSnackBar(
                                     'Interstitial ad is still loading...');
@@ -152,7 +151,7 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
                           child: TextButton(
                             onPressed: () async {
                               if (await rewardAd.isLoaded) {
-                                rewardAd.show();
+                                rewardAd.show(); // showing rewarded ad
                               } else {
                                 showSnackBar('Reward ad is still loading...');
                               }
@@ -173,7 +172,7 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
                               });
                             },
                             itemBuilder: (BuildContext context) =>
-                            <PopupMenuEntry<AdmobBannerSize>>[
+                            <PopupMenuEntry<AdmobBannerSize>>[ //banner size control
                               PopupMenuItem(
                                 value: AdmobBannerSize.BANNER,
                                 child: Text('BANNER'),
@@ -239,7 +238,7 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
                           children: <Widget>[
                             Container(
                               margin: EdgeInsets.only(bottom: 20.0),
-                              child: AdmobBanner(
+                              child: AdmobBanner( //banners init
                                 adUnitId: AdsManager.bannerAdUnitIdEx,
                                 adSize: bannerSize!,
                                 listener: (AdmobAdEvent event,
