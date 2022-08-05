@@ -26,9 +26,6 @@ void main() async {
 
   await AudioManager.init();
 
-  await AudioManager.init();
-
-
   runApp(MyApp());
 }
 
