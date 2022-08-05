@@ -5,6 +5,27 @@ bool select3x3 = false;
 bool select4x4 = false;
 bool select5x5 = false;
 
+final List<String> avatarImages = [
+  'assets/images/avatar_1.png',
+  'assets/images/avatar_2.png',
+  'assets/images/avatar_3.png',
+  'assets/images/avatar_4.png',
+  'assets/images/avatar_5.png',
+  'assets/images/avatar_6.png',
+  'assets/images/avatar_7.png',
+  'assets/images/avatar_8.png',
+];
+
+bool avatar_1 = false;
+bool avatar_2 = false;
+bool avatar_3 = false;
+bool avatar_4 = false;
+bool avatar_5 = false;
+bool avatar_6 = false;
+bool avatar_7 = false;
+bool avatar_8 = false;
+
+
 final List <String> images = [
 
   'assets/images/50_coins.png',
@@ -35,6 +56,21 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
     return false;
   },
 );
+
+extension StringExtension on String {
+  String capitalize() {
+    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+  }
+}
+
+String getFirstWord(String inputString) {
+List<String> wordList = inputString.split(" ");
+if (wordList.isNotEmpty) {
+return wordList[0];
+} else {
+return ' ';
+}
+}
 
 Widget defaultButton({
   double height = 45.0,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:win_money_game/shared/audio_manager.dart';
 
 class SettingsScreen extends StatelessWidget {
+
   const SettingsScreen({Key? key}) : super(key: key);
 
   @override
@@ -16,15 +18,47 @@ class SettingsScreen extends StatelessWidget {
             style: TextStyle(color: Colors.deepPurple),
           ),
         ),
-        body: const Center(
-          child: Text(
-            'Settings',
-            style: TextStyle(
-                color: Colors.white
-            ),
-          ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 300,
+              child: ValueListenableBuilder<bool>(
+                valueListenable: AudioManager.sfx,
+                builder: (context, sfx, child) => SwitchListTile(
+                  title: const Text('Sound Effects',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                  ),
+                  value: sfx,
+                  activeColor: Colors.white,
+                  onChanged: (value) => AudioManager.sfx.value = value,
 
-        )
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 300,
+              child: ValueListenableBuilder<bool>(
+                valueListenable: AudioManager.bgm,
+                builder: (context, bgm, child) => SwitchListTile(
+                  title: const Text('Background Music',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  value: bgm,
+                  activeColor: Colors.white,
+                  onChanged: (value) => AudioManager.bgm.value = value,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
+

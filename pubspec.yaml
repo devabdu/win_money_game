@@ -47,8 +47,14 @@ dependencies:
   firebase_core: ^1.20.0
   google_sign_in: ^5.4.0
   font_awesome_flutter: ^10.1.0
+<<<<<<< HEAD
   admob_flutter: ^3.0.0
   flutter_native_admob: ^2.1.0+3
+=======
+  country_code_picker: ^2.0.2
+  flame_audio: ^1.3.0
+  flame: ^1.2.1
+>>>>>>> 86f575b78a779e92fc94fb3726ccf0dfa6de9cc5
 
 dev_dependencies:
   flutter_test:
@@ -103,6 +109,16 @@ flutter:
      - assets/images/25k_coins.png
      - assets/images/50k_coins.png
      - assets/images/100k_coins.png
+     - assets/images/avatar_1.png
+     - assets/images/avatar_2.png
+     - assets/images/avatar_3.png
+     - assets/images/avatar_4.png
+     - assets/images/avatar_5.png
+     - assets/images/avatar_6.png
+     - assets/images/avatar_7.png
+     - assets/images/avatar_8.png
+     - assets/audio/music.ogg.mp3
+     - assets/images/ludo_board3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
