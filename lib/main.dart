@@ -9,7 +9,11 @@ import 'package:win_money_game/modules/ludo/ludo_widgets/dice.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/gameplay.dart';
 import 'package:win_money_game/modules/Splash%20Screen/splash_screen.dart';
 <<<<<<< HEAD
+<<<<<<< HEAD
 // import 'package:win_money_game/shared/audio_manager.dart';
+=======
+import 'package:win_money_game/shared/audio_manager.dart';
+>>>>>>> 86f575b78a779e92fc94fb3726ccf0dfa6de9cc5
 =======
 import 'package:win_money_game/shared/audio_manager.dart';
 >>>>>>> 86f575b78a779e92fc94fb3726ccf0dfa6de9cc5
@@ -20,7 +24,11 @@ void main() async {
   await Firebase.initializeApp();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
   // await AudioManager.init();
+=======
+  await AudioManager.init();
+>>>>>>> 86f575b78a779e92fc94fb3726ccf0dfa6de9cc5
 =======
   await AudioManager.init();
 >>>>>>> 86f575b78a779e92fc94fb3726ccf0dfa6de9cc5
@@ -57,6 +65,9 @@ class MyApp extends StatelessWidget {
             ChangeNotifierProvider(create: (context)=>GoogleSignInProvider()),
           ],
          //child: MyHomePage(title: 'Flutter Demo Home Page')
+<<<<<<< HEAD
+>>>>>>> 86f575b78a779e92fc94fb3726ccf0dfa6de9cc5
+=======
 >>>>>>> 86f575b78a779e92fc94fb3726ccf0dfa6de9cc5
         //child: SplashScreen(),
         child: LoginScreen(),
