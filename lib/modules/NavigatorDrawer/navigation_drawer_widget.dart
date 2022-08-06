@@ -11,8 +11,8 @@ import 'package:win_money_game/modules/NavigatorDrawer/help.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/Profile/profile.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/settings.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/Statistics/statistics.dart';
-import 'package:win_money_game/modules/login/provider/google_sign_in.dart';
 import 'package:win_money_game/shared/component/component.dart';
+import '../login/loginProvider/sign_in.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   const NavigationDrawerWidget({Key? key}) : super(key: key);
@@ -101,8 +101,9 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 3:
         // await FacebookAuth.i.logOut();
-        final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+        final provider = Provider.of<SignInProvider>(context, listen: false);
         provider.googleLogout();
+        provider.facebookLogout();
         break;
     }
   }

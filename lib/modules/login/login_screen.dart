@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:win_money_game/layout/home_layout_screen.dart';
-import 'package:win_money_game/modules/login/provider/google_sign_in.dart';
 import 'package:win_money_game/modules/select_path_screen.dart';
 import 'package:win_money_game/shared/component/component.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'loginProvider/sign_in.dart';
 
 class LoginScreen extends StatelessWidget {
 
@@ -45,23 +45,13 @@ class LoginScreen extends StatelessWidget {
                           color: Colors.white,
                         )
                     ),
-                    label: const Text('Login using Facebook'),
+                    label: const Text('Log in with Facebook'),
                     icon: const Icon(Icons.facebook),
                     onPressed: () async {
 
-                      final result = await FacebookAuth.i.login(
-                      permissions: ["public_profile", "email"]
-                      );
-                      print(result.toString());
-
-                      if (result.status == LoginStatus.success) {
-                        final userData = await FacebookAuth.i.getUserData(
-                          fields: "email,name",
-                        );
-                        _userData = userData;
-                        print(_userData.toString());
-                        // navigateTo(context, HomeLayoutScreen());
-                      }
+                      final provider = Provider.of<SignInProvider>(
+                          context, listen: false);
+                      provider.facebookLogin();
                     },
                   ),
                   const SizedBox(height: 20,),
@@ -75,11 +65,11 @@ class LoginScreen extends StatelessWidget {
                           color: Colors.white,
                         )
                     ),
-                    label: const Text('Login using Gmail'),
+                    label: const Text('Log in with Google'),
                     icon: FaIcon(FontAwesomeIcons.google),
                     // icon: const Icon(Icons.email),
                     onPressed: () {
-                      final provider = Provider.of<GoogleSignInProvider>(
+                      final provider = Provider.of<SignInProvider>(
                           context, listen: false);
                       provider.googleLogin();
                     },
