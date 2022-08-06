@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.dart';
 import 'package:win_money_game/modules/chess/components/home_screen.dart';
@@ -15,10 +16,12 @@ class HomeLayoutScreen extends StatefulWidget {
 
 class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
+
   @override
   void initState() {
      AudioManager.init();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,51 +63,81 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
           IconButton(onPressed: (){}, icon: const Icon(Icons.shopping_bag_rounded,),color: Colors.deepPurple,),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 90,
-          horizontal: 100
-        ),
-        child: Column(
-          children: [
-            InkWell(
-              onTap: () {
-                navigateTo(context, const SelectLevelXoScreen());
-              },
-              child: Image.asset("assets/images/xo.png",
-                fit: BoxFit.fill,
-                width: 200,
-                height: 180,
+      body: Stack(
+        children: [
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20, right: 5),
+              child: InkWell(
+                onTap: (){
+                  showDialog(
+                    context: context,
+                    builder: (_) => defaultMissionDialog(
+                        function: (){
+                          Navigator.pop(context);
+                        }
+                    ),
+                    barrierDismissible: false,
+                  );
+                },
+                child: Image.asset(
+                  "assets/images/missions.png",
+                  height: 90,
+                  width: 90,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
-            const SizedBox(
-              height: 30,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 90,
+              horizontal: 100
             ),
-            InkWell(
-              onTap: () {
-                navigateTo(context, MainMenuScreen());
-              },
-              child: Image.asset("assets/images/chess.png",
-                fit: BoxFit.fill,
-                width: 200,
-                height: 180,
-              ),
+            child: Column(
+              children: [
+
+                InkWell(
+                  onTap: () {
+                    navigateTo(context, const SelectLevelXoScreen());
+                  },
+                  child: Image.asset("assets/images/xo.png",
+                    fit: BoxFit.fill,
+                    width: 200,
+                    height: 180,
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+                InkWell(
+                  onTap: () {
+                    navigateTo(context, MainMenuScreen());
+                  },
+                  child: Image.asset("assets/images/chess.png",
+                    fit: BoxFit.fill,
+                    width: 200,
+                    height: 180,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                InkWell(
+                  onTap: () {
+                    navigateTo(context, LudoScreen());
+                  },
+                  child: Image.asset("assets/images/LUDO Game.png",
+                    fit: BoxFit.fill,
+                    width: 200,
+                    height: 180,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            InkWell(
-              onTap: () {
-                navigateTo(context, LudoScreen());
-              },
-              child: Image.asset("assets/images/LUDO Game.png",
-                fit: BoxFit.fill,
-                width: 200,
-                height: 180,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

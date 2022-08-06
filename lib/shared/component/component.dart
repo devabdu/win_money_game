@@ -103,7 +103,7 @@ Widget defaultButton({
     borderRadius: BorderRadiusDirectional.circular(radius),
     // color: background,
     border: Border.all(
-      color: Colors.yellow,
+      color: Colors.amberAccent,
       width: 1.5,
     ),
   ),
@@ -145,3 +145,193 @@ Widget defaultFormField({
     border: border,
   ),
 );
+
+
+Widget defaultMissionDialog({
+  required Function function,
+}){
+  return AlertDialog(
+    backgroundColor: Colors.deepPurple,
+    content: SizedBox(
+      height: 300,
+      width: 300,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Center(
+            child: Text(
+              'Missions',
+              style: TextStyle(
+                color: Colors.amberAccent,
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Daily Missions',
+                style: TextStyle(
+                  fontSize: 19,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: const [
+                  Text(
+                    'Show 3 videos',
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.white
+                    ),
+                  ),
+                  Spacer(),
+                  Icon(
+                    Icons.check_circle,
+                    color: Colors.white,
+                    size: 19,
+                  ),
+                ],
+              ),
+              Row(
+                children: const [
+                  Text(
+                    'win 3 games',
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.white
+                    ),
+                  ),
+                  Spacer(),
+                  Icon(
+                    Icons.check_circle,
+                    color: Colors.white,
+                    size: 19,
+                  ),
+                ],
+              ),
+              Row(
+                children: const [
+                  Text(
+                    'Show 3 videos',
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.white
+                    ),
+                  ),
+                  Spacer(),
+                  Icon(
+                    Icons.check_circle,
+                    color: Colors.white,
+                    size: 19,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Weekly Missions',
+                style: TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: const [
+                  Text(
+                    'Show 100 videos',
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.white
+                    ),
+                  ),
+                  Spacer(),
+                  Icon(
+                    Icons.check_circle,
+                    color: Colors.white,
+                    size: 19,
+                  ),
+                ],
+              ),
+              Row(
+                children: const [
+                  Text(
+                    'win 3 games',
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.white
+                    ),
+                  ),
+                  Spacer(),
+                  Icon(
+                    Icons.check_circle,
+                    color: Colors.white,
+                    size: 19,
+                  ),
+                ],
+              ),
+              Row(
+                children: const [
+                  Text(
+                    'Show 3 videos',
+                    style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w300,
+                        color: Colors.white
+                    ),
+                  ),
+                  Spacer(),
+                  Icon(
+                    Icons.check_circle,
+                    color: Colors.white,
+                    size: 19,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    ),
+    actions: [
+      Center(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: defaultButton(
+            function: (){
+              function();
+            },
+            text: "Ok",
+            textColor: Colors.white,
+            backgroundColorBox: Colors.amberAccent,
+
+          ),
+        ),
+      ),
+    ],
+  );
+}
