@@ -8,12 +8,21 @@ import 'package:win_money_game/modules/ludo/game_engine/model/game_state.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/dice.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/gameplay.dart';
 import 'package:win_money_game/modules/Splash%20Screen/splash_screen.dart';
+
+// import 'package:win_money_game/shared/audio_manager.dart';
+
 import 'package:win_money_game/shared/audio_manager.dart';
+
+import 'package:win_money_game/shared/audio_manager.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
+
+
+  // await AudioManager.init();
 
   await AudioManager.init();
 
@@ -35,12 +44,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
       home: MultiProvider(
-          providers: [
-            ChangeNotifierProvider(create: (context)=>GameState()),
-            ChangeNotifierProvider(create: (context)=>DiceModel()),
-            ChangeNotifierProvider(create: (context)=>GoogleSignInProvider()),
-          ],
-         //child: MyHomePage(title: 'Flutter Demo Home Page')
+
+        providers: [
+          ChangeNotifierProvider(create: (context)=>GameState()),
+          ChangeNotifierProvider(create: (context)=>DiceModel()),
+          ChangeNotifierProvider(create: (context)=>GoogleSignInProvider()),
+        ],
+        //child: MyHomePage(title: 'Flutter Demo Home Page')
+
         //child: SplashScreen(),
         child: LoginScreen(),
       ),
