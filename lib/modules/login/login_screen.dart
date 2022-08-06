@@ -7,8 +7,11 @@ import 'package:win_money_game/modules/login/provider/google_sign_in.dart';
 import 'package:win_money_game/modules/select_path_screen.dart';
 import 'package:win_money_game/shared/component/component.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class LoginScreen extends StatelessWidget {
+
+  Map? _userData;
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -44,8 +47,21 @@ class LoginScreen extends StatelessWidget {
                     ),
                     label: const Text('Login using Facebook'),
                     icon: const Icon(Icons.facebook),
-                    onPressed: () {
-                      navigateTo(context, SelectPathScreen());
+                    onPressed: () async {
+
+                      final result = await FacebookAuth.i.login(
+                      permissions: ["public_profile", "email"]
+                      );
+                      print(result.toString());
+
+                      if (result.status == LoginStatus.success) {
+                        final userData = await FacebookAuth.i.getUserData(
+                          fields: "email,name",
+                        );
+                        _userData = userData;
+                        print(_userData.toString());
+                        // navigateTo(context, HomeLayoutScreen());
+                      }
                     },
                   ),
                   const SizedBox(height: 20,),

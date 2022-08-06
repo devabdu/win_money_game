@@ -3,6 +3,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/drawer_item.dart';
@@ -83,7 +84,7 @@ class NavigationDrawerWidget extends StatelessWidget {
     );
   }
 
-  void onItemPressed(BuildContext context, {required int index})
+  void onItemPressed(BuildContext context, {required int index}) async
   {
     Navigator.pop(context);
 
@@ -99,6 +100,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         navigateTo(context, const HelpScreen());
         break;
       case 3:
+        // await FacebookAuth.i.logOut();
         final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
         provider.googleLogout();
         break;
