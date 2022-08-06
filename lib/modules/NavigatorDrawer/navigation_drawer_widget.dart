@@ -86,6 +86,7 @@ class NavigationDrawerWidget extends StatelessWidget {
 
   void onItemPressed(BuildContext context, {required int index}) async
   {
+    final user = FirebaseAuth.instance.currentUser!;
     Navigator.pop(context);
 
     switch(index)
@@ -101,9 +102,9 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 3:
         final provider = Provider.of<SignInProvider>(context, listen: false);
-        provider.isAFacebookUser ? provider.facebookLogout() : provider.googleLogout();
-        provider.isAFacebookUser = false;
+        user.providerData.single.providerId == 'facebook.com' ? provider.facebookLogout() : provider.googleLogout();
         break;
+
     }
   }
 

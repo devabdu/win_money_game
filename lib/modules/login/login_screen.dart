@@ -51,7 +51,7 @@ class LoginScreen extends StatelessWidget {
 
                       final provider = Provider.of<SignInProvider>(
                           context, listen: false);
-                      provider.facebookLogin();
+                      provider.facebookLogin(context);
                     },
                   ),
                   const SizedBox(height: 20,),
@@ -71,7 +71,7 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () {
                       final provider = Provider.of<SignInProvider>(
                           context, listen: false);
-                      provider.googleLogin();
+                      provider.googleLogin(context);
                     },
                   ),
                 ],
