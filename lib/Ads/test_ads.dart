@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:admob_flutter/admob_flutter.dart';
 // import 'package:admob_flutter_example/extensions.dart';
-import 'package:win_money_game/Provider/adsManager.dart';
 import 'package:flutter/material.dart';
+import 'package:win_money_game/Ads/adsManager.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

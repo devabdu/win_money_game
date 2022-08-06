@@ -1,5 +1,5 @@
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:win_money_game/Provider/adsManager.dart';
+import 'package:win_money_game/Ads/adsManager.dart';
 class AdRewarded{
 
   late AdmobReward rewardAd;
