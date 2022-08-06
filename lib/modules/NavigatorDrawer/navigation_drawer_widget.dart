@@ -100,10 +100,9 @@ class NavigationDrawerWidget extends StatelessWidget {
         navigateTo(context, const HelpScreen());
         break;
       case 3:
-        // await FacebookAuth.i.logOut();
         final provider = Provider.of<SignInProvider>(context, listen: false);
-        provider.googleLogout();
-        provider.facebookLogout();
+        provider.isAFacebookUser ? provider.facebookLogout() : provider.googleLogout();
+        provider.isAFacebookUser = false;
         break;
     }
   }

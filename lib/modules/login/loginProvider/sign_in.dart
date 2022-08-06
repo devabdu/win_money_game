@@ -1,10 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:win_money_game/models/user_model.dart';
 
 class SignInProvider extends ChangeNotifier {
   final googleSignIn = GoogleSignIn();
+
+  bool isAFacebookUser = false;
+
+  bool aLoggedUser = false;
 
   GoogleSignInAccount? _user;
 
@@ -23,7 +29,32 @@ class SignInProvider extends ChangeNotifier {
         idToken: googleAuth.idToken,
       );
 
-      await FirebaseAuth.instance.signInWithCredential(credential);
+      aLoggedUser = false;
+
+      FirebaseAuth.instance.signInWithCredential(credential).then((value)
+      async {
+        await FirebaseFirestore.instance
+            .collection('users')
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            if(value.user!.email.toString() == doc["email"])
+              aLoggedUser = true;
+          });
+        });
+
+        if(!aLoggedUser)
+        {
+          userSignUp(
+            name: value.user!.displayName.toString(),
+            email: value.user!.email.toString(),
+            uId: value.user!.uid,
+          );
+          aLoggedUser = false;
+        }
+      }).catchError((error){
+        print('error');
+      });
     } catch (error) {
       print(error.toString());
     }
@@ -35,20 +66,42 @@ class SignInProvider extends ChangeNotifier {
     FirebaseAuth.instance.signOut();
   }
 
-  Map? _userData;
-
-  Map get userData => _userData!;
-
   Future facebookLogin() async {
     try {
-      final result = await FacebookAuth.i.login(
-          permissions: ["public_profile", "email"]
-      );
+      final result = await FacebookAuth.instance.login();
 
-      if (result.status == LoginStatus.success) {
-        final credential = FacebookAuthProvider.credential(result.accessToken!.token);
-        await FirebaseAuth.instance.signInWithCredential(credential);
-      }
+      final credential = FacebookAuthProvider.credential(result.accessToken!.token);
+
+      aLoggedUser = false;
+
+      FirebaseAuth.instance.signInWithCredential(credential).then((value)
+      async {
+        await FirebaseFirestore.instance
+            .collection('users')
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            if(value.user!.email.toString() == doc["email"])
+              aLoggedUser = true;
+          });
+        });
+
+        if(!aLoggedUser)
+        {
+          userSignUp(
+            name: value.user!.displayName.toString(),
+            email: value.user!.email.toString(),
+            uId: value.user!.uid,
+          );
+          aLoggedUser = false;
+        }
+
+        isAFacebookUser = true;
+
+      }).catchError((error){
+        print('error');
+      });
+
     } catch (error) {
       print(error.toString());
     }
@@ -57,8 +110,34 @@ class SignInProvider extends ChangeNotifier {
 
   Future facebookLogout() async {
     await FacebookAuth.i.logOut();
-    _userData = null;
     FirebaseAuth.instance.signOut();
-    print(_userData);
+  }
+
+  void userSignUp({
+    required String name,
+    required String email,
+    required String uId,
+}) {
+    UserModel userModel = UserModel(
+      name: name,
+      email: email,
+      uId: uId,
+      coins: 0,
+      level: 1,
+      amount: 0,
+      exp: 0,
+      avatar: 7,
+    );
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(uId)
+        .set(userModel.toMap())
+        .then((value)
+    {
+      print('User Created');
+    })
+        .catchError((error){
+      print(error.toString());
+    });
   }
 }
