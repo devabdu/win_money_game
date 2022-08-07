@@ -20,19 +20,18 @@ class UserModel
     required this.avatar,
   });
 
-  UserModel.fromJson(Map<String, dynamic>? json)
-  {
-    name = json!['name'];
-    email = json['email'];
-    uId = json['uId'];
-    amount = json['amount'];
-    exp = json['exp'];
-    coins = json['coins'];
-    level = json['level'];
-    avatar = json['avatar'];
-  }
+  static UserModel fromJson(Map<String, dynamic> json) => UserModel(
+    name: json['name'],
+    email: json['email'],
+    uId: json['uId'],
+    amount : json['amount'],
+    exp : json['exp'],
+    coins : json['coins'],
+    level : json['level'],
+    avatar : json['avatar'],
+  );
 
-  Map<String, dynamic> toMap()
+  Map<String, dynamic> toJson()
   {
     return {
       'name' : name,

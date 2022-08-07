@@ -4,23 +4,16 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:win_money_game/models/user_model.dart';
-import 'package:win_money_game/shared/components/constants.dart';
-import 'package:win_money_game/shared/network/local/cache_helper.dart';
 
 class SignInProvider extends ChangeNotifier {
   final googleSignIn = GoogleSignIn(scopes:['email']);
 
   bool aLoggedUser = false;
 
-  GoogleSignInAccount? _user;
-
-  GoogleSignInAccount get user => _user!;
-
   Future googleLogin(context) async {
     try {
       final googleUser = await googleSignIn.signIn();
       if (googleUser == null) return;
-      _user = googleUser;
 
       final googleAuth = await googleUser.authentication;
 
@@ -38,27 +31,19 @@ class SignInProvider extends ChangeNotifier {
             .get()
             .then((QuerySnapshot querySnapshot) {
           querySnapshot.docs.forEach((doc) {
-            if(googleUser.email == doc["email"])
+            if(value.user!.email.toString() == doc["email"])
               aLoggedUser = true;
           });
         });
 
         if(!aLoggedUser)
         {
-          userSignUp(
-            name: googleUser.displayName.toString(),
-            email: googleUser.email,
-            uId: googleUser.id,
+          await userSignUp(
+            name: value.user!.displayName.toString(),
+            email: value.user!.email.toString(),
+            uId: value.user!.uid,
           );
         }
-        CacheHelper.saveData(
-          key: 'uId',
-          value: value.user!.uid,
-        ).then((value) {
-          uId = CacheHelper.getData(key: 'uId');
-          print('33333');
-          print(uId);
-        });
       }).catchError((error){
         print(error.toString());
 
@@ -133,18 +118,12 @@ class SignInProvider extends ChangeNotifier {
 
         if(!aLoggedUser)
         {
-          userSignUp(
+          await userSignUp(
             name: value.user!.displayName.toString(),
             email: value.user!.email.toString(),
             uId: value.user!.uid,
           );
         }
-        CacheHelper.saveData(
-          key: 'uId',
-          value: value.user!.uid,
-        ).then((value) {
-          uId = CacheHelper.getData(key: 'uId');
-        });
       }).catchError((error){
         print(error.toString());
 
@@ -189,7 +168,7 @@ class SignInProvider extends ChangeNotifier {
     FirebaseAuth.instance.signOut();
   }
 
-  void userSignUp({
+  Future userSignUp({
     required String name,
     required String email,
     required String uId,
@@ -207,7 +186,7 @@ class SignInProvider extends ChangeNotifier {
     await FirebaseFirestore.instance
         .collection('users')
         .doc(uId)
-        .set(userModel.toMap())
+        .set(userModel.toJson())
         .then((value)
     {
       print('User Created');

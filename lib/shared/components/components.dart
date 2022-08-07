@@ -1,4 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../../models/user_model.dart';
 
 
 bool select3x3 = false;
@@ -334,4 +338,12 @@ Widget defaultMissionDialog({
       ),
     ],
   );
+}
+Future<UserModel?> readUser() async {
+  final id = FirebaseAuth.instance.currentUser!.uid;
+  final docUser = FirebaseFirestore.instance.collection('users').doc(id);
+  final snapshot = await docUser.get();
+  if(snapshot.exists){
+    return UserModel.fromJson(snapshot.data()!);
+  }
 }
