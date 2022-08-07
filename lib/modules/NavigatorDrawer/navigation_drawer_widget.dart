@@ -11,8 +11,9 @@ import 'package:win_money_game/modules/NavigatorDrawer/help.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/Profile/profile.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/settings.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/Statistics/statistics.dart';
-import 'package:win_money_game/shared/component/component.dart';
-import '../login/loginProvider/sign_in.dart';
+import 'package:win_money_game/shared/network/local/cache_helper.dart';
+import '../../shared/components/components.dart';
+import '../../providers/sign_in_provider.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   const NavigationDrawerWidget({Key? key}) : super(key: key);
@@ -103,6 +104,7 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 3:
         final provider = Provider.of<SignInProvider>(context, listen: false);
         user.providerData.single.providerId == 'facebook.com' ? provider.facebookLogout() : provider.googleLogout();
+        CacheHelper.removeData(key: 'uId');
         break;
 
     }
@@ -112,7 +114,6 @@ class NavigationDrawerWidget extends StatelessWidget {
   {
     final user = FirebaseAuth.instance.currentUser!;
     return MaterialButton(
-
       onPressed: (){navigateTo(context, ProfileScreen());},
       child: Padding(
         padding: const EdgeInsets.only(right: 10),

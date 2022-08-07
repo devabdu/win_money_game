@@ -1,7 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:win_money_game/modules/chess/components/play_game_page.dart';
-import 'package:win_money_game/shared/component/component.dart';
+
+import '../../../shared/components/components.dart';
 
 class ChessSelectBetScreen extends StatelessWidget {
   const ChessSelectBetScreen({Key? key}) : super(key: key);

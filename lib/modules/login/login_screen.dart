@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:win_money_game/layout/home_layout_screen.dart';
-import 'package:win_money_game/modules/select_path_screen.dart';
-import 'package:win_money_game/shared/component/component.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'loginProvider/sign_in.dart';
+import '../../providers/sign_in_provider.dart';
 
 class LoginScreen extends StatelessWidget {
 

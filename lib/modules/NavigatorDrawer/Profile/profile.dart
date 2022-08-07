@@ -4,7 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:percent_indicator/percent_indicator.dart';
-import 'package:win_money_game/shared/component/component.dart';
+
+import '../../../shared/components/components.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
