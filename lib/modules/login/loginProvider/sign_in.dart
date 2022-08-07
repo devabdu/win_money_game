@@ -14,7 +14,7 @@ class SignInProvider extends ChangeNotifier {
 
   GoogleSignInAccount get user => _user!;
 
-  Future googleLogin(context) async {
+  Future googleLogin() async {
     try {
       final googleUser = await googleSignIn.signIn();
       if (googleUser == null) return;
@@ -51,35 +51,6 @@ class SignInProvider extends ChangeNotifier {
         }
       }).catchError((error){
         print(error.toString());
-
-        var content = '';
-        switch(error.code) {
-          case 'account-exists-with-different-credential':
-            content = 'This account exists with a different sign in provider';
-            break;
-          case 'invalid-credential':
-            content = 'Unknown error has occurred';
-            break;
-          case 'operation-not-allowed':
-            content = 'This operation is not allowed';
-            break;
-          case 'user-disabled':
-            content = 'The user you tried to log into is disabled';
-            break;
-          case 'user-not-found':
-            content = 'The user you tried to log into was not found';
-            break;
-        }
-        showDialog(context: context, builder: (context) => AlertDialog(
-          title: Text('log in with google failed'),
-          content: Text(content),
-          actions: [
-            TextButton(onPressed: (){
-              Navigator.of(context).pop();
-            }, child: Text('Ok'),
-            ),
-          ],
-        ));
       });
     } catch (error) {
       print(error.toString());
