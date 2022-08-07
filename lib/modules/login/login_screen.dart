@@ -71,7 +71,7 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () {
                       final provider = Provider.of<SignInProvider>(
                           context, listen: false);
-                      provider.googleLogin();
+                      provider.googleLogin(context);
                     },
                   ),
                 ],
