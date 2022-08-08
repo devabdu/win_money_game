@@ -9,6 +9,7 @@ import 'package:win_money_game/modules/ludo/game_engine/model/dice_model.dart';
 import 'package:win_money_game/modules/ludo/game_engine/model/game_state.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/dice.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/gameplay.dart';
+import 'package:win_money_game/modules/select_path_screen.dart';
 import 'providers/sign_in_provider.dart';
 
 void main() async {
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/' : (context) => SplashScreen(),
         '/second' : (context) => LoginScreen(),
-        '/third' : (context) => HomeLayoutScreen(),
+        '/third' : (context) => SelectPathScreen(),
       },
       supportedLocales: const [
         Locale('en', 'US')

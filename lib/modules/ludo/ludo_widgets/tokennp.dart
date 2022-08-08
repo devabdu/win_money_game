@@ -19,6 +19,8 @@ class Tokenp extends StatelessWidget {
         return Colors.blue[600];
       case TokenType.red:
         return Colors.red;
+      case null:
+        break;
     }
     return Colors.red;
   }

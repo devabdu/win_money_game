@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:win_money_game/layout/home_layout_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:win_money_game/modules/select_path_screen.dart';
 import '../../providers/sign_in_provider.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -17,7 +18,7 @@ class LoginScreen extends StatelessWidget {
         if(snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
         } else if(snapshot.hasData){
-          return HomeLayoutScreen();
+          return SelectPathScreen();
         } else if(snapshot.hasError) {
           return Center(child: Text('Something Went Wrong!'));
         } else {

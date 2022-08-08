@@ -10,6 +10,7 @@ import 'package:win_money_game/modules/NavigatorDrawer/help.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/Profile/profile.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/settings.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/Statistics/statistics.dart';
+import 'package:win_money_game/modules/select_path_screen.dart';
 import '../../shared/components/components.dart';
 import '../../providers/sign_in_provider.dart';
 
@@ -102,6 +103,7 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 3:
         final provider = Provider.of<SignInProvider>(context, listen: false);
         user.providerData.single.providerId == 'facebook.com' ? provider.facebookLogout() : provider.googleLogout();
+        navigateBack(context, SelectPathScreen());
         break;
 
     }
