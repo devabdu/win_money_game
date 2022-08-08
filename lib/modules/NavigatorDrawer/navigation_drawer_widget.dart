@@ -128,7 +128,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                   CircleAvatar(
                     radius: 30,
                     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                    backgroundImage: const AssetImage('assets/images/avatar_7.png',
+                    backgroundImage: AssetImage('assets/images/avatar_${user.avatar}.png',
                     ),
                   ),
                   const SizedBox(

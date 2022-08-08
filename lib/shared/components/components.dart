@@ -21,16 +21,6 @@ final List<String> avatarImages = [
   'assets/images/avatar_8.png',
 ];
 
-bool avatar_1 = false;
-bool avatar_2 = false;
-bool avatar_3 = false;
-bool avatar_4 = false;
-bool avatar_5 = false;
-bool avatar_6 = false;
-bool avatar_7 = false;
-bool avatar_8 = false;
-
-
 final List <String> images = [
 
   'assets/images/50_coins.png',
@@ -278,3 +268,38 @@ Stream<List<MissionsModel>> readMissions() => FirebaseFirestore.instance
     .collection('missions')
     .snapshots()
     .map((snapshot) => snapshot.docs.map((doc) => MissionsModel.fromJson(doc.data())).toList());
+
+void updateAvatar({
+  required int index,
+}) async {
+  final id = FirebaseAuth.instance.currentUser!.uid;
+
+  UserModel? userModel;
+
+  final docUser = FirebaseFirestore.instance.collection('users').doc(id);
+  final snapshot = await docUser.get();
+  if(snapshot.exists){
+    userModel = UserModel.fromJson(snapshot.data()!);
+  }
+
+  UserModel newUserModel = UserModel(
+    name: userModel!.name,
+    email: userModel.email,
+    uId: userModel.uId,
+    exp: userModel.exp,
+    level: userModel.level,
+    coins: userModel.coins,
+    avatar: index,
+    amount: userModel.amount
+  );
+
+  FirebaseFirestore.instance
+      .collection('users')
+      .doc(id)
+      .update(newUserModel.toJson())
+      .then((value)
+  {
+  })
+      .catchError((error) {
+  });
+}

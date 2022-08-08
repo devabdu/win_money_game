@@ -10,7 +10,9 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  // var formKey = GlobalKey<FormState>();
+  var formKey = GlobalKey<FormState>();
+  var avatarChoice = 0;
+
   String editName = '';
   TextEditingController? editNameController;
 
@@ -48,103 +50,117 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Center(
-                    child: Stack(
-                      alignment: AlignmentDirectional.bottomEnd,
-                      children: [
-                        const CircleAvatar(
-                          radius: 55,
-                          backgroundImage: AssetImage(
-                            'assets/images/avatar_7.png',
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            showModalBottomSheet(
-                                isScrollControlled: true,
-                                context: context,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                builder: (context) {
-                                  return Container(
-                                    padding: const EdgeInsets.all(20),
-                                    color: Colors.amberAccent,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                        bottom: MediaQuery.of(context).viewInsets.bottom,
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          const Text(
-                                            "Edit Avatar",
-                                            style: TextStyle(
-                                              fontSize: 25,
-                                              fontWeight: FontWeight.w500,
-                                              color: Colors.deepPurple,
-                                            ),
-                                          ),
-                                          const Divider(
-                                            color: Colors.white,
-                                            thickness: 1,
-                                            indent: 20,
-                                            endIndent: 30,
-                                          ),
-                                          const SizedBox(
-                                            height: 20,
-                                          ),
-                                          SizedBox(
-                                            height: 150,
-                                            child: GridView.builder(
-                                              itemCount: 8,
-                                              itemBuilder: (context, index){
-                                                return InkWell(
-                                                  child: CircleAvatar(
-                                                    backgroundImage: AssetImage(avatarImages[index]),
-                                                    radius: 40,
-                                                  ),
-                                                  splashColor: Colors.deepPurple,
-                                                  onTap: (){},
-                                                );
-                                              },
-                                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 2,
-                                                childAspectRatio: 2,
-                                                mainAxisSpacing: 10,
-                                                mainAxisExtent: 100,
-                                                crossAxisSpacing: 20,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 25,
-                                          ),
-                                          defaultButton(
-                                            function: () {},
-                                            text: 'Save',
-                                            isUpperCase: false,
-                                            textColor: Colors.white,
-                                            width: 150,
-                                            backgroundColorBox: Colors.deepPurple,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                });
-                          },
-                          icon: const CircleAvatar(
-                            radius: 20,
-                            backgroundColor: Colors.amberAccent,
-                            child: Icon(
-                              Icons.edit_outlined,
-                              color: Colors.white,
+                  Form(
+                    key: formKey,
+                    child: Center(
+                      child: Stack(
+                        alignment: AlignmentDirectional.bottomEnd,
+                        children: [
+                          CircleAvatar(
+                            radius: 55,
+                            backgroundImage: AssetImage(
+                              'assets/images/avatar_${user.avatar}.png',
                             ),
                           ),
-                        ),
-                      ],
+                          IconButton(
+                            onPressed: () {
+                              showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  context: context,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  builder: (context) {
+                                    return Container(
+                                      padding: const EdgeInsets.all(20),
+                                      color: Colors.amberAccent,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                          bottom: MediaQuery.of(context).viewInsets.bottom,
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const Text(
+                                              "Edit Avatar",
+                                              style: TextStyle(
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.deepPurple,
+                                              ),
+                                            ),
+                                            const Divider(
+                                              color: Colors.white,
+                                              thickness: 1,
+                                              indent: 20,
+                                              endIndent: 30,
+                                            ),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            SizedBox(
+                                              height: 150,
+                                              child: GridView.builder(
+                                                itemCount: 8,
+                                                itemBuilder: (context, index){
+                                                  return InkWell(
+                                                    child: CircleAvatar(
+                                                      backgroundImage: AssetImage(avatarImages[index]),
+                                                      radius: 40,
+                                                    ),
+                                                    splashColor: Colors.deepPurple,
+                                                    onTap: (){
+                                                      avatarChoice = index + 1;
+                                                      print(avatarChoice);
+                                                    },
+                                                  );
+                                                },
+                                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 2,
+                                                  childAspectRatio: 2,
+                                                  mainAxisSpacing: 10,
+                                                  mainAxisExtent: 100,
+                                                  crossAxisSpacing: 20,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 25,
+                                            ),
+                                            defaultButton(
+                                              function: () {
+                                                if(formKey.currentState!.validate())
+                                                {
+                                                  updateAvatar(index: avatarChoice);
+                                                  Navigator.pop(context);
+                                                  Navigator.pop(context);
+                                                  Navigator.pop(context);
+                                                }
+                                              },
+                                              text: 'Save',
+                                              isUpperCase: false,
+                                              textColor: Colors.white,
+                                              width: 150,
+                                              backgroundColorBox: Colors.deepPurple,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  });
+                            },
+                            icon: const CircleAvatar(
+                              radius: 20,
+                              backgroundColor: Colors.amberAccent,
+                              child: Icon(
+                                Icons.edit_outlined,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(
