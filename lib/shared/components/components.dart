@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:win_money_game/models/missions_model.dart';
 
 import '../../models/user_model.dart';
 
@@ -154,251 +155,114 @@ Widget defaultFormField({
 Widget defaultMissionDialog({
   required Function function,
 }){
-  return AlertDialog(
-    backgroundColor: Colors.deepPurple,
-    content: SizedBox(
-      height: 300,
-      width: 300,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Center(
-            child: Text(
-              'Missions',
-              style: TextStyle(
-                color: Colors.amberAccent,
-                fontWeight: FontWeight.bold,
-                fontSize: 25,
+  return StreamBuilder<List<MissionsModel>>(
+      stream: readMissions(),
+      builder: (context, snapshot) {
+        if(snapshot.hasError) {
+          return Text('Something went wrong! ${snapshot.error}');
+        } else if(snapshot.hasData) {
+          final missions = snapshot.data!;
+          return AlertDialog(
+            backgroundColor: Colors.deepPurple,
+            content: SizedBox(
+              height: 300,
+              width: 300,
+              child: Column(
+                children: [
+                  const Center(
+                    child: Text(
+                      'Missions',
+                      style: TextStyle(
+                        color: Colors.amberAccent,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Daily Missions',
+                        style: TextStyle(
+                            fontSize: 19,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      ListView(
+                        children: missions.map(buildMission).toList(),
+                        shrinkWrap: true,
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Daily Missions',
-                style: TextStyle(
-                  fontSize: 19,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.white
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: const [
-                  Text(
-                    'Show 3 videos',
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.white
-                    ),
-                  ),
-                  Spacer(),
-                  Icon(
-                    Icons.check_circle,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Icon(
-                    Icons.play_circle_fill_outlined,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 3,
-              ),
-              Row(
-                children: const [
-                  Text(
-                    'win 3 games',
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.white
-                    ),
-                  ),
-                  Spacer(),
-                  Icon(
-                    Icons.check_circle,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Icon(
-                    Icons.play_circle_fill_outlined,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 3,
-              ),
-              Row(
-                children: const [
-                  Text(
-                    'Show 3 videos',
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.white
-                    ),
-                  ),
-                  Spacer(),
-                  Icon(
-                    Icons.check_circle,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Icon(
-                    Icons.play_circle_fill_outlined,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Weekly Missions',
-                style: TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                children: const [
-                  Text(
-                    'Show 100 videos',
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.white
-                    ),
-                  ),
-                  Spacer(),
-                  Icon(
-                    Icons.check_circle,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Icon(
-                    Icons.play_circle_fill_outlined,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 3,
-              ),
-              Row(
-                children: const [
-                  Text(
-                    'win 3 games',
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.white
-                    ),
-                  ),
-                  Spacer(),
-                  Icon(
-                    Icons.check_circle,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Icon(
-                    Icons.play_circle_fill_outlined,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 3,
-              ),
-              Row(
-                children: const [
-                  Text(
-                    'Show 3 videos',
-                    style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.white
-                    ),
-                  ),
-                  Spacer(),
-                  Icon(
-                    Icons.check_circle,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Icon(
-                    Icons.play_circle_fill_outlined,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-    ),
-    actions: [
-      Center(
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 20),
-          child: defaultButton(
-            function: (){
-              function();
-            },
-            text: "Ok",
-            textColor: Colors.white,
-            backgroundColorBox: Colors.amberAccent,
+            actions: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: defaultButton(
+                    function: (){
+                      function();
+                    },
+                    text: "Ok",
+                    textColor: Colors.white,
+                    backgroundColorBox: Colors.amberAccent,
 
-          ),
-        ),
-      ),
-    ],
+                  ),
+                ),
+              ),
+            ],
+          );
+        } else {
+          return Center(child: CircularProgressIndicator(),);
+        }
+      }
   );
 }
+
+Widget buildMission(MissionsModel mission) => ListTile(
+  title: Row(
+    children: [
+      Text(
+        mission.name,
+        style: const TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.w300,
+          color: Colors.white
+        ),
+      ),
+      Spacer(),
+      Icon(
+        Icons.check_circle,
+        color: Colors.white,
+        size: 20,
+      ),
+      SizedBox(
+        width: 5,
+      ),
+      Icon(
+        Icons.play_circle_fill_outlined,
+        color: Colors.white,
+        size: 20,
+      ),
+    ],
+  ),
+  subtitle: Text(
+      '0/${mission.count}',
+    style: const TextStyle(
+      color: Colors.white
+    ),
+  ),
+);
 
 Future<UserModel?> readUser() async {
   final id = FirebaseAuth.instance.currentUser!.uid;
@@ -407,4 +271,10 @@ Future<UserModel?> readUser() async {
   if(snapshot.exists){
     return UserModel.fromJson(snapshot.data()!);
   }
+  return null;
 }
+
+Stream<List<MissionsModel>> readMissions() => FirebaseFirestore.instance
+    .collection('missions')
+    .snapshots()
+    .map((snapshot) => snapshot.docs.map((doc) => MissionsModel.fromJson(doc.data())).toList());
