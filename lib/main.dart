@@ -1,3 +1,4 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +9,6 @@ import 'package:win_money_game/modules/ludo/game_engine/model/dice_model.dart';
 import 'package:win_money_game/modules/ludo/game_engine/model/game_state.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/dice.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/gameplay.dart';
-import 'package:win_money_game/shared/audio_manager.dart';
 import 'providers/sign_in_provider.dart';
 
 void main() async {
@@ -16,7 +16,8 @@ void main() async {
 
   await Firebase.initializeApp();
 
-  await AudioManager.init();
+  //ads
+  Admob.initialize();
 
   runApp(MultiProvider(
     providers: [
@@ -43,11 +44,13 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale('en', 'US')
       ],
+
       debugShowCheckedModeBanner: false,
       title: 'Win Money',
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
+
     );
   }
 }

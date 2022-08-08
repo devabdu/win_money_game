@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:win_money_game/layout/home_layout_screen.dart';
 import 'package:win_money_game/models/user_model.dart';
 import '../../../shared/components/components.dart';
 
@@ -102,7 +103,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 return InkWell(
                                                   child: CircleAvatar(
                                                     backgroundImage: AssetImage(avatarImages[index]),
+                                                    radius: 40,
                                                   ),
+                                                  splashColor: Colors.deepPurple,
                                                   onTap: (){},
                                                 );
                                               },

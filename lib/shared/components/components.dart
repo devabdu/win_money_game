@@ -203,9 +203,20 @@ Widget defaultMissionDialog({
                   Icon(
                     Icons.check_circle,
                     color: Colors.white,
-                    size: 19,
+                    size: 20,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Icon(
+                    Icons.play_circle_fill_outlined,
+                    color: Colors.white,
+                    size: 20,
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 3,
               ),
               Row(
                 children: const [
@@ -221,9 +232,20 @@ Widget defaultMissionDialog({
                   Icon(
                     Icons.check_circle,
                     color: Colors.white,
-                    size: 19,
+                    size: 20,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Icon(
+                    Icons.play_circle_fill_outlined,
+                    color: Colors.white,
+                    size: 20,
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 3,
               ),
               Row(
                 children: const [
@@ -239,7 +261,15 @@ Widget defaultMissionDialog({
                   Icon(
                     Icons.check_circle,
                     color: Colors.white,
-                    size: 19,
+                    size: 20,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Icon(
+                    Icons.play_circle_fill_outlined,
+                    color: Colors.white,
+                    size: 20,
                   ),
                 ],
               ),
@@ -276,9 +306,20 @@ Widget defaultMissionDialog({
                   Icon(
                     Icons.check_circle,
                     color: Colors.white,
-                    size: 19,
+                    size: 20,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Icon(
+                    Icons.play_circle_fill_outlined,
+                    color: Colors.white,
+                    size: 20,
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 3,
               ),
               Row(
                 children: const [
@@ -294,9 +335,20 @@ Widget defaultMissionDialog({
                   Icon(
                     Icons.check_circle,
                     color: Colors.white,
-                    size: 19,
+                    size: 20,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Icon(
+                    Icons.play_circle_fill_outlined,
+                    color: Colors.white,
+                    size: 20,
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 3,
               ),
               Row(
                 children: const [
@@ -312,7 +364,15 @@ Widget defaultMissionDialog({
                   Icon(
                     Icons.check_circle,
                     color: Colors.white,
-                    size: 19,
+                    size: 20,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Icon(
+                    Icons.play_circle_fill_outlined,
+                    color: Colors.white,
+                    size: 20,
                   ),
                 ],
               ),
@@ -339,6 +399,7 @@ Widget defaultMissionDialog({
     ],
   );
 }
+
 Future<UserModel?> readUser() async {
   final id = FirebaseAuth.instance.currentUser!.uid;
   final docUser = FirebaseFirestore.instance.collection('users').doc(id);
