@@ -303,3 +303,4 @@ void updateAvatar({
       .catchError((error) {
   });
 }
+
