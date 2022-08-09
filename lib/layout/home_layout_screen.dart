@@ -143,7 +143,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                         width: 5.0,
                       ),
                       Text(
-                        '${user.coins}',
+                        '${user.coins}'.replaceAllMapped(reg, mathFunc),
                         style:const TextStyle(
                             color: Colors.deepPurple,
                             fontWeight: FontWeight.bold,

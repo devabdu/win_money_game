@@ -5,10 +5,12 @@ import 'package:win_money_game/models/missions_model.dart';
 
 import '../../models/user_model.dart';
 
-
 bool select3x3 = false;
 bool select4x4 = false;
 bool select5x5 = false;
+
+RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
+String Function(Match) mathFunc = (Match match) => '${match[1]},';
 
 final List<String> avatarImages = [
   'assets/images/avatar_1.png',

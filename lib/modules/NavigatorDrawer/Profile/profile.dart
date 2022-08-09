@@ -255,7 +255,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         width: 10.0,
                       ),
                       Text(
-                        '${user.coins}',
+                        '${user.coins}'.replaceAllMapped(reg, mathFunc),
                         style: const TextStyle(
                             color: Colors.amberAccent,
                             fontWeight: FontWeight.w400,
