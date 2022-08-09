@@ -184,6 +184,12 @@ class SignInProvider extends ChangeNotifier {
       amount: 0,
       exp: 0,
       avatar: 7,
+      firstDMCount: 0,
+      secondDMCount: 0,
+      thirdDMCount: 0,
+      firstWMCount: 0,
+      secondWMCount: 0,
+      thirdWMCount: 0,
     );
     await FirebaseFirestore.instance
         .collection('users')
@@ -191,7 +197,6 @@ class SignInProvider extends ChangeNotifier {
         .set(userModel.toJson())
         .then((value)
     {
-      print('User Created');
     })
         .catchError((error){
       print(error.toString());

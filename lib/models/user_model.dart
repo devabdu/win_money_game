@@ -8,6 +8,12 @@ class UserModel
   late int coins;
   late int level;
   late int avatar;
+  late int firstDMCount;
+  late int secondDMCount;
+  late int thirdDMCount;
+  late int firstWMCount;
+  late int secondWMCount;
+  late int thirdWMCount;
 
   UserModel({
     required this.name,
@@ -18,6 +24,12 @@ class UserModel
     required this.coins,
     required this.level,
     required this.avatar,
+    required this.firstDMCount,
+    required this.secondDMCount,
+    required this.thirdDMCount,
+    required this.firstWMCount,
+    required this.secondWMCount,
+    required this.thirdWMCount,
   });
 
   static UserModel fromJson(Map<String, dynamic> json) => UserModel(
@@ -29,6 +41,12 @@ class UserModel
     coins : json['coins'],
     level : json['level'],
     avatar : json['avatar'],
+    firstDMCount : json['firstDMCount'],
+    secondDMCount : json['secondDMCount'],
+    thirdDMCount : json['thirdDMCount'],
+    firstWMCount : json['firstWMCount'],
+    secondWMCount : json['secondWMCount'],
+    thirdWMCount : json['thirdWMCount'],
   );
 
   Map<String, dynamic> toJson()
@@ -42,6 +60,12 @@ class UserModel
       'coins' : coins,
       'level' : level,
       'avatar' : avatar,
+      'firstDMCount' : firstDMCount,
+      'secondDMCount' : secondDMCount,
+      'thirdDMCount' : thirdDMCount,
+      'firstWMCount' : firstWMCount,
+      'secondWMCount' : secondWMCount,
+      'thirdWMCount' : thirdWMCount,
     };
   }
 }

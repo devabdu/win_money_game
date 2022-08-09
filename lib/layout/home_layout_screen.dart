@@ -172,6 +172,9 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                 missionsType: 'Daily',
                                 function: readMissions(
                                   missionsType: 'dailyMissions',
+                                  firstMissionCount: user.firstDMCount,
+                                  secondMissionCount: user.secondDMCount,
+                                  thirdMissionCount: user.thirdDMCount,
                                 ),
                               ),
                               barrierDismissible: false,
@@ -192,6 +195,9 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                 missionsType: 'Weekly',
                                 function: readMissions(
                                   missionsType: 'weeklyMissions',
+                                  firstMissionCount: user.firstWMCount,
+                                  secondMissionCount: user.secondWMCount,
+                                  thirdMissionCount: user.thirdWMCount,
                                 ),
                               ),
                               barrierDismissible: false,

@@ -150,7 +150,6 @@ Widget defaultMissionsDialog({
       stream: function,
       builder: (context, snapshot) {
         if(snapshot.hasError) {
-          print('leh kda yarab');
           return Text('Something went wrong! ${snapshot.error}');
         } else if(snapshot.hasData) {
           final missions = snapshot.data!;
@@ -164,7 +163,7 @@ Widget defaultMissionsDialog({
                    Center(
                     child: Text(
                       '$missionsType Missions',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.amberAccent,
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
@@ -223,40 +222,60 @@ Widget defaultMissionsDialog({
 }
 
 
-Widget buildMission(MissionsModel mission) => ListTile(
-  title: Row(
-    children: [
-      Text(
-        mission.name,
-        style: const TextStyle(
-          fontSize: 17,
-          fontWeight: FontWeight.w300,
-          color: Colors.white
-        ),
-      ),
-      const Spacer(),
-      const Icon(
-        Icons.check_circle,
-        color: Colors.white,
-        size: 20,
-      ),
-      const SizedBox(
-        width: 5,
-      ),
-      const Icon(
-        Icons.play_circle_fill_outlined,
-        color: Colors.white,
-        size: 20,
-      ),
-    ],
-  ),
-  subtitle: Text(
-      '0/${mission.count}',
-    style: const TextStyle(
-      color: Colors.white
-    ),
-  ),
-);
+Widget buildMission(MissionsModel mission) {
+  return FutureBuilder<UserModel?>(
+    future: readUser(),
+    builder: (context, snapshot) {
+      if(snapshot.hasError) {
+        return Text('Something went wrong! ${snapshot.error}');
+      } else if(snapshot.hasData){
+        final user = snapshot.data;
+        return user == null ? const Center(child:Text('No User')) : ListTile(
+          title: Row(
+            children: [
+              Text(
+                mission.name,
+                style: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white
+                ),
+              ),
+              const Spacer(),
+              const Icon(
+                Icons.check_circle,
+                color: Colors.white,
+                size: 20,
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              const Icon(
+                Icons.play_circle_fill_outlined,
+                color: Colors.white,
+                size: 20,
+              ),
+            ],
+          ),
+          subtitle: Text(
+            mission.mId == 'HudQyQtHj7wqPp6yoGm9' ? '${user.firstDMCount}/${mission.count}' :
+            mission.mId == 'f2Sov2X78STX1T1Fen5J' ? '${user.secondDMCount}/${mission.count}':
+            mission.mId == 'wjfHjC1lcwnmYBR763zv' ? '${user.thirdDMCount}/${mission.count}' :
+            mission.mId == 'MbN1wL6DeOOzfd9vLF5v' ? '${user.firstWMCount}/${mission.count}' :
+            mission.mId == 'O0SDLwX9XkIWrKr3I1SH' ? '${user.secondWMCount}/${mission.count}' :
+            mission.mId == 'u4K6wJVrrunTawElil4Y' ? '${user.thirdWMCount}/${mission.count}' :
+            '',
+            style: const TextStyle(
+                color: Colors.white
+            ),
+          ),
+        );
+      } else {
+        return const Center(child: CircularProgressIndicator(),);
+      }
+    },
+  );
+}
 
 Future<UserModel?> readUser() async {
   final id = FirebaseAuth.instance.currentUser!.uid;
@@ -270,6 +289,9 @@ Future<UserModel?> readUser() async {
 
 Stream<List<MissionsModel>> readMissions({
   required String missionsType,
+  required int firstMissionCount,
+  required int secondMissionCount,
+  required int thirdMissionCount,
 }) => FirebaseFirestore.instance
     .collection(missionsType)
     .snapshots()
@@ -296,7 +318,13 @@ void updateAvatar({
     level: userModel.level,
     coins: userModel.coins,
     avatar: avatarIndex,
-    amount: userModel.amount
+    amount: userModel.amount,
+    firstDMCount: userModel.firstDMCount,
+    secondDMCount: userModel.secondDMCount,
+    thirdDMCount: userModel.thirdDMCount,
+    firstWMCount: userModel.firstWMCount,
+    secondWMCount: userModel.secondWMCount,
+    thirdWMCount: userModel.thirdWMCount,
   );
 
   FirebaseFirestore.instance
