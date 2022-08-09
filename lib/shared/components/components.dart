@@ -142,7 +142,7 @@ Widget defaultFormField({
 );
 
 
-Widget defaultMissionDialog({
+Widget defaultDailyMissionDialog({
   required Function function,
 }){
   return StreamBuilder<List<MissionsModel>>(
@@ -201,8 +201,9 @@ Widget defaultMissionDialog({
                   padding: const EdgeInsets.only(bottom: 20),
                   child: defaultButton(
                     function: (){
-                      function();
+                      function;
                     },
+                    isUpperCase: false,
                     text: "Ok",
                     textColor: Colors.white,
                     backgroundColorBox: Colors.amberAccent,
@@ -218,6 +219,85 @@ Widget defaultMissionDialog({
       }
   );
 }
+
+Widget defaultWeeklyMissionDialog({
+  required Function function,
+}){
+  return StreamBuilder<List<MissionsModel>>(
+      stream: readMissions(),
+      builder: (context, snapshot) {
+        if(snapshot.hasError) {
+          return Text('Something went wrong! ${snapshot.error}');
+        } else if(snapshot.hasData) {
+          final missions = snapshot.data!;
+          return AlertDialog(
+            backgroundColor: Colors.deepPurple,
+            content: SizedBox(
+              height: 300,
+              width: 300,
+              child: Column(
+                children: [
+                  const Center(
+                    child: Text(
+                      'Missions',
+                      style: TextStyle(
+                        color: Colors.amberAccent,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Weekly Missions',
+                        style: TextStyle(
+                            fontSize: 19,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      ListView(
+                        children: missions.map(buildMission).toList(),
+                        shrinkWrap: true,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            actions: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: defaultButton(
+                    function: (){
+                      function;
+                    },
+                    isUpperCase: false,
+                    text: "Ok",
+                    textColor: Colors.white,
+                    backgroundColorBox: Colors.amberAccent,
+
+                  ),
+                ),
+              ),
+            ],
+          );
+        } else {
+          return Center(child: CircularProgressIndicator(),);
+        }
+      }
+  );
+}
+
 
 Widget buildMission(MissionsModel mission) => ListTile(
   title: Row(

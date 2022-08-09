@@ -168,17 +168,35 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                           onTap: (){
                             showDialog(
                               context: context,
-                              builder: (_) => defaultMissionDialog(
+                              builder: (_) => defaultDailyMissionDialog(
                                   function: (){
                                     Navigator.pop(context);
-                                  }
+                                  },
                               ),
                               barrierDismissible: false,
                             );
-                            // navigateTo(context, TestScreen());
                           },
                           child: Image.asset(
-                            "assets/images/missions.png",
+                            "assets/images/daily_missions.png",
+                            height: 90,
+                            width: 90,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: (){
+                            showDialog(
+                              context: context,
+                              builder: (_) => defaultWeeklyMissionDialog(
+                                function: (){
+                                  Navigator.pop(context);
+                                },
+                              ),
+                              barrierDismissible: false,
+                            );
+                          },
+                          child: Image.asset(
+                            "assets/images/weekly_missions.png",
                             height: 90,
                             width: 90,
                             fit: BoxFit.fill,
@@ -274,112 +292,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                 ),
               ],
             ),
-            // bottomNavigationBar: Builder(
-            //   builder: (BuildContext context) {
-            //     return Container(
-            //       color: Colors.blueGrey,
-            //       child: SafeArea(
-            //         child: SizedBox(
-            //           height: 60,
-            //           child: Row(
-            //             crossAxisAlignment: CrossAxisAlignment.stretch,
-            //             mainAxisAlignment: MainAxisAlignment.center,
-            //             children: <Widget>[
-            //               Expanded(
-            //                 child: TextButton(
-            //                   onPressed: () async {
-            //                     final isLoaded = await interstitialAd.isLoaded;
-            //                     if (isLoaded ?? false) {
-            //                       interstitialAd.show(); //interstital ad show
-            //                     } else {
-            //                       showSnackBar(
-            //                           'Interstitial ad is still loading...');
-            //                     }
-            //                   },
-            //                   child: Text(
-            //                     'Show Interstitial',
-            //                     style: TextStyle(color: Colors.white),
-            //                   ),
-            //                 ),
-            //               ),
-            //               Expanded(
-            //                 child: TextButton(
-            //                   onPressed: () async {
-            //                     if (await rewardAd.isLoaded) {
-            //                       rewardAd.show(); // showing rewarded ad
-            //                     } else {
-            //                       showSnackBar('Reward ad is still loading...');
-            //                     }
-            //                   },
-            //                   child: Text(
-            //                     'Show Reward',
-            //                     style: TextStyle(color: Colors.white),
-            //                   ),
-            //                 ),
-            //               ),
-            //               // Expanded(
-            //               //   child: PopupMenuButton(
-            //               //     initialValue: bannerSize,
-            //               //     offset: Offset(0, 20),
-            //               //     onSelected: (AdmobBannerSize newSize) {
-            //               //       setState(() {
-            //               //         bannerSize = newSize;
-            //               //       });
-            //               //     },
-            //               //     itemBuilder: (BuildContext context) =>
-            //               //     <PopupMenuEntry<AdmobBannerSize>>[ //banner size control
-            //               //       PopupMenuItem(
-            //               //         value: AdmobBannerSize.BANNER,
-            //               //         child: Text('BANNER'),
-            //               //       ),
-            //               //       PopupMenuItem(
-            //               //         value: AdmobBannerSize.LARGE_BANNER,
-            //               //         child: Text('LARGE_BANNER'),
-            //               //       ),
-            //               //       PopupMenuItem(
-            //               //         value: AdmobBannerSize.MEDIUM_RECTANGLE,
-            //               //         child: Text('MEDIUM_RECTANGLE'),
-            //               //       ),
-            //               //       PopupMenuItem(
-            //               //         value: AdmobBannerSize.FULL_BANNER,
-            //               //         child: Text('FULL_BANNER'),
-            //               //       ),
-            //               //       PopupMenuItem(
-            //               //         value: AdmobBannerSize.LEADERBOARD,
-            //               //         child: Text('LEADERBOARD'),
-            //               //       ),
-            //               //       PopupMenuItem(
-            //               //         value: AdmobBannerSize.SMART_BANNER(context),
-            //               //         child: Text('SMART_BANNER'),
-            //               //       ),
-            //               //       PopupMenuItem(
-            //               //         value: AdmobBannerSize.ADAPTIVE_BANNER(
-            //               //           width: MediaQuery.of(context)
-            //               //               .size
-            //               //               .width
-            //               //               .toInt() -
-            //               //               40, // considering EdgeInsets.all(20.0)
-            //               //         ),
-            //               //         child: Text('ADAPTIVE_BANNER'),
-            //               //       ),
-            //               //     ],
-            //               //     child: Center(
-            //               //       child: Text(
-            //               //         'Banner size',
-            //               //         style: TextStyle(
-            //               //             fontWeight: FontWeight.w500,
-            //               //             color: Colors.white),
-            //               //       ),
-            //               //     ),
-            //               //   ),
-            //               // ),
-            //             ],
-            //           ),
-            //         ),
-            //       ),
-            //     );
-            //   },
-            // ),
           );
         } else if(snapshot.connectionState == ConnectionState.waiting){
           return Center(child: CircularProgressIndicator(),);
