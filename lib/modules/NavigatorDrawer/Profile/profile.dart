@@ -110,9 +110,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                       radius: 40,
                                                     ),
                                                     splashColor: Colors.deepPurple,
-                                                    onTap: (){
-                                                      avatarChoice = index + 1;
+                                                    onTap: () async {
+                                                      avatarChoice = await index + 1;
                                                       print(avatarChoice);
+                                                      if(formKey.currentState!.validate())
+                                                      {
+                                                        updateAvatar(index: avatarChoice);
+                                                        showDialog(context: context, builder: (context) => AlertDialog(
+                                                          backgroundColor: Colors.amberAccent,
+                                                          title: const Text('Avatar Updated',
+                                                              style: TextStyle(
+                                                                  color: Colors.deepPurple,
+                                                                  fontWeight: FontWeight.bold),
+                                                          ),
+                                                          content: const Text('Your avatar has been updated successfully',
+                                                            style: TextStyle(
+                                                              color: Colors.deepPurple,
+                                                            ),
+                                                          ),
+                                                          actions: [
+                                                            TextButton(onPressed: (){
+                                                              Navigator.pop(context);
+                                                              Navigator.pop(context);
+                                                              Navigator.pop(context);
+                                                              Navigator.pop(context);
+                                                            }, child: Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        ));
+                                                      }
                                                     },
                                                   );
                                                 },
@@ -124,25 +150,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   crossAxisSpacing: 20,
                                                 ),
                                               ),
-                                            ),
-                                            const SizedBox(
-                                              height: 25,
-                                            ),
-                                            defaultButton(
-                                              function: () {
-                                                if(formKey.currentState!.validate())
-                                                {
-                                                  updateAvatar(index: avatarChoice);
-                                                  Navigator.pop(context);
-                                                  Navigator.pop(context);
-                                                  Navigator.pop(context);
-                                                }
-                                              },
-                                              text: 'Save',
-                                              isUpperCase: false,
-                                              textColor: Colors.white,
-                                              width: 150,
-                                              backgroundColorBox: Colors.deepPurple,
                                             ),
                                           ],
                                         ),
