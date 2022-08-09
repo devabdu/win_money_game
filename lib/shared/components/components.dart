@@ -54,7 +54,7 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
 
 extension StringExtension on String {
   String capitalize() {
-    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
   }
 }
 
@@ -142,13 +142,15 @@ Widget defaultFormField({
 );
 
 
-Widget defaultDailyMissionDialog({
-  required Function function,
+Widget defaultMissionsDialog({
+  required String missionsType,
+  required Stream<List<MissionsModel>> function,
 }){
   return StreamBuilder<List<MissionsModel>>(
-      stream: readMissions(),
+      stream: function,
       builder: (context, snapshot) {
         if(snapshot.hasError) {
+          print('leh kda yarab');
           return Text('Something went wrong! ${snapshot.error}');
         } else if(snapshot.hasData) {
           final missions = snapshot.data!;
@@ -159,9 +161,9 @@ Widget defaultDailyMissionDialog({
               width: 300,
               child: Column(
                 children: [
-                  const Center(
+                   Center(
                     child: Text(
-                      'Missions',
+                      '$missionsType Missions',
                       style: TextStyle(
                         color: Colors.amberAccent,
                         fontWeight: FontWeight.bold,
@@ -175,9 +177,9 @@ Widget defaultDailyMissionDialog({
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Daily Missions',
-                        style: TextStyle(
+                      Text(
+                        '$missionsType Missions',
+                        style: const TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.w400,
                             color: Colors.white
@@ -201,85 +203,7 @@ Widget defaultDailyMissionDialog({
                   padding: const EdgeInsets.only(bottom: 20),
                   child: defaultButton(
                     function: (){
-                      function;
-                    },
-                    isUpperCase: false,
-                    text: "Ok",
-                    textColor: Colors.white,
-                    backgroundColorBox: Colors.amberAccent,
-
-                  ),
-                ),
-              ),
-            ],
-          );
-        } else {
-          return Center(child: CircularProgressIndicator(),);
-        }
-      }
-  );
-}
-
-Widget defaultWeeklyMissionDialog({
-  required Function function,
-}){
-  return StreamBuilder<List<MissionsModel>>(
-      stream: readMissions(),
-      builder: (context, snapshot) {
-        if(snapshot.hasError) {
-          return Text('Something went wrong! ${snapshot.error}');
-        } else if(snapshot.hasData) {
-          final missions = snapshot.data!;
-          return AlertDialog(
-            backgroundColor: Colors.deepPurple,
-            content: SizedBox(
-              height: 300,
-              width: 300,
-              child: Column(
-                children: [
-                  const Center(
-                    child: Text(
-                      'Missions',
-                      style: TextStyle(
-                        color: Colors.amberAccent,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Weekly Missions',
-                        style: TextStyle(
-                            fontSize: 19,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      ListView(
-                        children: missions.map(buildMission).toList(),
-                        shrinkWrap: true,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            actions: [
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: defaultButton(
-                    function: (){
-                      function;
+                      Navigator.pop(context);
                     },
                     isUpperCase: false,
                     text: "Ok",
@@ -310,16 +234,16 @@ Widget buildMission(MissionsModel mission) => ListTile(
           color: Colors.white
         ),
       ),
-      Spacer(),
-      Icon(
+      const Spacer(),
+      const Icon(
         Icons.check_circle,
         color: Colors.white,
         size: 20,
       ),
-      SizedBox(
+      const SizedBox(
         width: 5,
       ),
-      Icon(
+      const Icon(
         Icons.play_circle_fill_outlined,
         color: Colors.white,
         size: 20,
@@ -344,13 +268,15 @@ Future<UserModel?> readUser() async {
   return null;
 }
 
-Stream<List<MissionsModel>> readMissions() => FirebaseFirestore.instance
-    .collection('missions')
+Stream<List<MissionsModel>> readMissions({
+  required String missionsType,
+}) => FirebaseFirestore.instance
+    .collection(missionsType)
     .snapshots()
     .map((snapshot) => snapshot.docs.map((doc) => MissionsModel.fromJson(doc.data())).toList());
 
 void updateAvatar({
-  required int index,
+  required int avatarIndex,
 }) async {
   final id = FirebaseAuth.instance.currentUser!.uid;
 
@@ -369,7 +295,7 @@ void updateAvatar({
     exp: userModel.exp,
     level: userModel.level,
     coins: userModel.coins,
-    avatar: index,
+    avatar: avatarIndex,
     amount: userModel.amount
   );
 

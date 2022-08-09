@@ -31,8 +31,9 @@ class SignInProvider extends ChangeNotifier {
             .get()
             .then((QuerySnapshot querySnapshot) {
           querySnapshot.docs.forEach((doc) {
-            if(value.user!.email.toString() == doc["email"])
+            if(value.user!.email.toString() == doc["email"]) {
               aLoggedUser = true;
+            }
           });
         });
 
@@ -111,8 +112,9 @@ class SignInProvider extends ChangeNotifier {
             .get()
             .then((QuerySnapshot querySnapshot) {
           querySnapshot.docs.forEach((doc) {
-            if(value.user!.email.toString() == doc["email"])
+            if(value.user!.email.toString() == doc["email"]) {
               aLoggedUser = true;
+            }
           });
         });
 
@@ -146,12 +148,12 @@ class SignInProvider extends ChangeNotifier {
             break;
         }
         showDialog(context: context, builder: (context) => AlertDialog(
-          title: Text('log in with facebook failed'),
+          title: const Text('log in with facebook failed'),
           content: Text(content),
           actions: [
             TextButton(onPressed: (){
               Navigator.of(context).pop();
-            }, child: Text('Ok'),
+            }, child: const Text('Ok'),
             ),
           ],
         ));

@@ -5,6 +5,8 @@ import 'package:win_money_game/models/user_model.dart';
 import '../../../shared/components/components.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
+
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -25,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           return Text('Something went wrong! ${snapshot.error}');
         } else if(snapshot.hasData){
           final user = snapshot.data;
-          return user == null ? Center(child:Text('No User')) : Scaffold(
+          return user == null ? const Center(child:Text('No User')) : Scaffold(
             backgroundColor: Colors.deepPurple,
             appBar: AppBar(
               backgroundColor: Colors.amberAccent,
@@ -109,18 +111,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                       backgroundImage: AssetImage(avatarImages[index]),
                                                       radius: 40,
                                                     ),
-                                                    onTap: () async {
-                                                      avatarChoice = await index + 1;
-                                                      print(avatarChoice);
+                                                    onTap: () {
+                                                      avatarChoice = index + 1;
+
                                                       if(formKey.currentState!.validate())
                                                       {
-                                                        updateAvatar(index: avatarChoice);
+                                                        updateAvatar(avatarIndex: avatarChoice);
                                                         showDialog(context: context, builder: (context) => AlertDialog(
                                                           backgroundColor: Colors.amberAccent,
                                                           title: const Text('Avatar Updated',
-                                                              style: TextStyle(
-                                                                  color: Colors.deepPurple,
-                                                                  fontWeight: FontWeight.bold),
+                                                            style: TextStyle(
+                                                              color: Colors.deepPurple,
+                                                              fontWeight: FontWeight.bold,
+                                                            ),
                                                           ),
                                                           content: const Text('Your avatar has been updated successfully',
                                                             style: TextStyle(
@@ -133,7 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                               Navigator.pop(context);
                                                               Navigator.pop(context);
                                                               Navigator.pop(context);
-                                                            }, child: Text('Ok'),
+                                                            }, child: const Text('Ok'),
                                                             ),
                                                           ],
                                                         ));
@@ -291,7 +294,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           );
         } else {
-          return Center(child: CircularProgressIndicator(),);
+          return const Center(child: CircularProgressIndicator(),);
         }
       },
     );

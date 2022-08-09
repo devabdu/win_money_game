@@ -83,7 +83,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Text('Reward callback fired. Thanks Andrew!'),
+                    const Text('Reward callback fired. Thanks Andrew!'),
                     Text('Type: ${args!['type']}'),
                     Text('Amount: ${args['amount']}'), //amount to be stored in db
                   ],
@@ -101,7 +101,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(content),
-        duration: Duration(milliseconds: 1500),
+        duration: const Duration(milliseconds: 1500),
       ),
     );
   }
@@ -117,7 +117,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
           return Text('Something went wrong! ${snapshot.error}');
         } else if(snapshot.hasData){
           final user = snapshot.data;
-          return user == null ? Center(child:Text('No User')) : Scaffold(
+          return user == null ? const Center(child:Text('No User')) : Scaffold(
             backgroundColor: Colors.deepPurple,
             drawer: const NavigationDrawerWidget(),
             appBar: AppBar(
@@ -168,10 +168,11 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                           onTap: (){
                             showDialog(
                               context: context,
-                              builder: (_) => defaultDailyMissionDialog(
-                                  function: (){
-                                    Navigator.pop(context);
-                                  },
+                              builder: (_) => defaultMissionsDialog(
+                                missionsType: 'Daily',
+                                function: readMissions(
+                                  missionsType: 'dailyMissions',
+                                ),
                               ),
                               barrierDismissible: false,
                             );
@@ -187,10 +188,11 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                           onTap: (){
                             showDialog(
                               context: context,
-                              builder: (_) => defaultWeeklyMissionDialog(
-                                function: (){
-                                  Navigator.pop(context);
-                                },
+                              builder: (_) => defaultMissionsDialog(
+                                missionsType: 'Weekly',
+                                function: readMissions(
+                                  missionsType: 'weeklyMissions',
+                                ),
                               ),
                               barrierDismissible: false,
                             );
@@ -244,7 +246,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          navigateTo(context, MainMenuScreen());
+                          navigateTo(context, const MainMenuScreen());
                         },
                         child: Image.asset("assets/images/chess.png",
                           fit: BoxFit.fill,
@@ -257,7 +259,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          navigateTo(context, LudoScreen());
+                          navigateTo(context, const LudoScreen());
                         },
                         child: Image.asset("assets/images/LUDO Game.png",
                           fit: BoxFit.fill,
@@ -272,7 +274,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                   alignment: Alignment.bottomCenter,
                   child:
                   Container(
-                     margin: EdgeInsets.only(bottom: 6.0),
+                     margin: const EdgeInsets.only(bottom: 6.0),
                     child: AdmobBanner( //banners init
                       adUnitId: AdsManager.bannerAdUnitIdEx,
                       adSize: bannerSize!,
@@ -294,9 +296,9 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
             ),
           );
         } else if(snapshot.connectionState == ConnectionState.waiting){
-          return Center(child: CircularProgressIndicator(),);
+          return const Center(child: CircularProgressIndicator(),);
         } else {
-          return Center(child: CircularProgressIndicator(),);
+          return const Center(child: CircularProgressIndicator(),);
         }
       },
     );
