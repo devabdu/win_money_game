@@ -109,7 +109,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                       backgroundImage: AssetImage(avatarImages[index]),
                                                       radius: 40,
                                                     ),
-                                                    splashColor: Colors.deepPurple,
                                                     onTap: () async {
                                                       avatarChoice = await index + 1;
                                                       print(avatarChoice);
@@ -287,100 +286,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     height: 40,
                   ),
-                  // Center(
-                  //   child: defaultButton(
-                  //     function: () {
-                  //       showModalBottomSheet(
-                  //           isScrollControlled: true,
-                  //           context: context,
-                  //           shape: RoundedRectangleBorder(
-                  //             borderRadius: BorderRadius.circular(8),
-                  //           ),
-                  //           builder: (context) {
-                  //             return Container(
-                  //               padding: const EdgeInsets.all(20),
-                  //               color: Colors.amberAccent,
-                  //               child: Padding(
-                  //                 padding: EdgeInsets.only(
-                  //                   bottom: MediaQuery.of(context).viewInsets.bottom,
-                  //                   top: MediaQuery.of(context).viewInsets.top,
-                  //                 ),
-                  //                 child: Column(
-                  //                   crossAxisAlignment: CrossAxisAlignment.center,
-                  //                   mainAxisSize: MainAxisSize.min,
-                  //                   children: [
-                  //                     const Text(
-                  //                       "Edit Profile",
-                  //                       style: TextStyle(
-                  //                         fontSize: 25,
-                  //                         fontWeight: FontWeight.w500,
-                  //                         color: Colors.deepPurple,
-                  //                       ),
-                  //                     ),
-                  //                     const Divider(
-                  //                       color: Colors.white,
-                  //                       thickness: 1,
-                  //                       indent: 20,
-                  //                       endIndent: 30,
-                  //                     ),
-                  //                     const SizedBox(
-                  //                       height: 10,
-                  //                     ),
-                  //                     Row(
-                  //                       children: [
-                  //                         const Text(
-                  //                           'Country:',
-                  //                           style: TextStyle(
-                  //                               color: Colors.deepPurple,
-                  //                               fontSize: 19,
-                  //                               fontWeight: FontWeight.w400),
-                  //                         ),
-                  //                         const SizedBox(
-                  //                           width: 5,
-                  //                         ),
-                  //                         CountryCodePicker(
-                  //                           initialSelection: 'EG',
-                  //                           showCountryOnly: false,
-                  //                           showOnlyCountryWhenClosed: false,
-                  //                           hideMainText: true,
-                  //                           hideSearch: false,
-                  //                         ),
-                  //                       ],
-                  //                     ),
-                  //                     const Text(
-                  //                       'Avatar:',
-                  //                       style: TextStyle(
-                  //                           color: Colors.deepPurple,
-                  //                           fontSize: 19,
-                  //                           fontWeight: FontWeight.w400),
-                  //                     ),
-                  //                     // Container(
-                  //                     //   child: ,
-                  //                     // ),
-                  //                     const SizedBox(
-                  //                       height: 40,
-                  //                     ),
-                  //                     defaultButton(
-                  //                       function: () {},
-                  //                       text: 'Save',
-                  //                       isUpperCase: false,
-                  //                       textColor: Colors.white,
-                  //                       width: 150,
-                  //                       backgroundColorBox: Colors.deepPurple,
-                  //                     ),
-                  //                   ],
-                  //                 ),
-                  //               ),
-                  //             );
-                  //           });
-                  //     },
-                  //     text: 'Edit',
-                  //     isUpperCase: false,
-                  //     textColor: Colors.deepPurple,
-                  //     width: 150,
-                  //     backgroundColorBox: Colors.amberAccent,
-                  //   ),
-                  // ),
                 ],
               ),
             ),
