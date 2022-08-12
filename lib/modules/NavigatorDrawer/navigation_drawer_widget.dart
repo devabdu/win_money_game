@@ -118,8 +118,8 @@ class NavigationDrawerWidget extends StatelessWidget {
           return Text('Something went wrong! ${snapshot.error}');
         } else if(snapshot.hasData){
           final user = snapshot.data;
-          return user == null ? Center(child:Text('No User')) : MaterialButton(
-            onPressed: (){navigateTo(context, ProfileScreen());},
+          return user == null ? const Center(child:Text('No User')) : MaterialButton(
+            onPressed: (){navigateTo(context, const ProfileScreen());},
             child: Padding(
               padding: const EdgeInsets.only(right: 10),
               child: Row(
@@ -159,7 +159,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                           percent: user.exp,
                           center: Text(
                             '${user.exp}%',
-                            style:  TextStyle(fontSize: 12.0),
+                            style:  const TextStyle(fontSize: 12.0),
                           ),
                           //trailing: Icon(Icons.mood),
                           linearStrokeCap: LinearStrokeCap.roundAll,
@@ -184,7 +184,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
           );
         } else {
-          return Center(child: CircularProgressIndicator(),);
+          return const Center(child: CircularProgressIndicator(),);
         }
       }
     );

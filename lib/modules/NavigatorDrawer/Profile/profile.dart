@@ -5,6 +5,8 @@ import 'package:win_money_game/models/user_model.dart';
 import '../../../shared/components/components.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
+
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -25,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           return Text('Something went wrong! ${snapshot.error}');
         } else if(snapshot.hasData){
           final user = snapshot.data;
-          return user == null ? Center(child:Text('No User')) : Scaffold(
+          return user == null ? const Center(child:Text('No User')) : Scaffold(
             backgroundColor: Colors.deepPurple,
             appBar: AppBar(
               backgroundColor: Colors.amberAccent,
@@ -109,10 +111,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                       backgroundImage: AssetImage(avatarImages[index]),
                                                       radius: 40,
                                                     ),
-                                                    splashColor: Colors.deepPurple,
-                                                    onTap: (){
+                                                    onTap: () {
                                                       avatarChoice = index + 1;
-                                                      print(avatarChoice);
+
+                                                      if(formKey.currentState!.validate())
+                                                      {
+                                                        updateAvatar(avatarIndex: avatarChoice);
+                                                        showDialog(context: context, builder: (context) => AlertDialog(
+                                                          backgroundColor: Colors.amberAccent,
+                                                          title: const Text('Avatar Updated',
+                                                            style: TextStyle(
+                                                              color: Colors.deepPurple,
+                                                              fontWeight: FontWeight.bold,
+                                                            ),
+                                                          ),
+                                                          content: const Text('Your avatar has been updated successfully',
+                                                            style: TextStyle(
+                                                              color: Colors.deepPurple,
+                                                            ),
+                                                          ),
+                                                          actions: [
+                                                            TextButton(onPressed: (){
+                                                              Navigator.pop(context);
+                                                              Navigator.pop(context);
+                                                              Navigator.pop(context);
+                                                              Navigator.pop(context);
+                                                            }, child: const Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        ));
+                                                      }
                                                     },
                                                   );
                                                 },
@@ -124,25 +152,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                   crossAxisSpacing: 20,
                                                 ),
                                               ),
-                                            ),
-                                            const SizedBox(
-                                              height: 25,
-                                            ),
-                                            defaultButton(
-                                              function: () {
-                                                if(formKey.currentState!.validate())
-                                                {
-                                                  updateAvatar(index: avatarChoice);
-                                                  Navigator.pop(context);
-                                                  Navigator.pop(context);
-                                                  Navigator.pop(context);
-                                                }
-                                              },
-                                              text: 'Save',
-                                              isUpperCase: false,
-                                              textColor: Colors.white,
-                                              width: 150,
-                                              backgroundColorBox: Colors.deepPurple,
                                             ),
                                           ],
                                         ),
@@ -246,7 +255,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         width: 10.0,
                       ),
                       Text(
-                        '${user.coins}',
+                        '${user.coins}'.replaceAllMapped(reg, mathFunc),
                         style: const TextStyle(
                             color: Colors.amberAccent,
                             fontWeight: FontWeight.w400,
@@ -280,106 +289,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     height: 40,
                   ),
-                  // Center(
-                  //   child: defaultButton(
-                  //     function: () {
-                  //       showModalBottomSheet(
-                  //           isScrollControlled: true,
-                  //           context: context,
-                  //           shape: RoundedRectangleBorder(
-                  //             borderRadius: BorderRadius.circular(8),
-                  //           ),
-                  //           builder: (context) {
-                  //             return Container(
-                  //               padding: const EdgeInsets.all(20),
-                  //               color: Colors.amberAccent,
-                  //               child: Padding(
-                  //                 padding: EdgeInsets.only(
-                  //                   bottom: MediaQuery.of(context).viewInsets.bottom,
-                  //                   top: MediaQuery.of(context).viewInsets.top,
-                  //                 ),
-                  //                 child: Column(
-                  //                   crossAxisAlignment: CrossAxisAlignment.center,
-                  //                   mainAxisSize: MainAxisSize.min,
-                  //                   children: [
-                  //                     const Text(
-                  //                       "Edit Profile",
-                  //                       style: TextStyle(
-                  //                         fontSize: 25,
-                  //                         fontWeight: FontWeight.w500,
-                  //                         color: Colors.deepPurple,
-                  //                       ),
-                  //                     ),
-                  //                     const Divider(
-                  //                       color: Colors.white,
-                  //                       thickness: 1,
-                  //                       indent: 20,
-                  //                       endIndent: 30,
-                  //                     ),
-                  //                     const SizedBox(
-                  //                       height: 10,
-                  //                     ),
-                  //                     Row(
-                  //                       children: [
-                  //                         const Text(
-                  //                           'Country:',
-                  //                           style: TextStyle(
-                  //                               color: Colors.deepPurple,
-                  //                               fontSize: 19,
-                  //                               fontWeight: FontWeight.w400),
-                  //                         ),
-                  //                         const SizedBox(
-                  //                           width: 5,
-                  //                         ),
-                  //                         CountryCodePicker(
-                  //                           initialSelection: 'EG',
-                  //                           showCountryOnly: false,
-                  //                           showOnlyCountryWhenClosed: false,
-                  //                           hideMainText: true,
-                  //                           hideSearch: false,
-                  //                         ),
-                  //                       ],
-                  //                     ),
-                  //                     const Text(
-                  //                       'Avatar:',
-                  //                       style: TextStyle(
-                  //                           color: Colors.deepPurple,
-                  //                           fontSize: 19,
-                  //                           fontWeight: FontWeight.w400),
-                  //                     ),
-                  //                     // Container(
-                  //                     //   child: ,
-                  //                     // ),
-                  //                     const SizedBox(
-                  //                       height: 40,
-                  //                     ),
-                  //                     defaultButton(
-                  //                       function: () {},
-                  //                       text: 'Save',
-                  //                       isUpperCase: false,
-                  //                       textColor: Colors.white,
-                  //                       width: 150,
-                  //                       backgroundColorBox: Colors.deepPurple,
-                  //                     ),
-                  //                   ],
-                  //                 ),
-                  //               ),
-                  //             );
-                  //           });
-                  //     },
-                  //     text: 'Edit',
-                  //     isUpperCase: false,
-                  //     textColor: Colors.deepPurple,
-                  //     width: 150,
-                  //     backgroundColorBox: Colors.amberAccent,
-                  //   ),
-                  // ),
                 ],
               ),
             ),
           );
         } else {
-          return Center(child: CircularProgressIndicator(),);
+          return const Center(child: CircularProgressIndicator(),);
         }
       },
     );

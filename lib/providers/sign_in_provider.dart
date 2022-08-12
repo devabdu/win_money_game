@@ -31,8 +31,9 @@ class SignInProvider extends ChangeNotifier {
             .get()
             .then((QuerySnapshot querySnapshot) {
           querySnapshot.docs.forEach((doc) {
-            if(value.user!.email.toString() == doc["email"])
+            if(value.user!.email.toString() == doc["email"]) {
               aLoggedUser = true;
+            }
           });
         });
 
@@ -111,8 +112,9 @@ class SignInProvider extends ChangeNotifier {
             .get()
             .then((QuerySnapshot querySnapshot) {
           querySnapshot.docs.forEach((doc) {
-            if(value.user!.email.toString() == doc["email"])
+            if(value.user!.email.toString() == doc["email"]) {
               aLoggedUser = true;
+            }
           });
         });
 
@@ -146,12 +148,12 @@ class SignInProvider extends ChangeNotifier {
             break;
         }
         showDialog(context: context, builder: (context) => AlertDialog(
-          title: Text('log in with facebook failed'),
+          title: const Text('log in with facebook failed'),
           content: Text(content),
           actions: [
             TextButton(onPressed: (){
               Navigator.of(context).pop();
-            }, child: Text('Ok'),
+            }, child: const Text('Ok'),
             ),
           ],
         ));
@@ -182,6 +184,12 @@ class SignInProvider extends ChangeNotifier {
       amount: 0,
       exp: 0,
       avatar: 7,
+      firstDMCount: 0,
+      secondDMCount: 0,
+      thirdDMCount: 0,
+      firstWMCount: 0,
+      secondWMCount: 0,
+      thirdWMCount: 0,
     );
     await FirebaseFirestore.instance
         .collection('users')
@@ -189,7 +197,6 @@ class SignInProvider extends ChangeNotifier {
         .set(userModel.toJson())
         .then((value)
     {
-      print('User Created');
     })
         .catchError((error){
       print(error.toString());

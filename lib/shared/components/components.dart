@@ -5,10 +5,12 @@ import 'package:win_money_game/models/missions_model.dart';
 
 import '../../models/user_model.dart';
 
-
 bool select3x3 = false;
 bool select4x4 = false;
 bool select5x5 = false;
+
+RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
+String Function(Match) mathFunc = (Match match) => '${match[1]},';
 
 final List<String> avatarImages = [
   'assets/images/avatar_1.png',
@@ -54,7 +56,7 @@ void navigateAndFinish(context, widget) => Navigator.pushAndRemoveUntil(
 
 extension StringExtension on String {
   String capitalize() {
-    return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
+    return "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
   }
 }
 
@@ -142,11 +144,12 @@ Widget defaultFormField({
 );
 
 
-Widget defaultMissionDialog({
-  required Function function,
+Widget defaultMissionsDialog({
+  required String missionsType,
+  required Stream<List<MissionsModel>> function,
 }){
   return StreamBuilder<List<MissionsModel>>(
-      stream: readMissions(),
+      stream: function,
       builder: (context, snapshot) {
         if(snapshot.hasError) {
           return Text('Something went wrong! ${snapshot.error}');
@@ -159,10 +162,10 @@ Widget defaultMissionDialog({
               width: 300,
               child: Column(
                 children: [
-                  const Center(
+                   Center(
                     child: Text(
-                      'Missions',
-                      style: TextStyle(
+                      '$missionsType Missions',
+                      style: const TextStyle(
                         color: Colors.amberAccent,
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
@@ -175,9 +178,9 @@ Widget defaultMissionDialog({
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Daily Missions',
-                        style: TextStyle(
+                      Text(
+                        '$missionsType Missions',
+                        style: const TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.w400,
                             color: Colors.white
@@ -201,8 +204,9 @@ Widget defaultMissionDialog({
                   padding: const EdgeInsets.only(bottom: 20),
                   child: defaultButton(
                     function: (){
-                      function();
+                      Navigator.pop(context);
                     },
+                    isUpperCase: false,
                     text: "Ok",
                     textColor: Colors.white,
                     backgroundColorBox: Colors.amberAccent,
@@ -219,40 +223,61 @@ Widget defaultMissionDialog({
   );
 }
 
-Widget buildMission(MissionsModel mission) => ListTile(
-  title: Row(
-    children: [
-      Text(
-        mission.name,
-        style: const TextStyle(
-          fontSize: 17,
-          fontWeight: FontWeight.w300,
-          color: Colors.white
-        ),
-      ),
-      Spacer(),
-      Icon(
-        Icons.check_circle,
-        color: Colors.white,
-        size: 20,
-      ),
-      SizedBox(
-        width: 5,
-      ),
-      Icon(
-        Icons.play_circle_fill_outlined,
-        color: Colors.white,
-        size: 20,
-      ),
-    ],
-  ),
-  subtitle: Text(
-      '0/${mission.count}',
-    style: const TextStyle(
-      color: Colors.white
-    ),
-  ),
-);
+
+Widget buildMission(MissionsModel mission) {
+  return FutureBuilder<UserModel?>(
+    future: readUser(),
+    builder: (context, snapshot) {
+      if(snapshot.hasError) {
+        return Text('Something went wrong! ${snapshot.error}');
+      } else if(snapshot.hasData){
+        final user = snapshot.data;
+        return user == null ? const Center(child:Text('No User')) : ListTile(
+          title: Row(
+            children: [
+              Text(
+                mission.name,
+                style: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white
+                ),
+              ),
+              const Spacer(),
+              const Icon(
+                Icons.check_circle,
+                color: Colors.white,
+                size: 20,
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              const Icon(
+                Icons.play_circle_fill_outlined,
+                color: Colors.white,
+                size: 20,
+              ),
+            ],
+          ),
+          subtitle: Text(
+            mission.mId == 'HudQyQtHj7wqPp6yoGm9' ? '${user.firstDMCount}/${mission.count}' :
+            mission.mId == 'f2Sov2X78STX1T1Fen5J' ? '${user.secondDMCount}/${mission.count}':
+            mission.mId == 'wjfHjC1lcwnmYBR763zv' ? '${user.thirdDMCount}/${mission.count}' :
+            mission.mId == 'MbN1wL6DeOOzfd9vLF5v' ? '${user.firstWMCount}/${mission.count}' :
+            mission.mId == 'O0SDLwX9XkIWrKr3I1SH' ? '${user.secondWMCount}/${mission.count}' :
+            mission.mId == 'u4K6wJVrrunTawElil4Y' ? '${user.thirdWMCount}/${mission.count}' :
+            '',
+            style: const TextStyle(
+                color: Colors.white
+            ),
+          ),
+        );
+      } else {
+        return const Center(child: CircularProgressIndicator(),);
+      }
+    },
+  );
+}
 
 Future<UserModel?> readUser() async {
   final id = FirebaseAuth.instance.currentUser!.uid;
@@ -264,13 +289,18 @@ Future<UserModel?> readUser() async {
   return null;
 }
 
-Stream<List<MissionsModel>> readMissions() => FirebaseFirestore.instance
-    .collection('missions')
+Stream<List<MissionsModel>> readMissions({
+  required String missionsType,
+  required int firstMissionCount,
+  required int secondMissionCount,
+  required int thirdMissionCount,
+}) => FirebaseFirestore.instance
+    .collection(missionsType)
     .snapshots()
     .map((snapshot) => snapshot.docs.map((doc) => MissionsModel.fromJson(doc.data())).toList());
 
 void updateAvatar({
-  required int index,
+  required int avatarIndex,
 }) async {
   final id = FirebaseAuth.instance.currentUser!.uid;
 
@@ -289,8 +319,14 @@ void updateAvatar({
     exp: userModel.exp,
     level: userModel.level,
     coins: userModel.coins,
-    avatar: index,
-    amount: userModel.amount
+    avatar: avatarIndex,
+    amount: userModel.amount,
+    firstDMCount: userModel.firstDMCount,
+    secondDMCount: userModel.secondDMCount,
+    thirdDMCount: userModel.thirdDMCount,
+    firstWMCount: userModel.firstWMCount,
+    secondWMCount: userModel.secondWMCount,
+    thirdWMCount: userModel.thirdWMCount,
   );
 
   FirebaseFirestore.instance
@@ -303,3 +339,4 @@ void updateAvatar({
       .catchError((error) {
   });
 }
+
