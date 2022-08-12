@@ -180,6 +180,8 @@ class GameState with ChangeNotifier {
           this.redInitital!.add(token.tokenPosition!);
         }
         break;
+      case null:
+        break;
     }
   }
 
@@ -212,6 +214,8 @@ class GameState with ChangeNotifier {
           this.gameTokens[token.id!].tokenPosition = this.redInitital!.first;
           this.redInitital!.removeAt(0);
         }
+        break;
+      case null:
         break;
     }
   }

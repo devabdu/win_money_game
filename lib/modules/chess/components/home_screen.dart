@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:win_money_game/modules/chess/components/chess_select_bet_screen.dart';
 import 'package:win_money_game/modules/chess/responsive/responsive.dart';
-import 'package:win_money_game/shared/component/component.dart';
 
+import '../../../shared/components/components.dart';
 import 'openings_page.dart';
 import 'play_game_page.dart';
 

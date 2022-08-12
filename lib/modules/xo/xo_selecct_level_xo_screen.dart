@@ -4,7 +4,7 @@ import 'package:win_money_game/modules/xo/first_xo_screen.dart';
 import 'package:win_money_game/modules/xo/second_xo_screen.dart';
 import 'package:win_money_game/modules/xo/xo_select_bet_screen.dart';
 import 'package:win_money_game/modules/xo/third_xo_screen.dart';
-import 'package:win_money_game/shared/component/component.dart';
+import 'package:win_money_game/shared/components/components.dart';
 
 class SelectLevelXoScreen extends StatelessWidget {
   const SelectLevelXoScreen({Key? key}) : super(key: key);

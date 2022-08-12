@@ -15,7 +15,7 @@ class SplashScreen extends StatelessWidget {
       //animationDuration: Duration(seconds: 1),
       splashTransition: SplashTransition.fadeTransition,
       splashIconSize: 400,
-      duration: 6000,
+      duration: 3000,
       pageTransitionType: PageTransitionType.topToBottom,
       //disableNavigation: true,
       nextScreen: LoginScreen(),

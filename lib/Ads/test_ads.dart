@@ -1,9 +1,7 @@
 import 'dart:io';
-
 import 'package:admob_flutter/admob_flutter.dart';
-// import 'package:admob_flutter_example/extensions.dart';
-import 'package:win_money_game/Provider/adsManager.dart';
 import 'package:flutter/material.dart';
+import 'package:win_money_game/Ads/adsManager.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,15 +11,15 @@ void main() {
   // Add a list of test ids.
   // Admob.initialize(testDeviceIds: ['YOUR DEVICE ID']);
 
-  runApp(MyMaterialApp());
+  runApp(AdsProvider());
 }
 
-class MyMaterialApp extends StatefulWidget {
+class AdsProvider extends StatefulWidget {
   @override
-  _MyMaterialAppState createState() => _MyMaterialAppState();
+  _AdsProviderState createState() => _AdsProviderState();
 }
 
-class _MyMaterialAppState extends State<MyMaterialApp> {
+class _AdsProviderState extends State<AdsProvider> {
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
   AdmobBannerSize? bannerSize;
   late AdmobInterstitial interstitialAd;

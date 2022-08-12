@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:win_money_game/layout/home_layout_screen.dart';
-import 'package:win_money_game/shared/component/component.dart';
+import 'package:win_money_game/shared/components/components.dart';
 
 class SelectPathScreen extends StatelessWidget {
   const SelectPathScreen({Key? key}) : super(key: key);
@@ -28,7 +28,7 @@ class SelectPathScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     content: const Text(
-                      'Without Adds and earn money',
+                      'Without Ads and earn money',
                       style: TextStyle(
                         color: Colors.deepPurple,
                       ),
@@ -40,8 +40,10 @@ class SelectPathScreen extends StatelessWidget {
                         child: const Text('Cancel'),
                       ),
                       TextButton(
-                        onPressed: () =>
-                            navigateTo(context, const HomeLayoutScreen()),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          return navigateTo(context, const HomeLayoutScreen());
+                        },
                         child: const Text('OK'),
                       ),
                     ],
@@ -67,13 +69,13 @@ class SelectPathScreen extends StatelessWidget {
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
                     title: const Text(
-                      'Play for win money',
+                      'Play to win money',
                       style: TextStyle(
                           color: Colors.deepPurple,
                           fontWeight: FontWeight.bold),
                     ),
                     content: const Text(
-                      'With Adds and earn money',
+                      'With Ads and earn money',
                       style: TextStyle(
                         color: Colors.deepPurple,
                       ),
@@ -85,8 +87,10 @@ class SelectPathScreen extends StatelessWidget {
                         child: const Text('Cancel'),
                       ),
                       TextButton(
-                        onPressed: () =>
-                            navigateTo(context, const HomeLayoutScreen()),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          return navigateTo(context, const HomeLayoutScreen());
+                        },
                         child: const Text('OK'),
                       ),
                     ],

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_chess_board/flutter_chess_board.dart';
-import 'package:win_money_game/shared/component/component.dart';
+
+import '../../../shared/components/components.dart';
 
 
 class PlayGamePage extends StatefulWidget {
