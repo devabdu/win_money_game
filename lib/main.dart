@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale('en', 'US')
       ],
-
       debugShowCheckedModeBanner: false,
       title: 'Win Money',
       theme: ThemeData(

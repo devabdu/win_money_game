@@ -22,14 +22,15 @@ class SelectPathScreen extends StatelessWidget {
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
                     title: const Text(
-                      'Play for fun',
+                      'Tasaly',
                       style: TextStyle(
                           color: Colors.deepPurple,
                           fontWeight: FontWeight.bold),
                     ),
                     content: const Text(
-                      'Without Ads and earn money',
+                      'Play for fun',
                       style: TextStyle(
+                        fontSize: 18,
                         color: Colors.deepPurple,
                       ),
                     ),
@@ -41,7 +42,7 @@ class SelectPathScreen extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          selectTasaly = true;
                           return navigateTo(context, const HomeLayoutScreen());
                         },
                         child: const Text('OK'),
@@ -49,6 +50,7 @@ class SelectPathScreen extends StatelessWidget {
                     ],
                   ),
                 );
+
               },
               splashColor: Colors.deepPurple,
               child: Image.asset(
@@ -58,7 +60,7 @@ class SelectPathScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Padding(
@@ -69,14 +71,15 @@ class SelectPathScreen extends StatelessWidget {
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
                     title: const Text(
-                      'Play to win money',
+                      'Rebh',
                       style: TextStyle(
                           color: Colors.deepPurple,
                           fontWeight: FontWeight.bold),
                     ),
                     content: const Text(
-                      'With Ads and earn money',
+                      'Play to win money',
                       style: TextStyle(
+                        fontSize: 18,
                         color: Colors.deepPurple,
                       ),
                     ),
@@ -88,7 +91,7 @@ class SelectPathScreen extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Navigator.pop(context);
+                          selectRebh = true;
                           return navigateTo(context, const HomeLayoutScreen());
                         },
                         child: const Text('OK'),
