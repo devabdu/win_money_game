@@ -153,7 +153,18 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                     ],
                   ),
                 ),
-                IconButton(onPressed: (){}, icon: const Icon(Icons.shopping_bag_rounded,),color: Colors.deepPurple,),
+                IconButton(onPressed: ()async{
+                  if(selectTasaly){
+                    final isLoaded = await interstitialAd.isLoaded;
+                    if (isLoaded ?? false) {
+                      interstitialAd.show(); //interstital ad show
+                    } else {
+                      showSnackBar(
+                          'Interstitial ad is still loading...');
+                    }
+                  }
+                  },
+                  icon: const Icon(Icons.shopping_bag_rounded,),color: Colors.deepPurple,),
               ],
             ),
             body: Stack(
@@ -165,7 +176,16 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                     child: Column(
                       children: [
                         InkWell(
-                          onTap: (){
+                          onTap: () async{
+                            if(selectTasaly){
+                              final isLoaded = await interstitialAd.isLoaded;
+                              if (isLoaded ?? false) {
+                                interstitialAd.show(); //interstital ad show
+                              } else {
+                                showSnackBar(
+                                    'Interstitial ad is still loading...');
+                              }
+                            }
                             showDialog(
                               context: context,
                               builder: (_) => defaultMissionsDialog(
@@ -188,7 +208,16 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                           ),
                         ),
                         InkWell(
-                          onTap: (){
+                          onTap: ()async{
+                            if(selectTasaly){
+                              final isLoaded = await interstitialAd.isLoaded;
+                              if (isLoaded ?? false) {
+                                interstitialAd.show(); //interstital ad show
+                              } else {
+                                showSnackBar(
+                                    'Interstitial ad is still loading...');
+                              }
+                            }
                             showDialog(
                               context: context,
                               builder: (_) => defaultMissionsDialog(
@@ -238,7 +267,16 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                     children: [
 
                       InkWell(
-                        onTap: () {
+                        onTap: () async{
+                          if(selectTasaly){
+                            final isLoaded = await interstitialAd.isLoaded;
+                            if (isLoaded ?? false) {
+                              interstitialAd.show(); //interstital ad show
+                            } else {
+                              showSnackBar(
+                                  'Interstitial ad is still loading...');
+                            }
+                          }
                           navigateTo(context, const SelectLevelXoScreen());
                         },
                         child: Image.asset("assets/images/xo.png",
@@ -251,7 +289,16 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                         height: 30,
                       ),
                       InkWell(
-                        onTap: () {
+                        onTap: () async{
+                          if(selectTasaly){
+                            final isLoaded = await interstitialAd.isLoaded;
+                            if (isLoaded ?? false) {
+                              interstitialAd.show(); //interstital ad show
+                            } else {
+                              showSnackBar(
+                                  'Interstitial ad is still loading...');
+                            }
+                          }
                           navigateTo(context, const MainMenuScreen());
                         },
                         child: Image.asset("assets/images/chess.png",
@@ -264,7 +311,16 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                         height: 10,
                       ),
                       InkWell(
-                        onTap: () {
+                        onTap: () async{
+                          if(selectTasaly){
+                            final isLoaded = await interstitialAd.isLoaded;
+                            if (isLoaded ?? false) {
+                              interstitialAd.show(); //interstital ad show
+                            } else {
+                              showSnackBar(
+                                  'Interstitial ad is still loading...');
+                            }
+                          }
                           navigateTo(context, const LudoScreen());
                         },
                         child: Image.asset("assets/images/LUDO Game.png",
@@ -280,7 +336,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                   alignment: Alignment.bottomCenter,
                   child:
                   Container(
-                     margin: const EdgeInsets.only(bottom: 6.0),
+                    margin: const EdgeInsets.only(bottom: 5),
                     child: AdmobBanner( //banners init
                       adUnitId: AdsManager.bannerAdUnitIdEx,
                       adSize: bannerSize!,

@@ -1,5 +1,9 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:win_money_game/Ads/adsManager.dart';
+import 'package:win_money_game/layout/home_layout_screen.dart';
 import 'package:win_money_game/modules/xo/xo_utils.dart';
+import 'package:win_money_game/shared/components/components.dart';
 
 class Player {
   static const none = '';
@@ -20,12 +24,80 @@ class MainPageState extends State<ThirdXOScreen> {
   String lastMove = Player.none;
   late List<List<String>> matrix;
 
+////////////////////////////////////
+  //ads//
+  GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
+  AdmobBannerSize? bannerSize;
+  late AdmobInterstitial interstitialAd;
+
   @override
   void initState() {
     super.initState();
+    bannerSize = AdmobBannerSize.FULL_BANNER; //initializing banner size
+
+    interstitialAd = AdmobInterstitial(
+      adUnitId: AdsManager.interstitialAdUnitIdEx,
+      listener: (AdmobAdEvent event, Map<String, dynamic>? args) {
+        if (event == AdmobAdEvent.closed) interstitialAd.load();
+        handleEvent(event, args, 'Interstitial');
+      },
+    ); //interstital Ad init
+
+    interstitialAd.load();
 
     setEmptyFields();
   }
+  void handleEvent(
+      AdmobAdEvent event, Map<String, dynamic>? args, String adType) {
+    switch (event) {
+      case AdmobAdEvent.loaded:
+        showSnackBar('New Admob $adType Ad loaded!');
+        break;
+      case AdmobAdEvent.opened:
+        showSnackBar('Admob $adType Ad opened!');
+        break;
+      case AdmobAdEvent.closed:
+        showSnackBar('Admob $adType Ad closed!');
+        break;
+      case AdmobAdEvent.failedToLoad:
+        showSnackBar('Admob $adType failed to load. :(');
+        break;
+      case AdmobAdEvent.rewarded:
+        showDialog( //msg shown when finishing the 7 sec video ad
+          context: scaffoldState.currentContext!,
+          builder: (BuildContext context) {
+            return WillPopScope(
+              onWillPop: () async {
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                return true;
+              },
+              child: AlertDialog(
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const Text('Reward callback fired. Thanks Andrew!'),
+                    Text('Type: ${args!['type']}'),
+                    Text('Amount: ${args['amount']}'), //amount to be stored in db
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+        break;
+      default:
+    }
+  }
+
+  void showSnackBar(String content) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(content),
+        duration: const Duration(milliseconds: 1500),
+      ),
+    );
+  }
+  ////////
 
   void setEmptyFields() => setState(() => matrix = List.generate(
     countMatrix,
@@ -44,12 +116,24 @@ class MainPageState extends State<ThirdXOScreen> {
           color: Colors.deepPurple,
         ),
         title: const Text(
-          'Tic Tac Toe',
+          'XO',
           style: TextStyle(color: Colors.deepPurple),
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () async{
+              //ads
+              if(selectTasaly){
+                final isLoaded = await interstitialAd.isLoaded;
+                if (isLoaded ?? false) {
+                  interstitialAd.show(); //interstital ad show
+                } else {
+                  showSnackBar(
+                      'Interstitial ad is still loading...');
+                }
+              }
+              navigateTo(context, const HomeLayoutScreen());
+            },
             icon: const Icon(Icons.logout_outlined),
             color: Colors.deepPurple,
           ),
@@ -271,4 +355,13 @@ class MainPageState extends State<ThirdXOScreen> {
       ],
     ),
   );
+
+  //////////////
+  //ads
+  @override
+  void dispose() {
+    interstitialAd.dispose();
+    super.dispose();
+  }
+///////////////
 }

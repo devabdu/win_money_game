@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="win_money_game"
+        android:label="Win Money"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
 

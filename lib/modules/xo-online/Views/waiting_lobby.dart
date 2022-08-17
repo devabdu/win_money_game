@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/provider/room_data_provider.dart';
-import 'package:my_app/widgets/custom_textfield.dart';
+import 'package:win_money_game/Modules/xo-online/provider/room_data_provider.dart';
+import 'package:win_money_game/Modules/xo-online/widgets/custom_textfield.dart';
 import 'package:provider/provider.dart';
 
 class WaitingLobby extends StatefulWidget {

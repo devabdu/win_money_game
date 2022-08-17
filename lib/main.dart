@@ -8,14 +8,8 @@ import 'package:win_money_game/modules/ludo/game_engine/model/dice_model.dart';
 import 'package:win_money_game/modules/ludo/game_engine/model/game_state.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/dice.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/gameplay.dart';
-<<<<<<< HEAD
-import 'package:win_money_game/modules/Splash%20Screen/splash_screen.dart';
-import 'package:win_money_game/shared/audio_manager.dart';
-
-=======
 import 'package:win_money_game/modules/select_path_screen.dart';
 import 'providers/sign_in_provider.dart';
->>>>>>> 91da385411812d4bf14d9c9b74076d0bc64d972a
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -52,7 +46,6 @@ class MyApp extends StatelessWidget {
       supportedLocales: const [
         Locale('en', 'US')
       ],
-
       debugShowCheckedModeBanner: false,
       title: 'Win Money',
       theme: ThemeData(
