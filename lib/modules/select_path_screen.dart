@@ -43,6 +43,7 @@ class SelectPathScreen extends StatelessWidget {
                       TextButton(
                         onPressed: () {
                           selectTasaly = true;
+                          Navigator.pop(context);
                           return navigateTo(context, const HomeLayoutScreen());
                         },
                         child: const Text('OK'),
@@ -92,6 +93,7 @@ class SelectPathScreen extends StatelessWidget {
                       TextButton(
                         onPressed: () {
                           selectRebh = true;
+                          Navigator.pop(context);
                           return navigateTo(context, const HomeLayoutScreen());
                         },
                         child: const Text('OK'),

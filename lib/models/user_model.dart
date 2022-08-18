@@ -14,6 +14,7 @@ class UserModel
   late int firstWMCount;
   late int secondWMCount;
   late int thirdWMCount;
+  late bool isAdmin;
 
   UserModel({
     required this.name,
@@ -30,6 +31,7 @@ class UserModel
     required this.firstWMCount,
     required this.secondWMCount,
     required this.thirdWMCount,
+    required this.isAdmin,
   });
 
   static UserModel fromJson(Map<String, dynamic> json) => UserModel(
@@ -47,6 +49,7 @@ class UserModel
     firstWMCount : json['firstWMCount'],
     secondWMCount : json['secondWMCount'],
     thirdWMCount : json['thirdWMCount'],
+    isAdmin: json['isAdmin'],
   );
 
   Map<String, dynamic> toJson()
@@ -66,6 +69,7 @@ class UserModel
       'firstWMCount' : firstWMCount,
       'secondWMCount' : secondWMCount,
       'thirdWMCount' : thirdWMCount,
+      'isAdmin' : isAdmin,
     };
   }
 }

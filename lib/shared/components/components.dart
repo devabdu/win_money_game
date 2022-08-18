@@ -350,6 +350,7 @@ void updateAvatar({
     firstWMCount: userModel.firstWMCount,
     secondWMCount: userModel.secondWMCount,
     thirdWMCount: userModel.thirdWMCount,
+    isAdmin: userModel.isAdmin,
   );
 
   FirebaseFirestore.instance

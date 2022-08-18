@@ -190,6 +190,7 @@ class SignInProvider extends ChangeNotifier {
       firstWMCount: 0,
       secondWMCount: 0,
       thirdWMCount: 0,
+      isAdmin: false,
     );
     await FirebaseFirestore.instance
         .collection('users')
