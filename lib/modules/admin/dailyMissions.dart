@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:win_money_game/layout/home_layout_screen.dart';
+import 'package:win_money_game/modules/admin/admin_screen.dart';
 
 import '../../shared/components/components.dart';
 
@@ -116,8 +117,39 @@ class DailyMissions extends StatelessWidget {
                 children: [
                   defaultButton(
                     function: (){
-                      if(formKey.currentState!.validate())
-                        navigateTo(context, HomeLayoutScreen());
+                      if(formKey.currentState!.validate()) {
+                        updateDailyMissions(
+                            firstMissionName: firstMissionName.text.capitalize(),
+                            firstMissionCount: int.parse(firstMissionCount.text),
+                            secondMissionName: secondMissionName.text.capitalize(),
+                            secondMissionCount: int.parse(secondMissionCount.text),
+                            thirdMissionName: thirdMissionName.text.capitalize(),
+                            thirdMissionCount: int.parse(thirdMissionCount.text),
+                        );
+                        showDialog(context: context, builder: (context) => AlertDialog(
+                          backgroundColor: Colors.amberAccent,
+                          title: const Text('Missions Updated',
+                            style: TextStyle(
+                              color: Colors.deepPurple,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          content: const Text('Daily Missions have been updated successfully',
+                            style: TextStyle(
+                              color: Colors.deepPurple,
+                            ),
+                          ),
+                          actions: [
+                            TextButton(onPressed: (){
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                              Navigator.pop(context);
+                            }, child: const Text('Ok'),
+                            ),
+                          ],
+                        ));
+                      }
                     },
                     text: "Set Missions",
                     isUpperCase: false,

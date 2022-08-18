@@ -359,3 +359,99 @@ void updateAvatar({
       .then((value) {})
       .catchError((error) {});
 }
+
+void updateDailyMissions({
+  required String firstMissionName,
+  required int firstMissionCount,
+  required String secondMissionName,
+  required int secondMissionCount,
+  required String thirdMissionName,
+  required int thirdMissionCount,
+}) async {
+  await FirebaseFirestore.instance
+      .collection('dailyMissions')
+      .doc('HudQyQtHj7wqPp6yoGm9')
+      .update(
+      {
+        'name' : firstMissionName,
+        'count' : firstMissionCount,
+      })
+      .then((value) {})
+      .catchError((error) {
+        print(error.toString());
+  });
+
+  await FirebaseFirestore.instance
+      .collection('dailyMissions')
+      .doc('f2Sov2X78STX1T1Fen5J')
+      .update(
+      {
+        'name' : secondMissionName,
+        'count' : secondMissionCount,
+      })
+      .then((value) {})
+      .catchError((error) {
+        print(error.toString());
+  });
+
+  await FirebaseFirestore.instance
+      .collection('dailyMissions')
+      .doc('wjfHjC1lcwnmYBR763zv')
+      .update(
+      {
+        'name' : thirdMissionName,
+        'count' : thirdMissionCount,
+      })
+      .then((value) {})
+      .catchError((error) {
+        print(error.toString());
+  });
+}
+
+void updateWeeklyMissions({
+  required String firstMissionName,
+  required int firstMissionCount,
+  required String secondMissionName,
+  required int secondMissionCount,
+  required String thirdMissionName,
+  required int thirdMissionCount,
+}) async {
+  await FirebaseFirestore.instance
+      .collection('weeklyMissions')
+      .doc('MbN1wL6DeOOzfd9vLF5v')
+      .update(
+      {
+        'name' : firstMissionName,
+        'count' : firstMissionCount,
+      })
+      .then((value) {})
+      .catchError((error) {
+        print(error.toString());
+  });
+
+  await FirebaseFirestore.instance
+      .collection('weeklyMissions')
+      .doc('O0SDLwX9XkIWrKr3I1SH')
+      .update(
+      {
+        'name' : secondMissionName,
+        'count' : secondMissionCount,
+      })
+      .then((value) {})
+      .catchError((error) {
+        print(error.toString());
+  });
+
+  await FirebaseFirestore.instance
+      .collection('weeklyMissions')
+      .doc('u4K6wJVrrunTawElil4Y')
+      .update(
+      {
+        'name' : thirdMissionName,
+        'count' : thirdMissionCount,
+      })
+      .then((value) {})
+      .catchError((error) {
+        print(error.toString());
+  });
+}
