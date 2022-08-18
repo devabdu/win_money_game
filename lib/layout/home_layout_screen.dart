@@ -8,6 +8,7 @@ import 'package:win_money_game/models/user_model.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.dart';
 import 'package:win_money_game/modules/chess/components/home_screen.dart';
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
+import 'package:win_money_game/modules/play_on_off.dart';
 import 'package:win_money_game/modules/xo/xo_selecct_level_xo_screen.dart';
 import '../shared/components/components.dart';
 
@@ -268,6 +269,9 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
                       InkWell(
                         onTap: () async{
+                          selectXo = true;
+                          selectChess = false;
+                          selectLudo = false;
                           if(selectTasaly){
                             final isLoaded = await interstitialAd.isLoaded;
                             if (isLoaded ?? false) {
@@ -277,7 +281,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                   'Interstitial ad is still loading...');
                             }
                           }
-                          navigateTo(context, const SelectLevelXoScreen());
+                          navigateTo(context, Play_On_Off());
                         },
                         child: Image.asset("assets/images/xo.png",
                           fit: BoxFit.fill,
@@ -290,6 +294,9 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                       ),
                       InkWell(
                         onTap: () async{
+                          selectXo = false;
+                          selectChess = true;
+                          selectLudo = false;
                           if(selectTasaly){
                             final isLoaded = await interstitialAd.isLoaded;
                             if (isLoaded ?? false) {
@@ -299,7 +306,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                   'Interstitial ad is still loading...');
                             }
                           }
-                          navigateTo(context, const MainMenuScreen());
+                          navigateTo(context, Play_On_Off());
                         },
                         child: Image.asset("assets/images/chess.png",
                           fit: BoxFit.fill,
@@ -312,6 +319,9 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                       ),
                       InkWell(
                         onTap: () async{
+                          selectXo = false;
+                          selectChess = false;
+                          selectLudo = true;
                           if(selectTasaly){
                             final isLoaded = await interstitialAd.isLoaded;
                             if (isLoaded ?? false) {
@@ -321,7 +331,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                   'Interstitial ad is still loading...');
                             }
                           }
-                          navigateTo(context, const LudoScreen());
+                          navigateTo(context, Play_On_Off());
                         },
                         child: Image.asset("assets/images/LUDO Game.png",
                           fit: BoxFit.fill,
