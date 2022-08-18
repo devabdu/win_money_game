@@ -67,6 +67,12 @@ extension StringExtension on String {
   }
 }
 
+String? validate(String value) {
+    if (value.isEmpty)
+      return "Field cannot be empty";
+    return null;
+}
+
 String getFirstWord(String inputString) {
   List<String> wordList = inputString.split(" ");
   if (wordList.isNotEmpty) {
@@ -127,8 +133,10 @@ Widget defaultFormField({
   IconData? suffix,
   VoidCallback? suffixPressed,
   InputBorder? border,
+  StrutStyle? x,
 }) => TextFormField(
       controller: controller,
+      strutStyle: x,
       keyboardType: type,
       obscureText: isBool,
       onFieldSubmitted: onSubmit,

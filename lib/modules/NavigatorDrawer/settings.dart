@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:win_money_game/modules/admin/admin_screen.dart';
 import 'package:win_money_game/shared/audio_manager.dart';
+
+import '../../shared/components/components.dart';
 
 class SettingsScreen extends StatelessWidget {
 
@@ -54,6 +57,18 @@ class SettingsScreen extends StatelessWidget {
                   onChanged: (value) => AudioManager.bgm.value = value,
                 ),
               ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            defaultButton(
+              function: (){
+                navigateTo(context, AdminScreen());
+              },
+              text: "Admin Settings",
+              isUpperCase: false,
+              textColor: Colors.white,
+              fontSize: 20.0,
             ),
           ],
         ),
