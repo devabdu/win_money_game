@@ -116,30 +116,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                                                       if(formKey.currentState!.validate())
                                                       {
-                                                        updateAvatar(avatarIndex: avatarChoice);
-                                                        showDialog(context: context, builder: (context) => AlertDialog(
-                                                          backgroundColor: Colors.amberAccent,
-                                                          title: const Text('Avatar Updated',
-                                                            style: TextStyle(
-                                                              color: Colors.deepPurple,
-                                                              fontWeight: FontWeight.bold,
-                                                            ),
-                                                          ),
-                                                          content: const Text('Your avatar has been updated successfully',
-                                                            style: TextStyle(
-                                                              color: Colors.deepPurple,
-                                                            ),
-                                                          ),
-                                                          actions: [
-                                                            TextButton(onPressed: (){
-                                                              Navigator.pop(context);
-                                                              Navigator.pop(context);
-                                                              Navigator.pop(context);
-                                                              Navigator.pop(context);
-                                                            }, child: const Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        ));
+                                                        updateAvatar(
+                                                          avatarIndex: avatarChoice,
+                                                          context: context,
+                                                        );
                                                       }
                                                     },
                                                   );

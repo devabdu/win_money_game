@@ -118,6 +118,7 @@ class WeeklyMissions extends StatelessWidget {
                   defaultButton(
                     function: (){
                       if(formKey.currentState!.validate()) {
+                        resetUsersWeeklyProgress();
                         updateWeeklyMissions(
                           firstMissionName: firstMissionName.text.capitalize(),
                           firstMissionCount: int.parse(firstMissionCount.text),
@@ -125,30 +126,8 @@ class WeeklyMissions extends StatelessWidget {
                           secondMissionCount: int.parse(secondMissionCount.text),
                           thirdMissionName: thirdMissionName.text.capitalize(),
                           thirdMissionCount: int.parse(thirdMissionCount.text),
+                          context: context,
                         );
-                        showDialog(context: context, builder: (context) => AlertDialog(
-                          backgroundColor: Colors.amberAccent,
-                          title: const Text('Missions Updated',
-                            style: TextStyle(
-                              color: Colors.deepPurple,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          content: const Text('Weekly missions have been updated successfully',
-                            style: TextStyle(
-                              color: Colors.deepPurple,
-                            ),
-                          ),
-                          actions: [
-                            TextButton(onPressed: (){
-                              Navigator.pop(context);
-                              Navigator.pop(context);
-                              Navigator.pop(context);
-                              Navigator.pop(context);
-                            }, child: const Text('Ok'),
-                            ),
-                          ],
-                        ));
                       }
                     },
                     text: "Set Missions",
