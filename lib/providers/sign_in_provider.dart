@@ -175,6 +175,28 @@ class SignInProvider extends ChangeNotifier {
     required String email,
     required String uId,
 }) async {
+    List<int> dailyList= [];
+
+    await FirebaseFirestore.instance
+        .collection('dailyMissions')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        dailyList.add(0);
+      });
+    });
+
+    List<int> weeklyList= [];
+
+    await FirebaseFirestore.instance
+        .collection('weeklyMissions')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        weeklyList.add(0);
+      });
+    });
+
     UserModel userModel = UserModel(
       name: name,
       email: email,
@@ -184,12 +206,8 @@ class SignInProvider extends ChangeNotifier {
       amount: 0,
       exp: 0,
       avatar: 7,
-      firstDMCount: 0,
-      secondDMCount: 0,
-      thirdDMCount: 0,
-      firstWMCount: 0,
-      secondWMCount: 0,
-      thirdWMCount: 0,
+      dailyCounts: dailyList,
+      weeklyCounts: weeklyList,
       isAdmin: false,
     );
     await FirebaseFirestore.instance

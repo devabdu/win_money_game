@@ -2,10 +2,12 @@ import 'package:admob_flutter/admob_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:win_money_game/Ads/adsManager.dart';
 import 'package:win_money_game/models/missions_model.dart';
 
 import '../../models/user_model.dart';
+import '../../providers/missions_provider.dart';
 
 bool selectTasaly = false;
 bool selectRebh = false;
@@ -156,10 +158,13 @@ Widget defaultFormField({
       ),
     );
 
-Widget defaultMissionsDialog({
-  required String missionsType,
+Widget defaultDailyMissionsDialog({
   required Stream<List<MissionsModel>> function,
+  context,
+  required MissionsProvider provider,
 }) {
+  final provider = Provider.of<MissionsProvider>(context, listen: false);
+
   return StreamBuilder<List<MissionsModel>>(
       stream: function,
       builder: (context, snapshot) {
@@ -167,64 +172,104 @@ Widget defaultMissionsDialog({
           return Text('Something went wrong! ${snapshot.error}');
         } else if (snapshot.hasData) {
           final missions = snapshot.data!;
-          return AlertDialog(
-            backgroundColor: Colors.deepPurple,
-            content: SizedBox(
-              height: 300,
-              width: 300,
-              child: Column(
-                children: [
-                  Center(
-                    child: Text(
-                      '$missionsType Missions',
-                      style: const TextStyle(
-                        color: Colors.amberAccent,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
+          return FutureBuilder<UserModel?>(
+            future: readUser(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Text('Something went wrong! ${snapshot.error}');
+              } else if (snapshot.hasData) {
+                final user = snapshot.data;
+                return user == null
+                    ? const Center(child: Text('No User')) : AlertDialog(
+                  backgroundColor: Colors.deepPurple,
+                  content: SizedBox(
+                    height: 300,
+                    width: 300,
+                    child: SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
+                      child: Column(
+                        children: [
+                          Center(
+                            child: Text(
+                              'Daily Missions',
+                              style: const TextStyle(
+                                color: Colors.amberAccent,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Daily Missions',
+                                style: const TextStyle(
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              SingleChildScrollView(
+                                physics: BouncingScrollPhysics(),
+                                child: Column(
+                                  children: [
+                                    ListView.separated(
+                                      shrinkWrap: true,
+                                      physics: BouncingScrollPhysics(),
+                                      itemBuilder: (context, index) => buildDailyMissionItem(
+                                        dailyMissionsModel: provider.dailyMissions[index],
+                                        context: context,
+                                        index: index,
+                                        user: user,
+                                        provider: provider,
+                                      ),
+                                      separatorBuilder: (context, index) => SizedBox(
+                                        height: 2,
+                                      ),
+                                      // itemCount: SocialCubit.get(context).posts.length),
+                                      itemCount: provider.dailyMissions.length,
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '$missionsType Missions',
-                        style: const TextStyle(
-                            fontSize: 19,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white),
+                  actions: [
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: defaultButton(
+                          function: () {
+                            Navigator.pop(context);
+                          },
+                          isUpperCase: false,
+                          text: "Ok",
+                          textColor: Colors.white,
+                          backgroundColorBox: Colors.amberAccent,
+                        ),
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      ListView(
-                        children: missions.map(buildMission).toList(),
-                        shrinkWrap: true,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            actions: [
-              Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: defaultButton(
-                    function: () {
-                      Navigator.pop(context);
-                    },
-                    isUpperCase: false,
-                    text: "Ok",
-                    textColor: Colors.white,
-                    backgroundColorBox: Colors.amberAccent,
-                  ),
-                ),
-              ),
-            ],
+                    ),
+                  ],
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
           );
         } else {
           return Center(
@@ -234,72 +279,170 @@ Widget defaultMissionsDialog({
       });
 }
 
-Widget buildMission(MissionsModel mission) {
-  return FutureBuilder<UserModel?>(
-    future: readUser(),
-    builder: (context, snapshot) {
-      if (snapshot.hasError) {
-        return Text('Something went wrong! ${snapshot.error}');
-      } else if (snapshot.hasData) {
-        final user = snapshot.data;
-        return user == null
-            ? const Center(child: Text('No User'))
-            : ListTile(
-                title: Row(
-                  children: [
-                    Text(
-                      mission.name,
-                      style: const TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.white),
+Widget defaultWeeklyMissionsDialog({
+  required Stream<List<MissionsModel>> function,
+  context,
+  required MissionsProvider provider,
+}) {
+  final provider = Provider.of<MissionsProvider>(context, listen: false);
+
+  return StreamBuilder<List<MissionsModel>>(
+      stream: function,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Text('Something went wrong! ${snapshot.error}');
+        } else if (snapshot.hasData) {
+          final missions = snapshot.data!;
+          return FutureBuilder<UserModel?>(
+            future: readUser(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return Text('Something went wrong! ${snapshot.error}');
+              } else if (snapshot.hasData) {
+                final user = snapshot.data;
+                return user == null
+                    ? const Center(child: Text('No User')) : AlertDialog(
+                  backgroundColor: Colors.deepPurple,
+                  content: SizedBox(
+                    height: 300,
+                    width: 300,
+                    child: SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
+                      child: Column(
+                        children: [
+                          Center(
+                            child: Text(
+                              'Weekly Missions',
+                              style: const TextStyle(
+                                color: Colors.amberAccent,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 25,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Weekly Missions',
+                                style: const TextStyle(
+                                    fontSize: 19,
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              SingleChildScrollView(
+                                physics: BouncingScrollPhysics(),
+                                child: Column(
+                                  children: [
+                                    ListView.separated(
+                                      shrinkWrap: true,
+                                      physics: BouncingScrollPhysics(),
+                                      itemBuilder: (context, index) => buildWeeklyMissionItem(
+                                        weeklyMissionsModel: provider.weeklyMissions[index],
+                                        context: context,
+                                        index: index,
+                                        user: user,
+                                      ),
+                                      separatorBuilder: (context, index) => SizedBox(
+                                        height: 2,
+                                      ),
+                                      // itemCount: SocialCubit.get(context).posts.length),
+                                      itemCount: provider.weeklyMissions.length,
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                    const Spacer(),
-                    const Icon(
-                      Icons.check_circle,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    IconButton(
-                      onPressed: (){
-                        print('here');
-                      },
-                      icon: const Icon(
-                        Icons.play_circle_fill_outlined,
-                        color: Colors.white,
-                        size: 20,
+                  ),
+                  actions: [
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 20),
+                        child: defaultButton(
+                          function: () {
+                            Navigator.pop(context);
+                          },
+                          isUpperCase: false,
+                          text: "Ok",
+                          textColor: Colors.white,
+                          backgroundColorBox: Colors.amberAccent,
+                        ),
                       ),
                     ),
                   ],
-                ),
-                subtitle: Text(
-                  mission.mId == 'HudQyQtHj7wqPp6yoGm9'
-                      ? '${user.firstDMCount}/${mission.count}'
-                      : mission.mId == 'f2Sov2X78STX1T1Fen5J'
-                          ? '${user.secondDMCount}/${mission.count}'
-                          : mission.mId == 'wjfHjC1lcwnmYBR763zv'
-                              ? '${user.thirdDMCount}/${mission.count}'
-                              : mission.mId == 'MbN1wL6DeOOzfd9vLF5v'
-                                  ? '${user.firstWMCount}/${mission.count}'
-                                  : mission.mId == 'O0SDLwX9XkIWrKr3I1SH'
-                                      ? '${user.secondWMCount}/${mission.count}'
-                                      : mission.mId == 'u4K6wJVrrunTawElil4Y'
-                                          ? '${user.thirdWMCount}/${mission.count}'
-                                          : '',
-                  style: const TextStyle(color: Colors.white),
-                ),
-              );
-      } else {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-    },
-  );
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          );
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      });
 }
+
+// Widget buildMission(MissionsModel mission, context) {
+//   return FutureBuilder<UserModel?>(
+//     future: readUser(),
+//     builder: (context, snapshot) {
+//       if (snapshot.hasError) {
+//         return Text('Something went wrong! ${snapshot.error}');
+//       } else if (snapshot.hasData) {
+//         final user = snapshot.data;
+//         return user == null
+//             ? const Center(child: Text('No User'))
+//             :
+//         SingleChildScrollView(
+//           physics: BouncingScrollPhysics(),
+//           child: Column(
+//             children: [
+//               ListView.separated(
+//                   shrinkWrap: true,
+//                   physics: BouncingScrollPhysics(),
+//                   itemBuilder: (context, index) => buildMissionItem(
+//                     provider.dailyMissions[index],
+//                     context,
+//                     index,
+//                     user,
+//                   ),
+//                   separatorBuilder: (context, index) => SizedBox(
+//                     height: 2,
+//                   ),
+//                   // itemCount: SocialCubit.get(context).posts.length),
+//                   itemCount: provider.dailyMissionIDs.length,
+//               ),
+//               SizedBox(
+//                 height: 5,
+//               ),
+//               ],
+//             ),
+//         );
+//       } else {
+//         return const Center(
+//           child: CircularProgressIndicator(),
+//         );
+//       }
+//     },
+//   );
+// }
 
 Future<UserModel?> readUser() async {
   final id = FirebaseAuth.instance.currentUser!.uid;
@@ -313,9 +456,6 @@ Future<UserModel?> readUser() async {
 
 Stream<List<MissionsModel>> readMissions({
   required String missionsType,
-  required int firstMissionCount,
-  required int secondMissionCount,
-  required int thirdMissionCount,
 }) =>
     FirebaseFirestore.instance.collection(missionsType).snapshots().map(
         (snapshot) => snapshot.docs
@@ -345,12 +485,8 @@ void updateAvatar({
     coins: userModel.coins,
     avatar: avatarIndex,
     amount: userModel.amount,
-    firstDMCount: userModel.firstDMCount,
-    secondDMCount: userModel.secondDMCount,
-    thirdDMCount: userModel.thirdDMCount,
-    firstWMCount: userModel.firstWMCount,
-    secondWMCount: userModel.secondWMCount,
-    thirdWMCount: userModel.thirdWMCount,
+    dailyCounts: userModel.dailyCounts,
+    weeklyCounts: userModel.weeklyCounts,
     isAdmin: userModel.isAdmin,
   );
 
@@ -588,4 +724,107 @@ void resetUsersWeeklyProgress() async {
           });
         });
   });
+}
+
+Widget buildDailyMissionItem({
+  required MissionsModel dailyMissionsModel,
+  required index,
+  required UserModel? user,
+  context,
+  required MissionsProvider provider,
+}){
+  return Column(
+    children: [
+      ListTile(
+        title: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Row(
+            children: [
+              Text(
+                dailyMissionsModel.name,
+                style: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white),
+              ),
+              const Spacer(),
+              const Icon(
+                Icons.check_circle,
+                color: Colors.white,
+                size: 20,
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              IconButton(
+                onPressed: (){
+                  print('here');
+                },
+                icon: const Icon(
+                  Icons.play_circle_fill_outlined,
+                  color: Colors.white,
+                  size: 20,
+                ),
+              ),
+            ],
+          ),
+        ),
+        subtitle: Text(
+              '${user!.dailyCounts[index]}/${dailyMissionsModel.count}',
+          style: const TextStyle(color: Colors.white),
+        ),
+      ),
+    ],
+  );
+}
+
+Widget buildWeeklyMissionItem({
+  required MissionsModel weeklyMissionsModel,
+  required index,
+  required UserModel? user,
+  context,
+}){
+  return Column(
+    children: [
+      ListTile(
+        title: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Row(
+            children: [
+              Text(
+                weeklyMissionsModel.name,
+                style: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white),
+              ),
+              const Spacer(),
+              const Icon(
+                Icons.check_circle,
+                color: Colors.white,
+                size: 20,
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              IconButton(
+                onPressed: (){
+                  print('here');
+                },
+                icon: const Icon(
+                  Icons.play_circle_fill_outlined,
+                  color: Colors.white,
+                  size: 20,
+                ),
+              ),
+            ],
+          ),
+        ),
+        subtitle: Text(
+          '${user!.weeklyCounts[index]}/${weeklyMissionsModel.count}',
+          style: const TextStyle(color: Colors.white),
+        ),
+      ),
+    ],
+  );
 }

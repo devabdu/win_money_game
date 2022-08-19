@@ -10,11 +10,16 @@ class MissionsModel
     required this.count,
   });
 
-  static MissionsModel fromJson(Map<String, dynamic> json) => MissionsModel(
-    name: json['name'],
-    mId: json['mId'],
-    count : json['count'],
-  );
+  // static MissionsModel fromJson(Map<String, dynamic> json) => MissionsModel(
+  //   name: json['name'],
+  //   mId: json['mId'],
+  //   count : json['count'],
+  // );
+  MissionsModel.fromJson(Map<String, dynamic>? json) {
+    name = json!['name'];
+    mId = json['mId'];
+    count = json['count'];
+  }
 
   Map<String, dynamic> toJson()
   {
