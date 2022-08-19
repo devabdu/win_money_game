@@ -9,6 +9,7 @@ import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.
 import 'package:win_money_game/modules/chess/components/home_screen.dart';
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
 import 'package:win_money_game/modules/play_on_off.dart';
+import 'package:win_money_game/modules/select_room.dart';
 import 'package:win_money_game/modules/xo/xo_selecct_level_xo_screen.dart';
 import '../shared/components/components.dart';
 
@@ -255,6 +256,9 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                             fit: BoxFit.fill,
                           ),
                         ),
+                        IconButton(
+                            onPressed: (){navigateTo(context, SelectRoom());},
+                            icon: Icon(Icons.ads_click))
                       ],
                     ),
                   ),
