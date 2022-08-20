@@ -4,7 +4,7 @@ import 'package:win_money_game/modules/admin/admin_screen.dart';
 
 import '../../shared/components/components.dart';
 
-class DailyMissions extends StatelessWidget {
+class DeleteDailyMission extends StatelessWidget {
 
   var formKey = GlobalKey<FormState>();
 
@@ -25,7 +25,7 @@ class DailyMissions extends StatelessWidget {
         iconTheme: const IconThemeData(
           color: Colors.deepPurple,
         ),
-        title: const Text("Daily Missions",
+        title: const Text("Delete Daily Mission",
           style: TextStyle(color: Colors.deepPurple),
         ),
       ),
@@ -118,16 +118,16 @@ class DailyMissions extends StatelessWidget {
                   defaultButton(
                     function: (){
                       if(formKey.currentState!.validate()) {
-                        resetUsersDailyProgress();
-                        updateDailyMissions(
-                          firstMissionName: firstMissionName.text.capitalize(),
-                          firstMissionCount: int.parse(firstMissionCount.text),
-                          secondMissionName: secondMissionName.text.capitalize(),
-                          secondMissionCount: int.parse(secondMissionCount.text),
-                          thirdMissionName: thirdMissionName.text.capitalize(),
-                          thirdMissionCount: int.parse(thirdMissionCount.text),
-                          context: context,
-                        );
+                        // resetUsersDailyProgress();
+                        // updateDailyMissions(
+                        //   firstMissionName: firstMissionName.text.capitalize(),
+                        //   firstMissionCount: int.parse(firstMissionCount.text),
+                        //   secondMissionName: secondMissionName.text.capitalize(),
+                        //   secondMissionCount: int.parse(secondMissionCount.text),
+                        //   thirdMissionName: thirdMissionName.text.capitalize(),
+                        //   thirdMissionCount: int.parse(thirdMissionCount.text),
+                        //   context: context,
+                        // );
                       }
                     },
                     text: "Set Missions",

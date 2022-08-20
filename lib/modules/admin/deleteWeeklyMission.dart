@@ -4,7 +4,7 @@ import 'package:win_money_game/modules/admin/admin_screen.dart';
 
 import '../../shared/components/components.dart';
 
-class WeeklyMissions extends StatelessWidget {
+class DeleteWeeklyMission extends StatelessWidget {
 
   var formKey = GlobalKey<FormState>();
 
@@ -25,7 +25,7 @@ class WeeklyMissions extends StatelessWidget {
         iconTheme: const IconThemeData(
           color: Colors.deepPurple,
         ),
-        title: const Text("Weekly Missions",
+        title: const Text("Delete Weekly Mission",
           style: TextStyle(color: Colors.deepPurple),
         ),
       ),
@@ -118,7 +118,7 @@ class WeeklyMissions extends StatelessWidget {
                   defaultButton(
                     function: (){
                       if(formKey.currentState!.validate()) {
-                        resetUsersWeeklyProgress();
+                        // resetUsersWeeklyProgress();
                         updateWeeklyMissions(
                           firstMissionName: firstMissionName.text.capitalize(),
                           firstMissionCount: int.parse(firstMissionCount.text),

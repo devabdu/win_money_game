@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:win_money_game/modules/admin/dailyMissions.dart';
-import 'package:win_money_game/modules/admin/weeklyMissions.dart';
+import 'package:win_money_game/modules/admin/addDailyMission.dart';
+import 'package:win_money_game/modules/admin/addWeeklyMission.dart';
+import 'package:win_money_game/modules/admin/deleteDailyMission.dart';
 import 'package:win_money_game/shared/audio_manager.dart';
 
 import '../../shared/components/components.dart';
+import 'deleteWeeklyMission.dart';
 
 class AdminScreen extends StatelessWidget {
 
@@ -28,21 +30,125 @@ class AdminScreen extends StatelessWidget {
           children: [
             defaultButton(
               function: (){
-                navigateTo(context, DailyMissions());
+                navigateTo(context, AddDailyMission());
               },
-              text: "Set Daily Missions",
+              text: "Add a daily mission",
               isUpperCase: false,
               textColor: Colors.white,
               fontSize: 20.0,
             ),
             SizedBox(
-              height: 20.0,
+              height: 10.0,
             ),
             defaultButton(
               function: (){
-                navigateTo(context, WeeklyMissions());
+                navigateTo(context, AddWeeklyMission());
               },
-              text: "Set Weekly Missions",
+              text: "Add a weekly mission",
+              isUpperCase: false,
+              textColor: Colors.white,
+              fontSize: 20.0,
+            ),
+            SizedBox(
+              height: 30.0,
+            ),
+            defaultButton(
+              function: (){
+                navigateTo(context, DeleteDailyMission());
+              },
+              text: "Delete a daily mission",
+              isUpperCase: false,
+              textColor: Colors.white,
+              fontSize: 20.0,
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            defaultButton(
+              function: (){
+                navigateTo(context, DeleteWeeklyMission());
+              },
+              text: "Delete a weekly mission",
+              isUpperCase: false,
+              textColor: Colors.white,
+              fontSize: 20.0,
+            ),
+            SizedBox(
+              height: 30.0,
+            ),
+            defaultButton(
+              function: (){
+                showDialog(context: context, builder: (context) => AlertDialog(
+                  title: const Text(
+                    'Reset Users Daily Progress',
+                    style: TextStyle(
+                        color: Colors.deepPurple,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  content: const Text(
+                    'Are you sure, you want to reset all users daily progress?',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                  backgroundColor: Colors.amberAccent,
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        resetUsersDailyProgress(context);
+                      },
+                      child: const Text('Reset'),
+                    ),
+                  ],
+                ),
+                );
+              },
+              text: "Reset users daily progress",
+              isUpperCase: false,
+              textColor: Colors.white,
+              fontSize: 20.0,
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            defaultButton(
+              function: (){
+                showDialog(context: context, builder: (context) => AlertDialog(
+                  title: const Text(
+                    'Reset Users Weekly Progress',
+                    style: TextStyle(
+                        color: Colors.deepPurple,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  content: const Text(
+                    'Are you sure, you want to reset all users weekly progress?',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                  backgroundColor: Colors.amberAccent,
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        resetUsersWeeklyProgress(context);
+                      },
+                      child: const Text('Reset'),
+                    ),
+                  ],
+                ),
+                );
+              },
+              text: "Reset users weekly progress",
               isUpperCase: false,
               textColor: Colors.white,
               fontSize: 20.0,

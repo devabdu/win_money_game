@@ -522,76 +522,49 @@ void updateAvatar({
       .catchError((error) {});
 }
 
-void updateDailyMissions({
-  required String firstMissionName,
-  required int firstMissionCount,
-  required String secondMissionName,
-  required int secondMissionCount,
-  required String thirdMissionName,
-  required int thirdMissionCount,
-  required context,
+void addDailyMissions({
+  required String missionName,
+  required int missionCount,
+  context,
 }) async {
-  await FirebaseFirestore.instance
-      .collection('dailyMissions')
-      .doc('HudQyQtHj7wqPp6yoGm9')
-      .update(
-      {
-        'name' : firstMissionName,
-        'count' : firstMissionCount,
-      })
-      .then((value) {
-        showDialog(context: context, builder: (context) => AlertDialog(
-      backgroundColor: Colors.amberAccent,
-      title: const Text('Missions Updated',
-        style: TextStyle(
-          color: Colors.deepPurple,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      content: const Text('Daily Missions have been updated successfully',
-        style: TextStyle(
-          color: Colors.deepPurple,
-        ),
-      ),
-      actions: [
-        TextButton(onPressed: (){
-          Navigator.pop(context);
-          Navigator.pop(context);
-          Navigator.pop(context);
-          Navigator.pop(context);
-        }, child: const Text('Ok'),
-        ),
-      ],
-    ));
-  })
-      .catchError((error) {
-        print(error.toString());
-  });
+  final docMission = FirebaseFirestore.instance.collection('dailyMissions').doc();
+  List<int> dailyList= [];
 
-  await FirebaseFirestore.instance
-      .collection('dailyMissions')
-      .doc('f2Sov2X78STX1T1Fen5J')
-      .update(
-      {
-        'name' : secondMissionName,
-        'count' : secondMissionCount,
-      })
-      .then((value) {})
-      .catchError((error) {
-        print(error.toString());
-  });
+  final mission = MissionsModel(
+      name: missionName,
+      mId: docMission.id,
+      count: missionCount,
+  );
+  final json = mission.toJson();
 
-  await FirebaseFirestore.instance
-      .collection('dailyMissions')
-      .doc('wjfHjC1lcwnmYBR763zv')
-      .update(
-      {
-        'name' : thirdMissionName,
-        'count' : thirdMissionCount,
-      })
-      .then((value) {})
-      .catchError((error) {
-        print(error.toString());
+  await docMission.set(json)
+      .then((value) async {
+      showDialog(context: context, builder: (context) => AlertDialog(
+        backgroundColor: Colors.amberAccent,
+        title: const Text('Mission Added',
+          style: TextStyle(
+            color: Colors.deepPurple,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: const Text('A new daily mission has been added successfully',
+          style: TextStyle(
+            color: Colors.deepPurple,
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: (){
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+          }, child: const Text('Ok'),
+          ),
+        ],
+      ));
+    })
+      .catchError((error){
+    print(error.toString());
   });
 }
 
@@ -668,15 +641,25 @@ void updateWeeklyMissions({
   });
 }
 
-void resetUsersDailyProgress() async {
+void resetUsersDailyProgress(context) async {
   late List<String> IDs = [];
+  List<int> dailyList= [];
 
   await FirebaseFirestore.instance
       .collection('users')
       .get()
-      .then((QuerySnapshot querySnapshot) {
+      .then((QuerySnapshot querySnapshot) async {
         querySnapshot.docs.forEach((doc) {
           IDs.add(doc["uId"]);
+        });
+
+        await FirebaseFirestore.instance
+            .collection('dailyMissions')
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            dailyList.add(0);
+          });
         });
 
         IDs.forEach((id) async {
@@ -685,11 +668,35 @@ void resetUsersDailyProgress() async {
               .doc(id)
               .update(
               {
-                'firstDMCount' : 0,
-                'secondDMCount' : 0,
-                'thirdDMCount' : 0,
+                'dailyCounts' : dailyList,
               })
-              .then((value) {})
+              .then((value) {
+            showDialog(context: context, builder: (context) => AlertDialog(
+              backgroundColor: Colors.amberAccent,
+              title: const Text('Daily missions progress reset',
+                style: TextStyle(
+                  color: Colors.deepPurple,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              content: const Text('Daily missions progress for users reset successfully',
+                style: TextStyle(
+                  color: Colors.deepPurple,
+                ),
+              ),
+              actions: [
+                TextButton(onPressed: (){
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                }, child: const Text('Ok'),
+                ),
+              ],
+            ));
+          })
               .catchError((error) {
             print(error.toString());
           });
@@ -697,15 +704,25 @@ void resetUsersDailyProgress() async {
   });
 }
 
-void resetUsersWeeklyProgress() async {
+void resetUsersWeeklyProgress(context) async {
   late List<String> IDs = [];
+  List<int> weeklyList= [];
 
   await FirebaseFirestore.instance
       .collection('users')
       .get()
-      .then((QuerySnapshot querySnapshot) {
+      .then((QuerySnapshot querySnapshot) async {
         querySnapshot.docs.forEach((doc) {
           IDs.add(doc["uId"]);
+        });
+
+        await FirebaseFirestore.instance
+            .collection('weeklyMissions')
+            .get()
+            .then((QuerySnapshot querySnapshot) {
+          querySnapshot.docs.forEach((doc) {
+            weeklyList.add(0);
+          });
         });
 
         IDs.forEach((id) async {
@@ -714,11 +731,35 @@ void resetUsersWeeklyProgress() async {
               .doc(id)
               .update(
               {
-                'firstWMCount' : 0,
-                'secondWMCount' : 0,
-                'thirdWMCount' : 0,
+                'weeklyCounts' : weeklyList,
               })
-              .then((value) {})
+              .then((value) {
+            showDialog(context: context, builder: (context) => AlertDialog(
+              backgroundColor: Colors.amberAccent,
+              title: const Text('Weekly missions progress reset',
+                style: TextStyle(
+                  color: Colors.deepPurple,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              content: const Text('Weekly missions progress for users reset successfully',
+                style: TextStyle(
+                  color: Colors.deepPurple,
+                ),
+              ),
+              actions: [
+                TextButton(onPressed: (){
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                }, child: const Text('Ok'),
+                ),
+              ],
+            ));
+          })
               .catchError((error) {
             print(error.toString());
           });
