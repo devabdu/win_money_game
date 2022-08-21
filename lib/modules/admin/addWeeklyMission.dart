@@ -79,11 +79,10 @@ class AddWeeklyMission extends StatelessWidget {
                         defaultButton(
                           function: (){
                             if(formKey.currentState!.validate()) {
-                              addWeeklyMissions(
+                              addWeeklyMission(
                                 missionName: missionName.text.capitalize(),
                                 missionCount: int.parse(missionCount.text),
                                 context: context,
-                                user: user,
                                 provider: provider,
                               );
                             }

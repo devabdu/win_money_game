@@ -459,12 +459,11 @@ void updateAvatar({
       .catchError((error) {});
 }
 
-void addDailyMissions({
+void addDailyMission({
   required String missionName,
   required int missionCount,
-  required UserModel user,
   required UsersProvider provider,
-  context,
+  required context,
 }) async {
   final docMission = FirebaseFirestore.instance.collection('dailyMissions').doc();
 
@@ -475,57 +474,56 @@ void addDailyMissions({
   );
   final json = mission.toJson();
 
-  await docMission.set(json);
-
-  provider.users.forEach((user) {
-    user.dailyCounts.addAll({docMission.id : 0});
-  });
-  provider.users.forEach((user) async {
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(user.uId)
-        .update(
-        {
-          'dailyCounts' : user.dailyCounts,
-        })
-        .then((value) {})
-        .catchError((error) {
-      print(error.toString());
+  await docMission.set(json).then((value) {
+    provider.users.forEach((user) {
+      user.dailyCounts.addAll({docMission.id : 0});
     });
-
-    showDialog(context: context, builder: (context) => AlertDialog(
-      backgroundColor: Colors.amberAccent,
-      title: const Text('Mission Added',
-        style: TextStyle(
-          color: Colors.deepPurple,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      content: const Text('A new daily mission has been added successfully',
-        style: TextStyle(
-          color: Colors.deepPurple,
-        ),
-      ),
-      actions: [
-        TextButton(onPressed: (){
-          Navigator.pop(context);
-          Navigator.pop(context);
-          Navigator.pop(context);
-          Navigator.pop(context);
-          Navigator.pop(context);
-        }, child: const Text('Ok'),
-        ),
-      ],
-    ));
-  });
+    provider.users.forEach((user) async {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(user.uId)
+          .update(
+          {
+            'dailyCounts' : user.dailyCounts,
+          })
+          .then((value) {
+        showDialog(context: context, builder: (context) => AlertDialog(
+          backgroundColor: Colors.amberAccent,
+          title: const Text('Mission Added',
+            style: TextStyle(
+              color: Colors.deepPurple,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: const Text('A new daily mission has been added successfully',
+            style: TextStyle(
+              color: Colors.deepPurple,
+            ),
+          ),
+          actions: [
+            TextButton(onPressed: (){
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+            }, child: const Text('Ok'),
+            ),
+          ],
+        ));
+      })
+          .catchError((error) {
+        print(error.toString());
+      });
+    });
+  }).catchError((error){});
 }
 
-void addWeeklyMissions({
+void addWeeklyMission({
   required String missionName,
   required int missionCount,
-  required UserModel user,
   required UsersProvider provider,
-  context,
+  required context,
 }) async {
   final docMission = FirebaseFirestore.instance.collection('weeklyMissions').doc();
 
@@ -549,109 +547,210 @@ void addWeeklyMissions({
         {
           'weeklyCounts' : user.weeklyCounts,
         })
-        .then((value) {})
+        .then((value) {
+          showDialog(context: context, builder: (context) => AlertDialog(
+        backgroundColor: Colors.amberAccent,
+        title: const Text('Mission Added',
+          style: TextStyle(
+            color: Colors.deepPurple,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: const Text('A new weekly mission has been added successfully',
+          style: TextStyle(
+            color: Colors.deepPurple,
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: (){
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+          }, child: const Text('Ok'),
+          ),
+        ],
+      ));
+    })
         .catchError((error) {
       print(error.toString());
     });
-
-    showDialog(context: context, builder: (context) => AlertDialog(
-      backgroundColor: Colors.amberAccent,
-      title: const Text('Mission Added',
-        style: TextStyle(
-          color: Colors.deepPurple,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      content: const Text('A new weekly mission has been added successfully',
-        style: TextStyle(
-          color: Colors.deepPurple,
-        ),
-      ),
-      actions: [
-        TextButton(onPressed: (){
-          Navigator.pop(context);
-          Navigator.pop(context);
-          Navigator.pop(context);
-          Navigator.pop(context);
-          Navigator.pop(context);
-        }, child: const Text('Ok'),
-        ),
-      ],
-    ));
   });
 }
 
-void updateWeeklyMissions({
-  required String firstMissionName,
-  required int firstMissionCount,
-  required String secondMissionName,
-  required int secondMissionCount,
-  required String thirdMissionName,
-  required int thirdMissionCount,
+void deleteDailyMission({
+  required String missionName,
+  required UsersProvider provider,
   required context,
 }) async {
+  bool missionExists = false;
+  String? missionId;
+
   await FirebaseFirestore.instance
-      .collection('weeklyMissions')
-      .doc('MbN1wL6DeOOzfd9vLF5v')
-      .update(
-      {
-        'name' : firstMissionName,
-        'count' : firstMissionCount,
-      })
-      .then((value) {})
-      .catchError((error) {
-        print(error.toString());
-  });
+      .collection('dailyMissions')
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    querySnapshot.docs.forEach((doc) {
+      if(missionName == doc["name"]){
+        missionExists = true;
+        missionId = doc["mId"];
+      }
+    });
+  }).then((value) {
+    if(missionExists){
+      final docMission = FirebaseFirestore.instance.collection('dailyMissions').doc(missionId);
+      print(missionId);
+      docMission.delete();
+
+      provider.users.forEach((user) async {
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uId)
+            .update(
+            {
+              'dailyCounts.${missionId}' : FieldValue.delete(),
+            })
+            .then((value) {
+          showDialog(context: context, builder: (context) => AlertDialog(
+            backgroundColor: Colors.amberAccent,
+            title: const Text('Mission Deleted',
+              style: TextStyle(
+                color: Colors.deepPurple,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            content: const Text('Mission has been deleted successfully',
+              style: TextStyle(
+                color: Colors.deepPurple,
+              ),
+            ),
+            actions: [
+              TextButton(onPressed: (){
+                Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.pop(context);
+              }, child: const Text('Ok'),
+              ),
+            ],
+          ));
+        })
+            .catchError((error) {
+          print(error.toString());
+        });
+      });
+    } else {
+      showDialog(context: context, builder: (context) => AlertDialog(
+        backgroundColor: Colors.amberAccent,
+        title: const Text('Mission Not Found',
+          style: TextStyle(
+            color: Colors.deepPurple,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        content: const Text('Mission entered not found in our records. Please try again',
+          style: TextStyle(
+            color: Colors.deepPurple,
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: (){
+            Navigator.pop(context);
+          }, child: const Text('Ok'),
+          ),
+        ],
+      ));
+    }
+  }).catchError((error){});
+}
+
+void deleteWeeklyMission({
+  required String missionName,
+  required UsersProvider provider,
+  required context,
+}) async {
+  bool missionExists = false;
+  String? missionId;
 
   await FirebaseFirestore.instance
       .collection('weeklyMissions')
-      .doc('O0SDLwX9XkIWrKr3I1SH')
-      .update(
-      {
-        'name' : secondMissionName,
-        'count' : secondMissionCount,
-      })
-      .then((value) {})
-      .catchError((error) {
-        print(error.toString());
-  });
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    querySnapshot.docs.forEach((doc) {
+      if(missionName == doc["name"]){
+        missionExists = true;
+        missionId = doc["mId"];
+      }
+    });
+  }).then((value) {
+    if(missionExists){
+      final docMission = FirebaseFirestore.instance.collection('weeklyMissions').doc(missionId);
+      print(missionId);
+      docMission.delete();
 
-  await FirebaseFirestore.instance
-      .collection('weeklyMissions')
-      .doc('u4K6wJVrrunTawElil4Y')
-      .update(
-      {
-        'name' : thirdMissionName,
-        'count' : thirdMissionCount,
-      })
-      .then((value) {
-        showDialog(context: context, builder: (context) => AlertDialog(
-      backgroundColor: Colors.amberAccent,
-      title: const Text('Missions Updated',
-        style: TextStyle(
-          color: Colors.deepPurple,
-          fontWeight: FontWeight.bold,
+      provider.users.forEach((user) async {
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uId)
+            .update(
+            {
+              'weeklyCounts.${missionId}' : FieldValue.delete(),
+            })
+            .then((value) {
+          showDialog(context: context, builder: (context) => AlertDialog(
+            backgroundColor: Colors.amberAccent,
+            title: const Text('Mission Deleted',
+              style: TextStyle(
+                color: Colors.deepPurple,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            content: const Text('Mission has been deleted successfully',
+              style: TextStyle(
+                color: Colors.deepPurple,
+              ),
+            ),
+            actions: [
+              TextButton(onPressed: (){
+                Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.pop(context);
+                Navigator.pop(context);
+              }, child: const Text('Ok'),
+              ),
+            ],
+          ));
+        })
+            .catchError((error) {
+          print(error.toString());
+        });
+      });
+    } else {
+      showDialog(context: context, builder: (context) => AlertDialog(
+        backgroundColor: Colors.amberAccent,
+        title: const Text('Mission Not Found',
+          style: TextStyle(
+            color: Colors.deepPurple,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      ),
-      content: const Text('Weekly missions have been updated successfully',
-        style: TextStyle(
-          color: Colors.deepPurple,
+        content: const Text('Mission entered not found in our records. Please try again',
+          style: TextStyle(
+            color: Colors.deepPurple,
+          ),
         ),
-      ),
-      actions: [
-        TextButton(onPressed: (){
-          Navigator.pop(context);
-          Navigator.pop(context);
-          Navigator.pop(context);
-          Navigator.pop(context);
-        }, child: const Text('Ok'),
-        ),
-      ],
-    ));
-  })
-      .catchError((error) {
-        print(error.toString());
-  });
+        actions: [
+          TextButton(onPressed: (){
+            Navigator.pop(context);
+          }, child: const Text('Ok'),
+          ),
+        ],
+      ));
+    }
+  }).catchError((error){});
 }
 
 void resetUsersDailyProgress(context) async {
@@ -821,6 +920,8 @@ Widget buildWeeklyMissionItem({
   required UserModel? user,
   context,
 }){
+
+  print(user!.weeklyCounts.keys);
   return Column(
     children: [
       ListTile(
@@ -842,7 +943,8 @@ Widget buildWeeklyMissionItem({
           ],
         ),
         subtitle: Text(
-          '${user!.weeklyCounts[weeklyMissionsModel.mId]}/${weeklyMissionsModel.count}',
+          '${user.weeklyCounts[weeklyMissionsModel.mId]}/${weeklyMissionsModel.count}',
+          // '${}/${weeklyMissionsModel.count}',
           style: const TextStyle(color: Colors.white),
         ),
       ),

@@ -26,6 +26,20 @@ class UserModel
     required this.isAdmin,
   });
 
+  // static UserModel fromJson(Map<String, dynamic> json) => UserModel(
+  //   name: json['name'],
+  //   email: json['email'],
+  //   uId: json['uId'],
+  //   amount : json['amount'],
+  //   exp : json['exp'],
+  //   coins : json['coins'],
+  //   level : json['level'],
+  //   avatar : json['avatar'],
+  //   dailyCounts: json['dailyCounts'],
+  //   weeklyCounts: json['weeklyCounts'],
+  //   isAdmin: json['isAdmin'],
+  // );
+
   UserModel.fromJson(Map<String, dynamic>? json) {
     name = json!['name'];
     email = json['email'];

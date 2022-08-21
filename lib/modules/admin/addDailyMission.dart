@@ -81,11 +81,10 @@ class AddDailyMission extends StatelessWidget {
                         defaultButton(
                           function: (){
                             if(formKey.currentState!.validate()) {
-                              addDailyMissions(
+                              addDailyMission(
                                 missionName: missionName.text.capitalize(),
                                 missionCount: int.parse(missionCount.text),
                                 context: context,
-                                user: user,
                                 provider: provider,
                               );
                             }
