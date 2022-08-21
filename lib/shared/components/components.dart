@@ -159,226 +159,6 @@ Widget defaultFormField({
       ),
     );
 
-Widget defaultDailyMissionsDialog({
-  context,
-  required MissionsProvider provider,
-}) {
-  return FutureBuilder<UserModel?>(
-    future: readUser(),
-    builder: (context, snapshot) {
-      if (snapshot.hasError) {
-        return Text('Something went wrong! ${snapshot.error}');
-      } else if (snapshot.hasData) {
-        final user = snapshot.data;
-        return user == null
-            ? const Center(child: Text('No User')) : AlertDialog(
-          backgroundColor: Colors.deepPurple,
-          content: SizedBox(
-            height: 300,
-            width: 300,
-            child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  Center(
-                    child: Text(
-                      'Daily Missions',
-                      style: const TextStyle(
-                        color: Colors.amberAccent,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        children: [
-                          ListView.separated(
-                            shrinkWrap: true,
-                            physics: BouncingScrollPhysics(),
-                            itemBuilder: (context, index) => buildDailyMissionItem(
-                              dailyMissionsModel: provider.dailyMissions[index],
-                              context: context,
-                              index: index,
-                              user: user,
-                            ),
-                            separatorBuilder: (context, index) => Divider(
-                              color: Colors.amberAccent,
-
-                            ),
-                            itemCount: provider.dailyMissions.length,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          actions: [
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: defaultButton(
-                  function: () {
-                    Navigator.pop(context);
-                  },
-                  isUpperCase: false,
-                  text: "Ok",
-                  textColor: Colors.white,
-                  backgroundColorBox: Colors.amberAccent,
-                ),
-              ),
-            ),
-          ],
-        );
-      } else {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-    },
-  );
-}
-
-Widget defaultWeeklyMissionsDialog({
-  context,
-  required MissionsProvider provider,
-}) {
-  return FutureBuilder<UserModel?>(
-    future: readUser(),
-    builder: (context, snapshot) {
-      if (snapshot.hasError) {
-        return Text('Something went wrong! ${snapshot.error}');
-      } else if (snapshot.hasData) {
-        final user = snapshot.data;
-        return user == null
-            ? const Center(child: Text('No User')) : AlertDialog(
-          backgroundColor: Colors.deepPurple,
-          content: SizedBox(
-            height: 300,
-            width: 300,
-            child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              child: Column(
-                children: [
-                  Center(
-                    child: Text(
-                      'Weekly Missions',
-                      style: const TextStyle(
-                        color: Colors.amberAccent,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
-                        children: [
-                          ListView.separated(
-                            shrinkWrap: true,
-                            physics: BouncingScrollPhysics(),
-                            itemBuilder: (context, index) => buildWeeklyMissionItem(
-                              weeklyMissionsModel: provider.weeklyMissions[index],
-                              context: context,
-                              index: index,
-                              user: user,
-                            ),
-                            separatorBuilder: (context, index) => Divider(
-                              color: Colors.amberAccent,
-
-                            ),
-                            itemCount: provider.weeklyMissions.length,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          actions: [
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: defaultButton(
-                  function: () {
-                    Navigator.pop(context);
-                  },
-                  isUpperCase: false,
-                  text: "Ok",
-                  textColor: Colors.white,
-                  backgroundColorBox: Colors.amberAccent,
-                ),
-              ),
-            ),
-          ],
-        );
-      } else {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-    },
-  );
-}
-
-// Widget buildMission(MissionsModel mission, context) {
-//   return FutureBuilder<UserModel?>(
-//     future: readUser(),
-//     builder: (context, snapshot) {
-//       if (snapshot.hasError) {
-//         return Text('Something went wrong! ${snapshot.error}');
-//       } else if (snapshot.hasData) {
-//         final user = snapshot.data;
-//         return user == null
-//             ? const Center(child: Text('No User'))
-//             :
-//         SingleChildScrollView(
-//           physics: BouncingScrollPhysics(),
-//           child: Column(
-//             children: [
-//               ListView.separated(
-//                   shrinkWrap: true,
-//                   physics: BouncingScrollPhysics(),
-//                   itemBuilder: (context, index) => buildMissionItem(
-//                     provider.dailyMissions[index],
-//                     context,
-//                     index,
-//                     user,
-//                   ),
-//                   separatorBuilder: (context, index) => SizedBox(
-//                     height: 2,
-//                   ),
-//                   itemCount: provider.dailyMissionIDs.length,
-//               ),
-//               SizedBox(
-//                 height: 5,
-//               ),
-//               ],
-//             ),
-//         );
-//       } else {
-//         return const Center(
-//           child: CircularProgressIndicator(),
-//         );
-//       }
-//     },
-//   );
-// }
-
 Future<UserModel?> readUser() async {
   final id = FirebaseAuth.instance.currentUser!.uid;
   final docUser = FirebaseFirestore.instance.collection('users').doc(id);
@@ -389,13 +169,13 @@ Future<UserModel?> readUser() async {
   return null;
 }
 
-// Stream<List<MissionsModel>> readMissions({
-//   required String missionsType,
-// }) =>
-//     FirebaseFirestore.instance.collection(missionsType).snapshots().map(
-//         (snapshot) => snapshot.docs
-//             .map((doc) => MissionsModel.fromJson(doc.data()))
-//             .toList());
+Stream<List<MissionsModel>> readMissions({
+  required String missionsType,
+}) =>
+    FirebaseFirestore.instance.collection(missionsType).snapshots().map(
+        (snapshot) => snapshot.docs
+            .map((doc) => MissionsModel.fromJson(doc.data()))
+            .toList());
 
 void updateAvatar({
   required int avatarIndex,
@@ -457,6 +237,179 @@ void updateAvatar({
     ));
   })
       .catchError((error) {});
+}
+
+Widget buildDailyMission(MissionsModel mission) {
+  return FutureBuilder<UserModel?>(
+    future: readUser(),
+    builder: (context, snapshot) {
+      if (snapshot.hasError) {
+        return Text('Something went wrong! ${snapshot.error}');
+      } else if (snapshot.hasData) {
+        final user = snapshot.data;
+        return user == null
+            ? const Center(child: Text('No User'))
+            : Column(
+          children: [
+            ListTile(
+              title: Row(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Text(
+                        mission.name,
+                        style: const TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  Divider(
+                    color: Colors.amberAccent,
+                  ),
+                ],
+              ),
+              subtitle: Text(
+                '${user.dailyCounts[mission.mId]}/${mission.count}',
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+            Divider(
+              color: Colors.amberAccent,
+            ),
+          ],
+        );
+      } else {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+    },
+  );
+}
+
+Widget defaultWeeklyMissionsDialog({
+  required Stream<List<MissionsModel>> function,
+}) {
+  return StreamBuilder<List<MissionsModel>>(
+      stream: function,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Text('Something went wrong! ${snapshot.error}');
+        } else if (snapshot.hasData) {
+          final missions = snapshot.data!;
+          return AlertDialog(
+            backgroundColor: Colors.deepPurple,
+            content: SizedBox(
+              height: 300,
+              width: 300,
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    Center(
+                      child: Text(
+                        'Weekly Missions',
+                        style: const TextStyle(
+                          color: Colors.amberAccent,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ListView(
+                          children: missions.map(buildWeeklyMission).toList(),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            actions: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: defaultButton(
+                    function: () {
+                      Navigator.pop(context);
+                    },
+                    isUpperCase: false,
+                    text: "Ok",
+                    textColor: Colors.white,
+                    backgroundColorBox: Colors.amberAccent,
+                  ),
+                ),
+              ),
+            ],
+          );
+        } else {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      });
+}
+
+Widget buildWeeklyMission(MissionsModel mission) {
+  return FutureBuilder<UserModel?>(
+    future: readUser(),
+    builder: (context, snapshot) {
+      if (snapshot.hasError) {
+        return Text('Something went wrong! ${snapshot.error}');
+      } else if (snapshot.hasData) {
+        final user = snapshot.data;
+        return user == null
+            ? const Center(child: Text('No User'))
+            : Column(
+          children: [
+            ListTile(
+              title: Row(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Text(
+                        mission.name,
+                        style: const TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  Divider(
+                    color: Colors.amberAccent,
+                  ),
+                ],
+              ),
+              subtitle: Text(
+                '${user.weeklyCounts[mission.mId]}/${mission.count}',
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+            Divider(
+              color: Colors.amberAccent,
+            ),
+          ],
+        );
+      } else {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      }
+    },
+  );
 }
 
 void addDailyMission({
@@ -600,7 +553,6 @@ void deleteDailyMission({
   }).then((value) {
     if(missionExists){
       final docMission = FirebaseFirestore.instance.collection('dailyMissions').doc(missionId);
-      print(missionId);
       docMission.delete();
 
       provider.users.forEach((user) async {
@@ -627,7 +579,6 @@ void deleteDailyMission({
             ),
             actions: [
               TextButton(onPressed: (){
-                Navigator.pop(context);
                 Navigator.pop(context);
                 Navigator.pop(context);
                 Navigator.pop(context);
@@ -687,7 +638,6 @@ void deleteWeeklyMission({
   }).then((value) {
     if(missionExists){
       final docMission = FirebaseFirestore.instance.collection('weeklyMissions').doc(missionId);
-      print(missionId);
       docMission.delete();
 
       provider.users.forEach((user) async {
@@ -714,7 +664,6 @@ void deleteWeeklyMission({
             ),
             actions: [
               TextButton(onPressed: (){
-                Navigator.pop(context);
                 Navigator.pop(context);
                 Navigator.pop(context);
                 Navigator.pop(context);
@@ -877,77 +826,4 @@ void resetUsersWeeklyProgress(context) async {
           });
         });
   });
-}
-
-Widget buildDailyMissionItem({
-  required MissionsModel dailyMissionsModel,
-  required index,
-  required UserModel? user,
-  context,
-}){
-  return Column(
-    children: [
-      ListTile(
-        title: Row(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Text(
-                  dailyMissionsModel.name,
-                  style: const TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.white
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        subtitle: Text(
-              '${user!.dailyCounts[dailyMissionsModel.mId]}/${dailyMissionsModel.count}',
-          style: const TextStyle(color: Colors.white),
-        ),
-      ),
-    ],
-  );
-}
-
-Widget buildWeeklyMissionItem({
-  required MissionsModel weeklyMissionsModel,
-  required index,
-  required UserModel? user,
-  context,
-}){
-
-  print(user!.weeklyCounts.keys);
-  return Column(
-    children: [
-      ListTile(
-        title: Row(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Text(
-                  weeklyMissionsModel.name,
-                  style: const TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w300,
-                      color: Colors.white
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        subtitle: Text(
-          '${user.weeklyCounts[weeklyMissionsModel.mId]}/${weeklyMissionsModel.count}',
-          // '${}/${weeklyMissionsModel.count}',
-          style: const TextStyle(color: Colors.white),
-        ),
-      ),
-    ],
-  );
 }

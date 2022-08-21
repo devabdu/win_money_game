@@ -8,6 +8,8 @@ import 'package:win_money_game/models/user_model.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.dart';
 import 'package:win_money_game/modules/chess/components/home_screen.dart';
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
+import 'package:win_money_game/modules/missions/daily_missions.dart';
+import 'package:win_money_game/modules/missions/weekly_missions.dart';
 import 'package:win_money_game/modules/play_on_off.dart';
 import 'package:win_money_game/modules/select_room.dart';
 import 'package:win_money_game/modules/xo/xo_selecct_level_xo_screen.dart';
@@ -108,7 +110,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
       ),
     );
   }
-  /////////////////////////////////////////
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +168,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                           'Interstitial ad is still loading...');
                     }
                   }
-                  },
+                },
                   icon: const Icon(Icons.shopping_bag_rounded,),color: Colors.deepPurple,),
               ],
             ),
@@ -190,14 +191,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                     'Interstitial ad is still loading...');
                               }
                             }
-                            showDialog(
-                              context: context,
-                              builder: (_) => defaultDailyMissionsDialog(
-                                context: context,
-                                provider: provider,
-                              ),
-                              barrierDismissible: false,
-                            );
+                            navigateTo(context, DailyMissionsScreen());
                           },
                           child: Image.asset(
                             "assets/images/daily_missions.png",
@@ -217,14 +211,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                     'Interstitial ad is still loading...');
                               }
                             }
-                            showDialog(
-                              context: context,
-                              builder: (_) => defaultWeeklyMissionsDialog(
-                                context: context,
-                                provider: provider,
-                              ),
-                              barrierDismissible: false,
-                            );
+                            navigateTo(context, WeeklyMissionsScreen());
                           },
                           child: Image.asset(
                             "assets/images/weekly_missions.png",
@@ -379,6 +366,5 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     rewardAd.dispose();
     super.dispose();
   }
- ///////////////
 }
 
