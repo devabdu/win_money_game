@@ -6,12 +6,31 @@ class UsersProvider extends ChangeNotifier {
   List<UserModel> users = [];
 
   late List<String> usersIDs = [];
-  late List<dynamic> usersDailyCounts = [];
-  late List<dynamic> usersWeeklyCounts = [];
+  late List<String> dailyMissionIDs = [];
+  late List<String> weeklyMissionIDs = [];
+  late Map<String, dynamic> usersDailyCounts = {};
+  late Map<String, dynamic> usersWeeklyCounts = {};
 
   void getUsersData()
   async {
     UserModel userModel;
+
+    await FirebaseFirestore.instance
+        .collection('dailyMissions')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        dailyMissionIDs.add(doc["mId"]);
+      });
+    });
+    await FirebaseFirestore.instance
+        .collection('weeklyMissions')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        weeklyMissionIDs.add(doc["mId"]);
+      });
+    });
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -19,8 +38,12 @@ class UsersProvider extends ChangeNotifier {
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
         usersIDs.add(doc["uId"]);
-        usersDailyCounts.add(doc["dailyCounts"]);
-        usersWeeklyCounts.add(doc["weeklyCounts"]);
+        dailyMissionIDs.forEach((dailyMissionID) {
+          usersDailyCounts.addAll({dailyMissionID : doc["dailyCounts"][dailyMissionID]});
+        });
+        weeklyMissionIDs.forEach((weeklyMissionID) {
+          usersWeeklyCounts.addAll({weeklyMissionID : doc["weeklyCounts"][weeklyMissionID]});
+        });
       });
     });
 

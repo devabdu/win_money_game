@@ -451,7 +451,6 @@ void updateAvatar({
           Navigator.pop(context);
           Navigator.pop(context);
           Navigator.pop(context);
-          Navigator.pop(context);
         }, child: const Text('Ok'),
         ),
       ],
@@ -479,8 +478,7 @@ void addDailyMissions({
   await docMission.set(json);
 
   provider.users.forEach((user) {
-    print(user.dailyCounts);
-    user.dailyCounts.add(0);
+    user.dailyCounts.addAll({docMission.id : 0});
   });
   provider.users.forEach((user) async {
     await FirebaseFirestore.instance
@@ -541,8 +539,7 @@ void addWeeklyMissions({
   await docMission.set(json);
 
   provider.users.forEach((user) {
-    print(user.weeklyCounts);
-    user.weeklyCounts.add(0);
+    user.weeklyCounts.addAll({docMission.id : 0});
   });
   provider.users.forEach((user) async {
     await FirebaseFirestore.instance
@@ -572,7 +569,6 @@ void addWeeklyMissions({
       ),
       actions: [
         TextButton(onPressed: (){
-          Navigator.pop(context);
           Navigator.pop(context);
           Navigator.pop(context);
           Navigator.pop(context);
@@ -811,7 +807,7 @@ Widget buildDailyMissionItem({
           ],
         ),
         subtitle: Text(
-              '${user!.dailyCounts[index]}/${dailyMissionsModel.count}',
+              '${user!.dailyCounts[dailyMissionsModel.mId]}/${dailyMissionsModel.count}',
           style: const TextStyle(color: Colors.white),
         ),
       ),
@@ -843,29 +839,10 @@ Widget buildWeeklyMissionItem({
                 ),
               ),
             ),
-            // const Spacer(),
-            // const Icon(
-            //   Icons.check_circle,
-            //   color: Colors.white,
-            //   size: 20,
-            // ),
-            // const SizedBox(
-            //   width: 5,
-            // ),
-            // IconButton(
-            //   onPressed: (){
-            //     print('here');
-            //   },
-            //   icon: const Icon(
-            //     Icons.play_circle_fill_outlined,
-            //     color: Colors.white,
-            //     size: 20,
-            //   ),
-            // ),
           ],
         ),
         subtitle: Text(
-          '${user!.weeklyCounts[index]}/${weeklyMissionsModel.count}',
+          '${user!.weeklyCounts[weeklyMissionsModel.mId]}/${weeklyMissionsModel.count}',
           style: const TextStyle(color: Colors.white),
         ),
       ),

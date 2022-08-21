@@ -82,7 +82,7 @@ class AddDailyMission extends StatelessWidget {
                           function: (){
                             if(formKey.currentState!.validate()) {
                               addDailyMissions(
-                                missionName: missionName.text,
+                                missionName: missionName.text.capitalize(),
                                 missionCount: int.parse(missionCount.text),
                                 context: context,
                                 user: user,

@@ -175,25 +175,25 @@ class SignInProvider extends ChangeNotifier {
     required String email,
     required String uId,
 }) async {
-    List<int> dailyList= [];
+    Map<String, dynamic> dailyMap = {};
 
     await FirebaseFirestore.instance
         .collection('dailyMissions')
         .get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
-        dailyList.add(0);
+        dailyMap.addAll({doc['mId'] : 0});
       });
     });
 
-    List<int> weeklyList= [];
+    Map<String, dynamic> weeklyMap = {};
 
     await FirebaseFirestore.instance
         .collection('weeklyMissions')
         .get()
         .then((QuerySnapshot querySnapshot) {
       querySnapshot.docs.forEach((doc) {
-        weeklyList.add(0);
+        weeklyMap.addAll({doc['mId'] : 0});
       });
     });
 
@@ -206,8 +206,8 @@ class SignInProvider extends ChangeNotifier {
       amount: 0,
       exp: 0,
       avatar: 7,
-      dailyCounts: dailyList,
-      weeklyCounts: weeklyList,
+      dailyCounts: dailyMap,
+      weeklyCounts: weeklyMap,
       isAdmin: false,
     );
     await FirebaseFirestore.instance
