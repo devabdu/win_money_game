@@ -8,8 +8,10 @@ import 'package:win_money_game/modules/ludo/game_engine/model/dice_model.dart';
 import 'package:win_money_game/modules/ludo/game_engine/model/game_state.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/dice.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/gameplay.dart';
+import 'package:win_money_game/modules/admin/addDailyMission.dart';
 import 'package:win_money_game/modules/select_path_screen.dart';
 import 'package:win_money_game/providers/missions_provider.dart';
+import 'package:win_money_game/providers/users_provider.dart';
 import 'providers/sign_in_provider.dart';
 
 void main() async {
@@ -26,6 +28,7 @@ void main() async {
       ChangeNotifierProvider(create: (context)=>DiceModel()),
       ChangeNotifierProvider(create: (context)=>SignInProvider()),
       ChangeNotifierProvider(create: (context)=>MissionsProvider()..getDailyMissions()..getWeeklyMissions()),
+      ChangeNotifierProvider(create: (context)=>UsersProvider()..getUsersData()),
     ],
     child: const MyApp(),
   ),);
@@ -42,6 +45,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/' : (context) => const SplashScreen(),
+        // '/' : (context) => AddDailyMission(),
         '/second' : (context) => LoginScreen(),
         '/third' : (context) => const SelectPathScreen(),
       },

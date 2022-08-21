@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:win_money_game/layout/home_layout_screen.dart';
-import 'package:win_money_game/providers/missions_provider.dart';
 import 'package:win_money_game/shared/components/components.dart';
 
 class SelectPathScreen extends StatelessWidget {

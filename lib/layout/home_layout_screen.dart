@@ -113,6 +113,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<MissionsProvider>(context, listen: true);
+
     return FutureBuilder<UserModel?>(
       future: readUser(),
       builder: (context, snapshot){
@@ -192,9 +193,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                             showDialog(
                               context: context,
                               builder: (_) => defaultDailyMissionsDialog(
-                                function: readMissions(
-                                  missionsType: 'dailyMissions',
-                                ),
                                 context: context,
                                 provider: provider,
                               ),
@@ -222,9 +220,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                             showDialog(
                               context: context,
                               builder: (_) => defaultWeeklyMissionsDialog(
-                                function: readMissions(
-                                  missionsType: 'weeklyMissions',
-                                ),
                                 context: context,
                                 provider: provider,
                               ),

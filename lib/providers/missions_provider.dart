@@ -11,7 +11,6 @@ class MissionsProvider extends ChangeNotifier {
 
   void getDailyMissions()
   async {
-
     MissionsModel missionsModel;
 
     await FirebaseFirestore.instance
@@ -37,6 +36,7 @@ class MissionsProvider extends ChangeNotifier {
         print(error.toString());
       });
     });
+    notifyListeners();
   }
 
   List<MissionsModel> weeklyMissions = [];
@@ -47,7 +47,6 @@ class MissionsProvider extends ChangeNotifier {
 
   void getWeeklyMissions()
   async {
-
     MissionsModel missionsModel;
 
     await FirebaseFirestore.instance
