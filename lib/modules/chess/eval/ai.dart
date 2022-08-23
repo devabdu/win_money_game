@@ -1,7 +1,9 @@
+// @dart=2.9
+
 import 'dart:isolate';
 import 'dart:math';
 
-import 'package:chess_bot/chess_board/src/chess_sub.dart';
+import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart';
 import 'package:flutter/foundation.dart';
 
 import '../chess_board/chess.dart';

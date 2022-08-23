@@ -1,5 +1,5 @@
-import 'package:chess_bot/chess_board/chess.dart';
-import 'package:chess_bot/chess_board/src/chess_sub.dart';
+import 'package:win_money_game/modules/chess/chess_board/chess.dart';
+import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart';
 
 class Evaluation {
   // ignore: non_constant_identifier_names

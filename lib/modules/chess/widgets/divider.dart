@@ -1,4 +1,6 @@
-import 'package:chess_bot/util/online_game_utils.dart';
+// @dart=2.9
+
+import 'package:win_money_game/modules/chess/util/online_game_utils.dart';
 import 'package:flutter/cupertino.dart';
 
 class DividerIfOffline extends StatelessWidget {

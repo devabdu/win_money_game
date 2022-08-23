@@ -20,11 +20,10 @@ class Play_On_Off extends StatelessWidget {
             defaultButton(
               function: () {
                 if(selectXo){
-                  // navigateTo(context, const SelectLevelXoScreen());
+                  navigateTo(context, const SelectLevelXoScreen());
                 }
                 if(selectChess){
                   // navigateTo(context, const MainMenuScreen());
-
                 }
                 if(selectLudo){
                   navigateTo(context, const LudoScreen());

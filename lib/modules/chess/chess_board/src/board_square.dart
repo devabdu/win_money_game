@@ -1,12 +1,13 @@
+// @dart=2.9
 import 'dart:async';
 
-import 'package:chess_bot/chess_board/src/chess_sub.dart' as chess;
+import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart' as chess;
 import 'package:chess_vectors_flutter/chess_vectors_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../chess_control/chess_controller.dart';
-import '../../main.dart';
+import '../../game.dart';
 import 'board_model.dart';
 
 class BoardSquare extends StatefulWidget {

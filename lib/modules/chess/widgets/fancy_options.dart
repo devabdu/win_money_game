@@ -1,5 +1,6 @@
-import 'package:chess_bot/util/utils.dart';
-import 'package:chess_bot/widgets/fancy_button.dart';
+// @dart=2.9
+import 'package:win_money_game/modules/chess/util/utils.dart';
+import 'package:win_money_game/modules/chess/widgets/fancy_button.dart';
 import 'package:flutter/material.dart';
 
 bool collapseFancyOptions = false;

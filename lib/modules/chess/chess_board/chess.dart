@@ -1,18 +1,8 @@
+// @dart=2.9
+
 library chess;
 
-import 'package:chess_bot/chess_board/src/chess_sub.dart';
-
-/*  Copyright (c) 2014, David Kopec (my first name at oaksnow dot com)
- *  Released under the MIT license
- *  https://github.com/davecom/chess.dart/blob/master/LICENSE
- *
- *  Based on chess.js
- *  Copyright (c) 2013, Jeff Hlywa (jhlywa@gmail.com)
- *  Released under the BSD license
- *  https://github.com/jhlywa/chess.js/blob/master/LICENSE
- *
- *  Manipulated 2020-21 by Lars Specht
- */
+import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart';
 
 typedef void ForEachPieceCallback(Piece piece);
 
@@ -132,7 +122,7 @@ class Chess {
     }
 
     /* 2nd criterion: move number field is a integer value > 0? */
-    int temp = int.parse(tokens[5], onError: (String) => null);
+    int temp = int.parse(tokens[5], onError: (String) => 0);
     if (temp != null) {
       if (temp <= 0) {
         return {'valid': false, 'error_number': 2, 'error': errors[2]};
@@ -142,7 +132,7 @@ class Chess {
     }
 
     /* 3rd criterion: half move counter is an integer >= 0? */
-    temp = int.parse(tokens[4], onError: (String) => null);
+    temp = int.parse(tokens[4], onError: (String) => 0);
     if (temp != null) {
       if (temp < 0) {
         return {'valid': false, 'error_number': 3, 'error': errors[3]};
@@ -182,7 +172,7 @@ class Chess {
       bool previous_was_number = false;
 
       for (int k = 0; k < rows[i].length; k++) {
-        int temp2 = int.parse(rows[i][k], onError: (String) => null);
+        int temp2 = int.parse(rows[i][k], onError: (String) => 0);
         if (temp2 != null) {
           if (previous_was_number) {
             return {'valid': false, 'error_number': 8, 'error': errors[8]};
@@ -371,7 +361,7 @@ class Chess {
 
       if (piece.type == PAWN) {
         /* single square, non-capturing */
-        int square = i + PAWN_OFFSETS[us][0];
+        num square = i + PAWN_OFFSETS[us][0];
         if (game.board[square] == null) {
           add_move(moves, i, square, BITS_NORMAL);
 
@@ -961,7 +951,7 @@ class Chess {
       }
 
       game.board[castling_to] = game.board[castling_from];
-      game.board[castling_from] = null;
+      game.board[castling_from] = null ;
     }
 
     return move;

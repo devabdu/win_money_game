@@ -1,11 +1,13 @@
-import 'package:chess_bot/chess_board/chess.dart';
-import 'package:chess_bot/chess_control/chess_controller.dart';
-import 'package:chess_bot/util/utils.dart';
-import 'package:chess_bot/util/widget_utils.dart';
+// @dart=2.9
+
+import 'package:win_money_game/modules/chess/chess_board/chess.dart';
+import 'package:win_money_game/modules/chess/chess_control/chess_controller.dart';
+import 'package:win_money_game/modules/chess/util/utils.dart';
+import 'package:win_money_game/modules/chess/util/widget_utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../main.dart';
+import '../game.dart';
 
 String _createGameCode() {
   final availableChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'

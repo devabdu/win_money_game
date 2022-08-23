@@ -1,7 +1,8 @@
+// @dart=2.9
 import 'dart:ui';
 
-import 'package:chess_bot/chess_board/chess.dart';
-import 'package:chess_bot/chess_board/src/chess_sub.dart' as chess;
+import 'package:win_money_game/modules/chess/chess_board/chess.dart';
+import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart' as chess;
 import 'package:scoped_model/scoped_model.dart';
 
 import 'chess_board_controller.dart';

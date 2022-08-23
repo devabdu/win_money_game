@@ -1,20 +1,21 @@
+// @dart=2.9
 import 'dart:math';
 
-import 'package:chess_bot/chess_board/flutter_chess_board.dart';
-import 'package:chess_bot/chess_board/src/chess_sub.dart' as chess_sub;
-import 'package:chess_bot/generated/i18n.dart';
-import 'package:chess_bot/util/online_game_utils.dart';
-import 'package:chess_bot/util/utils.dart';
-import 'package:chess_bot/util/widget_utils.dart';
-import 'package:chess_bot/widgets/divider.dart';
-import 'package:chess_bot/widgets/fancy_button.dart';
-import 'package:chess_bot/widgets/fancy_options.dart';
-import 'package:chess_bot/widgets/modal_progress_hud.dart';
+import 'package:win_money_game/modules/chess/chess_board/flutter_chess_board.dart';
+import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart' as chess_sub;
+import 'package:win_money_game/modules/chess/generated/i18n.dart';
+import 'package:win_money_game/modules/chess/util/online_game_utils.dart';
+import 'package:win_money_game/modules/chess/util/utils.dart';
+import 'package:win_money_game/modules/chess/util/widget_utils.dart';
+import 'package:win_money_game/modules/chess/widgets/divider.dart';
+import 'package:win_money_game/modules/chess/widgets/fancy_button.dart';
+import 'package:win_money_game/modules/chess/widgets/fancy_options.dart';
+import 'package:win_money_game/modules/chess/widgets/modal_progress_hud.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+// import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -54,11 +55,11 @@ class MyApp extends StatelessWidget {
     //create the material app
     return MaterialApp(
       //manage resources first
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
+      // localizationsDelegates: [
+      //   S.delegate,
+      //   GlobalMaterialLocalizations.delegate,
+      //   GlobalWidgetsLocalizations.delegate,
+      // ],
       supportedLocales: S.delegate.supportedLocales,
       //define title etc.
       title: app_name,
@@ -79,19 +80,19 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: chessGame(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+class chessGame extends StatefulWidget {
+  chessGame({Key key}) : super(key: key);
 
   @override
-  _MyHomepageState createState() => _MyHomepageState();
+  _chessGameState createState() => _chessGameState();
 }
 
-class _MyHomepageState extends State<MyHomePage> {
+class _chessGameState extends State<chessGame> {
   Future<void> _loadEverythingUp() async {
     //load the old game
     await _chessController.loadOldGame();

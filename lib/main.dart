@@ -24,6 +24,7 @@ import 'package:win_money_game/providers/users_provider.dart';
 import 'modules/xo-online/first_xo_screen.dart';
 import 'modules/xo-online/second_xo_screen.dart';
 import 'providers/sign_in_provider.dart';
+import 'package:win_money_game/modules/chess/game.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -72,6 +73,7 @@ class MyApp extends StatelessWidget {
         // '/game' : (context) => FirstXOScreen(),
         // '/game2' : (context) => SecondXOScreen(),
         // '/game3' : (context) => JoinRoomScreen3(),
+        // '/chess' : (context) => chessGame(),
       },
       supportedLocales: const [
         Locale('en', 'US')

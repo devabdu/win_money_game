@@ -1,5 +1,7 @@
-import 'package:chess_bot/chess_board/chess.dart';
-import 'package:chess_bot/chess_board/src/chess_sub.dart' as chess;
+// @dart=2.9
+
+import 'package:win_money_game/modules/chess/chess_board/chess.dart';
+import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart' as chess;
 
 import 'chess_sub.dart';
 

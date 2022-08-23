@@ -1,13 +1,15 @@
+// @dart=2.9
+
 import 'dart:io';
 import 'dart:isolate';
 
-import 'package:chess_bot/chess_board/chess.dart';
-import 'package:chess_bot/chess_board/flutter_chess_board.dart';
-import 'package:chess_bot/chess_board/src/chess_sub.dart';
-import 'package:chess_bot/main.dart';
-import 'package:chess_bot/util/online_game_utils.dart';
-import 'package:chess_bot/util/utils.dart';
-import 'package:chess_bot/util/widget_utils.dart';
+import 'package:win_money_game/modules/chess/chess_board/chess.dart';
+import 'package:win_money_game/modules/chess/chess_board/flutter_chess_board.dart';
+import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart';
+import 'package:win_money_game/modules/chess/game.dart';
+import 'package:win_money_game/modules/chess/util/online_game_utils.dart';
+import 'package:win_money_game/modules/chess/util/utils.dart';
+import 'package:win_money_game/modules/chess/util/widget_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
