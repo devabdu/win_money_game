@@ -10,7 +10,19 @@ import 'package:win_money_game/modules/ludo/ludo_widgets/dice.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/gameplay.dart';
 import 'package:win_money_game/modules/admin/addDailyMission.dart';
 import 'package:win_money_game/modules/select_path_screen.dart';
+import 'package:win_money_game/modules/xo-online/components/createroom_screen.dart';
+import 'package:win_money_game/modules/xo-online/components/createroom_screen_4_4.dart';
+import 'package:win_money_game/modules/xo-online/components/createroom_screen_5_5.dart';
+import 'package:win_money_game/modules/xo-online/components/join_room_screen.dart';
+import 'package:win_money_game/modules/xo-online/components/join_room_screen_4_4.dart';
+import 'package:win_money_game/modules/xo-online/components/join_room_screen_5_5.dart';
+import 'package:win_money_game/modules/xo-online/provider/room_data_provider.dart';
+import 'package:win_money_game/modules/xo-online/provider/room_data_provider_4_4.dart';
+import 'package:win_money_game/modules/xo-online/provider/room_data_provider_5_5.dart';
+import 'package:win_money_game/modules/xo-online/xo_selecct_level_xo_screen.dart';
 import 'package:win_money_game/providers/users_provider.dart';
+import 'modules/xo-online/first_xo_screen.dart';
+import 'modules/xo-online/second_xo_screen.dart';
 import 'providers/sign_in_provider.dart';
 
 void main() async {
@@ -27,6 +39,9 @@ void main() async {
       ChangeNotifierProvider(create: (context)=>DiceModel()),
       ChangeNotifierProvider(create: (context)=>SignInProvider()),
       ChangeNotifierProvider(create: (context)=>UsersProvider()),
+      ChangeNotifierProvider(create: (context)=>RoomDataProvider()),
+      ChangeNotifierProvider(create: (context)=>RoomDataProviderFour()),
+      ChangeNotifierProvider(create: (context)=>RoomDataProviderFive()),
     ],
     child: const MyApp(),
   ),);
@@ -40,12 +55,22 @@ class MyApp extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
+      initialRoute: '/xo',
       routes: {
-        '/' : (context) => const SplashScreen(),
-        // '/' : (context) => AddDailyMission(),
-        '/second' : (context) => LoginScreen(),
-        '/third' : (context) => const SelectPathScreen(),
+        // '/' : (context) => const SplashScreen(),
+        // // '/' : (context) => AddDailyMission(),
+        // '/second' : (context) => LoginScreen(),
+        // '/third' : (context) => const SelectPathScreen(),
+        '/xo' : (context) => SelectLevelXoScreen(),
+        '/createRoom' : (context) => CreateRoomScreen(),
+        '/createRoom2' : (context) => CreateRoomScreen2(),
+        '/createRoom3' : (context) => CreateRoomScreen3(),
+        '/joinroom' : (context) => JoinRoomScreen(),
+        '/joinroom2' : (context) => JoinRoomScreen2(),
+        '/joinroom3' : (context) => JoinRoomScreen3(),
+        '/game' : (context) => FirstXOScreen(),
+        '/game2' : (context) => SecondXOScreen(),
+        '/game3' : (context) => JoinRoomScreen3(),
       },
       supportedLocales: const [
         Locale('en', 'US')

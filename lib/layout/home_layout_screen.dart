@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:win_money_game/Ads/adsManager.dart';
 import 'package:win_money_game/models/user_model.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.dart';
-import 'package:win_money_game/modules/chess/components/home_screen.dart';
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
 import 'package:win_money_game/modules/missions/daily_missions.dart';
 import 'package:win_money_game/modules/missions/weekly_missions.dart';

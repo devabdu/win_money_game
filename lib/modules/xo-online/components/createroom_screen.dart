@@ -63,6 +63,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                   onTap: () => _socketMethods.createRoom(
                     _nameController.text,
                   ),
+                  // onTap: () => print('hello'),
                   text: 'Create'),
             ],
           ),

@@ -1,4 +1,4 @@
-import 'dart:js';
+// import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:win_money_game/modules/xo-online/provider/room_data_provider_4_4.dart';
@@ -20,6 +20,7 @@ class SocketMethods {
 
   // EMITS
   void createRoom(String nickname) {
+    print(nickname);
     if (nickname.isNotEmpty) {
       _socketClient.emit('createRoom', {
         'nickname': nickname,
@@ -101,7 +102,8 @@ class SocketMethods {
     _socketClient.on('createRoomSuccess', (room) {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updateRoomData(room);
-      Navigator.pushNamed(context, GameScreen.routeName);
+      Navigator.pushNamed(context, '/game');
+      print(room);
     });
   }
   void createRoomSuccessListenerFour(BuildContext context) {

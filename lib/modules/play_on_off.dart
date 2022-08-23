@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:win_money_game/modules/chess/components/home_screen.dart';
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
+import 'package:win_money_game/modules/xo-online/responsive/responsive.dart';
+import 'package:win_money_game/modules/xo-online/xo_selecct_level_xo_screen.dart';
 import 'package:win_money_game/modules/xo/xo_selecct_level_xo_screen.dart';
 import 'package:win_money_game/modules/xo/xo_select_bet_screen.dart';
 import 'package:win_money_game/shared/components/components.dart';
-
-import 'chess/responsive/responsive.dart';
 
 class Play_On_Off extends StatelessWidget {
   const Play_On_Off({Key? key}) : super(key: key);
@@ -21,10 +20,10 @@ class Play_On_Off extends StatelessWidget {
             defaultButton(
               function: () {
                 if(selectXo){
-                  navigateTo(context, const SelectLevelXoScreen());
+                  // navigateTo(context, const SelectLevelXoScreen());
                 }
                 if(selectChess){
-                  navigateTo(context, const MainMenuScreen());
+                  // navigateTo(context, const MainMenuScreen());
 
                 }
                 if(selectLudo){
@@ -44,11 +43,12 @@ class Play_On_Off extends StatelessWidget {
               function: () {
                 if(selectXo){
                   ///// ht8yr mkanha el path l XO online(SelectLevelXoScreen())
-                  navigateTo(context, const SelectLevelXoScreen());
+                  // navigateTo(context, const SelectLevelXoScreen());
+                  navigateTo(context, SelectLevelXoScreen());
                 }
                 if(selectChess){
                   ///// ht8yr mkanha el path l chess online(MainMenuScreen())
-                  navigateTo(context, const MainMenuScreen());
+                  // navigateTo(context, const MainMenuScreen());
                 }
                 if(selectLudo){
                   ///// ht8yr mkanha el path l ludo online(LudoScreen())
