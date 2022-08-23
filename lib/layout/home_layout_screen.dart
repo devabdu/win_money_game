@@ -12,8 +12,6 @@ import 'package:win_money_game/modules/missions/daily_missions.dart';
 import 'package:win_money_game/modules/missions/weekly_missions.dart';
 import 'package:win_money_game/modules/play_on_off.dart';
 import 'package:win_money_game/modules/select_room.dart';
-import 'package:win_money_game/modules/xo/xo_selecct_level_xo_screen.dart';
-import '../providers/missions_provider.dart';
 import '../shared/components/components.dart';
 
 class HomeLayoutScreen extends StatefulWidget {
@@ -113,7 +111,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<MissionsProvider>(context, listen: true);
 
     return FutureBuilder<UserModel?>(
       future: readUser(),

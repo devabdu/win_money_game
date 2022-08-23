@@ -14,8 +14,6 @@ class AddWeeklyMission extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<UsersProvider>(context, listen: true);
-
     return FutureBuilder<UserModel?>(
       future: readUser(),
       builder: (context, snapshot){
@@ -77,13 +75,14 @@ class AddWeeklyMission extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         defaultButton(
-                          function: (){
+                          function: () async{
                             if(formKey.currentState!.validate()) {
-                              addWeeklyMission(
+                              final provider = Provider.of<UsersProvider>(context, listen: false);
+                              await provider.getUsersData();
+                              await provider.addWeeklyMission(
                                 missionName: missionName.text.capitalize(),
                                 missionCount: int.parse(missionCount.text),
                                 context: context,
-                                provider: provider,
                               );
                             }
                           },

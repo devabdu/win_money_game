@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:win_money_game/modules/admin/addDailyMission.dart';
 import 'package:win_money_game/modules/admin/addWeeklyMission.dart';
 import 'package:win_money_game/modules/admin/deleteDailyMission.dart';
-import 'package:win_money_game/shared/audio_manager.dart';
-
+import '../../providers/users_provider.dart';
 import '../../shared/components/components.dart';
 import 'deleteWeeklyMission.dart';
 
@@ -99,8 +99,10 @@ class AdminScreen extends StatelessWidget {
                       child: const Text('Cancel'),
                     ),
                     TextButton(
-                      onPressed: () {
-                        resetUsersDailyProgress(context);
+                      onPressed: () async{
+                        final provider = Provider.of<UsersProvider>(context, listen: false);
+                        await provider.getUsersData();
+                        await provider.resetUsersDailyProgress(context);
                       },
                       child: const Text('Reset'),
                     ),
@@ -139,8 +141,10 @@ class AdminScreen extends StatelessWidget {
                       child: const Text('Cancel'),
                     ),
                     TextButton(
-                      onPressed: () {
-                        resetUsersWeeklyProgress(context);
+                      onPressed: () async{
+                        final provider = Provider.of<UsersProvider>(context, listen: false);
+                        await provider.getUsersData();
+                        await provider.resetUsersWeeklyProgress(context);
                       },
                       child: const Text('Reset'),
                     ),

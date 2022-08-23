@@ -13,8 +13,6 @@ class DeleteWeeklyMission extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<UsersProvider>(context, listen: true);
-
     return FutureBuilder<UserModel?>(
       future: readUser(),
       builder: (context, snapshot){
@@ -65,11 +63,12 @@ class DeleteWeeklyMission extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         defaultButton(
-                          function: (){
+                          function: () async{
                             if(formKey.currentState!.validate()) {
-                              deleteWeeklyMission(
+                              final provider = Provider.of<UsersProvider>(context, listen: false);
+                              await provider.getUsersData();
+                              await provider.deleteWeeklyMission(
                                 missionName: missionName.text.capitalize(),
-                                provider: provider,
                                 context: context,
                               );
                             }
