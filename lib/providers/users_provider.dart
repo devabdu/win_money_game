@@ -22,8 +22,6 @@ class UsersProvider extends ChangeNotifier {
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
 
-    final docUser = FirebaseFirestore.instance.collection('users').doc(id);
-
     FirebaseFirestore.instance
         .collection('users')
         .doc(id)
@@ -212,7 +210,6 @@ class UsersProvider extends ChangeNotifier {
           Navigator.pop(context);
           Navigator.pop(context);
           Navigator.pop(context);
-          Navigator.pop(context);
         }, child: const Text('Ok'),
         ),
       ],
@@ -328,31 +325,30 @@ class UsersProvider extends ChangeNotifier {
               {
                 'weeklyCounts.${missionId}' : FieldValue.delete(),
               });
-          showDialog(context: context, builder: (context) => AlertDialog(
-            backgroundColor: Colors.amberAccent,
-            title: const Text('Mission Deleted',
-              style: TextStyle(
-                color: Colors.deepPurple,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            content: const Text('Mission has been deleted successfully',
-              style: TextStyle(
-                color: Colors.deepPurple,
-              ),
-            ),
-            actions: [
-              TextButton(onPressed: (){
-                Navigator.pop(context);
-                Navigator.pop(context);
-                Navigator.pop(context);
-                Navigator.pop(context);
-                Navigator.pop(context);
-              }, child: const Text('Ok'),
-              ),
-            ],
-          ));
         });
+        showDialog(context: context, builder: (context) => AlertDialog(
+          backgroundColor: Colors.amberAccent,
+          title: const Text('Mission Deleted',
+            style: TextStyle(
+              color: Colors.deepPurple,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: const Text('Mission has been deleted successfully',
+            style: TextStyle(
+              color: Colors.deepPurple,
+            ),
+          ),
+          actions: [
+            TextButton(onPressed: (){
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+              Navigator.pop(context);
+            }, child: const Text('Ok'),
+            ),
+          ],
+        ));
       } else {
         showDialog(context: context, builder: (context) => AlertDialog(
           backgroundColor: Colors.amberAccent,
@@ -442,12 +438,9 @@ class UsersProvider extends ChangeNotifier {
             Navigator.pop(context);
             Navigator.pop(context);
             Navigator.pop(context);
-            Navigator.pop(context);
-            Navigator.pop(context);
           }, child: const Text('Ok'),
           ),
         ],
       ));
-
   }
 }
