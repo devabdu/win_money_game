@@ -10,7 +10,6 @@ import 'package:win_money_game/modules/ludo/ludo_widgets/dice.dart';
 import 'package:win_money_game/modules/ludo/ludo_widgets/gameplay.dart';
 import 'package:win_money_game/modules/admin/addDailyMission.dart';
 import 'package:win_money_game/modules/select_path_screen.dart';
-import 'package:win_money_game/providers/missions_provider.dart';
 import 'package:win_money_game/providers/users_provider.dart';
 import 'providers/sign_in_provider.dart';
 
@@ -27,8 +26,7 @@ void main() async {
       ChangeNotifierProvider(create: (context)=>GameState()),
       ChangeNotifierProvider(create: (context)=>DiceModel()),
       ChangeNotifierProvider(create: (context)=>SignInProvider()),
-      ChangeNotifierProvider(create: (context)=>MissionsProvider()..getDailyMissions()..getWeeklyMissions()),
-      ChangeNotifierProvider(create: (context)=>UsersProvider()..getUsersData()),
+      ChangeNotifierProvider(create: (context)=>UsersProvider()),
     ],
     child: const MyApp(),
   ),);

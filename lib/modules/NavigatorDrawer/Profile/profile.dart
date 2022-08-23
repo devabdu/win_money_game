@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'package:win_money_game/layout/home_layout_screen.dart';
 import 'package:win_money_game/models/user_model.dart';
+import 'package:win_money_game/providers/users_provider.dart';
 import '../../../shared/components/components.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -111,12 +113,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                       backgroundImage: AssetImage(avatarImages[index]),
                                                       radius: 40,
                                                     ),
-                                                    onTap: () {
+                                                    onTap: () async {
                                                       avatarChoice = index + 1;
 
                                                       if(formKey.currentState!.validate())
                                                       {
-                                                        updateAvatar(
+                                                        final provider = Provider.of<UsersProvider>(context, listen: false);
+                                                        await provider.updateAvatar(
                                                           avatarIndex: avatarChoice,
                                                           context: context,
                                                         );
