@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:win_money_game/Modules/xo-online/responsive/responsive.dart';
-import 'package:win_money_game/Modules/xo-online/resources/socket_methods.dart';
-import 'package:win_money_game/Modules/xo-online/widgets/custom_button.dart';
-import 'package:win_money_game/Modules/xo-online/widgets/custom_text.dart';
-import 'package:win_money_game/Modules/xo-online/widgets/custom_textfield.dart';
+import 'package:win_money_game/modules/xo-online/responsive/responsive.dart';
+import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
+import 'package:win_money_game/modules/xo-online/widgets/custom_button.dart';
+import 'package:win_money_game/modules/xo-online/widgets/custom_text.dart';
+import 'package:win_money_game/modules/xo-online/widgets/custom_textfield.dart';
 
-class CreateRoomScreen extends StatefulWidget {
+class CreateRoomScreen2 extends StatefulWidget {
   static String routeName = '/create-room';
-  const CreateRoomScreen({Key? key}) : super(key: key);
+  const CreateRoomScreen2({Key? key}) : super(key: key);
 
   @override
-  State<CreateRoomScreen> createState() => _CreateRoomScreenState();
+  State<CreateRoomScreen2> createState() => _CreateRoomScreen2State();
 }
 
-class _CreateRoomScreenState extends State<CreateRoomScreen> {
+class _CreateRoomScreen2State extends State<CreateRoomScreen2> {
   final TextEditingController _nameController = TextEditingController();
   final SocketMethods _socketMethods = SocketMethods();
 
@@ -63,7 +63,8 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                   onTap: () => _socketMethods.createRoomFour(
                     _nameController.text,
                   ),
-                  text: 'Create'),
+                  text: 'Create'
+              ),
             ],
           ),
         ),

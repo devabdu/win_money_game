@@ -45,10 +45,11 @@ class LoginScreen extends StatelessWidget {
                     ),
                     label: const Text('Log in with Facebook'),
                     icon: const Icon(Icons.facebook),
-                    onPressed: () async {
+                    onPressed: ()  {
 
                       final provider = Provider.of<SignInProvider>(
                           context, listen: false);
+                      provider.facebookLogin(context);
                       provider.facebookLogin(context);
                     },
                   ),

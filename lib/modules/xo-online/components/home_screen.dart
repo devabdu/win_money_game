@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:win_money_game/Modules/xo-online/responsive/responsive.dart';
-import 'package:win_money_game/Modules/xo-online/widgets/custom_button.dart';
+import 'package:win_money_game/modules/xo-online/responsive/responsive.dart';
+import 'package:win_money_game/modules/xo-online/widgets/custom_button.dart';
 
 class MainMenuScreen extends StatelessWidget {
   static String routeName = '/main-menu';

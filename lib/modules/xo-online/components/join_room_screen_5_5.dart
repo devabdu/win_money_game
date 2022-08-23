@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:win_money_game/Modules/xo-online/responsive/responsive.dart';
-import 'package:win_money_game/Modules/xo-online/resources/socket_methods.dart';
-import 'package:win_money_game/Modules/xo-online/widgets/custom_button.dart';
-import 'package:win_money_game/Modules/xo-online/widgets/custom_text.dart';
-import 'package:win_money_game/Modules/xo-online/widgets/custom_textfield.dart';
+import 'package:win_money_game/modules/xo-online/responsive/responsive.dart';
+import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
+import 'package:win_money_game/modules/xo-online/widgets/custom_button.dart';
+import 'package:win_money_game/modules/xo-online/widgets/custom_text.dart';
+import 'package:win_money_game/modules/xo-online/widgets/custom_textfield.dart';
 
 
-class JoinRoomScreen extends StatefulWidget {
+class JoinRoomScreen3 extends StatefulWidget {
   static String routeName = '/join-room';
-  const JoinRoomScreen({Key? key}) : super(key: key);
+  const JoinRoomScreen3({Key? key}) : super(key: key);
 
   @override
-  State<JoinRoomScreen> createState() => _JoinRoomScreenState();
+  State<JoinRoomScreen3> createState() => _JoinRoomScreen3State();
 }
 
-class _JoinRoomScreenState extends State<JoinRoomScreen> {
+class _JoinRoomScreen3State extends State<JoinRoomScreen3> {
   final TextEditingController _gameIdController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final SocketMethods _socketMethods = SocketMethods();

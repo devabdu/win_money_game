@@ -1,17 +1,17 @@
 import 'dart:js';
 
 import 'package:flutter/material.dart';
-import 'package:win_money_game/Modules/xo-online/provider/room_data_provider_4_4.dart';
-import 'package:win_money_game/Modules/xo-online/provider/room_data_provider_5_5.dart';
-import 'package:win_money_game/Modules/xo-online/resources/socket_client.dart';
+import 'package:win_money_game/modules/xo-online/provider/room_data_provider_4_4.dart';
+import 'package:win_money_game/modules/xo-online/provider/room_data_provider_5_5.dart';
+import 'package:win_money_game/modules/xo-online/resources/socket_client.dart';
 import 'package:provider/provider.dart';
-import 'package:win_money_game/Modules/xo-online/provider/room_data_provider.dart';
-import 'package:win_money_game/Modules/xo-online/Utils/utils.dart';
-import 'package:win_money_game/Modules/xo-online/components/GameScreen.dart';
+import 'package:win_money_game/modules/xo-online/provider/room_data_provider.dart';
+import 'package:win_money_game/modules/xo-online/Utils/utils.dart';
+import 'package:win_money_game/modules/xo-online/components/GameScreen.dart';
 import 'package:socket_io_client/socket_io_client.dart';
-import 'package:win_money_game/Modules/xo-online/resources/game_methods.dart';
-import 'package:win_money_game/Modules/xo-online/resources/game_methods_4_4.dart';
-import 'package:win_money_game/Modules/xo-online/resources/game_methods_5_5.dart';
+import 'package:win_money_game/modules/xo-online/resources/game_methods.dart';
+import 'package:win_money_game/modules/xo-online/resources/game_methods_4_4.dart';
+import 'package:win_money_game/modules/xo-online/resources/game_methods_5_5.dart';
 
 class SocketMethods {
   final _socketClient = SocketClient.instance.socket!;
@@ -21,7 +21,7 @@ class SocketMethods {
   // EMITS
   void createRoom(String nickname) {
     if (nickname.isNotEmpty) {
-      _socketClient.emit('createRoom4', {
+      _socketClient.emit('createRoom', {
         'nickname': nickname,
       });
     }
@@ -108,7 +108,7 @@ class SocketMethods {
     _socketClient.on('createRoomSuccess4', (room) {
       Provider.of<RoomDataProviderFour>(context, listen: false)
           .updateRoomData(room);
-      Navigator.pushNamed(context, GameScreen.routeName);
+      Navigator.pushNamed(context, '/game2');
     });
   }
 
@@ -116,7 +116,7 @@ class SocketMethods {
     _socketClient.on('createRoomSuccess5', (room) {
       Provider.of<RoomDataProviderFive>(context, listen: false)
           .updateRoomData(room);
-      Navigator.pushNamed(context, GameScreen.routeName);
+      Navigator.pushNamed(context, '/game3');
     });
   }
 
@@ -131,7 +131,7 @@ class SocketMethods {
     _socketClient.on('joinRoomSuccess4', (room) {
       Provider.of<RoomDataProviderFour>(context, listen: false)
           .updateRoomData(room);
-      Navigator.pushNamed(context, GameScreen.routeName);
+      Navigator.pushNamed(context, '/game2');
     });
   }
 
@@ -139,7 +139,7 @@ class SocketMethods {
     _socketClient.on('joinRoomSuccess5', (room) {
       Provider.of<RoomDataProviderFive>(context, listen: false)
           .updateRoomData(room);
-      Navigator.pushNamed(context, GameScreen.routeName);
+      Navigator.pushNamed(context, '/game3');
     });
   }
 
@@ -259,7 +259,7 @@ class SocketMethods {
   void endGameListener(BuildContext context) {
     _socketClient.on('endGame', (playerData) {
       showGameDialog(context, '${playerData['nickname']} won the game!');
-      Navigator.popUntil(context, (route) => false);
+      Navigator.pushNamed(context, '/xo');
     });
   }
 }

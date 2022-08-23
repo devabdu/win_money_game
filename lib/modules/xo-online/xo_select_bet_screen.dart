@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:win_money_game/Modules/XO/first_xo_screen.dart';
-import 'package:win_money_game/Modules/XO/second_xo_screen.dart';
-import 'package:win_money_game/Modules/XO/third_xo_screen.dart';
-import 'package:win_money_game/Modules/xo-online/responsive/component.dart';
+import 'package:win_money_game/modules/XO/first_xo_screen.dart';
+import 'package:win_money_game/modules/XO/second_xo_screen.dart';
+import 'package:win_money_game/modules/XO/third_xo_screen.dart';
+import 'package:win_money_game/modules/xo-online/responsive/component.dart';
 
 class XoSelectBetScreen extends StatelessWidget {
   XoSelectBetScreen({Key? key}) : super(key: key);

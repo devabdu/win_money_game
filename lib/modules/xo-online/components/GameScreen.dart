@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:win_money_game/Modules/xo-online/provider/room_data_provider.dart';
-import 'package:win_money_game/Modules/xo-online/resources/socket_methods.dart';
-import 'package:win_money_game/Modules/xo-online/views/scoreboard.dart';
-import 'package:win_money_game/Modules/xo-online/first_xo_screen.dart';
-import 'package:win_money_game/Modules/xo-online/views/waiting_lobby.dart';
+// import 'package:win_money_game/modules/xo-online/second_xo_screen.dart';
+import 'package:win_money_game/modules/xo-online/provider/room_data_provider.dart';
+// import 'package:win_money_game/modules/xo-online/provider/room_data_provider_4_4.dart';
+import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
+import 'package:win_money_game/modules/xo-online/views/scoreboard.dart';
+import 'package:win_money_game/modules/xo-online/first_xo_screen.dart';
+import 'package:win_money_game/modules/xo-online/views/waiting_lobby.dart';
 import 'package:provider/provider.dart';
 
 class GameScreen extends StatefulWidget {
@@ -22,8 +24,8 @@ class _GameScreenState extends State<GameScreen> {
     super.initState();
     _socketMethods.updateRoomListener(context);
     _socketMethods.updatePlayersStateListener(context);
-    _socketMethods.pointIncreaseListener(context);
-    _socketMethods.endGameListener(context);
+    // _socketMethods.pointIncreaseListener(context);
+    // _socketMethods.endGameListener(context);
   }
 
   @override

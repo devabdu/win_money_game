@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:win_money_game/Modules/xo-online/resources/game_methods.dart';
+import 'package:win_money_game/modules/xo-online/resources/game_methods.dart';
 
 void showSnackBar(BuildContext context, String content) {
   ScaffoldMessenger.of(context).showSnackBar(

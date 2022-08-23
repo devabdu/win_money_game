@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:win_money_game/Modules/xo-online/models/player.dart';
+import 'package:win_money_game/modules/xo-online/models/player.dart';
 
 class RoomDataProvider extends ChangeNotifier {
   Map<String, dynamic> _roomData = {};

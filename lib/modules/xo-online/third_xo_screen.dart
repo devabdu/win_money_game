@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:win_money_game/Modules/XO/xo_utils.dart';
-import 'package:win_money_game/Modules/xo-online/provider/room_data_provider_5_5.dart';
-import 'package:win_money_game/Modules/xo-online/resources/socket_methods.dart';
+import 'package:win_money_game/modules/XO/xo_utils.dart';
+import 'package:win_money_game/modules/xo-online/provider/room_data_provider_5_5.dart';
+import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
 import 'package:provider/provider.dart';
+
 class Player {
   static const none = '';
   static const X = 'X';
@@ -36,7 +37,8 @@ class MainPageState extends State<ThirdXOScreen> {
 
   @override
   Widget build(BuildContext context) {
-    RoomDataProviderFive roomDataProvider = Provider.of<RoomDataProviderFive>(context);
+    RoomDataProviderFive roomDataProvider = Provider.of<RoomDataProviderFive>(
+        context);
     return Scaffold(
       //backgroundColor: Color.fromRGBO(16, 13, 34, 1),
       backgroundColor: Colors.deepPurple,
@@ -153,14 +155,14 @@ class MainPageState extends State<ThirdXOScreen> {
       ),
     );
   }
-  Widget buildRow(int x , RoomDataProviderFive roomDataProvider) {
+  Widget buildRow(int x,RoomDataProviderFive roomDataProvider) {
     final values = matrix[x];
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: Xo_Utils.modelBuilder(
         values,
-            (y, value) => buildField(x, y, roomDataProvider),
+            (y, value) => buildField(x, y,roomDataProvider),
       ),
     );
   }
@@ -176,7 +178,7 @@ class MainPageState extends State<ThirdXOScreen> {
     }
   }
 
-  Widget buildField(int x, int y , RoomDataProviderFive roomDataProvider) {
+  Widget buildField(int x, int y,RoomDataProviderFive roomDataProvider) {
     final value = matrix[x][y];
     final color = getShadowColor(value);
     late final int index;
@@ -197,7 +199,7 @@ class MainPageState extends State<ThirdXOScreen> {
       index = 6;
     }else if(x == 1 && y == 2){
       index = 7;
-    }else if(x == 2 && y == 3){
+    }else if(x == 1 && y == 3){
       index = 8;
     }else if(x == 1 && y == 4){
       index = 9;
@@ -274,7 +276,6 @@ class MainPageState extends State<ThirdXOScreen> {
   void selectField(String value, int x, int y,RoomDataProviderFive roomDataProvider) {
     if (value == Player.none) {
       final newValue = lastMove == Player.X ? Player.O : Player.X;
-
       late final int index;
 
       if(x == 0 && y ==0){
@@ -293,7 +294,7 @@ class MainPageState extends State<ThirdXOScreen> {
         index = 6;
       }else if(x == 1 && y == 2){
         index = 7;
-      }else if(x == 2 && y == 3){
+      }else if(x == 1 && y == 3){
         index = 8;
       }else if(x == 1 && y == 4){
         index = 9;
@@ -343,6 +344,14 @@ class MainPageState extends State<ThirdXOScreen> {
     }
   }
 
+  void tapped(int index, RoomDataProviderFive roomDataProvider) {
+    _socketMethods.tapGridFive(
+      index,
+      roomDataProvider.roomData['_id'],
+      roomDataProvider.displayElements,
+    );
+
+  }
   bool isEnd() =>
       matrix.every((values) => values.every((value) => value != Player.none));
 
@@ -362,14 +371,6 @@ class MainPageState extends State<ThirdXOScreen> {
     return row == n || col == n || diag == n || rdiag == n;
   }
 
-  void tapped(int index, RoomDataProviderFive roomDataProvider) {
-    _socketMethods.tapGridFour(
-      index,
-      roomDataProvider.roomData['_id'],
-      roomDataProvider.displayElements,
-    );
-
-  }
   Future showEndDialog(String title) => showDialog(
     context: context,
     barrierDismissible: false,
