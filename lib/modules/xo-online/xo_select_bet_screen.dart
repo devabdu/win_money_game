@@ -1,9 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:win_money_game/modules/XO/first_xo_screen.dart';
-import 'package:win_money_game/modules/XO/second_xo_screen.dart';
-import 'package:win_money_game/modules/XO/third_xo_screen.dart';
-import 'package:win_money_game/modules/xo-online/responsive/component.dart';
+import 'package:win_money_game/modules/xo-online/xo_create_or_join_xo_screen.dart';
+
+import '../../shared/components/components.dart';
 
 class XoSelectBetScreen extends StatelessWidget {
   XoSelectBetScreen({Key? key}) : super(key: key);
@@ -19,7 +18,7 @@ class XoSelectBetScreen extends StatelessWidget {
             options: CarouselOptions(
               height: 350.0,
             ),
-            items: images.map((i) {
+            items: images.map((image) {
               return Builder(
                 builder: (BuildContext context) {
                   return Container(
@@ -31,17 +30,52 @@ class XoSelectBetScreen extends StatelessWidget {
                     ),
                     child: InkWell(
                       child: Image.asset(
-                        i,
+                        image,
                         fit: BoxFit.fill,
                       ),
                       onTap: () {
-                        if (select3x3 == true) {
-                          navigateTo(context, FirstXOScreen());
-                        } else if (select4x4 == true) {
-                          navigateTo(context, SecondXOScreen());
-                        } else if (select5x5 == true) {
-                          navigateTo(context, ThirdXOScreen());
+                        if(image == 'assets/images/50_coins.png'){
+                          chose50 = true; chose100 = false; chose500 = false; chose1k = false; chose2500 = false;
+                          chose5k = false; chose10k = false; chose25k = false; chose50k = false; chose100k = false;
                         }
+                        else if(image == 'assets/images/100_coins.png'){
+                          chose50 = false; chose100 = true; chose500 = false; chose1k = false; chose2500 = false;
+                          chose5k = false; chose10k = false; chose25k = false; chose50k = false; chose100k = false;
+                        }
+                        else if(image == 'assets/images/500_coins.png'){
+                          chose50 = false; chose100 = false; chose500 = true; chose1k = false; chose2500 = false;
+                          chose5k = false; chose10k = false; chose25k = false; chose50k = false; chose100k = false;
+                        }
+                        else if(image == 'assets/images/1k_coins.png'){
+                          chose50 = false; chose100 = false; chose500 = false; chose1k = true; chose2500 = false;
+                          chose5k = false; chose10k = false; chose25k = false; chose50k = false; chose100k = false;
+                        }
+                        else if(image == 'assets/images/2.5k_coins.png'){
+                          chose50 = false; chose100 = false; chose500 = false; chose1k = false; chose2500 = true;
+                          chose5k = false; chose10k = false; chose25k = false; chose50k = false; chose100k = false;
+                        }
+                        else if(image == 'assets/images/5k_coins.png'){
+                          chose50 = false; chose100 = false; chose500 = false; chose1k = false; chose2500 = false;
+                          chose5k = true; chose10k = false; chose25k = false; chose50k = false; chose100k = false;
+                        }
+                        else if(image == 'assets/images/10k_coins.png'){
+                          chose50 = false; chose100 = false; chose500 = false; chose1k = false; chose2500 = false;
+                          chose5k = false; chose10k = true; chose25k = false; chose50k = false; chose100k = false;
+                        }
+                        else if(image == 'assets/images/25k_coins.png'){
+                          chose50 = false; chose100 = false; chose500 = false; chose1k = false; chose2500 = false;
+                          chose5k = false; chose10k = false; chose25k = true; chose50k = false; chose100k = false;
+                        }
+                        else if(image == 'assets/images/50k_coins.png'){
+                          chose50 = false; chose100 = false; chose500 = false; chose1k = false; chose2500 = false;
+                          chose5k = false; chose10k = false; chose25k = false; chose50k = true; chose100k = false;
+                        }
+                        else if(image == 'assets/images/100k_coins.png'){
+                          chose50 = false; chose100 = false; chose500 = false; chose1k = false; chose2500 = false;
+                          chose5k = false; chose10k = false; chose25k = false; chose50k = false; chose100k = true;
+                        }
+
+                        navigateTo(context, CreateOrJoinXOScreen());
                       },
                     ),
                   );
@@ -49,25 +83,19 @@ class XoSelectBetScreen extends StatelessWidget {
               );
             }).toList(),
           ),
-          const SizedBox(
-            height: 100,
-          ),
-          defaultButton(
-            function: () {
-              if (select3x3 == true) {
-                navigateTo(context, FirstXOScreen());
-              } else if (select4x4 == true) {
-                navigateTo(context, SecondXOScreen());
-              } else if (select5x5 == true) {
-                navigateTo(context, ThirdXOScreen());
-              }
-            },
-            backgroundColorBox: Colors.amberAccent,
-            textColor: Colors.deepPurple,
-            text: 'Play',
-            width: 200,
-            isUpperCase: false,
-          ),
+          // const SizedBox(
+          //   height: 100,
+          // ),
+          // defaultButton(
+          //   function: () {
+          //     navigateTo(context, CreateOrJoinXOScreen());
+          //   },
+          //   backgroundColorBox: Colors.amberAccent,
+          //   textColor: Colors.deepPurple,
+          //   text: 'Play',
+          //   width: 200,
+          //   isUpperCase: false,
+          // ),
         ],
       ),
     );
