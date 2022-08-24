@@ -69,15 +69,6 @@ class SettingsScreen extends StatelessWidget {
                   SizedBox(
                     height: 50,
                   ),
-                  user.isAdmin ? defaultButton(
-                    function: (){
-                      navigateTo(context, AdminScreen());
-                    },
-                    text: "Admin Settings",
-                    isUpperCase: false,
-                    textColor: Colors.white,
-                    fontSize: 20.0,
-                  ) : Center(),
                 ],
               ),
             ),
