@@ -5,16 +5,22 @@ import 'package:win_money_game/models/missions_model.dart';
 import 'package:win_money_game/models/user_model.dart';
 
 class UsersProvider extends ChangeNotifier {
-  late List<UserModel> users = [];
-  late List<String> usersIDs = [];
-  late List<String> dailyMissionIDs = [];
-  late List<String> weeklyMissionIDs = [];
+  List<UserModel> users = [];
+  List<String> usersIDs = [];
+  List<String> dailyMissionIDs = [];
+  List<String> weeklyMissionIDs = [];
 
-  late Map<String, dynamic> usersDailyCounts = {};
-  late Map<String, dynamic> usersWeeklyCounts = {};
+  Map<String, dynamic> usersDailyCounts = {};
+  Map<String, dynamic> usersWeeklyCounts = {};
 
-  late Map<String, dynamic> usersResetDailyCounts = {};
-  late Map<String, dynamic> usersResetWeeklyCounts = {};
+  Map<String, dynamic> usersResetDailyCounts = {};
+  Map<String, dynamic> usersResetWeeklyCounts = {};
+
+  String dailyMissionId = '';
+  int? dailyMissionCount;
+
+  String weeklyMissionId = '';
+  int? weeklyMissionCount;
 
   Future<void> updateAvatar({
     required int avatarIndex,
@@ -442,5 +448,73 @@ class UsersProvider extends ChangeNotifier {
           ),
         ],
       ));
+  }
+
+  Future<void> updateUserDailyMissionProgress({
+  required Map<String, dynamic> userCounts,
+    required String missionName,
+}) async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+    bool doUpdate = false;
+
+    await FirebaseFirestore.instance
+        .collection('dailyMissions')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        if(doc["name"] == missionName){
+          dailyMissionId = doc["mId"];
+          dailyMissionCount = doc["count"];
+        }
+      });
+    }).then((value) async {
+      if(userCounts[dailyMissionId] < dailyMissionCount) {
+        userCounts[dailyMissionId]++;
+        doUpdate = true;
+      }
+      if(doUpdate){
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(id)
+            .update(
+            {
+              'dailyCounts' : userCounts,
+        });
+      }
+    });
+  }
+
+  Future<void> updateUserWeeklyMissionProgress({
+    required Map<String, dynamic> userCounts,
+    required String missionName,
+  }) async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+    bool doUpdate = false;
+
+    await FirebaseFirestore.instance
+        .collection('weeklyMissions')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        if(doc["name"] == missionName){
+          weeklyMissionId = doc["mId"];
+          weeklyMissionCount = doc["count"];
+        }
+      });
+    }).then((value) async {
+      if(userCounts[weeklyMissionId] < weeklyMissionCount) {
+        userCounts[weeklyMissionId]++;
+        doUpdate = true;
+      }
+      if(doUpdate){
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(id)
+            .update(
+            {
+              'weeklyCounts' : userCounts,
+            });
+      }
+    });
   }
 }

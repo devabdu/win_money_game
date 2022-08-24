@@ -11,6 +11,7 @@ import 'package:win_money_game/modules/missions/daily_missions.dart';
 import 'package:win_money_game/modules/missions/weekly_missions.dart';
 import 'package:win_money_game/modules/play_on_off.dart';
 import 'package:win_money_game/modules/select_room.dart';
+import 'package:win_money_game/providers/users_provider.dart';
 import '../shared/components/components.dart';
 
 class HomeLayoutScreen extends StatefulWidget {
@@ -220,7 +221,15 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                           onTap: ()async {
                             if (await rewardAd.isLoaded) {
                               rewardAd.show();// showing rewarded ad
-
+                              final provider = Provider.of<UsersProvider>(context, listen: false);
+                              provider.updateUserDailyMissionProgress(
+                                userCounts: user.dailyCounts,
+                                missionName: 'Watch 3 ads',
+                              );
+                              provider.updateUserWeeklyMissionProgress(
+                                userCounts: user.weeklyCounts,
+                                missionName: 'Watch 12 ads',
+                              );
                             } else {
                               showSnackBar('Reward ad is still loading...');
                             }
