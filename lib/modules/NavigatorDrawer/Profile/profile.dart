@@ -111,7 +111,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                                 itemBuilder: (context, index){
                                                   return InkWell(
                                                     child: CircleAvatar(
-                                                      backgroundImage: AssetImage(avatarImages[index]),
+                                                      // backgroundImage: AssetImage(avatarImages[index]),
                                                       radius: 40,
                                                     ),
                                                     onTap: () async {
