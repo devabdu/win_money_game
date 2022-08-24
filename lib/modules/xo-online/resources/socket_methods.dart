@@ -1,17 +1,17 @@
 // import 'dart:js';
 
 import 'package:flutter/material.dart';
-import 'package:win_money_game/modules/xo-online/provider/room_data_provider_4_4.dart';
-import 'package:win_money_game/modules/xo-online/provider/room_data_provider_5_5.dart';
+import 'package:win_money_game/providers/room_data_provider_4_4.dart';
 import 'package:win_money_game/modules/xo-online/resources/socket_client.dart';
 import 'package:provider/provider.dart';
-import 'package:win_money_game/modules/xo-online/provider/room_data_provider.dart';
+import 'package:win_money_game/providers/room_data_provider.dart';
 import 'package:win_money_game/modules/xo-online/Utils/utils.dart';
 import 'package:win_money_game/modules/xo-online/components/GameScreen.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 import 'package:win_money_game/modules/xo-online/resources/game_methods.dart';
 import 'package:win_money_game/modules/xo-online/resources/game_methods_4_4.dart';
 import 'package:win_money_game/modules/xo-online/resources/game_methods_5_5.dart';
+import 'package:win_money_game/providers/room_data_provider_5_5.dart';
 
 class SocketMethods {
   final _socketClient = SocketClient.instance.socket!;

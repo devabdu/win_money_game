@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:win_money_game/modules/xo-online/provider/room_data_provider_5_5.dart';
 import 'package:win_money_game/modules/xo-online/Utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart';
+import 'package:win_money_game/providers/room_data_provider_5_5.dart';
 
 class GameMethodsFive {
   void checkWinner(BuildContext context, Socket socketClent) {

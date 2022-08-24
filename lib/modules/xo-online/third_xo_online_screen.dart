@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:win_money_game/modules/XO/xo_utils.dart';
-import 'package:win_money_game/modules/xo-online/provider/room_data_provider_5_5.dart';
 import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
 import 'package:provider/provider.dart';
+import 'package:win_money_game/providers/room_data_provider_5_5.dart';
 
 class Player {
   static const none = '';
@@ -10,13 +10,13 @@ class Player {
   static const O = 'O';
 }
 
-class ThirdXOScreen extends StatefulWidget {
+class ThirdXOOnlineScreen extends StatefulWidget {
 
   @override
   MainPageState createState() => MainPageState();
 }
 
-class MainPageState extends State<ThirdXOScreen> {
+class MainPageState extends State<ThirdXOOnlineScreen> {
   static final countMatrix = 5;
   static final double size = 62;
   final SocketMethods _socketMethods = SocketMethods();

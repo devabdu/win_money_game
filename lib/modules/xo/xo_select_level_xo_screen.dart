@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:win_money_game/modules/xo-online/components/createroom_screen.dart';
-import 'package:win_money_game/modules/xo-online/components/createroom_screen_4_4.dart';
-import 'package:win_money_game/modules/xo-online/components/createroom_screen_5_5.dart';
-import 'package:win_money_game/modules/xo-online/components/join_room_screen_4_4.dart';
-import 'package:win_money_game/modules/xo-online/components/join_room_screen_5_5.dart';
-import 'package:win_money_game/modules/xo-online/responsive/responsive.dart';
-// import 'package:win_money_game/modules/XO/first_xo_screen.dart';
-// import 'package:win_money_game/modules/XO/second_xo_screen.dart';
-import 'package:win_money_game/modules/XO/xo_select_bet_screen.dart';
-// import 'package:win_money_game/modules/XO/third_xo_screen.dart';
-import 'package:win_money_game/modules/xo-online/responsive/component.dart';
-// import 'package:my_app/components/createroom_screen.dart';
-// import 'package:my_app/components/join_room_screen.dart';
+import 'package:win_money_game/modules/xo/first_xo_screen.dart';
+import 'package:win_money_game/modules/xo/second_xo_screen.dart';
+import 'package:win_money_game/modules/xo/third_xo_screen.dart';
+import 'package:win_money_game/shared/components/components.dart';
+
+import '../xo-online/responsive/responsive.dart';
+import '../xo-online/xo_select_bet_screen.dart';
 
 class SelectLevelXoScreen extends StatelessWidget {
   const SelectLevelXoScreen({Key? key}) : super(key: key);
@@ -28,8 +22,12 @@ class SelectLevelXoScreen extends StatelessWidget {
                 select3x3 = true;
                 select4x4 = false;
                 select5x5 = false;
-                print(select3x3);
-                navigateTo(context, XoSelectBetScreen());
+                print('playOnline $playOnline');
+                print('playOffline $playOffline');
+                if(playOnline)
+                  navigateTo(context, XoSelectBetScreen());
+                if(playOffline)
+                  navigateTo(context, FirstXOScreen());
               },
               backgroundColorBox: Colors.amberAccent,
               textColor: Colors.deepPurple,
@@ -43,11 +41,16 @@ class SelectLevelXoScreen extends StatelessWidget {
                 select3x3 = false;
                 select4x4 = true;
                 select5x5 = false;
-                navigateTo(context, CreateRoomScreen());
+                print('playOnline $playOnline');
+                print('playOffline $playOffline');
+                if(playOnline)
+                navigateTo(context, XoSelectBetScreen());
+                if(playOffline)
+                  navigateTo(context, SecondXOScreen());
               },
               backgroundColorBox: Colors.amberAccent,
               textColor: Colors.deepPurple,
-              text: 'Play online Game',
+              text: 'Play Game 4x4',
               width: 300,
               isUpperCase: false,
             ),
@@ -57,12 +60,16 @@ class SelectLevelXoScreen extends StatelessWidget {
                 select3x3 = false;
                 select4x4 = false;
                 select5x5 = true;
-
-                navigateTo(context, JoinRoomScreen3());
+                print('playOnline $playOnline');
+                print('playOffline $playOffline');
+                if(playOnline)
+                navigateTo(context, XoSelectBetScreen());
+                if(playOffline)
+                  navigateTo(context, ThirdXOScreen());
               },
               backgroundColorBox: Colors.amberAccent,
               textColor: Colors.deepPurple,
-              text: 'join room',
+              text: 'Play Game 5x5',
               width: 300,
               isUpperCase: false,
             ),

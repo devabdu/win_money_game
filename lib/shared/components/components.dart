@@ -12,9 +12,11 @@ bool select3x3 = false;
 bool select4x4 = false;
 bool select5x5 = false;
 
+bool playOnline = false;
+bool playOffline = false;
+
 bool selectXo = false;
 bool selectChess = false;
-bool selectLudo = false;
 
 RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
 String Function(Match) mathFunc = (Match match) => '${match[1]},';

@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:win_money_game/modules/XO/xo_utils.dart';
-import 'package:win_money_game/modules/xo-online/provider/room_data_provider.dart';
+import 'package:win_money_game/providers/room_data_provider.dart';
 import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
 import 'package:provider/provider.dart';
 class Player {
@@ -10,12 +10,12 @@ class Player {
   static const O = 'O';
 }
 
-class FirstXOScreen extends StatefulWidget {
+class FirstXOOnlineScreen extends StatefulWidget {
   @override
   MainPageState createState() => MainPageState();
 }
 
-class MainPageState extends State<FirstXOScreen> {
+class MainPageState extends State<FirstXOOnlineScreen> {
   static final countMatrix = 3;
   static final double size = 112;
   final SocketMethods _socketMethods = SocketMethods();

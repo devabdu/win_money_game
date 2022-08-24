@@ -250,7 +250,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                         onTap: () async{
                           selectXo = true;
                           selectChess = false;
-                          selectLudo = false;
                           if(selectTasaly){
                             final isLoaded = await interstitialAd.isLoaded;
                             if (isLoaded ?? false) {
@@ -275,7 +274,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                         onTap: () async{
                           selectXo = false;
                           selectChess = true;
-                          selectLudo = false;
                           if(selectTasaly){
                             final isLoaded = await interstitialAd.isLoaded;
                             if (isLoaded ?? false) {
@@ -298,9 +296,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                       ),
                       InkWell(
                         onTap: () async{
-                          selectXo = false;
-                          selectChess = false;
-                          selectLudo = true;
                           if(selectTasaly){
                             final isLoaded = await interstitialAd.isLoaded;
                             if (isLoaded ?? false) {
@@ -310,7 +305,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                   'Interstitial ad is still loading...');
                             }
                           }
-                          navigateTo(context, Play_On_Off());
+                          navigateTo(context, LudoScreen());
                         },
                         child: Image.asset("assets/images/LUDO Game.png",
                           fit: BoxFit.fill,
