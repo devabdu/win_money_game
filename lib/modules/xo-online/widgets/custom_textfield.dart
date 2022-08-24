@@ -4,7 +4,7 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool isReadOnly;
-  get bgColor => Color.fromRGBO(16, 13, 34, 1);
+  //get bgColor => Color.fromRGBO(16, 13, 34, 1);
   const CustomTextField({
     Key? key,
     required this.controller,
@@ -15,20 +15,22 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.blue,
-            blurRadius: 5,
-            spreadRadius: 2,
-          )
+            color: Colors.white,
+            blurRadius: 0,
+            spreadRadius: 3,
+          ),
         ],
+        border: Border.symmetric(),
+        borderRadius: BorderRadius.circular(9),
       ),
       child: TextField(
         readOnly: isReadOnly,
         controller: controller,
         decoration: InputDecoration(
-          fillColor: bgColor,
+          fillColor: Colors.amberAccent,
           filled: true,
           hintText: hintText,
         ),

@@ -4,6 +4,7 @@ import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
 import 'package:win_money_game/modules/xo-online/widgets/custom_button.dart';
 import 'package:win_money_game/modules/xo-online/widgets/custom_text.dart';
 import 'package:win_money_game/modules/xo-online/widgets/custom_textfield.dart';
+import 'package:win_money_game/shared/components/components.dart';
 
 class CreateRoomScreen extends StatefulWidget {
   static String routeName = '/create-room';
@@ -34,6 +35,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Colors.deepPurple,
       body: Responsive(
         child: Container(
           margin: const EdgeInsets.symmetric(
@@ -44,12 +46,6 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const CustomText(
-                shadows: [
-                  Shadow(
-                    blurRadius: 40,
-                    color: Colors.blue,
-                  ),
-                ],
                 text: 'Create Room',
                 fontSize: 70,
               ),
@@ -59,12 +55,22 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                 hintText: 'Enter your nickname',
               ),
               SizedBox(height: size.height * 0.045),
-              CustomButton(
-                  onTap: () => _socketMethods.createRoom(
-                    _nameController.text,
-                  ),
-                  // onTap: () => print('hello'),
-                  text: 'Create'),
+              defaultButton(
+                function: () => _socketMethods.createRoom(
+                  _nameController.text,
+                ),
+                backgroundColorBox: Colors.amberAccent,
+                textColor: Colors.deepPurple,
+                text: 'Create',
+                width: 150,
+                isUpperCase: false,
+              ),
+              // CustomButton(
+              //     onTap: () => _socketMethods.createRoom(
+              //       _nameController.text,
+              //     ),
+              //     // onTap: () => print('hello'),
+              //     text: 'Create'),
             ],
           ),
         ),

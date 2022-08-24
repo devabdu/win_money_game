@@ -4,6 +4,7 @@ import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
 import 'package:win_money_game/modules/xo-online/widgets/custom_button.dart';
 import 'package:win_money_game/modules/xo-online/widgets/custom_text.dart';
 import 'package:win_money_game/modules/xo-online/widgets/custom_textfield.dart';
+import 'package:win_money_game/shared/components/components.dart';
 
 
 class JoinRoomScreen3 extends StatefulWidget {
@@ -38,6 +39,7 @@ class _JoinRoomScreen3State extends State<JoinRoomScreen3> {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Colors.deepPurple,
       body: Responsive(
         child: Container(
           margin: const EdgeInsets.symmetric(
@@ -48,12 +50,12 @@ class _JoinRoomScreen3State extends State<JoinRoomScreen3> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const CustomText(
-                shadows: [
-                  Shadow(
-                    blurRadius: 40,
-                    color: Colors.blue,
-                  ),
-                ],
+                // shadows: [
+                //   Shadow(
+                //     blurRadius: 40,
+                //     color: Colors.blue,
+                //   ),
+                // ],
                 text: 'Join Room',
                 fontSize: 70,
               ),
@@ -68,13 +70,24 @@ class _JoinRoomScreen3State extends State<JoinRoomScreen3> {
                 hintText: 'Enter Game ID',
               ),
               SizedBox(height: size.height * 0.045),
-              CustomButton(
-                onTap: () => _socketMethods.joinRoom5(
+              defaultButton(
+                function:  () => _socketMethods.joinRoom5(
                   _nameController.text,
                   _gameIdController.text,
                 ),
+                backgroundColorBox: Colors.amberAccent,
+                textColor: Colors.deepPurple,
                 text: 'Join',
+                width: 150,
+                isUpperCase: false,
               ),
+              // CustomButton(
+              //   onTap: () => _socketMethods.joinRoom5(
+              //     _nameController.text,
+              //     _gameIdController.text,
+              //   ),
+              //   text: 'Join',
+              // ),
             ],
           ),
         ),
