@@ -38,106 +38,103 @@ class MainPageState extends State<FirstXOOnlineScreen> {
   Widget build(BuildContext context) {
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
 
-    return SingleChildScrollView(
-      child: Scaffold(
-
-        // backgroundColor: Color.fromRGBO(16, 13, 34, 1),
-        backgroundColor: Colors.deepPurple,
-        appBar: AppBar(
-          //centerTitle: true,
-          //backgroundColor: Color.fromRGBO(16, 13, 34, 1),
-          backgroundColor: Colors.amberAccent,
-          iconTheme: const IconThemeData(
+    return Scaffold(
+      // backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+      backgroundColor: Colors.deepPurple,
+      appBar: AppBar(
+        //centerTitle: true,
+        //backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+        backgroundColor: Colors.amberAccent,
+        iconTheme: const IconThemeData(
+          color: Colors.deepPurple,
+        ),
+        title: const Text(
+          'Tic Tac Toe',
+          style: TextStyle(color: Colors.deepPurple),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.logout_outlined),
             color: Colors.deepPurple,
           ),
-          title: const Text(
-            'Tic Tac Toe',
-            style: TextStyle(color: Colors.deepPurple),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.logout_outlined),
-              color: Colors.deepPurple,
-            ),
-          ],
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            SafeArea(
-                child: Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.all(30),
-                      child: Column(
-                        children: <Widget>[
-                          Row(
-                            children: [
-                              const CircleAvatar(
-                                backgroundColor: Colors.white,
-                                radius: 22,
-                                child: CircleAvatar(
-                                  radius: 20,
-                                  backgroundImage: NetworkImage(
-                                      'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
-                                ),
+        ],
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SafeArea(
+              child: Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.all(30),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            const CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 22,
+                              child: CircleAvatar(
+                                radius: 20,
+                                backgroundImage: NetworkImage(
+                                    'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
                               ),
-                              const SizedBox(
-                                width: 10,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'First Player',//print registered username here
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                // fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                'First Player',//print registered username here
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 17,
-                                  // fontWeight: FontWeight.bold,
-                                ),
-                              ),
+                            ),
 
-                            ],
-                          ),
-                        ],
-                      ),
-                    ))),
-            ...Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x,roomDataProvider)),
-            SafeArea(
-                child: Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.all(30),
-                      child: Column(
+                          ],
+                        ),
+                      ],
+                    ),
+                  ))),
+          ...Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x,roomDataProvider)),
+          SafeArea(
+              child: Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.all(30),
+                    child: Column(
 
-                        children: <Widget>[
-                          Row(
-                            children: [
-                              const CircleAvatar(
-                                backgroundColor: Colors.white,
-                                radius: 22,
-                                child: CircleAvatar(
-                                  radius: 20,
-                                  backgroundImage: NetworkImage(
-                                      'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
-                                ),
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            const CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 22,
+                              child: CircleAvatar(
+                                radius: 20,
+                                backgroundImage: NetworkImage(
+                                    'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
                               ),
-                              const SizedBox(
-                                width: 10,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'Second Player',// print registered username here
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                // fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                'Second Player',// print registered username here
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 17,
-                                  // fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ))),
-          ],
-        ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ))),
+        ],
       ),
     );
   }
