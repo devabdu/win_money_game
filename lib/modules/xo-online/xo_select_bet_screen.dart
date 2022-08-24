@@ -53,13 +53,13 @@ class XoSelectBetScreen extends StatelessWidget {
                                 else{
                                   showDialog(context: context, builder: (context) => AlertDialog(
                                     backgroundColor: Colors.amberAccent,
-                                    title: const Text('Avatar ',
+                                    title: const Text('Sorry',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    content: const Text('Your avatar has been updated successfully',
+                                    content: const Text('You don\'t have enough coins',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                       ),
@@ -82,13 +82,13 @@ class XoSelectBetScreen extends StatelessWidget {
                                 else{
                                   showDialog(context: context, builder: (context) => AlertDialog(
                                     backgroundColor: Colors.amberAccent,
-                                    title: const Text('Avatar ',
+                                    title: const Text('Sorry',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    content: const Text('Your avatar has been updated successfully',
+                                    content: const Text('You don\'t have enough coins',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                       ),
@@ -111,13 +111,13 @@ class XoSelectBetScreen extends StatelessWidget {
                                 else{
                                   showDialog(context: context, builder: (context) => AlertDialog(
                                     backgroundColor: Colors.amberAccent,
-                                    title: const Text('Avatar ',
+                                    title: const Text('Sorry',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    content: const Text('Your avatar has been updated successfully',
+                                    content: const Text('You don\'t have enough coins',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                       ),
@@ -140,13 +140,13 @@ class XoSelectBetScreen extends StatelessWidget {
                                 else{
                                   showDialog(context: context, builder: (context) => AlertDialog(
                                     backgroundColor: Colors.amberAccent,
-                                    title: const Text('Avatar ',
+                                    title: const Text('Sorry',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    content: const Text('Your avatar has been updated successfully',
+                                    content: const Text('You don\'t have enough coins',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                       ),
@@ -169,13 +169,13 @@ class XoSelectBetScreen extends StatelessWidget {
                                 else{
                                   showDialog(context: context, builder: (context) => AlertDialog(
                                     backgroundColor: Colors.amberAccent,
-                                    title: const Text('Avatar ',
+                                    title: const Text('Sorry',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    content: const Text('Your avatar has been updated successfully',
+                                    content: const Text('You don\'t have enough coins',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                       ),
@@ -198,13 +198,13 @@ class XoSelectBetScreen extends StatelessWidget {
                                 else{
                                   showDialog(context: context, builder: (context) => AlertDialog(
                                     backgroundColor: Colors.amberAccent,
-                                    title: const Text('Avatar ',
+                                    title: const Text('Sorry',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    content: const Text('Your avatar has been updated successfully',
+                                    content: const Text('You don\'t have enough coins',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                       ),
@@ -227,13 +227,13 @@ class XoSelectBetScreen extends StatelessWidget {
                                 else{
                                   showDialog(context: context, builder: (context) => AlertDialog(
                                     backgroundColor: Colors.amberAccent,
-                                    title: const Text('Avatar ',
+                                    title: const Text('Sorry',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    content: const Text('Your avatar has been updated successfully',
+                                    content: const Text('You don\'t have enough coins',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                       ),
@@ -256,13 +256,13 @@ class XoSelectBetScreen extends StatelessWidget {
                                 else{
                                   showDialog(context: context, builder: (context) => AlertDialog(
                                     backgroundColor: Colors.amberAccent,
-                                    title: const Text('Avatar ',
+                                    title: const Text('Sorry',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    content: const Text('Your avatar has been updated successfully',
+                                    content: const Text('You don\'t have enough coins',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                       ),
@@ -285,13 +285,13 @@ class XoSelectBetScreen extends StatelessWidget {
                                 else{
                                   showDialog(context: context, builder: (context) => AlertDialog(
                                     backgroundColor: Colors.amberAccent,
-                                    title: const Text('Avatar ',
+                                    title: const Text('Sorry',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    content: const Text('Your avatar has been updated successfully',
+                                    content: const Text('You don\'t have enough coins',
                                       style: TextStyle(
                                         color: Colors.deepPurple,
                                       ),
