@@ -73,6 +73,7 @@ class XoSelectBetScreen extends StatelessWidget {
                                   ));
                                 }
                               }
+
                               else if(image == 'assets/images/100_coins.png'){
                                 chose50 = false; chose100 = true; chose500 = false; chose1k = false; chose2500 = false;
                                 chose5k = false; chose10k = false; chose25k = false; chose50k = false; chose100k = false;
