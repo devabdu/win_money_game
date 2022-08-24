@@ -27,6 +27,13 @@ class _WeeklyMissionsScreenState extends State<WeeklyMissionsScreen> {
         iconTheme: const IconThemeData(
           color: Colors.deepPurple,
         ),
+        title: const Text(
+          'Weekly Missions',
+          style: TextStyle(
+            color: Colors.deepPurple,
+          ),
+        ),
+        //centerTitle: true,
       ),
       body: Column(
         children: [
@@ -44,19 +51,19 @@ class _WeeklyMissionsScreenState extends State<WeeklyMissionsScreen> {
                 physics: BouncingScrollPhysics(),
                 child: Column(
                   children: [
-                    Center(
-                      child: Text(
-                        'Weekly Missions',
-                        style: const TextStyle(
-                          color: Colors.amberAccent,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    // Center(
+                    //   child: Text(
+                    //     'Weekly Missions',
+                    //     style: const TextStyle(
+                    //       color: Colors.amberAccent,
+                    //       fontWeight: FontWeight.bold,
+                    //       fontSize: 25,
+                    //     ),
+                    //   ),
+                    // ),
+                    // const SizedBox(
+                    //   height: 20,
+                    // ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

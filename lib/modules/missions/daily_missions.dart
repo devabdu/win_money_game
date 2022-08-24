@@ -27,6 +27,13 @@ class _DailyMissionsScreenState extends State<DailyMissionsScreen> {
         iconTheme: const IconThemeData(
           color: Colors.deepPurple,
         ),
+        title: const Text(
+          'Daily Missions',
+          style: TextStyle(
+            color: Colors.deepPurple,
+          ),
+        ),
+        //centerTitle: true,
       ),
       body: Column(
         children: [
@@ -44,16 +51,16 @@ class _DailyMissionsScreenState extends State<DailyMissionsScreen> {
                 physics: BouncingScrollPhysics(),
                 child: Column(
                   children: [
-                    Center(
-                      child: Text(
-                        'Daily Missions',
-                        style: const TextStyle(
-                          color: Colors.amberAccent,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25,
-                        ),
-                      ),
-                    ),
+                    // Center(
+                    //   child: Text(
+                    //     'Daily Missions',
+                    //     style: const TextStyle(
+                    //       color: Colors.amberAccent,
+                    //       fontWeight: FontWeight.bold,
+                    //       fontSize: 25,
+                    //     ),
+                    //   ),
+                    // ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
