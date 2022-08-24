@@ -24,54 +24,57 @@ class LoginScreen extends StatelessWidget {
         } else {
           return Scaffold(
             backgroundColor: Colors.deepPurple,
-            body: Padding(
-              padding: const EdgeInsets.only(top: 100),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(60.0),
-                    child: Lottie.asset('assets/win-money.json',),
-                  ),
-                  const SizedBox(height: 50,),
-                  ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(
-                            250, 60
-                        ),
-                        textStyle: TextStyle(fontSize: 18),
-                        side: const BorderSide(
-                          color: Colors.white,
-                        )
+            body: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 100),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(60.0),
+                      child: Lottie.asset('assets/win-money.json',),
                     ),
-                    label: const Text('Log in with Facebook'),
-                    icon: const Icon(Icons.facebook),
-                    onPressed: () {
-                      final provider = Provider.of<SignInProvider>(
-                          context, listen: false);
-                      provider.facebookLogin(context);
-                    },
-                  ),
-                  const SizedBox(height: 20,),
-                  ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(
-                            250, 60
-                        ),
-                        textStyle: const TextStyle(fontSize: 18),
-                        side: const BorderSide(
-                          color: Colors.white,
-                        )
+                    const SizedBox(height: 50,),
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(
+                              250, 60
+                          ),
+                          textStyle: TextStyle(fontSize: 18),
+                          side: const BorderSide(
+                            color: Colors.white,
+                          )
+                      ),
+                      label: const Text('Log in with Facebook'),
+                      icon: const Icon(Icons.facebook),
+                      onPressed: () {
+                        final provider = Provider.of<SignInProvider>(
+                            context, listen: false);
+                        provider.facebookLogin(context);
+                      },
                     ),
-                    label: const Text('Log in with Google'),
-                    icon: FaIcon(FontAwesomeIcons.google),
-                    // icon: const Icon(Icons.email),
-                    onPressed: () {
-                      final provider = Provider.of<SignInProvider>(
-                          context, listen: false);
-                      provider.googleLogin(context);
-                    },
-                  ),
-                ],
+                    const SizedBox(height: 20,),
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(
+                              250, 60
+                          ),
+                          textStyle: const TextStyle(fontSize: 18),
+                          side: const BorderSide(
+                            color: Colors.white,
+                          )
+                      ),
+                      label: const Text('Log in with Google'),
+                      icon: FaIcon(FontAwesomeIcons.google),
+                      // icon: const Icon(Icons.email),
+                      onPressed: () {
+                        final provider = Provider.of<SignInProvider>(
+                            context, listen: false);
+                        provider.googleLogin(context);
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           );
