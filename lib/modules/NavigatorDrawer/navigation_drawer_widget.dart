@@ -39,37 +39,37 @@ class NavigationDrawerWidget extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              DrawerItem(
-                icon: Icons.stacked_bar_chart_outlined,
-                title: 'Statistics',
-                onTap: () => onItemPressed(context, index: 0),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              DrawerItem(
-                icon: Icons.settings,
-                title: 'Settings',
-                onTap: () => onItemPressed(context, index: 1),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              DrawerItem(
-                icon: Icons.help_outline,
-                title: 'Help',
-                onTap: () => onItemPressed(context, index: 2),
-              ),
-              const SizedBox(
-                height: 30,),
-              const Divider(
-                thickness: 1,
-                height: 10,
-                color: Colors.white,
-              ),
-              const SizedBox(
-                height: 30,
-              ),
+              // DrawerItem(
+              //   icon: Icons.stacked_bar_chart_outlined,
+              //   title: 'Statistics',
+              //   onTap: () => onItemPressed(context, index: 0),
+              // ),
+              // const SizedBox(
+              //   height: 30,
+              // ),
+              // DrawerItem(
+              //   icon: Icons.settings,
+              //   title: 'Settings',
+              //   onTap: () => onItemPressed(context, index: 1),
+              // ),
+              // const SizedBox(
+              //   height: 30,
+              // ),
+              // DrawerItem(
+              //   icon: Icons.help_outline,
+              //   title: 'Help',
+              //   onTap: () => onItemPressed(context, index: 2),
+              // ),
+              // const SizedBox(
+              //   height: 30,),
+              // const Divider(
+              //   thickness: 1,
+              //   height: 10,
+              //   color: Colors.white,
+              // ),
+              // const SizedBox(
+              //   height: 30,
+              // ),
               DrawerItem(
                 icon: Icons.logout_outlined,
                 title: 'SignOut',
@@ -91,16 +91,16 @@ class NavigationDrawerWidget extends StatelessWidget {
 
     switch(index)
     {
+      // case 0:
+      //   navigateTo(context, const StatisticsScreen());
+      //   break;
+      // case 1:
+      //   navigateTo(context, const SettingsScreen());
+      //   break;
+      // case 2:
+      //   navigateTo(context, const HelpScreen());
+      //   break;
       case 0:
-        navigateTo(context, const StatisticsScreen());
-        break;
-      case 1:
-        navigateTo(context, const SettingsScreen());
-        break;
-      case 2:
-        navigateTo(context, const HelpScreen());
-        break;
-      case 3:
         final provider = Provider.of<SignInProvider>(context, listen: false);
         user.providerData.single.providerId == 'facebook.com' ? provider.facebookLogout() : provider.googleLogout();
         navigateBack(context, SelectPathScreen());
