@@ -22,9 +22,9 @@ class CreateOrJoinXOScreen extends StatelessWidget {
               function: () {
                 if(select3x3)
                   navigateTo(context, CreateRoomScreen());
-                if(select4x4)
+                else if(select4x4)
                   navigateTo(context, CreateRoomScreen2());
-                if(select5x5)
+                else if(select5x5)
                   navigateTo(context, CreateRoomScreen3());
               },
               backgroundColorBox: Colors.amberAccent,
@@ -38,9 +38,9 @@ class CreateOrJoinXOScreen extends StatelessWidget {
               function: () {
                 if(select3x3)
                 navigateTo(context, JoinRoomScreen());
-                if(select4x4)
+                else if(select4x4)
                   navigateTo(context, JoinRoomScreen2());
-                if(select5x5)
+                else if(select5x5)
                   navigateTo(context, JoinRoomScreen3());
               },
               backgroundColorBox: Colors.amberAccent,

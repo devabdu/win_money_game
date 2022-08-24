@@ -74,7 +74,6 @@ class XoSelectBetScreen extends StatelessWidget {
                           chose50 = false; chose100 = false; chose500 = false; chose1k = false; chose2500 = false;
                           chose5k = false; chose10k = false; chose25k = false; chose50k = false; chose100k = true;
                         }
-
                         navigateTo(context, CreateOrJoinXOScreen());
                       },
                     ),
@@ -83,19 +82,6 @@ class XoSelectBetScreen extends StatelessWidget {
               );
             }).toList(),
           ),
-          // const SizedBox(
-          //   height: 100,
-          // ),
-          // defaultButton(
-          //   function: () {
-          //     navigateTo(context, CreateOrJoinXOScreen());
-          //   },
-          //   backgroundColorBox: Colors.amberAccent,
-          //   textColor: Colors.deepPurple,
-          //   text: 'Play',
-          //   width: 200,
-          //   isUpperCase: false,
-          // ),
         ],
       ),
     );

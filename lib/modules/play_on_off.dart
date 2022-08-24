@@ -21,7 +21,7 @@ class Play_On_Off extends StatelessWidget {
                   playOnline = false;
                   navigateTo(context, SelectLevelXoScreen());
                 }
-                if(selectChess){
+                else if(selectChess){
                   playOffline = true;
                   playOnline = false;
                   // navigateTo(context, const MainMenuScreen());
@@ -42,7 +42,7 @@ class Play_On_Off extends StatelessWidget {
                   playOnline = true;
                   navigateTo(context, SelectLevelXoScreen());
                 }
-                if(selectChess){
+                else if(selectChess){
                   playOffline = true;
                   playOnline = false;
                   // navigateTo(context, const MainMenuScreen());
