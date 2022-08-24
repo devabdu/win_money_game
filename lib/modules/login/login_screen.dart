@@ -76,6 +76,7 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              scrollDirection: Axis.vertical,
             ),
           );
         }
