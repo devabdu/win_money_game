@@ -219,7 +219,8 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                         InkWell(
                           onTap: ()async {
                             if (await rewardAd.isLoaded) {
-                              rewardAd.show(); // showing rewarded ad
+                              rewardAd.show();// showing rewarded ad
+
                             } else {
                               showSnackBar('Reward ad is still loading...');
                             }
