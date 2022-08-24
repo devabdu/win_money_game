@@ -5,10 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:win_money_game/modules/Splash%20Screen/splash_screen.dart';
 import 'package:win_money_game/modules/login/login_screen.dart';
-import 'package:win_money_game/modules/ludo/game_engine/model/dice_model.dart';
-import 'package:win_money_game/modules/ludo/game_engine/model/game_state.dart';
-import 'package:win_money_game/modules/ludo/ludo_widgets/dice.dart';
-import 'package:win_money_game/modules/ludo/ludo_widgets/gameplay.dart';
 import 'package:win_money_game/modules/select_path_screen.dart';
 import 'package:win_money_game/modules/xo-online/components/createroom_screen.dart';
 import 'package:win_money_game/modules/xo-online/components/createroom_screen_4_4.dart';
@@ -36,8 +32,6 @@ void main() async {
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context)=>GameState()),
-      ChangeNotifierProvider(create: (context)=>DiceModel()),
       ChangeNotifierProvider(create: (context)=>SignInProvider()),
       ChangeNotifierProvider(create: (context)=>UsersProvider()),
       ChangeNotifierProvider(create: (context)=>RoomDataProvider()),
@@ -83,37 +77,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
       ),
 
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key key, @required this.title}) : super(key: key);
-  final String title;
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  GlobalKey keyBar = GlobalKey();
-
-  @override
-  Widget build(BuildContext context) {
-    final gameState = Provider.of<GameState>(context);
-    return Scaffold(
-      appBar: AppBar(
-        key: keyBar,
-        title: const Text('Ludo'),
-      ),
-      body: GamePlay(keyBar,gameState),
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        child: Container(
-          height: 50.0,
-        ),
-      ),
-      floatingActionButton: Dice(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

@@ -15,6 +15,17 @@ bool select5x5 = false;
 bool playOnline = false;
 bool playOffline = false;
 
+bool chose50 = false;
+bool chose100 = false;
+bool chose500 = false;
+bool chose1k = false;
+bool chose2500 = false;
+bool chose5k = false;
+bool chose10k = false;
+bool chose25k = false;
+bool chose50k = false;
+bool chose100k = false;
+
 bool selectXo = false;
 bool selectChess = false;
 
@@ -32,7 +43,7 @@ final List<String> avatarImages = [
   'assets/images/avatar_8.png',
 ];
 
-final List<String> images = [
+const List<String> images = [
   'assets/images/50_coins.png',
   'assets/images/100_coins.png',
   'assets/images/500_coins.png',
