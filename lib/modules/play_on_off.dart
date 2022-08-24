@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:win_money_game/modules/chess/game.dart';
 import 'package:win_money_game/modules/xo-online/responsive/responsive.dart';
 import 'package:win_money_game/modules/xo/xo_select_level_xo_screen.dart';
 import 'package:win_money_game/shared/components/components.dart';
@@ -24,7 +25,7 @@ class Play_On_Off extends StatelessWidget {
                 else if(selectChess){
                   playOffline = true;
                   playOnline = false;
-                  // navigateTo(context, const MainMenuScreen());
+                  navigateTo(context, chessGame());
                 }
               },
               backgroundColorBox: Colors.amberAccent,
