@@ -75,7 +75,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                 title: 'SignOut',
                 titleColor: Colors.deepPurple,
                 iconColor: Colors.deepPurple,
-                onTap: () => onItemPressed(context, index: 3),
+                onTap: () => onItemPressed(context, index: 0),
               ),
             ],
           ),
