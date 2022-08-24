@@ -4,8 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:win_money_game/modules/Splash%20Screen/splash_screen.dart';
-import 'package:win_money_game/modules/login/login_screen.dart';
-import 'package:win_money_game/modules/select_path_screen.dart';
 import 'package:win_money_game/modules/xo-online/components/createroom_screen.dart';
 import 'package:win_money_game/modules/xo-online/components/createroom_screen_4_4.dart';
 import 'package:win_money_game/modules/xo-online/components/createroom_screen_5_5.dart';
@@ -45,17 +43,13 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
 
   Widget build(BuildContext context) {
     return MaterialApp(
-      // initialRoute: '/xo',
        initialRoute: '/',
       routes: {
         '/' : (context) => const SplashScreen(),
-        '/second' : (context) => LoginScreen(),
-        '/third' : (context) => const SelectPathScreen(),
         '/xo' : (context) => CreateOrJoinXOScreen(),
         '/createRoom' : (context) => CreateRoomScreen(),
         '/createRoom2' : (context) => CreateRoomScreen2(),
@@ -66,7 +60,6 @@ class MyApp extends StatelessWidget {
         '/game' : (context) => FirstXOOnlineScreen(),
         '/game2' : (context) => SecondXOOnlineScreen(),
         '/game3' : (context) => ThirdXOOnlineScreen(),
-        // '/chess' : (context) => chessGame(),
       },
       supportedLocales: const [
         Locale('en', 'US')
