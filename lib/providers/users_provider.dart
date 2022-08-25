@@ -22,6 +22,8 @@ class UsersProvider extends ChangeNotifier {
   String weeklyMissionId = '';
   int? weeklyMissionCount;
 
+  int targetWins = 0;
+
   Future<void> updateAvatar({
     required int avatarIndex,
     required context,
@@ -513,6 +515,256 @@ class UsersProvider extends ChangeNotifier {
             .update(
             {
               'weeklyCounts' : userCounts,
+            });
+      }
+    });
+  }
+  Future<void> updateUserLevelAndExp({
+    required double userExp,
+    required int userLevel,
+}) async{
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    userExp = userExp + 0.25;
+    if(userExp == 1) {
+      userLevel++;
+      userExp = 0;
+    }
+
+     await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'exp' : userExp,
+          'level' : userLevel,
+        });
+  }
+
+  Future<void> updateWinnerCoins({
+    required int userCoins,
+    required int CoinsWon,
+  }) async{
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    userCoins = userCoins + CoinsWon;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'coins' : userCoins,
+        });
+  }
+
+  Future<void> updateLoserCoins({
+    required int userCoins,
+    required int CoinsLost,
+  }) async{
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    userCoins = userCoins - CoinsLost;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'coins' : userCoins,
+        });
+  }
+
+  Future<void> updateUserDailyCoinsMissionProgress({
+    required Map<String, dynamic> userCounts,
+    required int CoinsWon,
+    required String missionName,
+  }) async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+    bool doUpdate = false;
+
+    await FirebaseFirestore.instance
+        .collection('dailyMissions')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        if(doc["name"] == missionName){
+          dailyMissionId = doc["mId"];
+          dailyMissionCount = doc["count"];
+        }
+      });
+    }).then((value) async {
+      if(userCounts[dailyMissionId] < dailyMissionCount) {
+        userCounts[dailyMissionId] = userCounts[dailyMissionId] + CoinsWon;
+        doUpdate = true;
+      }
+      if(doUpdate){
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(id)
+            .update(
+            {
+              'dailyCounts' : userCounts,
+            });
+      }
+    });
+  }
+
+  Future<void> updateUserWeeklyCoinsMissionProgress({
+    required Map<String, dynamic> userCounts,
+    required int CoinsWon,
+    required String missionName,
+  }) async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+    bool doUpdate = false;
+
+    await FirebaseFirestore.instance
+        .collection('weeklyMissions')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      querySnapshot.docs.forEach((doc) {
+        if(doc["name"] == missionName){
+          weeklyMissionId = doc["mId"];
+          weeklyMissionCount = doc["count"];
+        }
+      });
+    }).then((value) async {
+      if(userCounts[weeklyMissionId] < weeklyMissionCount) {
+        userCounts[weeklyMissionId] = userCounts[weeklyMissionId] + CoinsWon;
+        doUpdate = true;
+      }
+      if(doUpdate){
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(id)
+            .update(
+            {
+              'weeklyCounts' : userCounts,
+            });
+      }
+    });
+  }
+
+  Future<void> updateUserXoTasalyWins({
+    required int userTasalyWins,
+  }) async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+    bool doUpdate = false;
+
+    await FirebaseFirestore.instance
+        .collection('statistics')
+        .doc('target')
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+      targetWins = docData['targetWins'];
+    }).then((value) async {
+      if(userTasalyWins < targetWins) {
+        userTasalyWins++;
+        doUpdate = true;
+      }
+      if(doUpdate){
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(id)
+            .update(
+            {
+              'xoTwins' : userTasalyWins,
+            });
+      }
+    });
+  }
+
+  Future<void> updateUserXoRebhWins({
+    required int userRebhWins,
+  }) async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+    bool doUpdate = false;
+
+    await FirebaseFirestore.instance
+        .collection('statistics')
+        .doc('target')
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+      targetWins = docData['targetWins'];
+    }).then((value) async {
+      if(userRebhWins < targetWins) {
+        userRebhWins++;
+        doUpdate = true;
+      }
+      if(doUpdate){
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(id)
+            .update(
+            {
+              'xoRwins' : userRebhWins,
+            });
+      }
+    });
+  }
+
+  Future<void> updateUserChessTasalyWins({
+    required int userTasalyWins,
+  }) async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+    bool doUpdate = false;
+
+    await FirebaseFirestore.instance
+        .collection('statistics')
+        .doc('target')
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+      targetWins = docData['targetWins'];
+    }).then((value) async {
+      if(userTasalyWins < targetWins) {
+        userTasalyWins++;
+        doUpdate = true;
+      }
+      if(doUpdate){
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(id)
+            .update(
+            {
+              'chessTwins' : userTasalyWins,
+            });
+      }
+    });
+  }
+
+  Future<void> updateUserChessRebhWins({
+    required int userRebhWins,
+    required int CoinsWon,
+  }) async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+    bool doUpdate = false;
+
+    await FirebaseFirestore.instance
+        .collection('statistics')
+        .doc('target')
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+      targetWins = docData['targetWins'];
+    }).then((value) async {
+      if(userRebhWins < targetWins) {
+        userRebhWins++;
+        doUpdate = true;
+      }
+      if(doUpdate){
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(id)
+            .update(
+            {
+              'chessRwins' : userRebhWins,
             });
       }
     });

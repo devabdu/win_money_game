@@ -178,14 +178,6 @@ Future<UserModel?> readUser() async {
   return null;
 }
 
-Stream<List<MissionsModel>> readMissions({
-  required String missionsType,
-}) =>
-    FirebaseFirestore.instance.collection(missionsType).snapshots().map(
-        (snapshot) => snapshot.docs
-            .map((doc) => MissionsModel.fromJson(doc.data()))
-            .toList());
-
 Future<StatisticsModel?> readTarget() async {
   final docTarget = FirebaseFirestore.instance.collection('statistics').doc('target');
   final snapshot = await docTarget.get();
@@ -194,6 +186,14 @@ Future<StatisticsModel?> readTarget() async {
   }
   return null;
 }
+
+Stream<List<MissionsModel>> readMissions({
+  required String missionsType,
+}) =>
+    FirebaseFirestore.instance.collection(missionsType).snapshots().map(
+        (snapshot) => snapshot.docs
+            .map((doc) => MissionsModel.fromJson(doc.data()))
+            .toList());
 
 Widget buildDailyMission(MissionsModel mission) {
   return FutureBuilder<UserModel?>(

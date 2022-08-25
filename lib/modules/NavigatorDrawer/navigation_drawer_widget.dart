@@ -158,7 +158,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                           lineHeight: 14.0,
                           percent: user.exp,
                           center: Text(
-                            '${user.exp}%',
+                            '${user.exp * 100}%',
                             style:  const TextStyle(fontSize: 12.0),
                           ),
                           //trailing: Icon(Icons.mood),
