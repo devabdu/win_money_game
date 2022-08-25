@@ -26,7 +26,7 @@ class SelectLevelXoScreen extends StatelessWidget {
                 print('playOnline $playOnline');
                 print('playOffline $playOffline');
                 if(playOnline)
-                  navigateTo(context, CreateOrJoinXOScreen());
+                  navigateTo(context, XoSelectBetScreen());
                 if(playOffline)
                   navigateTo(context, FirstXOScreen());
               },
