@@ -33,28 +33,28 @@ bool selectChess = false;
 RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
 String Function(Match) mathFunc = (Match match) => '${match[1]},';
 
-final List avatarImages = [
-  Image.network('assets/images/avatar_1.png'),
-  Image.network('assets/images/avatar_2.png'),
-  Image.network('assets/images/avatar_3.png'),
-  Image.network('assets/images/avatar_4.png'),
-  Image.network('assets/images/avatar_5.png'),
-  Image.network('assets/images/avatar_6.png'),
-  Image.network('assets/images/avatar_7.png'),
-  Image.network('assets/images/avatar_8.png'),
+final List<String> avatarImages = [
+  ('assets/images/avatar_1.png'),
+  ('assets/images/avatar_2.png'),
+  ('assets/images/avatar_3.png'),
+  ('assets/images/avatar_4.png'),
+  ('assets/images/avatar_5.png'),
+  ('assets/images/avatar_6.png'),
+  ('assets/images/avatar_7.png'),
+  ('assets/images/avatar_8.png'),
 ];
 
- List images = [
-   Image.network('assets/images/50_coins.png'),
-Image.network('assets/images/100_coins.png'),
-Image.network('assets/images/500_coins.png'),
-Image.network('assets/images/1k_coins.png'),
-Image.network('assets/images/2.5k_coins.png'),
-Image.network('assets/images/5k_coins.png'),
-Image.network('assets/images/10k_coins.png'),
-Image.network('assets/images/25k_coins.png'),
-Image.network('assets/images/50k_coins.png'),
-Image.network('assets/images/100k_coins.png'),
+ List<String> images = [
+   ('assets/images/50_coins.png'),
+   ('assets/images/100_coins.png'),
+   ('assets/images/500_coins.png'),
+   ('assets/images/1k_coins.png'),
+   ('assets/images/2.5k_coins.png'),
+   ('assets/images/5k_coins.png'),
+   ('assets/images/10k_coins.png'),
+   ('assets/images/25k_coins.png'),
+   ('assets/images/50k_coins.png'),
+   ('assets/images/100k_coins.png'),
 ];
 
 void navigateTo(context, widget) =>
