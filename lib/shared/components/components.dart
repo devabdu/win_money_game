@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:win_money_game/models/missions_model.dart';
+import 'package:win_money_game/models/statistics_model.dart';
 
 import '../../models/user_model.dart';
 
@@ -184,6 +185,15 @@ Stream<List<MissionsModel>> readMissions({
         (snapshot) => snapshot.docs
             .map((doc) => MissionsModel.fromJson(doc.data()))
             .toList());
+
+Future<StatisticsModel?> readTarget() async {
+  final docTarget = FirebaseFirestore.instance.collection('statistics').doc('target');
+  final snapshot = await docTarget.get();
+  if(snapshot.exists){
+    return StatisticsModel.fromJson(snapshot.data()!);
+  }
+  return null;
+}
 
 Widget buildDailyMission(MissionsModel mission) {
   return FutureBuilder<UserModel?>(
