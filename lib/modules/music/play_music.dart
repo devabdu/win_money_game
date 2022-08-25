@@ -13,7 +13,6 @@ class _PlayMusicState extends State<PlayMusic> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     player = AudioPlayer();
     cache = AudioCache(fixedPlayer: player);
@@ -34,8 +33,8 @@ class _PlayMusicState extends State<PlayMusic> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              IconButton(
-                onPressed: (){
+              defaultIconPlay(
+                  function: (){
                 if(isPlaying)
                 {
                   setState(() {
@@ -50,9 +49,7 @@ class _PlayMusicState extends State<PlayMusic> {
                   //playMusic('music.ogg.mp3');
                   playTillTab('music.ogg.mp3');
                 }
-              },
-                icon: isPlaying?Icon(Icons.pause):
-                Icon(Icons.play_arrow), iconSize: 35,),
+              })
             ],
           ),
         ],
@@ -61,8 +58,7 @@ class _PlayMusicState extends State<PlayMusic> {
   }
   @override
   void dispose() {
-    // TODO: implement dispose
-    super.dispose();
     player.dispose();
+    super.dispose();
   }
 }

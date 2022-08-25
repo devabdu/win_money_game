@@ -172,24 +172,22 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                 },
                   icon: const Icon(Icons.shopping_bag_rounded,),
                   color: Colors.deepPurple,),
-                IconButton(onPressed: (){
-                  if(isPlaying)
-                  {
-                    setState(() {
-                      isPlaying = false;
-                    });
-                    stopMusic();
-                  }
-                  else {
-                    setState(() {
-                      isPlaying = true;
-                    });
-                    playTillTab('music.ogg.mp3');
-                  }
-                },
-                  icon: isPlaying?Icon(Icons.pause):
-                  Icon(Icons.play_arrow),
-                ),
+                defaultIconPlay(
+                    function: (){
+                      if(isPlaying)
+                      {
+                        setState(() {
+                          isPlaying = false;
+                        });
+                        stopMusic();
+                      }
+                      else {
+                        setState(() {
+                          isPlaying = true;
+                        });
+                        playTillTab('music.ogg.mp3');
+                      }
+                    })
               ],
             ),
             body: Stack(
@@ -392,6 +390,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     interstitialAd.dispose();
     rewardAd.dispose();
     player.dispose();
+    stopMusic();
     super.dispose();
   }
 }

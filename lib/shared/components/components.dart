@@ -300,6 +300,8 @@ Widget buildWeeklyMission(MissionsModel mission) {
 
 
 
+
+
 ///////////////////////////////////
 //audio
 
@@ -319,3 +321,13 @@ stopMusic()
 playTillTab(String song){
   cache.loop(song);
 }
+
+Widget defaultIconPlay({
+  required Function function,
+})=>IconButton(
+  onPressed: (){
+    function();
+  },
+  icon: isPlaying ? Icon(Icons.play_disabled_outlined):
+  Icon(Icons.play_arrow_outlined),
+);
