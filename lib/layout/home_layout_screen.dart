@@ -230,7 +230,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                 userCounts: user.weeklyCounts,
                                 missionName: 'Watch 12 ads',
                               );
-                              provider.updateUserXoTasalyWins(userTasalyWins: user.xoTwins, CoinsWon: 500);
                             } else {
                               showSnackBar('Reward ad is still loading...');
                             }
