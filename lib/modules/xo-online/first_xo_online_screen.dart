@@ -37,6 +37,9 @@ class MainPageState extends State<FirstXOOnlineScreen> {
   @override
   Widget build(BuildContext context) {
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
+    print(roomDataProvider.roomData['players']);
+    print(roomDataProvider.roomData['players'][0]['nickname']);
+    print(roomDataProvider.roomData['players'][1]['nickname']);
 
     return Scaffold(
       // backgroundColor: Color.fromRGBO(16, 13, 34, 1),
@@ -85,7 +88,7 @@ class MainPageState extends State<FirstXOOnlineScreen> {
                               width: 10,
                             ),
                             Text(
-                              'First Player',//print registered username here
+                              roomDataProvider.roomData['players'][0]['nickname'],//print registered username here
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 17,

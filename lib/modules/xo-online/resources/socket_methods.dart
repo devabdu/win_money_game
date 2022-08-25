@@ -20,7 +20,6 @@ class SocketMethods {
 
   // EMITS
   void createRoom(String nickname) {
-    print(nickname);
     if (nickname.isNotEmpty) {
       _socketClient.emit('createRoom', {
         'nickname': nickname,
@@ -103,6 +102,7 @@ class SocketMethods {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updateRoomData(room);
       Navigator.pushNamed(context, '/game');
+      print(room['players'][0]['nickname']);
       print(room);
     });
   }

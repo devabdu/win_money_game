@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:win_money_game/modules/xo-online/xo_create_or_join_xo_screen.dart';
 import 'package:win_money_game/modules/xo/first_xo_screen.dart';
 import 'package:win_money_game/modules/xo/second_xo_screen.dart';
 import 'package:win_money_game/modules/xo/third_xo_screen.dart';
@@ -25,7 +26,7 @@ class SelectLevelXoScreen extends StatelessWidget {
                 print('playOnline $playOnline');
                 print('playOffline $playOffline');
                 if(playOnline)
-                  navigateTo(context, XoSelectBetScreen());
+                  navigateTo(context, CreateOrJoinXOScreen());
                 if(playOffline)
                   navigateTo(context, FirstXOScreen());
               },
