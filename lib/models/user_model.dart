@@ -11,6 +11,10 @@ class UserModel
   late Map<String, dynamic> dailyCounts;
   late Map<String, dynamic> weeklyCounts;
   late bool isAdmin;
+  late int chessTwins;
+  late int chessRwins;
+  late int xoTwins;
+  late int xoRwins;
 
   UserModel({
     required this.name,
@@ -24,21 +28,11 @@ class UserModel
     required this.dailyCounts,
     required this.weeklyCounts,
     required this.isAdmin,
+    required this.chessTwins,
+    required this.chessRwins,
+    required this.xoTwins,
+    required this.xoRwins,
   });
-
-  // static UserModel fromJson(Map<String, dynamic> json) => UserModel(
-  //   name: json['name'],
-  //   email: json['email'],
-  //   uId: json['uId'],
-  //   amount : json['amount'],
-  //   exp : json['exp'],
-  //   coins : json['coins'],
-  //   level : json['level'],
-  //   avatar : json['avatar'],
-  //   dailyCounts: json['dailyCounts'],
-  //   weeklyCounts: json['weeklyCounts'],
-  //   isAdmin: json['isAdmin'],
-  // );
 
   UserModel.fromJson(Map<String, dynamic>? json) {
     name = json!['name'];
@@ -52,6 +46,10 @@ class UserModel
     dailyCounts = json['dailyCounts'];
     weeklyCounts = json['weeklyCounts'];
     isAdmin = json['isAdmin'];
+    chessTwins = json['chessTwins'];
+    chessRwins = json['chessRwins'];
+    xoTwins = json['xoTwins'];
+    xoRwins = json['xoRwins'];
   }
 
   Map<String, dynamic> toJson()
@@ -68,6 +66,10 @@ class UserModel
       'dailyCounts' : dailyCounts,
       'weeklyCounts' : weeklyCounts,
       'isAdmin' : isAdmin,
+      'chessTwins' : chessTwins,
+      'chessRwins' : chessRwins,
+      'xoTwins' : xoTwins,
+      'xoRwins' : xoRwins,
     };
   }
 }

@@ -30,7 +30,7 @@ class StatisticsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
                     children: const [
@@ -100,40 +100,40 @@ class StatisticsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Column(
-                    children: const [
-                      Text(
-                        'Ludo',
-                        style: TextStyle(
-                          fontSize: 25,
-                          color: Colors.amberAccent,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Wins',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 19,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        '50 of 100',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Column(
+                  //   children: const [
+                  //     Text(
+                  //       'Ludo',
+                  //       style: TextStyle(
+                  //         fontSize: 25,
+                  //         color: Colors.amberAccent,
+                  //         fontWeight: FontWeight.w600,
+                  //       ),
+                  //     ),
+                  //     SizedBox(
+                  //       height: 10,
+                  //     ),
+                  //     Text(
+                  //       'Wins',
+                  //       style: TextStyle(
+                  //         color: Colors.white,
+                  //         fontSize: 19,
+                  //         fontWeight: FontWeight.w400,
+                  //       ),
+                  //     ),
+                  //     SizedBox(
+                  //       height: 5,
+                  //     ),
+                  //     Text(
+                  //       '50 of 100',
+                  //       style: TextStyle(
+                  //         color: Colors.white,
+                  //         fontSize: 17,
+                  //         fontWeight: FontWeight.w300,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),
@@ -151,7 +151,7 @@ class StatisticsScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Column(
                     children: const [
@@ -221,40 +221,40 @@ class StatisticsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Column(
-                    children: const [
-                      Text(
-                        'Ludo',
-                        style: TextStyle(
-                          fontSize: 25,
-                          color: Colors.amberAccent,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Wins',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 19,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        '50 of 100',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 17,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Column(
+                  //   children: const [
+                  //     Text(
+                  //       'Ludo',
+                  //       style: TextStyle(
+                  //         fontSize: 25,
+                  //         color: Colors.amberAccent,
+                  //         fontWeight: FontWeight.w600,
+                  //       ),
+                  //     ),
+                  //     SizedBox(
+                  //       height: 10,
+                  //     ),
+                  //     Text(
+                  //       'Wins',
+                  //       style: TextStyle(
+                  //         color: Colors.white,
+                  //         fontSize: 19,
+                  //         fontWeight: FontWeight.w400,
+                  //       ),
+                  //     ),
+                  //     SizedBox(
+                  //       height: 5,
+                  //     ),
+                  //     Text(
+                  //       '50 of 100',
+                  //       style: TextStyle(
+                  //         color: Colors.white,
+                  //         fontSize: 17,
+                  //         fontWeight: FontWeight.w300,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
             ),

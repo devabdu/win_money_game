@@ -201,7 +201,7 @@ class SignInProvider extends ChangeNotifier {
       name: name,
       email: email,
       uId: uId,
-      coins: 0,
+      coins: 10000,
       level: 1,
       amount: 0,
       exp: 0,
@@ -209,6 +209,10 @@ class SignInProvider extends ChangeNotifier {
       dailyCounts: dailyMap,
       weeklyCounts: weeklyMap,
       isAdmin: false,
+      chessTwins: 0,
+      chessRwins: 0,
+      xoTwins: 0,
+      xoRwins: 0,
     );
     await FirebaseFirestore.instance
         .collection('users')
