@@ -184,7 +184,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                     setState(() {
                       isPlaying = true;
                     });
-                    playMusic('music.ogg.mp3');
+                    playTillTab('music.ogg.mp3');
                   }
                 },
                   icon: isPlaying?Icon(Icons.pause):

@@ -315,3 +315,7 @@ stopMusic()
 {// to pause the Audio
   player.pause();
 }
+
+playTillTab(String song){
+  cache.loop(song);
+}

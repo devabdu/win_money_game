@@ -34,7 +34,8 @@ class _PlayMusicState extends State<PlayMusic> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              IconButton(onPressed: (){
+              IconButton(
+                onPressed: (){
                 if(isPlaying)
                 {
                   setState(() {
@@ -46,7 +47,8 @@ class _PlayMusicState extends State<PlayMusic> {
                   setState(() {
                     isPlaying = true;
                   });
-                  playMusic('music.ogg.mp3');
+                  //playMusic('music.ogg.mp3');
+                  playTillTab('music.ogg.mp3');
                 }
               },
                 icon: isPlaying?Icon(Icons.pause):
