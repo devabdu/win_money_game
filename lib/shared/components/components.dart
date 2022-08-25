@@ -307,7 +307,7 @@ Widget buildWeeklyMission(MissionsModel mission) {
 
 late AudioPlayer player;
 late AudioCache cache;
-bool isPlaying = false;
+bool isPlaying = true;
 
 playMusic(String song)
 { // to play the Audio
@@ -317,7 +317,9 @@ stopMusic()
 {// to pause the Audio
   player.pause();
 }
-
+resumeMusic(){
+  player.resume();
+}
 playTillTab(String song){
   cache.loop(song);
 }
@@ -328,6 +330,5 @@ Widget defaultIconPlay({
   onPressed: (){
     function();
   },
-  icon: isPlaying ? Icon(Icons.play_disabled_outlined):
-  Icon(Icons.play_arrow_outlined),
+  icon: isPlaying ? Icon(Icons.play_arrow_outlined):Icon(Icons.play_disabled_outlined),iconSize: 24,
 );

@@ -60,6 +60,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     //music
     player = AudioPlayer();
     cache = AudioCache(fixedPlayer: player);
+    playTillTab('music.ogg.mp3');
   }
 
   void handleEvent(AdmobAdEvent event, Map<String, dynamic>? args,
@@ -174,18 +175,18 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                   color: Colors.deepPurple,),
                 defaultIconPlay(
                     function: (){
-                      if(isPlaying)
+                      if(!isPlaying)
                       {
+                        setState(() {
+                          isPlaying = true;
+                        });
+                        resumeMusic();
+                      }
+                      else {
                         setState(() {
                           isPlaying = false;
                         });
                         stopMusic();
-                      }
-                      else {
-                        setState(() {
-                          isPlaying = true;
-                        });
-                        playTillTab('music.ogg.mp3');
                       }
                     })
               ],
@@ -390,7 +391,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     interstitialAd.dispose();
     rewardAd.dispose();
     player.dispose();
-    stopMusic();
     super.dispose();
   }
 }

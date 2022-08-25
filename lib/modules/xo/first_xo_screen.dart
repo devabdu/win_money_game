@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:admob_flutter/admob_flutter.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:win_money_game/Ads/adsManager.dart';
 import 'package:win_money_game/layout/home_layout_screen.dart';
@@ -46,6 +47,9 @@ class MainPageState extends State<FirstXOScreen> {
     interstitialAd.load();
     //////////
 
+    //music
+    player = AudioPlayer();
+    cache = AudioCache(fixedPlayer: player);
     setEmptyFields();
   }
 
@@ -281,6 +285,7 @@ class MainPageState extends State<FirstXOScreen> {
   @override
   void dispose() {
     interstitialAd.dispose();
+    player.dispose();
     super.dispose();
   }
 ///////////////
