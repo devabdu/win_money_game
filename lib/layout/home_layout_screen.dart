@@ -1,6 +1,5 @@
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:win_money_game/Ads/adsManager.dart';
@@ -9,6 +8,7 @@ import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
 import 'package:win_money_game/modules/missions/daily_missions.dart';
 import 'package:win_money_game/modules/missions/weekly_missions.dart';
+import 'package:win_money_game/modules/music/play_music.dart';
 import 'package:win_money_game/modules/play_on_off.dart';
 import 'package:win_money_game/modules/select_room.dart';
 import 'package:win_money_game/providers/users_provider.dart';
@@ -56,10 +56,14 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
     interstitialAd.load();
     rewardAd.load();
+
+    //music
+    player = AudioPlayer();
+    cache = AudioCache(fixedPlayer: player);
   }
 
-  void handleEvent(
-      AdmobAdEvent event, Map<String, dynamic>? args, String adType) {
+  void handleEvent(AdmobAdEvent event, Map<String, dynamic>? args,
+      String adType) {
     switch (event) {
       case AdmobAdEvent.loaded:
         showSnackBar('New Admob $adType Ad loaded!');
@@ -88,7 +92,8 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                   children: <Widget>[
                     const Text('Reward callback fired. Thanks Andrew!'),
                     Text('Type: ${args!['type']}'),
-                    Text('Amount: ${args['amount']}'), //amount to be stored in db
+                    Text('Amount: ${args['amount']}'),
+                    //amount to be stored in db
                   ],
                 ),
               ),
@@ -111,15 +116,14 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return FutureBuilder<UserModel?>(
       future: readUser(),
-      builder: (context, snapshot){
-        if(snapshot.hasError) {
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
           return Text('Something went wrong! ${snapshot.error}');
-        } else if(snapshot.hasData){
+        } else if (snapshot.hasData) {
           final user = snapshot.data;
-          return user == null ? const Center(child:Text('No User')) : Scaffold(
+          return user == null ? const Center(child: Text('No User')) : Scaffold(
             backgroundColor: Colors.deepPurple,
             drawer: const NavigationDrawerWidget(),
             appBar: AppBar(
@@ -132,11 +136,11 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
               // ),
               actions: [
                 Padding(
-                  padding: const EdgeInsets.only(top:4),
+                  padding: const EdgeInsets.only(top: 4),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children:[
+                    children: [
                       const Icon(Icons.monetization_on,
                         color: Colors.deepPurple,
                         size: 25,
@@ -146,7 +150,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                       ),
                       Text(
                         '${user.coins}'.replaceAllMapped(reg, mathFunc),
-                        style:const TextStyle(
+                        style: const TextStyle(
                             color: Colors.deepPurple,
                             fontWeight: FontWeight.bold,
                             fontSize: 18
@@ -155,8 +159,8 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                     ],
                   ),
                 ),
-                IconButton(onPressed: ()async{
-                  if(selectTasaly){
+                IconButton(onPressed: () async {
+                  if (selectTasaly) {
                     final isLoaded = await interstitialAd.isLoaded;
                     if (isLoaded ?? false) {
                       interstitialAd.show(); //interstital ad show
@@ -166,7 +170,26 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                     }
                   }
                 },
-                  icon: const Icon(Icons.shopping_bag_rounded,),color: Colors.deepPurple,),
+                  icon: const Icon(Icons.shopping_bag_rounded,),
+                  color: Colors.deepPurple,),
+                IconButton(onPressed: (){
+                  if(isPlaying)
+                  {
+                    setState(() {
+                      isPlaying = false;
+                    });
+                    stopMusic();
+                  }
+                  else {
+                    setState(() {
+                      isPlaying = true;
+                    });
+                    playMusic('music.ogg.mp3');
+                  }
+                },
+                  icon: isPlaying?Icon(Icons.pause):
+                  Icon(Icons.play_arrow),
+                ),
               ],
             ),
             body: Stack(
@@ -178,8 +201,8 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                     child: Column(
                       children: [
                         InkWell(
-                          onTap: () async{
-                            if(selectTasaly){
+                          onTap: () async {
+                            if (selectTasaly) {
                               final isLoaded = await interstitialAd.isLoaded;
                               if (isLoaded ?? false) {
                                 interstitialAd.show(); //interstital ad show
@@ -198,8 +221,8 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                           ),
                         ),
                         InkWell(
-                          onTap: ()async{
-                            if(selectTasaly){
+                          onTap: () async {
+                            if (selectTasaly) {
                               final isLoaded = await interstitialAd.isLoaded;
                               if (isLoaded ?? false) {
                                 interstitialAd.show(); //interstital ad show
@@ -218,10 +241,11 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                           ),
                         ),
                         InkWell(
-                          onTap: ()async {
+                          onTap: () async {
                             if (await rewardAd.isLoaded) {
-                              rewardAd.show();// showing rewarded ad
-                              final provider = Provider.of<UsersProvider>(context, listen: false);
+                              rewardAd.show(); // showing rewarded ad
+                              final provider = Provider.of<UsersProvider>(
+                                  context, listen: false);
                               provider.updateUserDailyMissionProgress(
                                 userCounts: user.dailyCounts,
                                 missionName: 'Watch 3 ads',
@@ -242,8 +266,10 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                           ),
                         ),
                         IconButton(
-                            onPressed: (){navigateTo(context, SelectRoom());},
-                            icon: Icon(Icons.ads_click))
+                            onPressed: () {
+                              navigateTo(context, SelectRoom());
+                            },
+                            icon: Icon(Icons.ads_click)),
                       ],
                     ),
                   ),
@@ -257,10 +283,10 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                     children: [
 
                       InkWell(
-                        onTap: () async{
+                        onTap: () async {
                           selectXo = true;
                           selectChess = false;
-                          if(selectTasaly){
+                          if (selectTasaly) {
                             final isLoaded = await interstitialAd.isLoaded;
                             if (isLoaded ?? false) {
                               interstitialAd.show(); //interstital ad show
@@ -281,10 +307,10 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                         height: 30,
                       ),
                       InkWell(
-                        onTap: () async{
+                        onTap: () async {
                           selectXo = false;
                           selectChess = true;
-                          if(selectTasaly){
+                          if (selectTasaly) {
                             final isLoaded = await interstitialAd.isLoaded;
                             if (isLoaded ?? false) {
                               interstitialAd.show(); //interstital ad show
@@ -305,8 +331,8 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                         height: 10,
                       ),
                       InkWell(
-                        onTap: () async{
-                          if(selectTasaly){
+                        onTap: () async {
+                          if (selectTasaly) {
                             final isLoaded = await interstitialAd.isLoaded;
                             if (isLoaded ?? false) {
                               interstitialAd.show(); //interstital ad show
@@ -351,7 +377,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
               ],
             ),
           );
-        } else if(snapshot.connectionState == ConnectionState.waiting){
+        } else if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator(),);
         } else {
           return const Center(child: CircularProgressIndicator(),);
@@ -359,13 +385,16 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
       },
     );
   }
-  //////////////
+    //////////////
   //ads
   @override
   void dispose() {
     interstitialAd.dispose();
     rewardAd.dispose();
+    player.dispose();
     super.dispose();
   }
 }
+
+
 

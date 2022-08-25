@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -295,4 +296,22 @@ Widget buildWeeklyMission(MissionsModel mission) {
       }
     },
   );
+}
+
+
+
+///////////////////////////////////
+//audio
+
+late AudioPlayer player;
+late AudioCache cache;
+bool isPlaying = false;
+
+playMusic(String song)
+{ // to play the Audio
+  cache.play(song);
+}
+stopMusic()
+{// to pause the Audio
+  player.pause();
 }
