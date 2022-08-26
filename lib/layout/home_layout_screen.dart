@@ -8,7 +8,6 @@ import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
 import 'package:win_money_game/modules/missions/daily_missions.dart';
 import 'package:win_money_game/modules/missions/weekly_missions.dart';
-import 'package:win_money_game/modules/music/play_music.dart';
 import 'package:win_money_game/modules/play_on_off.dart';
 import 'package:win_money_game/modules/select_room.dart';
 import 'package:win_money_game/providers/users_provider.dart';
@@ -65,8 +64,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     }
   }
 
-  void handleEvent(AdmobAdEvent event, Map<String, dynamic>? args,
-      String adType) {
+  void handleEvent(AdmobAdEvent event, Map<String, dynamic>? args, String adType) {
     switch (event) {
       case AdmobAdEvent.loaded:
         showSnackBar('New Admob $adType Ad loaded!');
