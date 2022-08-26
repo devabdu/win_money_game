@@ -3,7 +3,7 @@ class UserModel
   late String name;
   late String email;
   late String uId;
-  late int amount;
+  late int cash;
   late double exp;
   late int coins;
   late int level;
@@ -20,7 +20,7 @@ class UserModel
     required this.name,
     required this.email,
     required this.uId,
-    required this.amount,
+    required this.cash,
     required this.exp,
     required this.coins,
     required this.level,
@@ -38,7 +38,7 @@ class UserModel
     name = json!['name'];
     email = json['email'];
     uId = json['uId'];
-    amount = json['amount'];
+    cash = json['cash'];
     exp = json['exp'];
     coins = json['coins'];
     level = json['level'];
@@ -58,7 +58,7 @@ class UserModel
       'name' : name,
       'email' : email,
       'uId' : uId,
-      'amount' : amount,
+      'cash' : cash,
       'exp' : exp,
       'coins' : coins,
       'level' : level,

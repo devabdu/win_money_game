@@ -23,7 +23,7 @@ class UsersProvider extends ChangeNotifier {
   int? weeklyMissionCount;
 
   int targetWins = 0;
-  int userAmount = 0;
+  int userCash = 0;
   int userCoins = 0;
 
   Future<void> updateAvatar({
@@ -804,18 +804,18 @@ class UsersProvider extends ChangeNotifier {
         .then((DocumentSnapshot documentSnapshot) {
       print(documentSnapshot.data());
       dynamic docData = documentSnapshot.data();
-      userAmount = docData['amount'];
+      userCash = docData['cash'];
       userCoins = docData['coins'];
     });
 
-    userAmount = userAmount + 20;
+    userCash = userCash + 20;
     userCoins = userCoins + 5000;
     await FirebaseFirestore.instance
         .collection('users')
         .doc(id)
         .update(
         {
-          'amount' : userAmount,
+          'cash' : userCash,
           'coins' : userCoins,
         });
   }
@@ -830,18 +830,18 @@ class UsersProvider extends ChangeNotifier {
         .then((DocumentSnapshot documentSnapshot) {
       print(documentSnapshot.data());
       dynamic docData = documentSnapshot.data();
-      userAmount = docData['amount'];
+      userCash = docData['cash'];
       userCoins = docData['coins'];
     });
 
-    userAmount = userAmount + 40;
+    userCash = userCash + 40;
     userCoins = userCoins + 10000;
     await FirebaseFirestore.instance
         .collection('users')
         .doc(id)
         .update(
         {
-          'amount' : userAmount,
+          'cash' : userCash,
           'coins' : userCoins,
         });
   }
