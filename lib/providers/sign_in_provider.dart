@@ -204,6 +204,7 @@ class SignInProvider extends ChangeNotifier {
       coins: 10000,
       level: 1,
       cash: 0,
+      amount: 0,
       exp: 0,
       avatar: 7,
       dailyCounts: dailyMap,
