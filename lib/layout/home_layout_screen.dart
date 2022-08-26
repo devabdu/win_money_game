@@ -237,14 +237,15 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                               rewardAd.show(); // showing rewarded ad
                               final provider = Provider.of<UsersProvider>(
                                   context, listen: false);
-                              provider.updateUserDailyMissionProgress(
+                              await provider.updateUserDailyMissionProgress(
                                 userCounts: user.dailyCounts,
                                 missionName: 'Watch 3 ads',
                               );
-                              provider.updateUserWeeklyMissionProgress(
+                              await provider.updateUserWeeklyMissionProgress(
                                 userCounts: user.weeklyCounts,
                                 missionName: 'Watch 12 ads',
                               );
+                              await provider.watchAdReward();
                             } else {
                               showSnackBar('Reward ad is still loading...');
                             }

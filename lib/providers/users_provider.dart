@@ -483,7 +483,7 @@ class UsersProvider extends ChangeNotifier {
             });
 
         if(userCounts[dailyMissionId] == dailyMissionCount)
-          dailyMissionReward();
+          await dailyMissionReward();
       }
     });
   }
@@ -517,7 +517,7 @@ class UsersProvider extends ChangeNotifier {
             });
 
         if(userCounts[weeklyMissionId] == weeklyMissionCount)
-          weeklyMissionReward();
+          await weeklyMissionReward();
       }
     });
   }
@@ -609,7 +609,7 @@ class UsersProvider extends ChangeNotifier {
 
         if(userCounts[dailyMissionId] > dailyMissionCount) {
           userCounts[dailyMissionId] = dailyMissionCount;
-          dailyMissionReward();
+          await dailyMissionReward();
         }
       }
     });
@@ -646,7 +646,7 @@ class UsersProvider extends ChangeNotifier {
 
         if(userCounts[weeklyMissionId] > weeklyMissionCount) {
           userCounts[weeklyMissionId] = weeklyMissionCount;
-          weeklyMissionReward();
+          await weeklyMissionReward();
         }
       }
     });
@@ -676,6 +676,9 @@ class UsersProvider extends ChangeNotifier {
             {
               'xoTwins' : userTasalyWins,
             });
+
+        if(userTasalyWins == targetWins)
+          tasalyStatisticsReward();
       }
     });
   }
@@ -704,6 +707,9 @@ class UsersProvider extends ChangeNotifier {
             {
               'xoRwins' : userRebhWins,
             });
+
+        if(userRebhWins < targetWins)
+          rebhStatisticsReward();
       }
     });
   }
@@ -732,6 +738,9 @@ class UsersProvider extends ChangeNotifier {
             {
               'chessTwins' : userTasalyWins,
             });
+
+        if(userTasalyWins == targetWins)
+          tasalyStatisticsReward();
       }
     });
   }
@@ -760,11 +769,14 @@ class UsersProvider extends ChangeNotifier {
             {
               'chessRwins' : userRebhWins,
             });
+
+        if(userRebhWins == targetWins)
+          rebhStatisticsReward();
       }
     });
   }
 
-  void dailyMissionReward() async{
+  Future<void> dailyMissionReward() async{
     final id = FirebaseAuth.instance.currentUser!.uid;
 
     await FirebaseFirestore.instance
@@ -790,7 +802,7 @@ class UsersProvider extends ChangeNotifier {
         });
   }
 
-  void weeklyMissionReward() async{
+  Future<void> weeklyMissionReward() async{
     final id = FirebaseAuth.instance.currentUser!.uid;
 
     await FirebaseFirestore.instance
@@ -806,6 +818,81 @@ class UsersProvider extends ChangeNotifier {
 
     userCash = userCash + 40;
     userCoins = userCoins + 10000;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'cash' : userCash,
+          'coins' : userCoins,
+        });
+  }
+
+  Future<void> watchAdReward() async{
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+      userCoins = docData['coins'];
+    });
+
+    userCoins = userCoins + 1000;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'coins' : userCoins,
+        });
+  }
+
+  Future<void> tasalyStatisticsReward() async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+      userCash = docData['cash'];
+      userCoins = docData['coins'];
+    });
+
+    userCash = userCash + 100;
+    userCoins = userCoins + 50000;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'cash' : userCash,
+          'coins' : userCoins,
+        });
+  }
+
+  Future<void> rebhStatisticsReward() async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+      userCash = docData['cash'];
+      userCoins = docData['coins'];
+    });
+
+    userCash = userCash + 250;
+    userCoins = userCoins + 50000;
     await FirebaseFirestore.instance
         .collection('users')
         .doc(id)
