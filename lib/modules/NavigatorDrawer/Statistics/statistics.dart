@@ -70,181 +70,184 @@ class StatisticsScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  body: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Tasaly Statistics',
-                        style: TextStyle(
-                          fontSize: 25,
-                          color: Colors.amberAccent,
-                          fontWeight: FontWeight.w800,
+                  body: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Tasaly Statistics',
+                          style: TextStyle(
+                            fontSize: 25,
+                            color: Colors.amberAccent,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  'XO',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    color: Colors.amberAccent,
-                                    fontWeight: FontWeight.w600,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    'XO',
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      color: Colors.amberAccent,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Wins',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w400,
+                                  SizedBox(
+                                    height: 10,
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  '${user.xoTwins} of ${target.targetWins}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w300,
+                                  Text(
+                                    'Wins',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  'Chess',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    color: Colors.amberAccent,
-                                    fontWeight: FontWeight.w600,
+                                  SizedBox(
+                                    height: 5,
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Wins',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w400,
+                                  Text(
+                                    '${user.xoTwins} of ${target.targetWins}',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w300,
+                                    ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  '${user.chessTwins} of ${target.targetWins}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w300,
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Chess',
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      color: Colors.amberAccent,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    'Wins',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    '${user.chessTwins} of ${target.targetWins}',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 125,
-                      ),
-                      const Text(
-                        'Rebh Statistics',
-                        style: TextStyle(
-                          fontSize: 25,
-                          color: Colors.amberAccent,
-                          fontWeight: FontWeight.w800,
+                        const SizedBox(
+                          height: 125,
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  'XO',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    color: Colors.amberAccent,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Wins',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  '${user.xoRwins} of ${target.targetWins}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                  'Chess',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    color: Colors.amberAccent,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Wins',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  '${user.chessRwins} of ${target.targetWins}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w300,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                        const Text(
+                          'Rebh Statistics',
+                          style: TextStyle(
+                            fontSize: 25,
+                            color: Colors.amberAccent,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
-                      ),
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Column(
+                                children: [
+                                  Text(
+                                    'XO',
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      color: Colors.amberAccent,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    'Wins',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    '${user.xoRwins} of ${target.targetWins}',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    'Chess',
+                                    style: TextStyle(
+                                      fontSize: 25,
+                                      color: Colors.amberAccent,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    'Wins',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(
+                                    '${user.chessRwins} of ${target.targetWins}',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w300,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               } else {

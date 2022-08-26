@@ -137,22 +137,30 @@ class MainPageState extends State<SecondXOScreen> {
               ),
             ]
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ...Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x)),
-          ],
+        body: Center(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                ...Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x)),
+              ],
+            ),
+          ),
         ),
       );
 
   Widget buildRow(int x) {
     final values = matrix[x];
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: Xo_Utils.modelBuilder(
-        values,
-        (y, value) => buildField(x, y),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: Xo_Utils.modelBuilder(
+          values,
+          (y, value) => buildField(x, y),
+        ),
       ),
     );
   }

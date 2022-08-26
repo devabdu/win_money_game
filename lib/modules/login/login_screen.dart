@@ -25,7 +25,6 @@ class LoginScreen extends StatelessWidget {
           return Scaffold(
             backgroundColor: Colors.deepPurple,
             body: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
               child: Padding(
                 padding: const EdgeInsets.only(top: 100),
                 child: Column(
@@ -76,7 +75,6 @@ class LoginScreen extends StatelessWidget {
                   ],
                 ),
               ),
-
               scrollDirection: Axis.vertical,
             ),
           );
