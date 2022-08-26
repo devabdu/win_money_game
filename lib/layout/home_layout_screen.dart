@@ -137,7 +137,10 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
               // ),
               actions: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 4),
+                  padding: const EdgeInsets.only(
+                    top: 4,
+                    right: 15
+                  ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -178,22 +181,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                     ],
                   ),
                 ),
-                defaultIconPlay(
-                    function: (){
-                      if(!isPlaying)
-                      {
-                        setState(() {
-                          isPlaying = true;
-                        });
-                        resumeMusic();
-                      }
-                      else {
-                        setState(() {
-                          isPlaying = false;
-                        });
-                        stopMusic();
-                      }
-                    })
               ],
             ),
             body: Stack(

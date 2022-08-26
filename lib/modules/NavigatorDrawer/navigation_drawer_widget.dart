@@ -47,14 +47,14 @@ class NavigationDrawerWidget extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
-              // DrawerItem(
-              //   icon: Icons.settings,
-              //   title: 'Settings',
-              //   onTap: () => onItemPressed(context, index: 1),
-              // ),
-              // const SizedBox(
-              //   height: 30,
-              // ),
+              DrawerItem(
+                icon: Icons.settings,
+                title: 'Settings',
+                onTap: () => onItemPressed(context, index: 1),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
               // DrawerItem(
               //   icon: Icons.help_outline,
               //   title: 'Help',
@@ -75,7 +75,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                 title: 'SignOut',
                 titleColor: Colors.deepPurple,
                 iconColor: Colors.deepPurple,
-                onTap: () => onItemPressed(context, index: 1),
+                onTap: () => onItemPressed(context, index: 2),
               ),
             ],
           ),
@@ -94,13 +94,13 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 0:
         navigateTo(context, const StatisticsScreen());
         break;
-      // case 1:
-      //   navigateTo(context, const SettingsScreen());
-      //   break;
+      case 1:
+        navigateTo(context, const SettingsScreen());
+        break;
       // case 2:
       //   navigateTo(context, const HelpScreen());
       //   break;
-      case 1:
+      case 2:
         final provider = Provider.of<SignInProvider>(context, listen: false);
         user.providerData.single.providerId == 'facebook.com' ? provider.facebookLogout() : provider.googleLogout();
         navigateBack(context, SelectPathScreen());
