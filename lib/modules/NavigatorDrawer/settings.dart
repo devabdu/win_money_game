@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:win_money_game/models/user_model.dart';
+import 'package:win_money_game/providers/users_provider.dart';
 
 import '../../shared/components/components.dart';
 
@@ -56,21 +58,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             ),
                           ),
                           defaultIconPlay(
+                            musicState: user.musicOn,
                             iconSize: 30,
                             iconColor: Colors.deepPurple,
                               function: (){
-                                if(isPlaying)
+                                if(user.musicOn)
                                 {
-                                  setState(() {
-                                    isPlaying = false;
-                                  });
+                                  final provider = Provider.of<UsersProvider>(
+                                      context, listen: false);
+                                  provider.turnOffMusic();
+                                  setState(() {});
                                   stopMusic();
                                 }
                                 else {
-                                  setState(() {
-                                    isPlaying = true;
-                                  });
-                                  //playMusic('music.ogg.mp3');
+                                  final provider = Provider.of<UsersProvider>(
+                                      context, listen: false);
+                                  provider.turnOnMusic();
+                                  setState(() {});
                                   playTillTab('music.ogg.mp3');
                                 }
                               }

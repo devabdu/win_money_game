@@ -55,13 +55,10 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
     interstitialAd.load();
     rewardAd.load();
+    final provider = Provider.of<UsersProvider>(
+        context, listen: false);
 
-    //music
-    player = AudioPlayer();
-    cache = AudioCache(fixedPlayer: player);
-    if(isPlaying){
-      playTillTab('music.ogg.mp3');
-    }
+    provider.getMusicState();
   }
 
   void handleEvent(AdmobAdEvent event, Map<String, dynamic>? args, String adType) {

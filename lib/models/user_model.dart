@@ -17,6 +17,7 @@ class UserModel
   late int chessRwins;
   late int xoTwins;
   late int xoRwins;
+  late bool musicOn;
 
   UserModel({
     required this.name,
@@ -36,6 +37,7 @@ class UserModel
     required this.chessRwins,
     required this.xoTwins,
     required this.xoRwins,
+    required this.musicOn,
   });
 
   UserModel.fromJson(Map<String, dynamic>? json) {
@@ -56,6 +58,7 @@ class UserModel
     chessRwins = json['chessRwins'];
     xoTwins = json['xoTwins'];
     xoRwins = json['xoRwins'];
+    musicOn = json['musicOn'];
   }
 
   Map<String, dynamic> toJson()
@@ -78,6 +81,7 @@ class UserModel
       'chessRwins' : chessRwins,
       'xoTwins' : xoTwins,
       'xoRwins' : xoRwins,
+      'musicOn' : musicOn,
     };
   }
 }
