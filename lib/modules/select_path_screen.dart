@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:win_money_game/layout/home_layout_screen.dart';
 import 'package:win_money_game/shared/components/components.dart';
 
-class SelectPathScreen extends StatelessWidget {
+class SelectPathScreen extends StatefulWidget {
   const SelectPathScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SelectPathScreen> createState() => _SelectPathScreenState();
+}
+
+class _SelectPathScreenState extends State<SelectPathScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +47,10 @@ class SelectPathScreen extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          selectTasaly = true;
+                          setState(() {
+                            selectTasaly = true;
+                            selectRebh = false;
+                          });
                           Navigator.pop(context);
                           return navigateTo(context, const HomeLayoutScreen());
                         },
@@ -92,7 +100,10 @@ class SelectPathScreen extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          selectRebh = true;
+                          setState(() {
+                            selectRebh = true;
+                            selectTasaly = false;
+                          });
                           Navigator.pop(context);
                           return navigateTo(context, const HomeLayoutScreen());
                         },

@@ -89,10 +89,41 @@ class NavigationDrawerWidget extends StatelessWidget {
     final user = FirebaseAuth.instance.currentUser!;
     Navigator.pop(context);
 
-    switch(index)
-    {
+    switch(index) {
       case 0:
+      {
         navigateTo(context, const StatisticsScreen());
+        showDialog<String>(
+          context: context,
+          builder: (BuildContext context) =>
+              AlertDialog(
+                title: const Text(
+                  'Hint',
+                  style: TextStyle(
+                      color: Colors.deepPurple,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                content: const Text(
+                  'Win 50 game to Earn 250 Cash and 50k Coins!!',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.deepPurple,
+                  ),
+                ),
+                backgroundColor: Colors.amberAccent,
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      selectTasaly = true;
+                      Navigator.pop(context);
+                    },
+                    child: const Text('OK'),
+                  ),
+                ],
+              ),
+        );
+      }
         break;
       case 1:
         navigateTo(context, const SettingsScreen());

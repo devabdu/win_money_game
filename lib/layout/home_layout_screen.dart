@@ -8,7 +8,6 @@ import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
 import 'package:win_money_game/modules/missions/daily_missions.dart';
 import 'package:win_money_game/modules/missions/weekly_missions.dart';
-import 'package:win_money_game/modules/music/play_music.dart';
 import 'package:win_money_game/modules/play_on_off.dart';
 import 'package:win_money_game/modules/select_room.dart';
 import 'package:win_money_game/providers/users_provider.dart';
@@ -56,17 +55,13 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
     interstitialAd.load();
     rewardAd.load();
+    final provider = Provider.of<UsersProvider>(
+        context, listen: false);
 
-    //music
-    player = AudioPlayer();
-    cache = AudioCache(fixedPlayer: player);
-    if(isPlaying){
-      playTillTab('music.ogg.mp3');
-    }
+    provider.getMusicState();
   }
 
-  void handleEvent(AdmobAdEvent event, Map<String, dynamic>? args,
-      String adType) {
+  void handleEvent(AdmobAdEvent event, Map<String, dynamic>? args, String adType) {
     switch (event) {
       case AdmobAdEvent.loaded:
         showSnackBar('New Admob $adType Ad loaded!');
@@ -205,6 +200,35 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                               }
                             }
                             navigateTo(context, DailyMissionsScreen());
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text(
+                                  'Hint',
+                                  style: TextStyle(
+                                      color: Colors.deepPurple,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                                content: const Text(
+                                  'Complete Daily Missions to Win 20 Cash and 5k Coins!!',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.deepPurple,
+                                  ),
+                                ),
+                                backgroundColor: Colors.amberAccent,
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      selectTasaly = true;
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            );
                           },
                           child: Image.asset(
                             "assets/images/daily_missions.png",
@@ -225,6 +249,35 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                               }
                             }
                             navigateTo(context, WeeklyMissionsScreen());
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text(
+                                  'Hint',
+                                  style: TextStyle(
+                                      color: Colors.deepPurple,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                                content: const Text(
+                                  'Complete Weekly Missions to Win 40 Cash and 10k Coins!!',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.deepPurple,
+                                  ),
+                                ),
+                                backgroundColor: Colors.amberAccent,
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      selectTasaly = true;
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            );
                           },
                           child: Image.asset(
                             "assets/images/weekly_missions.png",

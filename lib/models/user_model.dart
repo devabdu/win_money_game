@@ -4,6 +4,8 @@ class UserModel
   late String email;
   late String uId;
   late int cash;
+  late int dailyAmount;
+  late int weeklyAmount;
   late double exp;
   late int coins;
   late int level;
@@ -15,12 +17,15 @@ class UserModel
   late int chessRwins;
   late int xoTwins;
   late int xoRwins;
+  late bool musicOn;
 
   UserModel({
     required this.name,
     required this.email,
     required this.uId,
     required this.cash,
+    required this.dailyAmount,
+    required this.weeklyAmount,
     required this.exp,
     required this.coins,
     required this.level,
@@ -32,6 +37,7 @@ class UserModel
     required this.chessRwins,
     required this.xoTwins,
     required this.xoRwins,
+    required this.musicOn,
   });
 
   UserModel.fromJson(Map<String, dynamic>? json) {
@@ -39,6 +45,8 @@ class UserModel
     email = json['email'];
     uId = json['uId'];
     cash = json['cash'];
+    dailyAmount = json['dailyAmount'];
+    weeklyAmount = json['weeklyAmount'];
     exp = json['exp'];
     coins = json['coins'];
     level = json['level'];
@@ -50,6 +58,7 @@ class UserModel
     chessRwins = json['chessRwins'];
     xoTwins = json['xoTwins'];
     xoRwins = json['xoRwins'];
+    musicOn = json['musicOn'];
   }
 
   Map<String, dynamic> toJson()
@@ -59,6 +68,8 @@ class UserModel
       'email' : email,
       'uId' : uId,
       'cash' : cash,
+      'dailyAmount' : dailyAmount,
+      'weeklyAmount' : weeklyAmount,
       'exp' : exp,
       'coins' : coins,
       'level' : level,
@@ -70,6 +81,7 @@ class UserModel
       'chessRwins' : chessRwins,
       'xoTwins' : xoTwins,
       'xoRwins' : xoRwins,
+      'musicOn' : musicOn,
     };
   }
 }

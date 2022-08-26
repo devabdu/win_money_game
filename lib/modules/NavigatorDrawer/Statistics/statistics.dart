@@ -47,7 +47,7 @@ class StatisticsScreen extends StatelessWidget {
                                 ),
                               ),
                               content: const Text(
-                                'sdfghjkl;',
+                                'Win 50 game to Earn 250 Cash and 50k Coins!!',
                                 style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.deepPurple,
