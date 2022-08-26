@@ -215,6 +215,7 @@ class SignInProvider extends ChangeNotifier {
       chessRwins: 0,
       xoTwins: 0,
       xoRwins: 0,
+      musicOn: true,
     );
     await FirebaseFirestore.instance
         .collection('users')

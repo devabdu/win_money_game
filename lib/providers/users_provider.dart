@@ -1,8 +1,10 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:win_money_game/models/missions_model.dart';
 import 'package:win_money_game/models/user_model.dart';
+import 'package:win_money_game/shared/components/components.dart';
 
 class UsersProvider extends ChangeNotifier {
   List<UserModel> users = [];
@@ -27,6 +29,7 @@ class UsersProvider extends ChangeNotifier {
   int userCoins = 0;
   int userDailyAmount = 0;
   int userWeeklyAmount = 0;
+  bool userMusicState = false;
 
   Future<void> updateAvatar({
     required int avatarIndex,
@@ -999,6 +1002,49 @@ class UsersProvider extends ChangeNotifier {
         {
           'cash' : userCash,
           'coins' : userCoins,
+        });
+  }
+
+  Future<void> getMusicState() async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+
+      player = AudioPlayer();
+      cache = AudioCache(fixedPlayer: player);
+      if(docData['musicOn']){
+        playTillTab('music.ogg.mp3');
+      }
+    });
+  }
+
+  Future<void> turnOffMusic() async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'musicOn': false,
+        });
+  }
+
+  Future<void> turnOnMusic() async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'musicOn': true,
         });
   }
 }

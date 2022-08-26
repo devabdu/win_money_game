@@ -328,11 +328,12 @@ Widget defaultIconPlay({
   required Function function,
   double? iconSize,
   Color? iconColor,
+  required bool musicState,
 })=>IconButton(
   onPressed: (){
     function();
   },
-  icon: isPlaying ? Icon(Icons.play_arrow_outlined):Icon(Icons.play_disabled_outlined),
+  icon: musicState ? Icon(Icons.play_arrow_outlined):Icon(Icons.play_disabled_outlined),
   iconSize: iconSize ?? 24,
   color: iconColor ?? Colors.amberAccent,
 );
