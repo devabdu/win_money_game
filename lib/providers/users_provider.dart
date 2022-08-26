@@ -23,6 +23,8 @@ class UsersProvider extends ChangeNotifier {
   int? weeklyMissionCount;
 
   int targetWins = 0;
+  int userAmount = 0;
+  int userCoins = 0;
 
   Future<void> updateAvatar({
     required int avatarIndex,
@@ -482,6 +484,10 @@ class UsersProvider extends ChangeNotifier {
             {
               'dailyCounts' : userCounts,
         });
+
+        if(userCounts[dailyMissionId] == dailyMissionCount){
+          dailyMissionReward();
+        }
       }
     });
   }
@@ -516,6 +522,10 @@ class UsersProvider extends ChangeNotifier {
             {
               'weeklyCounts' : userCounts,
             });
+
+        if(userCounts[weeklyMissionId] == weeklyMissionCount){
+          weeklyMissionReward();
+        }
       }
     });
   }
@@ -597,6 +607,9 @@ class UsersProvider extends ChangeNotifier {
     }).then((value) async {
       if(userCounts[dailyMissionId] < dailyMissionCount) {
         userCounts[dailyMissionId] = userCounts[dailyMissionId] + coinsWon;
+
+        if(userCounts[dailyMissionId] > dailyMissionCount)
+          userCounts[dailyMissionId] = dailyMissionCount;
         doUpdate = true;
       }
       if(doUpdate){
@@ -607,6 +620,10 @@ class UsersProvider extends ChangeNotifier {
             {
               'dailyCounts' : userCounts,
             });
+
+        if(userCounts[dailyMissionId] == dailyMissionCount){
+          dailyMissionReward();
+        }
       }
     });
   }
@@ -632,6 +649,9 @@ class UsersProvider extends ChangeNotifier {
     }).then((value) async {
       if(userCounts[weeklyMissionId] < weeklyMissionCount) {
         userCounts[weeklyMissionId] = userCounts[weeklyMissionId] + coinsWon;
+
+        if(userCounts[weeklyMissionId] > weeklyMissionCount)
+          userCounts[weeklyMissionId] = weeklyMissionCount;
         doUpdate = true;
       }
       if(doUpdate){
@@ -642,6 +662,10 @@ class UsersProvider extends ChangeNotifier {
             {
               'weeklyCounts' : userCounts,
             });
+
+        if(userCounts[weeklyMissionId] == weeklyMissionCount){
+          weeklyMissionReward();
+        }
       }
     });
   }
@@ -768,5 +792,57 @@ class UsersProvider extends ChangeNotifier {
             });
       }
     });
+  }
+
+  void dailyMissionReward() async{
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+      userAmount = docData['amount'];
+      userCoins = docData['coins'];
+    });
+
+    userAmount = userAmount + 20;
+    userCoins = userCoins + 5000;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'amount' : userAmount,
+          'coins' : userCoins,
+        });
+  }
+
+  void weeklyMissionReward() async{
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+      userAmount = docData['amount'];
+      userCoins = docData['coins'];
+    });
+
+    userAmount = userAmount + 40;
+    userCoins = userCoins + 10000;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'amount' : userAmount,
+          'coins' : userCoins,
+        });
   }
 }
