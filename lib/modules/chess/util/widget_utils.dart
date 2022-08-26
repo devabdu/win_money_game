@@ -115,7 +115,7 @@ void showAnimatedDialog({
                           shape: roundButtonShape,
                           child: Text(forceCancelText != null
                               ? forceCancelText
-                              : (onDone == null ? strings.ok : strings.cancel)),
+                              : (onDone == null ? "ok" : "cancel")),
                           onPressed: () {
                             _showing = false;
                             Navigator.of(context)

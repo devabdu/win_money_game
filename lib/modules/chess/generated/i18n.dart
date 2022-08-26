@@ -66,9 +66,7 @@ class S {
     return Intl.message("white", name: 'white');
   }
 
-  String get black {
-    return Intl.message("black", name: 'black');
-  }
+  final String  black = "black";
 
   String check_mate_desc(loser, winner) {
     return Intl.message("${loser} is in checkmate. ${winner} won.", name: 'check_mate_desc', args: [loser, winner]);
@@ -103,6 +101,7 @@ class S {
   }
 
   String moves_done(progress) {
+    print(progress);
     return Intl.message("${progress} boards processed", name: 'moves_done', args: [progress]);
   }
 

@@ -64,10 +64,10 @@ Future<bool> get hasInternet async {
 void addLicenses() {
   LicenseRegistry.addLicense(() async* {
     yield LicenseEntryWithLineBreaks(['flutter_chess_board'],
-        await rootBundle.loadString('res/licenses/flutter_chess_board'));
+        await rootBundle.loadString('assets/res/licenses/flutter_chess_board'));
     yield LicenseEntryWithLineBreaks(
-        ['chess'], await rootBundle.loadString('res/licenses/chess'));
+        ['chess'], await rootBundle.loadString('assets/res/licenses/chess'));
     yield LicenseEntryWithLineBreaks(['modal_progress_hud'],
-        await rootBundle.loadString('res/licenses/modal_progress_hud'));
+        await rootBundle.loadString('assets/res/licenses/modal_progress_hud'));
   });
 }

@@ -149,22 +149,22 @@ class _ChessBoardState extends State<ChessBoard> {
     switch (widget.boardType) {
       case BoardType.brown:
         return Image.asset(
-          "res/chess_board/brown_board.png",
+          "assets/res/chess_board/brown_board.png",
           fit: BoxFit.cover,
         );
       case BoardType.darkBrown:
         return Image.asset(
-          "res/chess_board/dark_brown_board.png",
+          "assets/res/chess_board/dark_brown_board.png",
           fit: BoxFit.cover,
         );
       case BoardType.green:
         return Image.asset(
-          "res/chess_board/green_board.png",
+          "assets/res/chess_board/green_board.png",
           fit: BoxFit.cover,
         );
       case BoardType.orange:
         return Image.asset(
-          "res/chess_board/orange_board.png",
+          "assets/res/chess_board/orange_board.png",
           fit: BoxFit.cover,
         );
       default:

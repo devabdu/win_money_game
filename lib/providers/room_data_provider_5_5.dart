@@ -10,6 +10,9 @@ class RoomDataProviderFive extends ChangeNotifier {
     socketID: '',
     points: 0,
     playerType: 'X',
+    uId: '',
+    coins: 0,
+    avatar: 0
   );
 
   Player _player2 = Player(
@@ -17,6 +20,9 @@ class RoomDataProviderFive extends ChangeNotifier {
     socketID: '',
     points: 0,
     playerType: 'O',
+    uId: '',
+    coins: 0,
+    avatar: 0
   );
 
   Map<String, dynamic> get roomData => _roomData;

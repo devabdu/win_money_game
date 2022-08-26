@@ -109,6 +109,7 @@ class _chessGameState extends State<chessGame> {
     _chessController.botBattle = prefs.getBool('botbattle') ?? false;
     //load user id and if not available create and save one
     uuid = prefs.getString('uuid');
+    print(prefs);
     if (uuid == null) {
       uuid = Uuid().v4();
       prefs.setString('uuid', uuid);
@@ -124,7 +125,8 @@ class _chessGameState extends State<chessGame> {
     //build the chess controller,
     //if needed set context newly
     if (_chessController == null)
-      _chessController = ChessController(context);
+{      _chessController = ChessController(context);
+      }
     else
       _chessController.context = context;
     //create the online game controller if is null
@@ -210,7 +212,7 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
         width: 50,
         height: 50,
       ),
-      applicationLegalese: await rootBundle.loadString('res/licenses/this'),
+      applicationLegalese: await rootBundle.loadString('assets/res/licenses/this'),
       children: [
         FancyButton(
           onPressed: () => launch(strings.privacy_url),

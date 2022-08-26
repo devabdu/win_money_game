@@ -6,7 +6,7 @@ import 'dart:isolate';
 import 'package:win_money_game/modules/chess/chess_board/chess.dart';
 import 'package:win_money_game/modules/chess/chess_board/flutter_chess_board.dart';
 import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart';
-import 'package:win_money_game/modules/chess/game.dart';
+import 'package:win_money_game/main.dart';
 import 'package:win_money_game/modules/chess/util/online_game_utils.dart';
 import 'package:win_money_game/modules/chess/util/utils.dart';
 import 'package:win_money_game/modules/chess/util/widget_utils.dart';
@@ -22,6 +22,7 @@ import '../eval/ai.dart';
 class ChessController {
   ChessBoardController controller = ChessBoardController();
   Chess game;
+
   BuildContext context;
 
   bool whiteSideTowardsUser = true;
@@ -246,16 +247,18 @@ class ChessController {
 
   Future<void> loadOldGame() async {
     //if is compiled for web, do not try to load file
-    if (kIsWeb) {
-      game = Chess();
-      return;
-    }
+
+    // game = Chess();
+    //     return;
+
 
     final root = await rootDir;
     final saveFile = File('$root${Platform.pathSeparator}game.fen');
+    print(saveFile);
     print('searching from ${saveFile.path}');
     if (await saveFile.exists()) {
       String fen = await saveFile.readAsString();
+      print(fen);
       if (fen.length < 2) {
         game = Chess();
         return;
@@ -264,10 +267,11 @@ class ChessController {
       print('game loaded from ${saveFile.path}');
 
       game = Chess.fromFEN(fen);
-    } else
-      game = Chess();
+    }
+    else{
+      print("test");
+    }
   }
-
   void saveOldGame() async {
     //don't save if on web
     if (kIsWeb) return;
@@ -282,9 +286,9 @@ class ChessController {
 
   void resetBoard() {
     showAnimatedDialog(
-        title: strings.replay,
-        text: strings.replay_desc,
-        onDoneText: strings.ok,
+        title: "replay",
+        text: "Are you sure to restart the game and reset the board?",
+        onDoneText: "ok",
         onDone: (value) {
           if (value == 'ok') {
             //reset all boards
@@ -408,7 +412,7 @@ class ChessController {
                               ),
                               InkWell(
                                 child: Image.asset(
-                                  "res/chess_board/orange_board.png",
+                                  "assets/res/chess_board/orange_board.png",
                                   height: 100,
                                   width: 100,
                                 ),
