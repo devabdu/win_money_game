@@ -160,7 +160,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                       SizedBox(
                         width: 10,
                       ),
-                      const Icon(Icons.money,
+                      const Icon(Icons.money_outlined,
                         color: Colors.deepPurple,
                         size: 25,
                       ),

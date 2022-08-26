@@ -229,6 +229,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   const SizedBox(
                     height: 40,
                   ),
+                  //coins
                   Row(
                     children: [
                       const Icon(
@@ -240,6 +241,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       Text(
                         '${user.coins}'.replaceAllMapped(reg, mathFunc),
+                        style: const TextStyle(
+                            color: Colors.amberAccent,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 19),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  //cash
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.money_outlined,
+                        color: Colors.amberAccent,
+                      ),
+                      const SizedBox(
+                        width: 10.0,
+                      ),
+                      Text(
+                        '${user.cash}'.replaceAllMapped(reg, mathFunc),
                         style: const TextStyle(
                             color: Colors.amberAccent,
                             fontWeight: FontWeight.w400,
