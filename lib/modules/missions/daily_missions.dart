@@ -47,7 +47,7 @@ class _DailyMissionsScreenState extends State<DailyMissionsScreen> {
                     ),
                   ),
                   content: const Text(
-                    'sdfghjkl;',
+                    'Complete Daily Missions to Win 20 Cash and 5k Coins!!',
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.deepPurple,

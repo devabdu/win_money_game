@@ -205,6 +205,35 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                               }
                             }
                             navigateTo(context, DailyMissionsScreen());
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text(
+                                  'Hint',
+                                  style: TextStyle(
+                                      color: Colors.deepPurple,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                                content: const Text(
+                                  'Complete Daily Missions to Win 20 Cash and 5k Coins!!',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.deepPurple,
+                                  ),
+                                ),
+                                backgroundColor: Colors.amberAccent,
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      selectTasaly = true;
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            );
                           },
                           child: Image.asset(
                             "assets/images/daily_missions.png",
@@ -225,6 +254,35 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                               }
                             }
                             navigateTo(context, WeeklyMissionsScreen());
+                            showDialog<String>(
+                              context: context,
+                              builder: (BuildContext context) => AlertDialog(
+                                title: const Text(
+                                  'Hint',
+                                  style: TextStyle(
+                                      color: Colors.deepPurple,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                                content: const Text(
+                                  'Complete Weekly Missions to Win 40 Cash and 10k Coins!!',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.deepPurple,
+                                  ),
+                                ),
+                                backgroundColor: Colors.amberAccent,
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: () {
+                                      selectTasaly = true;
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            );
                           },
                           child: Image.asset(
                             "assets/images/weekly_missions.png",

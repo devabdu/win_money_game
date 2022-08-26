@@ -47,7 +47,7 @@ class _WeeklyMissionsScreenState extends State<WeeklyMissionsScreen> {
                     ),
                   ),
                   content: const Text(
-                    'sdfghjkl;',
+                    'Complete Weekly Missions to Win 40 Cash and 10k Coins!!',
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.deepPurple,
