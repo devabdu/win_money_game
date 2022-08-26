@@ -71,39 +71,39 @@ class MainPageState extends State<ThirdXOOnlineScreen> {
                     padding: const EdgeInsets.only(bottom: 20, left: 170),
                     child: Column(
                       children: <Widget>[
-                        Row(
-                          children: [
-                            const CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 22,
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundImage: NetworkImage(
-                                    'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const Text(
-                              'Second player',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                // fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(width: 5),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.mic_rounded,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     const CircleAvatar(
+                        //       backgroundColor: Colors.white,
+                        //       radius: 22,
+                        //       child: CircleAvatar(
+                        //         radius: 20,
+                        //         backgroundImage: NetworkImage(
+                        //             'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                        //       ),
+                        //     ),
+                        //     const SizedBox(
+                        //       width: 10,
+                        //     ),
+                        //     const Text(
+                        //       'Second player',
+                        //       style: TextStyle(
+                        //         color: Colors.white,
+                        //         fontSize: 17,
+                        //         // fontWeight: FontWeight.bold,
+                        //       ),
+                        //     ),
+                        //     const SizedBox(width: 5),
+                        //     IconButton(
+                        //       onPressed: () {},
+                        //       icon: const Icon(
+                        //         Icons.mic_rounded,
+                        //         color: Colors.white,
+                        //         size: 20,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                   ))),
@@ -115,39 +115,39 @@ class MainPageState extends State<ThirdXOOnlineScreen> {
                     padding: const EdgeInsets.only(left: 20, top: 20),
                     child: Column(
                       children: <Widget>[
-                        Row(
-                          children: [
-                            const CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 22,
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundImage: NetworkImage(
-                                    'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            const Text(
-                              'First Player',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                // fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(width: 5),
-                            IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.mic_rounded,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     const CircleAvatar(
+                        //       backgroundColor: Colors.white,
+                        //       radius: 22,
+                        //       child: CircleAvatar(
+                        //         radius: 20,
+                        //         backgroundImage: NetworkImage(
+                        //             'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                        //       ),
+                        //     ),
+                        //     const SizedBox(
+                        //       width: 10,
+                        //     ),
+                        //     const Text(
+                        //       'First Player',
+                        //       style: TextStyle(
+                        //         color: Colors.white,
+                        //         fontSize: 17,
+                        //         // fontWeight: FontWeight.bold,
+                        //       ),
+                        //     ),
+                        //     const SizedBox(width: 5),
+                        //     IconButton(
+                        //       onPressed: () {},
+                        //       icon: const Icon(
+                        //         Icons.mic_rounded,
+                        //         color: Colors.white,
+                        //         size: 20,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                   ))),

@@ -31,13 +31,13 @@ String joinGameCodeWithoutFirebaseCreation({String gameCode}) {
 
 DocumentReference get currentGameDoc {
   if (inOnlineGame)
-    return FirebaseFirestore.instance.collection('games').doc(_currentGameCode);
+    return FirebaseFirestore.instance.collection('games').doc();
   else
     return null;
 }
 
 String get currentGameCode {
-  return _currentGameCode == null ? strings.local : _currentGameCode;
+  return _currentGameCode == null ? "[local game]" : _currentGameCode;
 }
 
 bool get inOnlineGame {
@@ -56,8 +56,8 @@ class OnlineGameController {
     //create the bucket in cloud firestore
     //set the local bot disabled etc
     _chessController.botBattle = false;
-    prefs.setBool('bot', false);
-    prefs.setBool('botbattle', false);
+    // prefs.setBool('bot', false);
+    // prefs.setBool('botbattle', false);
     //reset the local game
     _chessController.controller.resetBoard();
     //new game map

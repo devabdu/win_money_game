@@ -37,8 +37,8 @@ class MainPageState extends State<FirstXOOnlineScreen> {
   @override
   Widget build(BuildContext context) {
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context, listen: false);
-    print(roomDataProvider.player1.nickname);
-    print(roomDataProvider.player2.nickname);
+    // print(roomDataProvider.player1.nickname);
+    // print(roomDataProvider.player2.nickname);
 
     return Scaffold(
       // backgroundColor: Color.fromRGBO(16, 13, 34, 1),
@@ -72,31 +72,31 @@ class MainPageState extends State<FirstXOOnlineScreen> {
                     padding: const EdgeInsets.all(30),
                     child: Column(
                       children: <Widget>[
-                        Row(
-                          children: [
-                            const CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 22,
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundImage: NetworkImage(
-                                    'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              roomDataProvider.roomData['players'][0]['nickname'],//print registered username here
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                // fontWeight: FontWeight.bold,
-                              ),
-                            ),
-
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     // const CircleAvatar(
+                        //     //   backgroundColor: Colors.white,
+                        //     //   radius: 22,
+                        //     //   child: CircleAvatar(
+                        //     //     radius: 20,
+                        //     //     backgroundImage: NetworkImage(
+                        //     //         'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                        //     //   ),
+                        //     // ),
+                        //     // const SizedBox(
+                        //     //   width: 10,
+                        //     // ),
+                        //     Text(
+                        //       roomDataProvider.player1.nickname,//print registered username here
+                        //       style: TextStyle(
+                        //         color: Colors.white,
+                        //         fontSize: 17,
+                        //         // fontWeight: FontWeight.bold,
+                        //       ),
+                        //     ),
+                        //
+                        //   ],
+                        // ),
                       ],
                     ),
                   ))),
@@ -109,30 +109,30 @@ class MainPageState extends State<FirstXOOnlineScreen> {
                     child: Column(
 
                       children: <Widget>[
-                        Row(
-                          children: [
-                            const CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 22,
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundImage: NetworkImage(
-                                    'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              'Second Player',// print registered username here
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                // fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     const CircleAvatar(
+                        //       backgroundColor: Colors.white,
+                        //       radius: 22,
+                        //       child: CircleAvatar(
+                        //         radius: 20,
+                        //         backgroundImage: NetworkImage(
+                        //             'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                        //       ),
+                        //     ),
+                        //     const SizedBox(
+                        //       width: 10,
+                        //     ),
+                        //     Text(
+                        //       'Second Player',// print registered username here
+                        //       style: TextStyle(
+                        //         color: Colors.white,
+                        //         fontSize: 17,
+                        //         // fontWeight: FontWeight.bold,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                   ))),
