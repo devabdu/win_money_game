@@ -37,11 +37,14 @@ class RoomDataProvider extends ChangeNotifier {
   }
 
   void updatePlayer1(Map<String, dynamic> player1Data) {
+    print('55555555');
+    print(player1Data);
     _player1 = Player.fromMap(player1Data);
     notifyListeners();
   }
 
   void updatePlayer2(Map<String, dynamic> player2Data) {
+    print(player2Data);
     _player2 = Player.fromMap(player2Data);
     notifyListeners();
   }

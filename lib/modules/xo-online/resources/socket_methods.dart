@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:win_money_game/models/user_model.dart';
+import 'package:win_money_game/modules/xo-online/components/GameScreen2.dart';
+import 'package:win_money_game/modules/xo-online/components/GameScreen3.dart';
 import 'package:win_money_game/providers/room_data_provider_4_4.dart';
 import 'package:win_money_game/modules/xo-online/resources/socket_client.dart';
 import 'package:provider/provider.dart';
@@ -113,13 +115,13 @@ class SocketMethods {
       final provider = Provider.of<RoomDataProvider>(context, listen: false);
       provider.updateRoomData(room);
 
-      Map<String,dynamic> map = {};
-      map['nickname'] = room['players'][0]['nickname'];
-      map['socketID'] = room['players'][0]['socketID'];
-      map['points'] = room['players'][0]['points'];
-      map['playerType'] = room['players'][0]['playerType'];
-
-      provider.updatePlayer1(map);
+      // Map<String,dynamic> map = {};
+      // map['nickname'] = room['players'][0]['nickname'];
+      // map['socketID'] = room['players'][0]['socketID'];
+      // map['points'] = room['players'][0]['points'];
+      // map['playerType'] = room['players'][0]['playerType'];
+      //
+      // provider.updatePlayer1(map);
       Navigator.pushNamed(context, '/game');
       print(room);
     });
@@ -145,7 +147,7 @@ class SocketMethods {
       final provider = Provider.of<RoomDataProvider>(context, listen: false);
       provider.updateRoomData(room);
 
-      Navigator.pushNamed(context, GameScreen.routeName);
+      navigateTo(context, GameScreen());
       print(room);
     });
   }
@@ -153,7 +155,7 @@ class SocketMethods {
     _socketClient.on('joinRoomSuccess4', (room) {
       Provider.of<RoomDataProviderFour>(context, listen: false)
           .updateRoomData(room);
-      Navigator.pushNamed(context, '/game2');
+      navigateTo(context, GameScreenFour());
     });
   }
 
@@ -161,7 +163,7 @@ class SocketMethods {
     _socketClient.on('joinRoomSuccess5', (room) {
       Provider.of<RoomDataProviderFive>(context, listen: false)
           .updateRoomData(room);
-      Navigator.pushNamed(context, '/game3');
+      navigateTo(context, GameScreenFive());
     });
   }
 

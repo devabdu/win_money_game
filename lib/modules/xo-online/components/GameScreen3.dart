@@ -8,15 +8,15 @@ import 'package:win_money_game/modules/xo-online/views/scoreboard.dart';
 import 'package:win_money_game/modules/xo-online/views/waiting_lobby3.dart';
 import 'package:provider/provider.dart';
 
-class GameScreen extends StatefulWidget {
-  static String routeName = '/game';
-  const GameScreen({Key? key}) : super(key: key);
+class GameScreenFive extends StatefulWidget {
+  static String routeName = '/game3';
+  const GameScreenFive({Key? key}) : super(key: key);
 
   @override
-  State<GameScreen> createState() => _GameScreenState();
+  State<GameScreenFive> createState() => _GameScreenFiveState();
 }
 
-class _GameScreenState extends State<GameScreen> {
+class _GameScreenFiveState extends State<GameScreenFive> {
   final SocketMethods _socketMethods = SocketMethods();
 
   @override
