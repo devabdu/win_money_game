@@ -25,6 +25,8 @@ class UsersProvider extends ChangeNotifier {
   int targetWins = 0;
   int userCash = 0;
   int userCoins = 0;
+  int userDailyAmount = 0;
+  int userWeeklyAmount = 0;
 
   Future<void> updateAvatar({
     required int avatarIndex,
@@ -788,10 +790,69 @@ class UsersProvider extends ChangeNotifier {
       dynamic docData = documentSnapshot.data();
       userCash = docData['cash'];
       userCoins = docData['coins'];
+      userDailyAmount = docData['dailyAmount'];
     });
 
-    userCash = userCash + 10;
+    userCash = userCash + userDailyAmount;
     userCoins = userCoins + 5000;
+
+    // update user's dailyAmount
+    if(userCash >= 1000 && userDailyAmount == 10){
+      userDailyAmount = 5;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(id)
+          .update(
+          {
+            'dailyAmount' : userDailyAmount,
+          });
+    } else if(userCash >= 1200 && userDailyAmount == 5){
+      userDailyAmount = 4;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(id)
+          .update(
+          {
+            'dailyAmount' : userDailyAmount,
+          });
+    } else if(userCash >= 1500 && userDailyAmount == 4){
+      userDailyAmount = 3;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(id)
+          .update(
+          {
+            'dailyAmount' : userDailyAmount,
+          });
+    } else if(userCash >= 1700 && userDailyAmount == 3){
+      userDailyAmount = 2;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(id)
+          .update(
+          {
+            'dailyAmount' : userDailyAmount,
+          });
+    } else if(userCash >= 1900 && userDailyAmount == 2){
+      userDailyAmount = 1;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(id)
+          .update(
+          {
+            'dailyAmount' : userDailyAmount,
+          });
+    } else if(userCash >= 2000 && userDailyAmount == 1){
+      userDailyAmount = 0;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(id)
+          .update(
+          {
+            'dailyAmount' : userDailyAmount,
+          });
+    }
+
     await FirebaseFirestore.instance
         .collection('users')
         .doc(id)
@@ -814,10 +875,51 @@ class UsersProvider extends ChangeNotifier {
       dynamic docData = documentSnapshot.data();
       userCash = docData['cash'];
       userCoins = docData['coins'];
+      userWeeklyAmount = docData['weeklyAmount'];
     });
 
-    userCash = userCash + 50;
+    userCash = userCash + userWeeklyAmount;
     userCoins = userCoins + 10000;
+
+    // update user's weeklyAmount
+    if(userCash >= 1000 && userWeeklyAmount == 50){
+      userWeeklyAmount = 25;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(id)
+          .update(
+          {
+            'weeklyAmount' : userWeeklyAmount,
+          });
+    } else if(userCash >= 1500 && userWeeklyAmount == 25){
+      userWeeklyAmount = 10;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(id)
+          .update(
+          {
+            'weeklyAmount' : userWeeklyAmount,
+          });
+    } else if(userCash >= 1800 && userWeeklyAmount == 10){
+      userWeeklyAmount = 5;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(id)
+          .update(
+          {
+            'weeklyAmount' : userWeeklyAmount,
+          });
+    } else if(userCash >= 2000 && userWeeklyAmount == 5){
+      userWeeklyAmount = 0;
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(id)
+          .update(
+          {
+            'weeklyAmount' : userWeeklyAmount,
+          });
+    }
+
     await FirebaseFirestore.instance
         .collection('users')
         .doc(id)
