@@ -60,7 +60,9 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     //music
     player = AudioPlayer();
     cache = AudioCache(fixedPlayer: player);
-    playTillTab('music.ogg.mp3');
+    if(isPlaying){
+      playTillTab('music.ogg.mp3');
+    }
   }
 
   void handleEvent(AdmobAdEvent event, Map<String, dynamic>? args,
@@ -137,7 +139,10 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
               // ),
               actions: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 4),
+                  padding: const EdgeInsets.only(
+                    top: 4,
+                    right: 20,
+                  ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -178,22 +183,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                     ],
                   ),
                 ),
-                defaultIconPlay(
-                    function: (){
-                      if(!isPlaying)
-                      {
-                        setState(() {
-                          isPlaying = true;
-                        });
-                        resumeMusic();
-                      }
-                      else {
-                        setState(() {
-                          isPlaying = false;
-                        });
-                        stopMusic();
-                      }
-                    })
               ],
             ),
             body: Stack(

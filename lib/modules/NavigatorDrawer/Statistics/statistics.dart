@@ -33,6 +33,42 @@ class StatisticsScreen extends StatelessWidget {
                     title: const Text("Statistics",
                       style: TextStyle(color: Colors.deepPurple),
                     ),
+                    actions: [
+                      IconButton(
+                        onPressed: () {
+                          showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text(
+                                'Hint',
+                                style: TextStyle(
+                                    color: Colors.deepPurple,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              ),
+                              content: const Text(
+                                'sdfghjkl;',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.deepPurple,
+                                ),
+                              ),
+                              backgroundColor: Colors.amberAccent,
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    selectTasaly = true;
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('OK'),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.info_outline),
+                      ),
+                    ],
                   ),
                   body: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
