@@ -139,7 +139,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 4,
-                    right: 15
+                    right: 20,
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
