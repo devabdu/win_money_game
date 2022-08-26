@@ -459,7 +459,6 @@ class UsersProvider extends ChangeNotifier {
     required String missionName,
 }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('dailyMissions')
@@ -474,20 +473,17 @@ class UsersProvider extends ChangeNotifier {
     }).then((value) async {
       if(userCounts[dailyMissionId] < dailyMissionCount) {
         userCounts[dailyMissionId]++;
-        doUpdate = true;
-      }
-      if(doUpdate){
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
             .update(
             {
               'dailyCounts' : userCounts,
-        });
+            });
 
-        if(userCounts[dailyMissionId] == dailyMissionCount){
+        if(userCounts[dailyMissionId] == dailyMissionCount)
           dailyMissionReward();
-        }
       }
     });
   }
@@ -497,7 +493,6 @@ class UsersProvider extends ChangeNotifier {
     required String missionName,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('weeklyMissions')
@@ -512,9 +507,7 @@ class UsersProvider extends ChangeNotifier {
     }).then((value) async {
       if(userCounts[weeklyMissionId] < weeklyMissionCount) {
         userCounts[weeklyMissionId]++;
-        doUpdate = true;
-      }
-      if(doUpdate){
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -523,9 +516,8 @@ class UsersProvider extends ChangeNotifier {
               'weeklyCounts' : userCounts,
             });
 
-        if(userCounts[weeklyMissionId] == weeklyMissionCount){
+        if(userCounts[weeklyMissionId] == weeklyMissionCount)
           weeklyMissionReward();
-        }
       }
     });
   }
@@ -592,7 +584,6 @@ class UsersProvider extends ChangeNotifier {
     required String missionName,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('dailyMissions')
@@ -608,11 +599,6 @@ class UsersProvider extends ChangeNotifier {
       if(userCounts[dailyMissionId] < dailyMissionCount) {
         userCounts[dailyMissionId] = userCounts[dailyMissionId] + coinsWon;
 
-        if(userCounts[dailyMissionId] > dailyMissionCount)
-          userCounts[dailyMissionId] = dailyMissionCount;
-        doUpdate = true;
-      }
-      if(doUpdate){
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -621,7 +607,8 @@ class UsersProvider extends ChangeNotifier {
               'dailyCounts' : userCounts,
             });
 
-        if(userCounts[dailyMissionId] == dailyMissionCount){
+        if(userCounts[dailyMissionId] > dailyMissionCount) {
+          userCounts[dailyMissionId] = dailyMissionCount;
           dailyMissionReward();
         }
       }
@@ -634,7 +621,6 @@ class UsersProvider extends ChangeNotifier {
     required String missionName,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('weeklyMissions')
@@ -650,11 +636,6 @@ class UsersProvider extends ChangeNotifier {
       if(userCounts[weeklyMissionId] < weeklyMissionCount) {
         userCounts[weeklyMissionId] = userCounts[weeklyMissionId] + coinsWon;
 
-        if(userCounts[weeklyMissionId] > weeklyMissionCount)
-          userCounts[weeklyMissionId] = weeklyMissionCount;
-        doUpdate = true;
-      }
-      if(doUpdate){
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -663,7 +644,8 @@ class UsersProvider extends ChangeNotifier {
               'weeklyCounts' : userCounts,
             });
 
-        if(userCounts[weeklyMissionId] == weeklyMissionCount){
+        if(userCounts[weeklyMissionId] > weeklyMissionCount) {
+          userCounts[weeklyMissionId] = weeklyMissionCount;
           weeklyMissionReward();
         }
       }
@@ -674,7 +656,6 @@ class UsersProvider extends ChangeNotifier {
     required int userTasalyWins,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('statistics')
@@ -687,9 +668,7 @@ class UsersProvider extends ChangeNotifier {
     }).then((value) async {
       if(userTasalyWins < targetWins) {
         userTasalyWins++;
-        doUpdate = true;
-      }
-      if(doUpdate){
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -705,7 +684,6 @@ class UsersProvider extends ChangeNotifier {
     required int userRebhWins,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('statistics')
@@ -718,9 +696,7 @@ class UsersProvider extends ChangeNotifier {
     }).then((value) async {
       if(userRebhWins < targetWins) {
         userRebhWins++;
-        doUpdate = true;
-      }
-      if(doUpdate){
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -736,7 +712,6 @@ class UsersProvider extends ChangeNotifier {
     required int userTasalyWins,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('statistics')
@@ -749,9 +724,7 @@ class UsersProvider extends ChangeNotifier {
     }).then((value) async {
       if(userTasalyWins < targetWins) {
         userTasalyWins++;
-        doUpdate = true;
-      }
-      if(doUpdate){
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -767,7 +740,6 @@ class UsersProvider extends ChangeNotifier {
     required int userRebhWins,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('statistics')
@@ -780,9 +752,7 @@ class UsersProvider extends ChangeNotifier {
     }).then((value) async {
       if(userRebhWins < targetWins) {
         userRebhWins++;
-        doUpdate = true;
-      }
-      if(doUpdate){
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
