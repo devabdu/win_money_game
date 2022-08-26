@@ -23,8 +23,6 @@ class SelectLevelXoScreen extends StatelessWidget {
                 select3x3 = true;
                 select4x4 = false;
                 select5x5 = false;
-                print('playOnline $playOnline');
-                print('playOffline $playOffline');
                 if(playOnline)
                   navigateTo(context, XoSelectBetScreen());
                 if(playOffline)
@@ -42,8 +40,6 @@ class SelectLevelXoScreen extends StatelessWidget {
                 select3x3 = false;
                 select4x4 = true;
                 select5x5 = false;
-                print('playOnline $playOnline');
-                print('playOffline $playOffline');
                 if(playOnline)
                 navigateTo(context, XoSelectBetScreen());
                 if(playOffline)
@@ -61,8 +57,6 @@ class SelectLevelXoScreen extends StatelessWidget {
                 select3x3 = false;
                 select4x4 = false;
                 select5x5 = true;
-                print('playOnline $playOnline');
-                print('playOffline $playOffline');
                 if(playOnline)
                 navigateTo(context, XoSelectBetScreen());
                 if(playOffline)

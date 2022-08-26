@@ -790,7 +790,7 @@ class UsersProvider extends ChangeNotifier {
       userCoins = docData['coins'];
     });
 
-    userCash = userCash + 20;
+    userCash = userCash + 10;
     userCoins = userCoins + 5000;
     await FirebaseFirestore.instance
         .collection('users')
@@ -816,7 +816,7 @@ class UsersProvider extends ChangeNotifier {
       userCoins = docData['coins'];
     });
 
-    userCash = userCash + 40;
+    userCash = userCash + 50;
     userCoins = userCoins + 10000;
     await FirebaseFirestore.instance
         .collection('users')
@@ -861,18 +861,15 @@ class UsersProvider extends ChangeNotifier {
         .then((DocumentSnapshot documentSnapshot) {
       print(documentSnapshot.data());
       dynamic docData = documentSnapshot.data();
-      userCash = docData['cash'];
       userCoins = docData['coins'];
     });
 
-    userCash = userCash + 100;
-    userCoins = userCoins + 50000;
+    userCoins = userCoins + 25000;
     await FirebaseFirestore.instance
         .collection('users')
         .doc(id)
         .update(
         {
-          'cash' : userCash,
           'coins' : userCoins,
         });
   }
@@ -892,7 +889,7 @@ class UsersProvider extends ChangeNotifier {
     });
 
     userCash = userCash + 250;
-    userCoins = userCoins + 50000;
+    userCoins = userCoins + 25000;
     await FirebaseFirestore.instance
         .collection('users')
         .doc(id)

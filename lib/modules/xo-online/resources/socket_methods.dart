@@ -46,7 +46,6 @@ class SocketMethods {
     }
   }
 
-
   void joinRoom(String nickname, String roomId) {
     if (nickname.isNotEmpty && roomId.isNotEmpty) {
       _socketClient.emit('joinRoom', {
