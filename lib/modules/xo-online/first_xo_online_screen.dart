@@ -87,7 +87,7 @@ class MainPageState extends State<FirstXOOnlineScreen> {
                               width: 10,
                             ),
                             Text(
-                              roomDataProvider.roomData['players'][0]['nickname'],//print registered username here
+                              roomDataProvider.player1.nickname,//print registered username here
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 17,

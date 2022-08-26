@@ -519,6 +519,7 @@ class UsersProvider extends ChangeNotifier {
       }
     });
   }
+
   Future<void> updateUserLevelAndExp({
     required double userExp,
     required int userLevel,
@@ -543,11 +544,11 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> updateWinnerCoins({
     required int userCoins,
-    required int CoinsWon,
+    required int coinsWon,
   }) async{
     final id = FirebaseAuth.instance.currentUser!.uid;
 
-    userCoins = userCoins + CoinsWon;
+    userCoins = userCoins + coinsWon;
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -560,11 +561,11 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> updateLoserCoins({
     required int userCoins,
-    required int CoinsLost,
+    required int coinsLost,
   }) async{
     final id = FirebaseAuth.instance.currentUser!.uid;
 
-    userCoins = userCoins - CoinsLost;
+    userCoins = userCoins - coinsLost;
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -577,7 +578,7 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> updateUserDailyCoinsMissionProgress({
     required Map<String, dynamic> userCounts,
-    required int CoinsWon,
+    required int coinsWon,
     required String missionName,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
@@ -595,7 +596,7 @@ class UsersProvider extends ChangeNotifier {
       });
     }).then((value) async {
       if(userCounts[dailyMissionId] < dailyMissionCount) {
-        userCounts[dailyMissionId] = userCounts[dailyMissionId] + CoinsWon;
+        userCounts[dailyMissionId] = userCounts[dailyMissionId] + coinsWon;
         doUpdate = true;
       }
       if(doUpdate){
@@ -612,7 +613,7 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> updateUserWeeklyCoinsMissionProgress({
     required Map<String, dynamic> userCounts,
-    required int CoinsWon,
+    required int coinsWon,
     required String missionName,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
@@ -630,7 +631,7 @@ class UsersProvider extends ChangeNotifier {
       });
     }).then((value) async {
       if(userCounts[weeklyMissionId] < weeklyMissionCount) {
-        userCounts[weeklyMissionId] = userCounts[weeklyMissionId] + CoinsWon;
+        userCounts[weeklyMissionId] = userCounts[weeklyMissionId] + coinsWon;
         doUpdate = true;
       }
       if(doUpdate){
@@ -740,7 +741,6 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> updateUserChessRebhWins({
     required int userRebhWins,
-    required int CoinsWon,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
     bool doUpdate = false;
