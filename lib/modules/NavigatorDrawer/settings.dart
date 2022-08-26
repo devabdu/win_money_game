@@ -39,51 +39,54 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 vertical: 20,
                 horizontal: 20
               ),
-              child: Column(
-                children: [
-                  Container(
-                    height: 50,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Music',
-                            style: const TextStyle(
-                              color: Colors.deepPurple,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          defaultIconPlay(
-                            musicState: user.musicOn,
-                            iconSize: 30,
-                            iconColor: Colors.deepPurple,
-                              function: (){
-                                if(user.musicOn)
-                                {
-                                  final provider = Provider.of<UsersProvider>(
-                                      context, listen: false);
-                                  provider.turnOffMusic();
-                                  setState(() {});
-                                  stopMusic();
-                                }
-                                else {
-                                  final provider = Provider.of<UsersProvider>(
-                                      context, listen: false);
-                                  provider.turnOnMusic();
-                                  setState(() {});
-                                  playTillTab('music.ogg.mp3');
-                                }
-                              }
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    Container(
+                      height: 50,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Music',
+                              style: const TextStyle(
+                                color: Colors.deepPurple,
+                                fontSize: 24,
+                                fontWeight: FontWeight.w500,
                               ),
-                        ],
+                            ),
+                            defaultIconPlay(
+                              musicState: user.musicOn,
+                              iconSize: 30,
+                              iconColor: Colors.deepPurple,
+                                function: (){
+                                  if(user.musicOn)
+                                  {
+                                    final provider = Provider.of<UsersProvider>(
+                                        context, listen: false);
+                                    provider.turnOffMusic();
+                                    setState(() {});
+                                    stopMusic();
+                                  }
+                                  else {
+                                    final provider = Provider.of<UsersProvider>(
+                                        context, listen: false);
+                                    provider.turnOnMusic();
+                                    setState(() {});
+                                    playTillTab('music.ogg.mp3');
+                                  }
+                                }
+                                ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

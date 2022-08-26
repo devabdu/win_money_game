@@ -183,14 +183,207 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> with WidgetsBinding
                 ),
               ],
             ),
-            body: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.topRight,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 20, right: 5),
+            body: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 20, right: 5),
+                      child: Column(
+                        children: [
+                          InkWell(
+                            onTap: () async {
+                              if (selectTasaly) {
+                                final isLoaded = await interstitialAd.isLoaded;
+                                if (isLoaded ?? false) {
+                                  interstitialAd.show(); //interstital ad show
+                                } else {
+                                  showSnackBar(
+                                      'Interstitial ad is still loading...');
+                                }
+                              }
+                              navigateTo(context, DailyMissionsScreen());
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) =>
+                                    AlertDialog(
+                                      title: const Text(
+                                        'Hint',
+                                        style: TextStyle(
+                                            color: Colors.deepPurple,
+                                            fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      content: const Text(
+                                        'Complete Daily Missions to Win 20 Cash and 5k Coins!!',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.deepPurple,
+                                        ),
+                                      ),
+                                      backgroundColor: Colors.amberAccent,
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            selectTasaly = true;
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text('OK'),
+                                        ),
+                                      ],
+                                    ),
+                              );
+                            },
+                            child: Image.asset(
+                              "assets/images/daily_missions.png",
+                              height: 90,
+                              width: 90,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              if (selectTasaly) {
+                                final isLoaded = await interstitialAd.isLoaded;
+                                if (isLoaded ?? false) {
+                                  interstitialAd.show(); //interstital ad show
+                                } else {
+                                  showSnackBar(
+                                      'Interstitial ad is still loading...');
+                                }
+                              }
+                              navigateTo(context, WeeklyMissionsScreen());
+                              showDialog<String>(
+                                context: context,
+                                builder: (BuildContext context) =>
+                                    AlertDialog(
+                                      title: const Text(
+                                        'Hint',
+                                        style: TextStyle(
+                                            color: Colors.deepPurple,
+                                            fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      content: const Text(
+                                        'Complete Weekly Missions to Win 40 Cash and 10k Coins!!',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.deepPurple,
+                                        ),
+                                      ),
+                                      backgroundColor: Colors.amberAccent,
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () {
+                                            selectTasaly = true;
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text('OK'),
+                                        ),
+                                      ],
+                                    ),
+                              );
+                            },
+                            child: Image.asset(
+                              "assets/images/weekly_missions.png",
+                              height: 90,
+                              width: 90,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              if (await rewardAd.isLoaded) {
+                                rewardAd.show(); // showing rewarded ad
+                                final provider = Provider.of<UsersProvider>(
+                                    context, listen: false);
+                                await provider.updateUserDailyMissionProgress(
+                                  userCounts: user.dailyCounts,
+                                  missionName: 'Watch 3 ads',
+                                );
+                                await provider.updateUserWeeklyMissionProgress(
+                                  userCounts: user.weeklyCounts,
+                                  missionName: 'Watch 12 ads',
+                                );
+                                await provider.watchAdReward();
+                              } else {
+                                showSnackBar('Reward ad is still loading...');
+                              }
+                            },
+                            child: Image.asset(
+                              "assets/images/reward.png",
+                              height: 90,
+                              width: 90,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                navigateTo(context, SelectRoom());
+                              },
+                              icon: Icon(Icons.ads_click)),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 60,
+                        horizontal: 100,
+                    ),
                     child: Column(
                       children: [
+
+                        InkWell(
+                          onTap: () async {
+                            selectXo = true;
+                            selectChess = false;
+                            if (selectTasaly) {
+                              final isLoaded = await interstitialAd.isLoaded;
+                              if (isLoaded ?? false) {
+                                interstitialAd.show(); //interstital ad show
+                              } else {
+                                showSnackBar(
+                                    'Interstitial ad is still loading...');
+                              }
+                            }
+                            navigateTo(context, Play_On_Off());
+                          },
+                          child: Image.asset("assets/images/xo.png",
+                            fit: BoxFit.fill,
+                            width: 200,
+                            height: 180,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            selectXo = false;
+                            selectChess = true;
+                            if (selectTasaly) {
+                              final isLoaded = await interstitialAd.isLoaded;
+                              if (isLoaded ?? false) {
+                                interstitialAd.show(); //interstital ad show
+                              } else {
+                                showSnackBar(
+                                    'Interstitial ad is still loading...');
+                              }
+                            }
+                            navigateTo(context, Play_On_Off());
+                          },
+                          child: Image.asset("assets/images/chess.png",
+                            fit: BoxFit.fill,
+                            width: 200,
+                            height: 180,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
                         InkWell(
                           onTap: () async {
                             if (selectTasaly) {
@@ -202,231 +395,37 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> with WidgetsBinding
                                     'Interstitial ad is still loading...');
                               }
                             }
-                            navigateTo(context, DailyMissionsScreen());
-                            showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) =>
-                                  AlertDialog(
-                                    title: const Text(
-                                      'Hint',
-                                      style: TextStyle(
-                                          color: Colors.deepPurple,
-                                          fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                    content: const Text(
-                                      'Complete Daily Missions to Win 20 Cash and 5k Coins!!',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.deepPurple,
-                                      ),
-                                    ),
-                                    backgroundColor: Colors.amberAccent,
-                                    actions: <Widget>[
-                                      TextButton(
-                                        onPressed: () {
-                                          selectTasaly = true;
-                                          Navigator.pop(context);
-                                        },
-                                        child: const Text('OK'),
-                                      ),
-                                    ],
-                                  ),
-                            );
+                            navigateTo(context, LudoScreen());
                           },
-                          child: Image.asset(
-                            "assets/images/daily_missions.png",
-                            height: 90,
-                            width: 90,
+                          child: Image.asset("assets/images/LUDO Game.png",
                             fit: BoxFit.fill,
+                            width: 200,
+                            height: 180,
                           ),
                         ),
-                        InkWell(
-                          onTap: () async {
-                            if (selectTasaly) {
-                              final isLoaded = await interstitialAd.isLoaded;
-                              if (isLoaded ?? false) {
-                                interstitialAd.show(); //interstital ad show
-                              } else {
-                                showSnackBar(
-                                    'Interstitial ad is still loading...');
-                              }
-                            }
-                            navigateTo(context, WeeklyMissionsScreen());
-                            showDialog<String>(
-                              context: context,
-                              builder: (BuildContext context) =>
-                                  AlertDialog(
-                                    title: const Text(
-                                      'Hint',
-                                      style: TextStyle(
-                                          color: Colors.deepPurple,
-                                          fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                    content: const Text(
-                                      'Complete Weekly Missions to Win 40 Cash and 10k Coins!!',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.deepPurple,
-                                      ),
-                                    ),
-                                    backgroundColor: Colors.amberAccent,
-                                    actions: <Widget>[
-                                      TextButton(
-                                        onPressed: () {
-                                          selectTasaly = true;
-                                          Navigator.pop(context);
-                                        },
-                                        child: const Text('OK'),
-                                      ),
-                                    ],
-                                  ),
-                            );
-                          },
-                          child: Image.asset(
-                            "assets/images/weekly_missions.png",
-                            height: 90,
-                            width: 90,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            if (await rewardAd.isLoaded) {
-                              rewardAd.show(); // showing rewarded ad
-                              final provider = Provider.of<UsersProvider>(
-                                  context, listen: false);
-                              await provider.updateUserDailyMissionProgress(
-                                userCounts: user.dailyCounts,
-                                missionName: 'Watch 3 ads',
-                              );
-                              await provider.updateUserWeeklyMissionProgress(
-                                userCounts: user.weeklyCounts,
-                                missionName: 'Watch 12 ads',
-                              );
-                              await provider.watchAdReward();
-                            } else {
-                              showSnackBar('Reward ad is still loading...');
-                            }
-                          },
-                          child: Image.asset(
-                            "assets/images/reward.png",
-                            height: 90,
-                            width: 90,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                        IconButton(
-                            onPressed: () {
-                              navigateTo(context, SelectRoom());
-                            },
-                            icon: Icon(Icons.ads_click)),
                       ],
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 70,
-                      horizontal: 100
-                  ),
-                  child: Column(
-                    children: [
-
-                      InkWell(
-                        onTap: () async {
-                          selectXo = true;
-                          selectChess = false;
-                          if (selectTasaly) {
-                            final isLoaded = await interstitialAd.isLoaded;
-                            if (isLoaded ?? false) {
-                              interstitialAd.show(); //interstital ad show
-                            } else {
-                              showSnackBar(
-                                  'Interstitial ad is still loading...');
-                            }
-                          }
-                          navigateTo(context, Play_On_Off());
-                        },
-                        child: Image.asset("assets/images/xo.png",
-                          fit: BoxFit.fill,
-                          width: 200,
-                          height: 180,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      InkWell(
-                        onTap: () async {
-                          selectXo = false;
-                          selectChess = true;
-                          if (selectTasaly) {
-                            final isLoaded = await interstitialAd.isLoaded;
-                            if (isLoaded ?? false) {
-                              interstitialAd.show(); //interstital ad show
-                            } else {
-                              showSnackBar(
-                                  'Interstitial ad is still loading...');
-                            }
-                          }
-                          navigateTo(context, Play_On_Off());
-                        },
-                        child: Image.asset("assets/images/chess.png",
-                          fit: BoxFit.fill,
-                          width: 200,
-                          height: 180,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      InkWell(
-                        onTap: () async {
-                          if (selectTasaly) {
-                            final isLoaded = await interstitialAd.isLoaded;
-                            if (isLoaded ?? false) {
-                              interstitialAd.show(); //interstital ad show
-                            } else {
-                              showSnackBar(
-                                  'Interstitial ad is still loading...');
-                            }
-                          }
-                          navigateTo(context, LudoScreen());
-                        },
-                        child: Image.asset("assets/images/LUDO Game.png",
-                          fit: BoxFit.fill,
-                          width: 200,
-                          height: 180,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child:
-                  Container(
-                    margin: const EdgeInsets.only(bottom: 5),
-                    child: AdmobBanner( //banners init
-                      adUnitId: AdsManager.bannerAdUnitIdEx,
-                      adSize: bannerSize!,
-                      listener: (AdmobAdEvent event,
-                          Map<String, dynamic>? args) {
-                        handleEvent(event, args, 'Banner');
-                      },
-                      onBannerCreated:
-                          (AdmobBannerController controller) {
-                        // Dispose is called automatically for you when Flutter removes the banner from the widget tree.
-                        // Normally you don't need to worry about disposing this yourself, it's handled.
-                        // If you need direct access to dispose, this is your guy!
-                        // controller.dispose();
-                      },
-                    ),
-                  ),
-                ),
-              ],
+                ],
+              ),
+            ),
+            bottomNavigationBar:  Container(
+              margin: const EdgeInsets.only(bottom: 5),
+              child: AdmobBanner( //banners init
+                adUnitId: AdsManager.bannerAdUnitIdEx,
+                adSize: bannerSize!,
+                listener: (AdmobAdEvent event,
+                    Map<String, dynamic>? args) {
+                  handleEvent(event, args, 'Banner');
+                },
+                onBannerCreated:
+                    (AdmobBannerController controller) {
+                  // Dispose is called automatically for you when Flutter removes the banner from the widget tree.
+                  // Normally you don't need to worry about disposing this yourself, it's handled.
+                  // If you need direct access to dispose, this is your guy!
+                  // controller.dispose();
+                },
+              ),
             ),
           );
         } else if (snapshot.connectionState == ConnectionState.waiting) {
@@ -459,9 +458,17 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> with WidgetsBinding
    final isBackground =  state == AppLifecycleState.paused;
 
    if(isBackground){
+     final provider = Provider.of<UsersProvider>(
+         context, listen: false);
+     provider.turnOffMusic();
+     setState(() {});
      stopMusic();
    }else{
-     resumeMusic();
+     final provider = Provider.of<UsersProvider>(
+         context, listen: false);
+     provider.turnOnMusic();
+     setState(() {});
+     playTillTab('music.ogg.mp3');
    }
   }
 }

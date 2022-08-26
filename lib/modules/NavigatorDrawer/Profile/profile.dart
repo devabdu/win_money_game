@@ -51,263 +51,266 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 left: 20,
                 right: 15,
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Form(
-                    key: formKey,
-                    child: Center(
-                      child: Stack(
-                        alignment: AlignmentDirectional.bottomEnd,
-                        children: [
-                          CircleAvatar(
-                            radius: 55,
-                            backgroundImage: AssetImage(
-                              'assets/images/avatar_${user.avatar}.png',
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {
-                              showModalBottomSheet(
-                                  isScrollControlled: true,
-                                  context: context,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  builder: (context) {
-                                    return Container(
-                                      padding: const EdgeInsets.all(20),
-                                      color: Colors.amberAccent,
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                          bottom: MediaQuery.of(context).viewInsets.bottom,
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            const Text(
-                                              "Edit Avatar",
-                                              style: TextStyle(
-                                                fontSize: 25,
-                                                fontWeight: FontWeight.w500,
-                                                color: Colors.deepPurple,
-                                              ),
-                                            ),
-                                            const Divider(
-                                              color: Colors.white,
-                                              thickness: 1,
-                                              indent: 20,
-                                              endIndent: 30,
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            SizedBox(
-                                              height: 150,
-                                              child: GridView.builder(
-                                                itemCount: 8,
-                                                itemBuilder: (context, index){
-                                                  return InkWell(
-                                                    child: CircleAvatar(
-                                                      backgroundImage: AssetImage(avatarImages[index]),
-                                                      radius: 40,
-                                                    ),
-                                                    onTap: () async {
-                                                      avatarChoice = index + 1;
-
-                                                      if(formKey.currentState!.validate())
-                                                      {
-                                                        final provider = Provider.of<UsersProvider>(context, listen: false);
-                                                        await provider.updateAvatar(
-                                                          avatarIndex: avatarChoice,
-                                                          context: context,
-                                                        );
-                                                      }
-                                                    },
-                                                  );
-                                                },
-                                                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                                  crossAxisCount: 2,
-                                                  childAspectRatio: 2,
-                                                  mainAxisSpacing: 10,
-                                                  mainAxisExtent: 100,
-                                                  crossAxisSpacing: 20,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  });
-                            },
-                            icon: const CircleAvatar(
-                              radius: 20,
-                              backgroundColor: Colors.amberAccent,
-                              child: Icon(
-                                Icons.edit_outlined,
-                                color: Colors.white,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Form(
+                      key: formKey,
+                      child: Center(
+                        child: Stack(
+                          alignment: AlignmentDirectional.bottomEnd,
+                          children: [
+                            CircleAvatar(
+                              radius: 55,
+                              backgroundImage: AssetImage(
+                                'assets/images/avatar_${user.avatar}.png',
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  const Text(
-                    'Name',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 8.0,
-                  ),
-                  Text(
-                    getFirstWord(user.name).capitalize(),
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 19,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Level ',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.w300,
+                            IconButton(
+                              onPressed: () {
+                                showModalBottomSheet(
+                                    isScrollControlled: true,
+                                    context: context,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    builder: (context) {
+                                      return Container(
+                                        padding: const EdgeInsets.all(20),
+                                        color: Colors.amberAccent,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                            bottom: MediaQuery.of(context).viewInsets.bottom,
+                                          ),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              const Text(
+                                                "Edit Avatar",
+                                                style: TextStyle(
+                                                  fontSize: 25,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.deepPurple,
+                                                ),
+                                              ),
+                                              const Divider(
+                                                color: Colors.white,
+                                                thickness: 1,
+                                                indent: 20,
+                                                endIndent: 30,
+                                              ),
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              SizedBox(
+                                                height: 150,
+                                                child: GridView.builder(
+                                                  itemCount: 8,
+                                                  itemBuilder: (context, index){
+                                                    return InkWell(
+                                                      child: CircleAvatar(
+                                                        backgroundImage: AssetImage(avatarImages[index]),
+                                                        radius: 40,
+                                                      ),
+                                                      onTap: () async {
+                                                        avatarChoice = index + 1;
+
+                                                        if(formKey.currentState!.validate())
+                                                        {
+                                                          final provider = Provider.of<UsersProvider>(context, listen: false);
+                                                          await provider.updateAvatar(
+                                                            avatarIndex: avatarChoice,
+                                                            context: context,
+                                                          );
+                                                        }
+                                                      },
+                                                    );
+                                                  },
+                                                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                                    crossAxisCount: 2,
+                                                    childAspectRatio: 2,
+                                                    mainAxisSpacing: 10,
+                                                    mainAxisExtent: 100,
+                                                    crossAxisSpacing: 20,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    });
+                              },
+                              icon: const CircleAvatar(
+                                radius: 20,
+                                backgroundColor: Colors.amberAccent,
+                                child: Icon(
+                                  Icons.edit_outlined,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            '${user.level}',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 19,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      LinearPercentIndicator(
-                        alignment: MainAxisAlignment.start,
-                        width: 200.0,
-                        lineHeight: 20.0,
-                        percent: user.exp,
-                        center: Text(
-                          "${user.exp * 100}%",
-                          style: const TextStyle(fontSize: 12.0),
+                          ],
                         ),
-                        //trailing: Icon(Icons.mood),
-                        linearStrokeCap: LinearStrokeCap.round,
-                        backgroundColor: Colors.white,
-                        progressColor: Colors.amberAccent,
                       ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  //coins
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.monetization_on,
-                        color: Colors.amberAccent,
-                      ),
-                      const SizedBox(
-                        width: 10.0,
-                      ),
-                      Text(
-                        '${user.coins}'.replaceAllMapped(reg, mathFunc),
-                        style: const TextStyle(
-                            color: Colors.amberAccent,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 19),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  //cash
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.money_outlined,
-                        color: Colors.amberAccent,
-                      ),
-                      const SizedBox(
-                        width: 10.0,
-                      ),
-                      Text(
-                        '${user.cash}'.replaceAllMapped(reg, mathFunc),
-                        style: const TextStyle(
-                            color: Colors.amberAccent,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 19),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  //email
-                  const Text(
-                    'Email',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w300,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 8.0,
-                  ),
-                  Text(
-                    user.email,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 19,
-                      fontWeight: FontWeight.w400,
+                    const SizedBox(
+                      height: 30,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  user.isAdmin ? Center(
-                    child: defaultButton(
-                      function: (){
-                        navigateTo(context, AdminScreen());
-                      },
-                      text: "Admin Settings",
-                      isUpperCase: false,
-                      textColor: Colors.white,
-                      fontSize: 20.0,
+                    const Text(
+                      'Name',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w300,
+                      ),
                     ),
-                  ) : Center(),
-                ],
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    Text(
+                      getFirstWord(user.name).capitalize(),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 19,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Level ',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w300,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              '${user.level}',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 19,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        LinearPercentIndicator(
+                          alignment: MainAxisAlignment.start,
+                          width: 200.0,
+                          lineHeight: 20.0,
+                          percent: user.exp,
+                          center: Text(
+                            "${user.exp * 100}%",
+                            style: const TextStyle(fontSize: 12.0),
+                          ),
+                          //trailing: Icon(Icons.mood),
+                          linearStrokeCap: LinearStrokeCap.round,
+                          backgroundColor: Colors.white,
+                          progressColor: Colors.amberAccent,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    //coins
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.monetization_on,
+                          color: Colors.amberAccent,
+                        ),
+                        const SizedBox(
+                          width: 10.0,
+                        ),
+                        Text(
+                          '${user.coins}'.replaceAllMapped(reg, mathFunc),
+                          style: const TextStyle(
+                              color: Colors.amberAccent,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 19),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    //cash
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.money_outlined,
+                          color: Colors.amberAccent,
+                        ),
+                        const SizedBox(
+                          width: 10.0,
+                        ),
+                        Text(
+                          '${user.cash}'.replaceAllMapped(reg, mathFunc),
+                          style: const TextStyle(
+                              color: Colors.amberAccent,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 19),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    //email
+                    const Text(
+                      'Email',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    Text(
+                      user.email,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 19,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    user.isAdmin ? Center(
+                      child: defaultButton(
+                        function: (){
+                          navigateTo(context, AdminScreen());
+                        },
+                        text: "Admin Settings",
+                        isUpperCase: false,
+                        textColor: Colors.white,
+                        fontSize: 20.0,
+                      ),
+                    ) : Center(),
+                  ],
+                ),
               ),
             ),
           );
