@@ -93,7 +93,7 @@ import 'package:win_money_game/modules/chess/widgets/divider.dart';
 import 'package:win_money_game/modules/chess/widgets/fancy_button.dart';
 import 'package:win_money_game/modules/chess/widgets/fancy_options.dart';
 import 'package:win_money_game/modules/chess/widgets/modal_progress_hud.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
