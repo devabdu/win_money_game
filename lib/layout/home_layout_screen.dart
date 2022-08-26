@@ -60,7 +60,9 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     //music
     player = AudioPlayer();
     cache = AudioCache(fixedPlayer: player);
-    playTillTab('music.ogg.mp3');
+    if(isPlaying){
+      playTillTab('music.ogg.mp3');
+    }
   }
 
   void handleEvent(AdmobAdEvent event, Map<String, dynamic>? args,
