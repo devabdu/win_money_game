@@ -11,8 +11,8 @@ class RoomDataProvider extends ChangeNotifier {
     points: 0,
     playerType: 'X',
     uId: '',
-    coins: '',
-    avatar: '',
+    coins: 0,
+    avatar: 0,
   );
 
   Player _player2 = Player(
@@ -21,8 +21,8 @@ class RoomDataProvider extends ChangeNotifier {
     points: 0,
     playerType: 'O',
       uId: '',
-      coins: '',
-      avatar: ''
+      coins: 0,
+      avatar: 0
   );
 
   Map<String, dynamic> get roomData => _roomData;

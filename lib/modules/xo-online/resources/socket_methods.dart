@@ -22,7 +22,7 @@ class SocketMethods {
   Socket get socketClient => _socketClient;
 
   // EMITS
-  void createRoom(String nickname) {
+  void createRoom(String nickname , String uId , int avatar , int coins ) {
     if (nickname.isNotEmpty) {
       _socketClient.emit('createRoom', {
         'nickname': nickname,
@@ -30,7 +30,7 @@ class SocketMethods {
     }
   }
 
-  void createRoomFour(String nickname) {
+  void createRoomFour(String nickname , String uId , int avatar , int coins) {
     if (nickname.isNotEmpty) {
       _socketClient.emit('createRoom4', {
         'nickname': nickname,
@@ -38,7 +38,7 @@ class SocketMethods {
     }
   }
 
-  void createRoomFive(String nickname) {
+  void createRoomFive(String nickname , String uId , int avatar , int coins) {
     if (nickname.isNotEmpty) {
       _socketClient.emit('createRoom5', {
         'nickname': nickname,

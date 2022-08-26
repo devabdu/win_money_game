@@ -4,8 +4,8 @@ class Player {
   final double points;
   final String playerType;
   final String uId;
-  final String coins;
-  final String avatar;
+  final int coins;
+  final int avatar;
 
   Player({
     required this.nickname,
@@ -50,8 +50,8 @@ class Player {
     double? points,
     String? playerType,
     String? uId,
-    String? coins,
-    String? avatar,
+    int? coins,
+    int? avatar,
   }) {
     return Player(
       nickname: nickname ?? this.nickname,
