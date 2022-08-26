@@ -47,7 +47,7 @@ class MainPageState extends State<SecondXOOnlineScreen> {
             color: Colors.deepPurple,
           ),
           title: const Text(
-            'Tic Tac Toe',
+            'XO',
             style: TextStyle(color: Colors.deepPurple),
           ),
           actions: [

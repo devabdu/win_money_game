@@ -23,6 +23,8 @@ class UsersProvider extends ChangeNotifier {
   int? weeklyMissionCount;
 
   int targetWins = 0;
+  int userCash = 0;
+  int userCoins = 0;
 
   Future<void> updateAvatar({
     required int avatarIndex,
@@ -457,7 +459,6 @@ class UsersProvider extends ChangeNotifier {
     required String missionName,
 }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('dailyMissions')
@@ -472,16 +473,17 @@ class UsersProvider extends ChangeNotifier {
     }).then((value) async {
       if(userCounts[dailyMissionId] < dailyMissionCount) {
         userCounts[dailyMissionId]++;
-        doUpdate = true;
-      }
-      if(doUpdate){
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
             .update(
             {
               'dailyCounts' : userCounts,
-        });
+            });
+
+        if(userCounts[dailyMissionId] == dailyMissionCount)
+          await dailyMissionReward();
       }
     });
   }
@@ -491,7 +493,6 @@ class UsersProvider extends ChangeNotifier {
     required String missionName,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('weeklyMissions')
@@ -506,9 +507,7 @@ class UsersProvider extends ChangeNotifier {
     }).then((value) async {
       if(userCounts[weeklyMissionId] < weeklyMissionCount) {
         userCounts[weeklyMissionId]++;
-        doUpdate = true;
-      }
-      if(doUpdate){
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -516,9 +515,13 @@ class UsersProvider extends ChangeNotifier {
             {
               'weeklyCounts' : userCounts,
             });
+
+        if(userCounts[weeklyMissionId] == weeklyMissionCount)
+          await weeklyMissionReward();
       }
     });
   }
+
   Future<void> updateUserLevelAndExp({
     required double userExp,
     required int userLevel,
@@ -543,11 +546,11 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> updateWinnerCoins({
     required int userCoins,
-    required int CoinsWon,
+    required int coinsWon,
   }) async{
     final id = FirebaseAuth.instance.currentUser!.uid;
 
-    userCoins = userCoins + CoinsWon;
+    userCoins = userCoins + coinsWon;
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -560,11 +563,11 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> updateLoserCoins({
     required int userCoins,
-    required int CoinsLost,
+    required int coinsLost,
   }) async{
     final id = FirebaseAuth.instance.currentUser!.uid;
 
-    userCoins = userCoins - CoinsLost;
+    userCoins = userCoins - coinsLost;
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -577,11 +580,10 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> updateUserDailyCoinsMissionProgress({
     required Map<String, dynamic> userCounts,
-    required int CoinsWon,
+    required int coinsWon,
     required String missionName,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('dailyMissions')
@@ -595,10 +597,8 @@ class UsersProvider extends ChangeNotifier {
       });
     }).then((value) async {
       if(userCounts[dailyMissionId] < dailyMissionCount) {
-        userCounts[dailyMissionId] = userCounts[dailyMissionId] + CoinsWon;
-        doUpdate = true;
-      }
-      if(doUpdate){
+        userCounts[dailyMissionId] = userCounts[dailyMissionId] + coinsWon;
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -606,17 +606,21 @@ class UsersProvider extends ChangeNotifier {
             {
               'dailyCounts' : userCounts,
             });
+
+        if(userCounts[dailyMissionId] > dailyMissionCount) {
+          userCounts[dailyMissionId] = dailyMissionCount;
+          await dailyMissionReward();
+        }
       }
     });
   }
 
   Future<void> updateUserWeeklyCoinsMissionProgress({
     required Map<String, dynamic> userCounts,
-    required int CoinsWon,
+    required int coinsWon,
     required String missionName,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('weeklyMissions')
@@ -630,10 +634,8 @@ class UsersProvider extends ChangeNotifier {
       });
     }).then((value) async {
       if(userCounts[weeklyMissionId] < weeklyMissionCount) {
-        userCounts[weeklyMissionId] = userCounts[weeklyMissionId] + CoinsWon;
-        doUpdate = true;
-      }
-      if(doUpdate){
+        userCounts[weeklyMissionId] = userCounts[weeklyMissionId] + coinsWon;
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -641,6 +643,11 @@ class UsersProvider extends ChangeNotifier {
             {
               'weeklyCounts' : userCounts,
             });
+
+        if(userCounts[weeklyMissionId] > weeklyMissionCount) {
+          userCounts[weeklyMissionId] = weeklyMissionCount;
+          await weeklyMissionReward();
+        }
       }
     });
   }
@@ -649,7 +656,6 @@ class UsersProvider extends ChangeNotifier {
     required int userTasalyWins,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('statistics')
@@ -662,9 +668,7 @@ class UsersProvider extends ChangeNotifier {
     }).then((value) async {
       if(userTasalyWins < targetWins) {
         userTasalyWins++;
-        doUpdate = true;
-      }
-      if(doUpdate){
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -672,6 +676,9 @@ class UsersProvider extends ChangeNotifier {
             {
               'xoTwins' : userTasalyWins,
             });
+
+        if(userTasalyWins == targetWins)
+          tasalyStatisticsReward();
       }
     });
   }
@@ -680,7 +687,6 @@ class UsersProvider extends ChangeNotifier {
     required int userRebhWins,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('statistics')
@@ -693,9 +699,7 @@ class UsersProvider extends ChangeNotifier {
     }).then((value) async {
       if(userRebhWins < targetWins) {
         userRebhWins++;
-        doUpdate = true;
-      }
-      if(doUpdate){
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -703,6 +707,9 @@ class UsersProvider extends ChangeNotifier {
             {
               'xoRwins' : userRebhWins,
             });
+
+        if(userRebhWins < targetWins)
+          rebhStatisticsReward();
       }
     });
   }
@@ -711,7 +718,6 @@ class UsersProvider extends ChangeNotifier {
     required int userTasalyWins,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('statistics')
@@ -724,9 +730,7 @@ class UsersProvider extends ChangeNotifier {
     }).then((value) async {
       if(userTasalyWins < targetWins) {
         userTasalyWins++;
-        doUpdate = true;
-      }
-      if(doUpdate){
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -734,16 +738,17 @@ class UsersProvider extends ChangeNotifier {
             {
               'chessTwins' : userTasalyWins,
             });
+
+        if(userTasalyWins == targetWins)
+          tasalyStatisticsReward();
       }
     });
   }
 
   Future<void> updateUserChessRebhWins({
     required int userRebhWins,
-    required int CoinsWon,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
-    bool doUpdate = false;
 
     await FirebaseFirestore.instance
         .collection('statistics')
@@ -756,9 +761,7 @@ class UsersProvider extends ChangeNotifier {
     }).then((value) async {
       if(userRebhWins < targetWins) {
         userRebhWins++;
-        doUpdate = true;
-      }
-      if(doUpdate){
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -766,7 +769,137 @@ class UsersProvider extends ChangeNotifier {
             {
               'chessRwins' : userRebhWins,
             });
+
+        if(userRebhWins == targetWins)
+          rebhStatisticsReward();
       }
     });
+  }
+
+  Future<void> dailyMissionReward() async{
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+      userCash = docData['cash'];
+      userCoins = docData['coins'];
+    });
+
+    userCash = userCash + 20;
+    userCoins = userCoins + 5000;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'cash' : userCash,
+          'coins' : userCoins,
+        });
+  }
+
+  Future<void> weeklyMissionReward() async{
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+      userCash = docData['cash'];
+      userCoins = docData['coins'];
+    });
+
+    userCash = userCash + 40;
+    userCoins = userCoins + 10000;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'cash' : userCash,
+          'coins' : userCoins,
+        });
+  }
+
+  Future<void> watchAdReward() async{
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+      userCoins = docData['coins'];
+    });
+
+    userCoins = userCoins + 1000;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'coins' : userCoins,
+        });
+  }
+
+  Future<void> tasalyStatisticsReward() async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+      userCash = docData['cash'];
+      userCoins = docData['coins'];
+    });
+
+    userCash = userCash + 100;
+    userCoins = userCoins + 50000;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'cash' : userCash,
+          'coins' : userCoins,
+        });
+  }
+
+  Future<void> rebhStatisticsReward() async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      print(documentSnapshot.data());
+      dynamic docData = documentSnapshot.data();
+      userCash = docData['cash'];
+      userCoins = docData['coins'];
+    });
+
+    userCash = userCash + 250;
+    userCoins = userCoins + 50000;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .update(
+        {
+          'cash' : userCash,
+          'coins' : userCoins,
+        });
   }
 }

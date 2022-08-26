@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -296,3 +297,42 @@ Widget buildWeeklyMission(MissionsModel mission) {
     },
   );
 }
+
+
+
+
+
+///////////////////////////////////
+//audio
+
+late AudioPlayer player;
+late AudioCache cache;
+bool isPlaying = true;
+
+playMusic(String song)
+{ // to play the Audio
+  cache.play(song);
+}
+stopMusic()
+{// to pause the Audio
+  player.pause();
+}
+resumeMusic(){
+  player.resume();
+}
+playTillTab(String song){
+  cache.loop(song);
+}
+
+Widget defaultIconPlay({
+  required Function function,
+  double? iconSize,
+  Color? iconColor,
+})=>IconButton(
+  onPressed: (){
+    function();
+  },
+  icon: isPlaying ? Icon(Icons.play_arrow_outlined):Icon(Icons.play_disabled_outlined),
+  iconSize: iconSize ?? 24,
+  color: iconColor ?? Colors.amberAccent,
+);

@@ -51,7 +51,7 @@ class MainPageState extends State<FirstXOOnlineScreen> {
           color: Colors.deepPurple,
         ),
         title: const Text(
-          'Tic Tac Toe',
+          'XO',
           style: TextStyle(color: Colors.deepPurple),
         ),
         actions: [
@@ -72,6 +72,7 @@ class MainPageState extends State<FirstXOOnlineScreen> {
                     padding: const EdgeInsets.all(30),
                     child: Column(
                       children: <Widget>[
+
                         // Row(
                         //   children: [
                         //     // const CircleAvatar(
@@ -97,6 +98,31 @@ class MainPageState extends State<FirstXOOnlineScreen> {
                         //
                         //   ],
                         // ),
+                        Row(
+                          children: [
+                            const CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 22,
+                              child: CircleAvatar(
+                                radius: 20,
+                                backgroundImage: NetworkImage(
+                                    'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              roomDataProvider.player1.nickname,//print registered username here
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                // fontWeight: FontWeight.bold,
+                              ),
+                            ),
+
+                          ],
+                        ),
                       ],
                     ),
                   ))),

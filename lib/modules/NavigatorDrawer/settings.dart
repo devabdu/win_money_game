@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:win_money_game/models/user_model.dart';
-import 'package:win_money_game/modules/admin/admin_screen.dart';
-import 'package:win_money_game/shared/audio_manager.dart';
 
 import '../../shared/components/components.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
 
   const SettingsScreen({Key? key}) : super(key: key);
 
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<UserModel?>(
@@ -29,45 +32,52 @@ class SettingsScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.deepPurple),
               ),
             ),
-            body: Center(
+            body: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 20,
+                horizontal: 20
+              ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: 300,
-                    child: ValueListenableBuilder<bool>(
-                      valueListenable: AudioManager.sfx,
-                      builder: (context, sfx, child) => SwitchListTile(
-                        title: const Text('Sound Effects',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                        value: sfx,
-                        activeColor: Colors.white,
-                        onChanged: (value) => AudioManager.sfx.value = value,
-
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 300,
-                    child: ValueListenableBuilder<bool>(
-                      valueListenable: AudioManager.bgm,
-                      builder: (context, bgm, child) => SwitchListTile(
-                        title: const Text('Background Music',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                        value: bgm,
-                        activeColor: Colors.white,
-                        onChanged: (value) => AudioManager.bgm.value = value,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
+                  Container(
                     height: 50,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Music',
+                            style: const TextStyle(
+                              color: Colors.deepPurple,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          defaultIconPlay(
+                            iconSize: 30,
+                            iconColor: Colors.deepPurple,
+                              function: (){
+                                if(isPlaying)
+                                {
+                                  setState(() {
+                                    isPlaying = false;
+                                  });
+                                  stopMusic();
+                                }
+                                else {
+                                  setState(() {
+                                    isPlaying = true;
+                                  });
+                                  //playMusic('music.ogg.mp3');
+                                  playTillTab('music.ogg.mp3');
+                                }
+                              }
+                              ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
