@@ -5,7 +5,7 @@ import 'package:win_money_game/providers/room_data_provider_5_5.dart';
 import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
 import 'package:win_money_game/modules/xo-online/views/scoreboard.dart';
 // import 'package:win_money_game/modules/xo-online/first_xo_online_screen.dart';
-import 'package:win_money_game/modules/xo-online/views/waiting_lobby.dart';
+import 'package:win_money_game/modules/xo-online/views/waiting_lobby3.dart';
 import 'package:provider/provider.dart';
 
 class GameScreen extends StatefulWidget {
