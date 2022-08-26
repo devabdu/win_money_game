@@ -157,22 +157,27 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                             fontSize: 18
                         ),
                       ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      const Icon(Icons.money,
+                        color: Colors.deepPurple,
+                        size: 25,
+                      ),
+                      const SizedBox(
+                        width: 5.0,
+                      ),
+                      Text(
+                        '${user.cash}'.replaceAllMapped(reg, mathFunc),
+                        style: const TextStyle(
+                            color: Colors.deepPurple,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                IconButton(onPressed: () async {
-                  if (selectTasaly) {
-                    final isLoaded = await interstitialAd.isLoaded;
-                    if (isLoaded ?? false) {
-                      interstitialAd.show(); //interstital ad show
-                    } else {
-                      showSnackBar(
-                          'Interstitial ad is still loading...');
-                    }
-                  }
-                },
-                  icon: const Icon(Icons.shopping_bag_rounded,),
-                  color: Colors.deepPurple,),
                 defaultIconPlay(
                     function: (){
                       if(!isPlaying)
