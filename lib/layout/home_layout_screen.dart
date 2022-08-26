@@ -20,7 +20,7 @@ class HomeLayoutScreen extends StatefulWidget {
   State<HomeLayoutScreen> createState() => _HomeLayoutScreenState();
 }
 
-class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
+class _HomeLayoutScreenState extends State<HomeLayoutScreen> with WidgetsBindingObserver {
 
   ///////////////////////////////////////
   //ads
@@ -32,6 +32,8 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
   @override
   void initState() {
     super.initState();
+
+    WidgetsBinding.instance.addObserver(this);
 
     // You should execute `Admob.requestTrackingAuthorization()` here before showing any ad.
 
@@ -61,7 +63,8 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     provider.getMusicState();
   }
 
-  void handleEvent(AdmobAdEvent event, Map<String, dynamic>? args, String adType) {
+  void handleEvent(AdmobAdEvent event, Map<String, dynamic>? args,
+      String adType) {
     switch (event) {
       case AdmobAdEvent.loaded:
         showSnackBar('New Admob $adType Ad loaded!');
@@ -202,32 +205,33 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                             navigateTo(context, DailyMissionsScreen());
                             showDialog<String>(
                               context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: const Text(
-                                  'Hint',
-                                  style: TextStyle(
-                                      color: Colors.deepPurple,
-                                      fontWeight: FontWeight.bold
+                              builder: (BuildContext context) =>
+                                  AlertDialog(
+                                    title: const Text(
+                                      'Hint',
+                                      style: TextStyle(
+                                          color: Colors.deepPurple,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    content: const Text(
+                                      'Complete Daily Missions to Win 20 Cash and 5k Coins!!',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.deepPurple,
+                                      ),
+                                    ),
+                                    backgroundColor: Colors.amberAccent,
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () {
+                                          selectTasaly = true;
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                content: const Text(
-                                  'Complete Daily Missions to Win 20 Cash and 5k Coins!!',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.deepPurple,
-                                  ),
-                                ),
-                                backgroundColor: Colors.amberAccent,
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () {
-                                      selectTasaly = true;
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
                             );
                           },
                           child: Image.asset(
@@ -251,32 +255,33 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                             navigateTo(context, WeeklyMissionsScreen());
                             showDialog<String>(
                               context: context,
-                              builder: (BuildContext context) => AlertDialog(
-                                title: const Text(
-                                  'Hint',
-                                  style: TextStyle(
-                                      color: Colors.deepPurple,
-                                      fontWeight: FontWeight.bold
+                              builder: (BuildContext context) =>
+                                  AlertDialog(
+                                    title: const Text(
+                                      'Hint',
+                                      style: TextStyle(
+                                          color: Colors.deepPurple,
+                                          fontWeight: FontWeight.bold
+                                      ),
+                                    ),
+                                    content: const Text(
+                                      'Complete Weekly Missions to Win 40 Cash and 10k Coins!!',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.deepPurple,
+                                      ),
+                                    ),
+                                    backgroundColor: Colors.amberAccent,
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () {
+                                          selectTasaly = true;
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text('OK'),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                content: const Text(
-                                  'Complete Weekly Missions to Win 40 Cash and 10k Coins!!',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.deepPurple,
-                                  ),
-                                ),
-                                backgroundColor: Colors.amberAccent,
-                                actions: <Widget>[
-                                  TextButton(
-                                    onPressed: () {
-                                      selectTasaly = true;
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text('OK'),
-                                  ),
-                                ],
-                              ),
                             );
                           },
                           child: Image.asset(
@@ -432,16 +437,35 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
       },
     );
   }
-    //////////////
+  //////////////
   //ads
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+
     interstitialAd.dispose();
     rewardAd.dispose();
     player.dispose();
     super.dispose();
   }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    if(state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.detached) return;
+
+   final isBackground =  state == AppLifecycleState.paused;
+
+   if(isBackground){
+     stopMusic();
+   }else{
+     resumeMusic();
+   }
+  }
 }
+
 
 
 
