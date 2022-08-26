@@ -26,6 +26,9 @@ class SocketMethods {
     if (nickname.isNotEmpty) {
       _socketClient.emit('createRoom', {
         'nickname': nickname,
+        'uId' : uId,
+        'avatar' : avatar ,
+        'coins' : coins
       });
     }
   }
@@ -34,6 +37,9 @@ class SocketMethods {
     if (nickname.isNotEmpty) {
       _socketClient.emit('createRoom4', {
         'nickname': nickname,
+        'uId' : uId,
+        'avatar' : avatar ,
+        'coins' : coins
       });
     }
   }
@@ -42,6 +48,9 @@ class SocketMethods {
     if (nickname.isNotEmpty) {
       _socketClient.emit('createRoom5', {
         'nickname': nickname,
+        'uId' : uId,
+        'avatar' : avatar ,
+        'coins' : coins
       });
     }
   }

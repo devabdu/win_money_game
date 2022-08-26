@@ -18,6 +18,7 @@ import 'package:win_money_game/providers/room_data_provider.dart';
 import 'package:win_money_game/providers/room_data_provider_4_4.dart';
 import 'package:win_money_game/providers/room_data_provider_5_5.dart';
 import 'package:win_money_game/providers/users_provider.dart';
+import 'package:win_money_game/modules/chess/Old/components/play_game_page.dart';
 import 'providers/sign_in_provider.dart';
 //
 // void main() async {
@@ -116,7 +117,7 @@ String uuid;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
 
   //ads
   // Admob.initialize();
@@ -158,7 +159,7 @@ class MyApp extends StatelessWidget {
         '/game' : (context) => FirstXOOnlineScreen(),
         '/game2' : (context) => SecondXOOnlineScreen(),
         '/game3' : (context) => ThirdXOOnlineScreen(),
-        '/chess' : (context) => chessGame(),
+        '/chess' : (context) => PlayGamePage(),
 
       },
       supportedLocales: const [

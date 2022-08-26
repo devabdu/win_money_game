@@ -11,7 +11,7 @@ import '../../../../shared/components/components.dart';
 
 class PlayGamePage extends StatefulWidget {
   const PlayGamePage({Key? key}) : super(key: key);
-  // static String routeName = '/play_game_page';
+  static String routeName = '/play_game_page';
   @override
   _PlayGamePageState createState() => _PlayGamePageState();
 }
