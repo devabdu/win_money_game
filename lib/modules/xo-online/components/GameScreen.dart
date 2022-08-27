@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 // import 'package:win_money_game/modules/xo-online/second_xo_online_screen.dart';
 import 'package:win_money_game/providers/room_data_provider.dart';
@@ -32,20 +33,30 @@ class _GameScreenState extends State<GameScreen> {
   Widget build(BuildContext context) {
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
 
-    return Scaffold(
-      body: !roomDataProvider.roomData['isJoin']
-          ? const WaitingLobby()
-          : SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            // const Scoreboard(),
-            FirstXOOnlineScreen(),
-            Text(
-                '${roomDataProvider.roomData['turn']['nickname']}\'s turn'),
-          ],
-        ),
-      ),
+    return ConditionalBuilder(
+      condition: !roomDataProvider.roomData['isJoin'],
+      builder: (context) {
+        return FirstXOOnlineScreen();
+      },
+      fallback: (context){
+        return WaitingLobby();
+      },
     );
+
+    // return Scaffold(
+    //   body: !roomDataProvider.roomData['isJoin']
+    //       ? const WaitingLobby()
+    //       : SafeArea(
+    //     child: Column(
+    //       mainAxisAlignment: MainAxisAlignment.start,
+    //       children: [
+    //         // const Scoreboard(),
+    //         FirstXOOnlineScreen(),
+    //         Text(
+    //             '${roomDataProvider.roomData['turn']['nickname']}\'s turn'),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 }
