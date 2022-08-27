@@ -52,13 +52,40 @@ class _CreateOrJoinXOScreenState extends State<CreateOrJoinXOScreen> {
                   defaultButton(
                     function: () {
                       if(select3x3){
-
-                        if(chose1k){
+                        if(chose50){
+                        _socketMethods.createRoom(
+                            user.name,
+                            user.uId,
+                            user.avatar,
+                            50
+                        );
+                      }else if(chose100){
+                        _socketMethods.createRoom(
+                            user.name,
+                            user.uId,
+                            user.avatar,
+                            100
+                        );
+                      }else if(chose500){
+                        _socketMethods.createRoom(
+                            user.name,
+                            user.uId,
+                            user.avatar,
+                            500
+                        );
+                      }else if(chose1k){
                           _socketMethods.createRoom(
                               user.name,
                               user.uId,
                               user.avatar,
                               1000
+                          );
+                        }else if(chose2500){
+                          _socketMethods.createRoom(
+                              user.name,
+                              user.uId,
+                              user.avatar,
+                              2500
                           );
                         }else if(chose5k){
                           _socketMethods.createRoom(
@@ -94,39 +121,32 @@ class _CreateOrJoinXOScreenState extends State<CreateOrJoinXOScreen> {
                               user.uId,
                               user.avatar,
                               100000
-                          );
-                        }else if(chose50){
-                          _socketMethods.createRoom(
-                              user.name,
-                              user.uId,
-                              user.avatar,
-                              50
-                          );
-                        }else if(chose100){
-                          _socketMethods.createRoom(
-                              user.name,
-                              user.uId,
-                              user.avatar,
-                              100
-                          );
-                        }else if(chose500){
-                          _socketMethods.createRoom(
-                              user.name,
-                              user.uId,
-                              user.avatar,
-                              500
-                          );
-                        }else if(chose2500){
-                          _socketMethods.createRoom(
-                              user.name,
-                              user.uId,
-                              user.avatar,
-                              2500
                           );
                         }
                       }
                       else if(select4x4){
-                        if(chose1k){
+                        if(chose50){
+                          _socketMethods.createRoomFour(
+                              user.name,
+                              user.uId,
+                              user.avatar,
+                              50
+                          );
+                        }else if(chose100){
+                          _socketMethods.createRoomFour(
+                              user.name,
+                              user.uId,
+                              user.avatar,
+                              100
+                          );
+                        }else if(chose500){
+                          _socketMethods.createRoomFour(
+                              user.name,
+                              user.uId,
+                              user.avatar,
+                              500
+                          );
+                        } else if(chose1k){
                           _socketMethods.createRoomFour(
                               user.name,
                               user.uId,
@@ -167,45 +187,45 @@ class _CreateOrJoinXOScreenState extends State<CreateOrJoinXOScreen> {
                               user.uId,
                               user.avatar,
                               100000
-                          );
-                        }else if(chose50){
-                          _socketMethods.createRoomFour(
-                              user.name,
-                              user.uId,
-                              user.avatar,
-                              50
-                          );
-                        }else if(chose100){
-                          _socketMethods.createRoomFour(
-                              user.name,
-                              user.uId,
-                              user.avatar,
-                              100
-                          );
-                        }else if(chose500){
-                          _socketMethods.createRoomFour(
-                              user.name,
-                              user.uId,
-                              user.avatar,
-                              500
-                          );
-                        }else if(chose2500){
-                          _socketMethods.createRoomFour(
-                              user.name,
-                              user.uId,
-                              user.avatar,
-                              2500
                           );
                         }
                       } else if(select5x5)
-                        if(chose1k){
+                       if(chose50){
+                        _socketMethods.createRoomFive(
+                            user.name,
+                            user.uId,
+                            user.avatar,
+                            50
+                        );
+                      }else if(chose100){
+                        _socketMethods.createRoomFive(
+                            user.name,
+                            user.uId,
+                            user.avatar,
+                            100
+                        );
+                      }else if(chose500){
+                        _socketMethods.createRoomFive(
+                            user.name,
+                            user.uId,
+                            user.avatar,
+                            500
+                        );
+                      }else if(chose1k){
                           _socketMethods.createRoomFive(
                               user.name,
                               user.uId,
                               user.avatar,
                               1000
                           );
-                        }else if(chose5k){
+                        }else if(chose2500){
+                         _socketMethods.createRoomFive(
+                             user.name,
+                             user.uId,
+                             user.avatar,
+                             2500
+                         );
+                       }else if(chose5k){
                           _socketMethods.createRoomFive(
                               user.name,
                               user.uId,
@@ -239,34 +259,6 @@ class _CreateOrJoinXOScreenState extends State<CreateOrJoinXOScreen> {
                               user.uId,
                               user.avatar,
                               100000
-                          );
-                        }else if(chose50){
-                          _socketMethods.createRoomFive(
-                              user.name,
-                              user.uId,
-                              user.avatar,
-                              50
-                          );
-                        }else if(chose100){
-                          _socketMethods.createRoomFive(
-                              user.name,
-                              user.uId,
-                              user.avatar,
-                              100
-                          );
-                        }else if(chose500){
-                          _socketMethods.createRoomFive(
-                              user.name,
-                              user.uId,
-                              user.avatar,
-                              500
-                          );
-                        }else if(chose2500){
-                          _socketMethods.createRoomFive(
-                              user.name,
-                              user.uId,
-                              user.avatar,
-                              2500
                           );
                         }
                     },
