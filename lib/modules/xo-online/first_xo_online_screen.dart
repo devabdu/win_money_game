@@ -37,8 +37,6 @@ class MainPageState extends State<FirstXOOnlineScreen> {
   @override
   Widget build(BuildContext context) {
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context, listen: false);
-    // print(roomDataProvider.player1.nickname);
-    // print(roomDataProvider.player2.nickname);
 
     return Scaffold(
       // backgroundColor: Color.fromRGBO(16, 13, 34, 1),
@@ -106,7 +104,7 @@ class MainPageState extends State<FirstXOOnlineScreen> {
                               child: CircleAvatar(
                                 radius: 20,
                                 backgroundImage: AssetImage(
-                                  'assets/images/avatar_${roomDataProvider.player1.avatar}.png',
+                                  'assets/images/avatar_${roomDataProvider.player2.avatar}.png',
                                 ),
                               ),
                             ),
@@ -114,7 +112,7 @@ class MainPageState extends State<FirstXOOnlineScreen> {
                               width: 10,
                             ),
                             Text(
-                              roomDataProvider.player1.nickname,//print registered username here
+                              roomDataProvider.player2.nickname,//print registered username here
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 17,
@@ -144,7 +142,7 @@ class MainPageState extends State<FirstXOOnlineScreen> {
                               child: CircleAvatar(
                                 radius: 20,
                                 backgroundImage: AssetImage(
-                                  'assets/images/avatar_${roomDataProvider.player2.avatar}.png',
+                                  'assets/images/avatar_${roomDataProvider.player1.avatar}.png',
                                 ),
                               ),
                             ),
@@ -152,7 +150,7 @@ class MainPageState extends State<FirstXOOnlineScreen> {
                               width: 10,
                             ),
                             Text(
-                              roomDataProvider.player2.nickname,// print registered username here
+                              roomDataProvider.player1.nickname,// print registered username here
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 17,

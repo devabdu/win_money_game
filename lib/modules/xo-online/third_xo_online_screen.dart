@@ -77,20 +77,21 @@ class MainPageState extends State<ThirdXOOnlineScreen> {
                           children: <Widget>[
                             Row(
                               children: [
-                                const CircleAvatar(
+                                CircleAvatar(
                                   backgroundColor: Colors.white,
                                   radius: 22,
                                   child: CircleAvatar(
                                     radius: 20,
-                                    backgroundImage: NetworkImage(
-                                        'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                                    backgroundImage: AssetImage(
+                                      'assets/images/avatar_${roomDataProvider.player2.avatar}.png',
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                const Text(
-                                  'Second player',
+                                Text(
+                                  roomDataProvider.player2.nickname,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 17,
@@ -121,20 +122,21 @@ class MainPageState extends State<ThirdXOOnlineScreen> {
                           children: <Widget>[
                             Row(
                               children: [
-                                const CircleAvatar(
+                                CircleAvatar(
                                   backgroundColor: Colors.white,
                                   radius: 22,
                                   child: CircleAvatar(
                                     radius: 20,
-                                    backgroundImage: NetworkImage(
-                                        'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                                    backgroundImage: AssetImage(
+                                      'assets/images/avatar_${roomDataProvider.player1.avatar}.png',
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                const Text(
-                                  'First Player',
+                                Text(
+                                  roomDataProvider.player1.nickname,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 17,
