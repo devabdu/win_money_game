@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:win_money_game/layout/home_layout_screen.dart';
 import 'package:win_money_game/shared/components/components.dart';
+
+import '../providers/users_provider.dart';
 
 class SelectPathScreen extends StatefulWidget {
   const SelectPathScreen({Key? key}) : super(key: key);
@@ -10,7 +13,18 @@ class SelectPathScreen extends StatefulWidget {
   State<SelectPathScreen> createState() => _SelectPathScreenState();
 }
 
-class _SelectPathScreenState extends State<SelectPathScreen> {
+class _SelectPathScreenState extends State<SelectPathScreen> with WidgetsBindingObserver{
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+
+    final provider = Provider.of<UsersProvider>(
+        context, listen: false);
+
+    provider.getMusicState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,5 +143,32 @@ class _SelectPathScreenState extends State<SelectPathScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    player.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    if(state == AppLifecycleState.inactive ||
+        state == AppLifecycleState.detached) return;
+
+    final isBackground =  state == AppLifecycleState.paused;
+
+    if(isBackground){
+      setState(() {});
+      stopMusic();
+    }else{
+      final provider = Provider.of<UsersProvider>(
+          context, listen: false);
+      provider.turnOnMusicAfterBackground();
+      setState(() {});
+    }
   }
 }

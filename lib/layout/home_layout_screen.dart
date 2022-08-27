@@ -20,7 +20,7 @@ class HomeLayoutScreen extends StatefulWidget {
   State<HomeLayoutScreen> createState() => _HomeLayoutScreenState();
 }
 
-class _HomeLayoutScreenState extends State<HomeLayoutScreen> with WidgetsBindingObserver {
+class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
   ///////////////////////////////////////
   //ads
@@ -32,8 +32,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> with WidgetsBinding
   @override
   void initState() {
     super.initState();
-
-    WidgetsBinding.instance.addObserver(this);
 
     // You should execute `Admob.requestTrackingAuthorization()` here before showing any ad.
 
@@ -57,10 +55,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> with WidgetsBinding
 
     interstitialAd.load();
     rewardAd.load();
-    final provider = Provider.of<UsersProvider>(
-        context, listen: false);
-
-    provider.getMusicState();
   }
 
   void handleEvent(AdmobAdEvent event, Map<String, dynamic>? args,
@@ -440,36 +434,10 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> with WidgetsBinding
   //ads
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
 
     interstitialAd.dispose();
     rewardAd.dispose();
-    player.dispose();
     super.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-
-    if(state == AppLifecycleState.inactive ||
-        state == AppLifecycleState.detached) return;
-
-   final isBackground =  state == AppLifecycleState.paused;
-
-   if(isBackground){
-     final provider = Provider.of<UsersProvider>(
-         context, listen: false);
-     provider.turnOffMusic();
-     setState(() {});
-     stopMusic();
-   }else{
-     final provider = Provider.of<UsersProvider>(
-         context, listen: false);
-     provider.turnOnMusic();
-     setState(() {});
-     playTillTab('music.ogg.mp3');
-   }
   }
 }
 

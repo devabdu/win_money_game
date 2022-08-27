@@ -1047,4 +1047,21 @@ class UsersProvider extends ChangeNotifier {
           'musicOn': true,
         });
   }
+
+  Future<void> turnOnMusicAfterBackground() async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(id)
+          .get()
+          .then((DocumentSnapshot documentSnapshot) {
+        print(documentSnapshot.data());
+        dynamic docData = documentSnapshot.data();
+        userMusicState = docData['musicOn'];
+
+        if(userMusicState)
+          playTillTab('music.ogg.mp3');
+      });
+  }
 }
