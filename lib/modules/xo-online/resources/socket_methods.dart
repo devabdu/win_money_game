@@ -25,6 +25,9 @@ class SocketMethods {
 
   // EMITS
   void createRoom(String nickname , String uId , int avatar , int coins ) {
+    print(uId);
+    print(avatar);
+    print(coins);
     if (nickname.isNotEmpty) {
       _socketClient.emit('createRoom', {
         'nickname': nickname,
@@ -122,7 +125,7 @@ class SocketMethods {
       // map['playerType'] = room['players'][0]['playerType'];
       //
       // provider.updatePlayer1(map);
-      Navigator.pushNamed(context, '/game');
+      navigateTo(context, GameScreen());
       print(room);
     });
   }
@@ -130,7 +133,7 @@ class SocketMethods {
     _socketClient.on('createRoomSuccess4', (room) {
       Provider.of<RoomDataProviderFour>(context, listen: false)
           .updateRoomData(room);
-      Navigator.pushNamed(context, '/game2');
+      navigateTo(context, GameScreenFour());
     });
   }
 
@@ -138,7 +141,7 @@ class SocketMethods {
     _socketClient.on('createRoomSuccess5', (room) {
       Provider.of<RoomDataProviderFive>(context, listen: false)
           .updateRoomData(room);
-      Navigator.pushNamed(context, '/game3');
+      navigateTo(context, GameScreenFive());
     });
   }
 

@@ -31,8 +31,6 @@ class _GameScreenState extends State<GameScreen> {
   @override
   Widget build(BuildContext context) {
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
-    print('a7a');
-    print(roomDataProvider.roomData['isJoin']);
 
     return Scaffold(
       body: !roomDataProvider.roomData['isJoin']
