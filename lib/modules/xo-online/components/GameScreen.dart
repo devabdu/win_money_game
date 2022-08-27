@@ -8,6 +8,7 @@ import 'package:win_money_game/modules/xo-online/views/scoreboard.dart';
 import 'package:win_money_game/modules/xo-online/first_xo_online_screen.dart';
 import 'package:win_money_game/modules/xo-online/views/waiting_lobby.dart';
 import 'package:provider/provider.dart';
+import 'package:win_money_game/shared/components/components.dart';
 
 class GameScreen extends StatefulWidget {
   static String routeName = '/game';
@@ -34,12 +35,12 @@ class _GameScreenState extends State<GameScreen> {
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
 
     return ConditionalBuilder(
-      condition: !roomDataProvider.roomData['isJoin'],
+      condition: roomDataProvider.roomData['isJoin'],
       builder: (context) {
         return FirstXOOnlineScreen();
       },
       fallback: (context){
-        return WaitingLobby();
+        return Scaffold(body: WaitingLobby());
       },
     );
 
