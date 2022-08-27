@@ -25,9 +25,6 @@ class SocketMethods {
 
   // EMITS
   void createRoom(String nickname , String uId , int avatar , int coins ) {
-    print(uId);
-    print(avatar);
-    print(coins);
     if (nickname.isNotEmpty) {
       _socketClient.emit('createRoom', {
         'nickname': nickname,

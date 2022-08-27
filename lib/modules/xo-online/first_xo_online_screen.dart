@@ -100,13 +100,14 @@ class MainPageState extends State<FirstXOOnlineScreen> {
                         // ),
                         Row(
                           children: [
-                            const CircleAvatar(
+                            CircleAvatar(
                               backgroundColor: Colors.white,
                               radius: 22,
                               child: CircleAvatar(
                                 radius: 20,
-                                backgroundImage: NetworkImage(
-                                    'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
+                                backgroundImage: AssetImage(
+                                  'assets/images/avatar_${roomDataProvider.player1.avatar}.png',
+                                ),
                               ),
                             ),
                             const SizedBox(
@@ -135,30 +136,31 @@ class MainPageState extends State<FirstXOOnlineScreen> {
                     child: Column(
 
                       children: <Widget>[
-                        // Row(
-                        //   children: [
-                        //     const CircleAvatar(
-                        //       backgroundColor: Colors.white,
-                        //       radius: 22,
-                        //       child: CircleAvatar(
-                        //         radius: 20,
-                        //         backgroundImage: NetworkImage(
-                        //             'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
-                        //       ),
-                        //     ),
-                        //     const SizedBox(
-                        //       width: 10,
-                        //     ),
-                        //     Text(
-                        //       'Second Player',// print registered username here
-                        //       style: TextStyle(
-                        //         color: Colors.white,
-                        //         fontSize: 17,
-                        //         // fontWeight: FontWeight.bold,
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.white,
+                              radius: 22,
+                              child: CircleAvatar(
+                                radius: 20,
+                                backgroundImage: AssetImage(
+                                  'assets/images/avatar_${roomDataProvider.player2.avatar}.png',
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              roomDataProvider.player2.nickname,// print registered username here
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                // fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ))),
