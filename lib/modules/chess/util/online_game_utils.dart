@@ -7,7 +7,7 @@ import 'package:win_money_game/modules/chess/util/widget_utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../game.dart';
+import 'package:win_money_game/main.dart';
 
 String _createGameCode() {
   final availableChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -50,17 +50,18 @@ class OnlineGameController {
 
   OnlineGameController(this._chessController);
 
-  void finallyCreateGameCode() {
+  void  finallyCreateGameCode() async{
     //create new game id locally
     String gameId = joinGameCodeWithoutFirebaseCreation();
     //create the bucket in cloud firestore
     //set the local bot disabled etc
     _chessController.botBattle = false;
-    // prefs.setBool('bot', false);
-    // prefs.setBool('botbattle', false);
+    await prefs?.setBool('bot', false) ?? false;
+    await prefs?.setBool('botbattle', false) ?? false;
     //reset the local game
     _chessController.controller.resetBoard();
     //new game map
+    print(uuid);
     Map<String, dynamic> game = {};
     game['white'] = uuid;
     game['black'] = null;
@@ -70,7 +71,7 @@ class OnlineGameController {
     game['id'] = gameId;
     //white towards user
     _chessController.whiteSideTowardsUser = true;
-    prefs.setBool('whiteSideTowardsUser', true);
+    prefs?.setBool('whiteSideTowardsUser', true)?? true;
     //upload to firebase
     currentGameDoc.set(game);
     //lock listener
@@ -85,6 +86,7 @@ class OnlineGameController {
     joinGameCodeWithoutFirebaseCreation(gameCode: code.toUpperCase());
     //check if the code exists
     currentGameDoc.get().then((event) {
+      print(event);
       //check if doc exists and white is not already this user
       if (event.exists) {
         //set the local bot disabled etc
@@ -93,6 +95,7 @@ class OnlineGameController {
         prefs.setBool('botbattle', false);
         //the player is not white, not rejoining
         if(event.get('white') != uuid) {
+
           //if rejoining, overwrite old data
           _chessController.game = Chess.fromFEN(event.get('fen'));
           ChessController.moveFrom = event.get('moveFrom');
@@ -120,13 +123,12 @@ class OnlineGameController {
         _currentGameCode = null;
         showAnimatedDialog(
             icon: Icons.warning,
-            title: strings.warning,
-            text: strings.game_id_not_found);
+            title: "warning",
+            text: "game id not found");
       }
     });
   }
 
-  //leave the online game / set the code to null then update views
   void leaveGame() {
     //if this player's color was white, delete the doc since he was host
     currentGameDoc.get().then((event) {

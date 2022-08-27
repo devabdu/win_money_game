@@ -49,11 +49,12 @@ class Chess {
     String position = tokens[0];
     int square = 0;
 
-    Map validMap = validate_fen(fen);
-    if (!validMap["valid"]) {
-      print(validMap["error"]);
-      return false;
-    }
+    // Map validMap = validate_fen(fen);
+    // print(validMap);
+    // if (!validMap["valid"]) {
+    //   print(validMap["error"]);
+    //   return false;
+    // }
 
     clear();
 
@@ -98,8 +99,7 @@ class Chess {
     return true;
   }
 
-  /// Check the formatting of a FEN String is correct
-  /// Returns a Map with keys valid, error_number, and error
+
   static Map validate_fen(fen) {
     Map errors = {
       0: 'No errors.',
@@ -409,8 +409,7 @@ class Chess {
       }
     }
 
-    // check for castling if: a) we're generating all moves, or b) we're doing
-    // single square move generation on the king's square
+
     if ((!single_square) || last_sq == game.kings[us]) {
       /* king-side castling */
       if ((game.castling[us] & BITS_KSIDE_CASTLE) != 0) {
@@ -763,42 +762,7 @@ class Chess {
   bool in_threefold_repetition() {
     //don't check for this because of performance
     return false;
-    /* TODO: while this function is fine for casual use, a better
-     * implementation would use a Zobrist key (instead of FEN). the
-     * Zobrist key would be maintained in the make_move/undo_move functions,
-     * avoiding the costly that we do below.
-     */
 
-    /*List moves = [];
-    Map positions = {};
-    bool repetition = false;
-
-    while (true) {
-      var move = undo();
-      if (move == null) {
-        break;
-      }
-      moves.add(move);
-    }
-
-    while (true) {
-      /* remove the last two fields in the FEN string, they're not needed
-       * when checking for draw by rep */
-      var fen = generate_fen().split(' ').sublist(0, 4).join(' ');
-
-      /* has the position occurred three or move times */
-      positions[fen] = (positions.containsKey(fen)) ? positions[fen] + 1 : 1;
-      if (positions[fen] >= 3) {
-        repetition = true;
-      }
-
-      if (moves.length == 0) {
-        break;
-      }
-      make_move(moves.removeLast());
-    }
-
-    return repetition;*/
   }
 
   void push(Move move) {
@@ -991,15 +955,10 @@ class Chess {
     }
 
     if (ambiguities > 0) {
-      /* if there exists a similar moving piece on the same rank and file as
-       * the move in question, use the square as the disambiguator
-       */
+
       if (same_rank > 0 && same_file > 0) {
         return algebraic(from);
       }
-      /* if the moving piece rests on the same file, use the rank symbol as the
-       * disambiguator
-       */
       else if (same_file > 0) {
         return algebraic(from)[1];
       }
@@ -1012,8 +971,6 @@ class Chess {
     return '';
   }
 
-  /// Returns a String representation of the current position
-  /// complete with ascii art
   String get ascii {
     String s = '   +------------------------+\n';
     for (var i = SQUARES_A8; i <= SQUARES_H1; i++) {
@@ -1145,14 +1102,7 @@ class Chess {
     return generate_fen();
   }
 
-  /// The move function can be called with in the following parameters:
-  /// .move('Nxb7')      <- where 'move' is a case-sensitive SAN string
-  /// .move({ from: 'h7', <- where the 'move' is a move object (additional
-  ///      to :'h8',      fields are ignored)
-  ///      promotion: 'q',
-  ///      })
-  /// or it can be called with a Move object
-  /// It returns true if the move was made, or false if it could not be.
+
   bool move(move) {
     Move move_obj = null;
     List<Move> moves = generateMoves();
@@ -1185,9 +1135,7 @@ class Chess {
       return false;
     }
 
-    /* need to make a copy of move because we can't generate SAN after the
-       * move is made
-       */
+
 
     makeMove(move_obj);
 

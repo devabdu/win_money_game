@@ -1,3 +1,4 @@
+// @dart=2.17
 import 'package:win_money_game/modules/chess/chess_board/chess.dart';
 import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart';
 

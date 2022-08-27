@@ -102,15 +102,7 @@ class ChessAI {
     }
   }
 
-  //prepare the minimax iteratively, meaning:
-  //go through all branches with normal minimax without alpha beta pruning till the depth _MAX_DEPTH - 1,
-  //generate all move lists and evaluate each board in every depth
-  //by that, sort all nodes
-  //when all nodes (move lists) in all depths till _MAX_DEPTH - 1 are sorted,
-  //start the real minimax with alpha beta pruning, without requiring to
-  //generate any move lists, since they are all in the RAM already and
-  //with already having sorted lists, which makes the whole process a lot faster,
-  //as then alpha beta pruning will cut of much more trees faster
+
   static Move _prepareAndStartMinimax(Chess c, messenger) {
     //set a root move
     Move rootMove = Move(null, null, null, null, null, null, null);
@@ -226,13 +218,7 @@ class ChessAI {
       double beta, Color player, bool upperIsGameOver, bool upperIsDraw) {
     //update idx
     _idx++;
-    //if this is the max depth, then in the preparation the child nodes have not
-    //been generated yet (performance)
-    //this does not check all child nodes,
-    //and just keeps the gameDraw and gameOver value of it predecessor,
-    //which makes it a hybrid of _MAX_DEPTH and _MAX_DEPTH - 1
-    //the value could be false,
-    //but it increases the performance by highest levels!
+
     if (depth == _MAX_DEPTH) {
       //is game over if generated moves len is still zero
       root.gameOver = upperIsGameOver; //c.gameOver(c.moveCountIsZero(false));
@@ -335,13 +321,7 @@ class ChessAI {
       return prod * 0.75;
     }
 
-    //WE DON'T USE THE SHANNON NUMBER
-    //first calculate the number of pieces on the board,
-    //from that calculate the time expenditure for alpha beta pruning:
-    //b^(3/4)
-    //based on that then decide how deep we want to go with alpha beta pruning
-    //depth, pm
-    //minimizing loop
+
     bool changed = false;
     for (int depth = _MAX_CALC_DEPTH; depth >= _MIN_CALC_DEPTH; depth--) {
       num exp = expectedTimeExpenditure(depth);

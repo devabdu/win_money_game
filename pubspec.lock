@@ -78,13 +78,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  chess:
-    dependency: "direct main"
-    description:
-      name: chess
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.7.0"
   chess_vectors_flutter:
     dependency: "direct main"
     description:
@@ -314,13 +307,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_chess_board:
-    dependency: "direct main"
-    description:
-      name: flutter_chess_board
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
   flutter_facebook_auth:
     dependency: "direct main"
     description:

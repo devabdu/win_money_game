@@ -209,13 +209,6 @@ class S {
     return Intl.message("web", name: 'web');
   }
 
-  String get website_url {
-    return Intl.message("https://chess-45a81.web.app/#/", name: 'website_url');
-  }
-
-  String get playstore_url {
-    return Intl.message("https://play.google.com/store/apps/details?id=com.lurzapps.chess", name: 'playstore_url');
-  }
 
 
 }
@@ -275,5 +268,3 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
   @override
   bool shouldReload(GeneratedLocalizationsDelegate old) => false;
 }
-
-// ignore_for_file: unnecessary_brace_in_string_interps

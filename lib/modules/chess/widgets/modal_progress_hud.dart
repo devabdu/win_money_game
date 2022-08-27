@@ -2,7 +2,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import '../game.dart';
+import 'package:win_money_game/main.dart';
 
 class ModalProgressHUD extends StatelessWidget {
   final bool inAsyncCall;

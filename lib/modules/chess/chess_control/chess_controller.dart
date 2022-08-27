@@ -217,9 +217,9 @@ class ChessController {
   void onDraw() {
     //show the dialog
     showAnimatedDialog(
-        title: strings.draw,
-        text: strings.draw_desc,
-        onDoneText: strings.replay,
+        title: "draw",
+        text: "The game finished with a draw!",
+        onDoneText: "replay",
         onDone: (value) {
           game.reset();
           update();
@@ -228,13 +228,13 @@ class ChessController {
 
   void onCheckMate(color) {
     //determine winner and loser
-    var winner = color == PieceColor.White ? strings.black : strings.white;
-    var loser = color == PieceColor.White ? strings.white : strings.black;
+    var winner = color == PieceColor.White ? "black" : "white";
+    var loser = color == PieceColor.White ? "white" : "black";
     //show the dialog
     showAnimatedDialog(
-        title: strings.checkmate,
-        text: strings.check_mate_desc(loser, winner),
-        onDoneText: strings.replay,
+        title: "checkmate",
+        text: "${loser} is in checkmate. ${winner} won.",
+        onDoneText: "replay",
         onDone: (value) {
           game.reset();
           update();
@@ -254,19 +254,15 @@ class ChessController {
 
     final root = await rootDir;
     final saveFile = File('$root${Platform.pathSeparator}game.fen');
-    print(saveFile);
-    print('searching from ${saveFile.path}');
     if (await saveFile.exists()) {
-      String fen = await saveFile.readAsString();
-      print(fen);
+      String fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
       if (fen.length < 2) {
+
         game = Chess();
         return;
       }
-
-      print('game loaded from ${saveFile.path}');
-
       game = Chess.fromFEN(fen);
+      return;
     }
     else{
       print("test");
@@ -279,7 +275,7 @@ class ChessController {
     final root = await rootDir;
     final saveFile = File('$root${Platform.pathSeparator}game.fen');
     if (!await saveFile.exists()) await saveFile.create();
-    await saveFile.writeAsString(game.generate_fen());
+    // await saveFile.writeAsString(game.generate_fen());
 
     print('saving to ${saveFile.path}');
   }
@@ -296,6 +292,7 @@ class ChessController {
             moveFrom = null;
             kingInCheck = null;
             //reset the game
+            print(game.fen);
             game.reset();
             //if is in online game, update that
             if (inOnlineGame) {
@@ -330,7 +327,7 @@ class ChessController {
     game.undo() != null
         ? controller.refreshBoard()
         : showAnimatedDialog(
-            title: strings.undo, text: strings.undo_impossible);
+            title: "undo", text: "impossible");
   }
 
   void switchColors() {
@@ -359,7 +356,7 @@ class ChessController {
             child: Opacity(
                 opacity: a1.value,
                 child: AlertDialog(
-                  title: Text(strings.choose_style),
+                  title: Text("choose_style"),
                   content: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     mainAxisSize: MainAxisSize.min,
@@ -444,7 +441,7 @@ class ChessController {
     BuildContext ctx;
 
     showAnimatedDialog(
-        title: strings.difficulty,
+        title: "difficulty",
         setStateCallback: (ctx0, setState) {
           ctx = ctx0;
         },
@@ -484,7 +481,7 @@ class ChessController {
             alignment: Alignment.centerLeft,
             child: FlatButton(
               shape: roundButtonShape,
-              child: Text(strings.copy_fen),
+              child: Text("copy fen"),
               onPressed: () {
                 Clipboard.setData(new ClipboardData(text: game.fen));
                 Navigator.of(ctx).pop('yes');
@@ -514,7 +511,7 @@ class ChessController {
     var fen = game.fen;
 
     showAnimatedDialog(
-        title: strings.copy_fen,
+        title: "copy_fen",
         setStateCallback: (ctx0, setState) {
           ctx = ctx0;
         },

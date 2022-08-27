@@ -38,8 +38,8 @@ dependencies:
   lottie: ^1.3.0
   equatable: ^2.0.3
   provider: ^6.0.3
-  chess: ^0.7.0
-  flutter_chess_board: ^1.0.1
+#  chess: ^0.7.0
+#  flutter_chess_board: ^1.0.1
   percent_indicator: ^4.2.2
   carousel_slider: ^4.1.1
   firebase_auth: ^3.6.1

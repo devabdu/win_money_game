@@ -4,9 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:win_money_game/modules/Splash%20Screen/splash_screen.dart';
-// import 'package:win_money_game/modules/xo-online/components/createroom_screen.dart';
-// import 'package:win_money_game/modules/xo-online/components/createroom_screen_4_4.dart';
-// import 'package:win_money_game/modules/xo-online/components/createroom_screen_5_5.dart';
 import 'package:win_money_game/modules/xo-online/components/join_room_screen.dart';
 import 'package:win_money_game/modules/xo-online/components/join_room_screen_4_4.dart';
 import 'package:win_money_game/modules/xo-online/components/join_room_screen_5_5.dart';
@@ -18,101 +15,31 @@ import 'package:win_money_game/providers/room_data_provider.dart';
 import 'package:win_money_game/providers/room_data_provider_4_4.dart';
 import 'package:win_money_game/providers/room_data_provider_5_5.dart';
 import 'package:win_money_game/providers/users_provider.dart';
-import 'package:win_money_game/modules/chess/Old/components/play_game_page.dart';
 import 'providers/sign_in_provider.dart';
-//
-// void main() async {
-// //   WidgetsFlutterBinding.ensureInitialized();
-// //
-// //   await Firebase.initializeApp();
-// //
-// //   //ads
-// //   Admob.initialize();
-// //
-// //   runApp(MultiProvider(
-// //     providers: [
-// //       ChangeNotifierProvider(create: (context)=>SignInProvider()),
-// //       ChangeNotifierProvider(create: (context)=>UsersProvider()),
-// //       ChangeNotifierProvider(create: (context)=>RoomDataProvider()),
-// //       ChangeNotifierProvider(create: (context)=>RoomDataProviderFour()),
-// //       ChangeNotifierProvider(create: (context)=>RoomDataProviderFive()),
-// //     ],
-// //     child: const MyApp(),
-// //   ),);
-// // }
-// //
-// // class MyApp extends StatelessWidget {
-// //   const MyApp({Key key}) : super(key: key);
-// //
-// //   // This widget is the root of your application.
-// //   @override
-// //
-// //   Widget build(BuildContext context) {
-// //     return MaterialApp(
-// //       // initialRoute: '/xo',
-// //        initialRoute: '/',
-// //       routes: {
-// //         '/' : (context) => const SplashScreen(),
-// //         '/second' : (context) => LoginScreen(),
-// //         '/third' : (context) => const SelectPathScreen(),
-// //         '/xo' : (context) => CreateOrJoinXOScreen(),
-// //         '/createRoom' : (context) => CreateRoomScreen(),
-// //         '/createRoom2' : (context) => CreateRoomScreen2(),
-// //         '/createRoom3' : (context) => CreateRoomScreen3(),
-// //         '/joinroom' : (context) => JoinRoomScreen(),
-// //         '/joinroom2' : (context) => JoinRoomScreen2(),
-// //         '/joinroom3' : (context) => JoinRoomScreen3(),
-// //         '/game' : (context) => FirstXOOnlineScreen(),
-// //         '/game2' : (context) => SecondXOOnlineScreen(),
-// //         '/game3' : (context) => ThirdXOOnlineScreen(),
-// //         // '/chess' : (context) => chessGame(),
-// //       },
-// //       supportedLocales: const [
-// //         Locale('en', 'US')
-// //       ],
-// //       debugShowCheckedModeBanner: false,
-// //       title: 'Win Money',
-// //       theme: ThemeData(
-// //         primarySwatch: Colors.deepPurple,
-// //       ),
-// //
-// //     );
-// //   }
-// // }
-
-
-
 import 'dart:math';
-
 import 'package:win_money_game/modules/chess/chess_board/flutter_chess_board.dart';
 import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart' as chess_sub;
 import 'package:win_money_game/modules/chess/generated/i18n.dart';
-// import 'package:win_money_game/modules/chess/util/online_game_utils.dart';
+import 'package:win_money_game/modules/chess/util/online_game_utils.dart';
 import 'package:win_money_game/modules/chess/util/utils.dart';
 import 'package:win_money_game/modules/chess/util/widget_utils.dart';
 import 'package:win_money_game/modules/chess/widgets/divider.dart';
 import 'package:win_money_game/modules/chess/widgets/fancy_button.dart';
 import 'package:win_money_game/modules/chess/widgets/fancy_options.dart';
 import 'package:win_money_game/modules/chess/widgets/modal_progress_hud.dart';
-// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-// import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
-
-import 'package:win_money_game/modules/chess/chess_board/chess.dart';
 import 'package:win_money_game/modules/chess/chess_board/src/chess_board.dart';
 import 'package:win_money_game/modules/chess/chess_control/chess_controller.dart';
 
 S strings;
 ChessController _chessController;
-// OnlineGameController _onlineGameController;
+OnlineGameController _onlineGameController;
 SharedPreferences prefs;
 String uuid;
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -120,7 +47,7 @@ void main() async {
   await Firebase.initializeApp();
 
   //ads
-  // Admob.initialize();
+  Admob.initialize();
 
   runApp(MultiProvider(
     providers: [
@@ -132,9 +59,7 @@ void main() async {
     ],
     child: const MyApp(),
   ),);
-  // Firebase.initializeApp();
-  //add all licenses
-  // addLicenses();
+
 }
 
 class MyApp extends StatelessWidget {
@@ -145,21 +70,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
 
-      // initialRoute: '/xo',
        initialRoute: '/',
       routes: {
         '/' : (context) => const SplashScreen(),
         '/xo' : (context) => CreateOrJoinXOScreen(),
-        // '/createRoom' : (context) => CreateRoomScreen(),
-        // '/createRoom2' : (context) => CreateRoomScreen2(),
-        // '/createRoom3' : (context) => CreateRoomScreen3(),
+
         '/joinroom' : (context) => JoinRoomScreen(),
         '/joinroom2' : (context) => JoinRoomScreen2(),
         '/joinroom3' : (context) => JoinRoomScreen3(),
         '/game' : (context) => FirstXOOnlineScreen(),
         '/game2' : (context) => SecondXOOnlineScreen(),
         '/game3' : (context) => ThirdXOOnlineScreen(),
-        '/chess' : (context) => PlayGamePage(),
+        '/chess' : (context) => chessGame(),
 
       },
       supportedLocales: const [
@@ -199,6 +121,7 @@ class _chessGameState extends State<chessGame> {
     _chessController.botBattle = prefs.getBool('botbattle') ?? false;
     //load user id and if not available create and save one
     uuid = prefs.getString('uuid');
+    print(uuid);
     if (uuid == null) {
       uuid = Uuid().v4();
       prefs.setString('uuid', uuid);
@@ -218,11 +141,7 @@ class _chessGameState extends State<chessGame> {
     else
       _chessController.context = context;
     //create the online game controller if is null
-    // _onlineGameController ??= OnlineGameController(_chessController);
-    //future builder: load old screen and show here on start the loading screen,
-    //when the future is finished,
-    //with setState show the real scaffold
-    //return the view
+     _onlineGameController = OnlineGameController(_chessController);
     return (_chessController.game == null)
         ? FutureBuilder(
       future: _loadEverythingUp(),
@@ -274,7 +193,7 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
     switch (state) {
       case AppLifecycleState.paused:
       case AppLifecycleState.detached:
-        _chessController.saveOldGame();
+        // _chessController.saveOldGame();
         break;
       default:
         break;
@@ -290,74 +209,44 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
     return true;
   }
 
-  void _onAbout() async {
-    //show the about dialog
-    showAboutDialog(
-      context: context,
-      applicationVersion: version,
-      applicationIcon: Image.asset(
-        'assets/res/drawable/ic_launcher.png',
-        width: 50,
-        height: 50,
-      ),
-      applicationLegalese: await rootBundle.loadString('res/licenses/this'),
-      children: [
-        FancyButton(
-          onPressed: () => launch(strings.privacy_url),
-          text: strings.privacy_title,
-        )
-      ],
+  void _onJoinCode() {
+    //dialog to enter a code
+    showAnimatedDialog(
+        title: "enter game id",
+        onDoneText: "join",
+        icon: Icons.transit_enterexit,
+        withInputField: true,
+        inputFieldHint: "ex.: KDFGHQ",
+        onDone: (value) {
+          _onlineGameController.joinGame(value);
+        });
+  }
+
+  void _onCreateCode() {
+    //if is currently in a game, this will disconnect from all local games, reset the board and create a firestore document
+    showAnimatedDialog(
+      title: "warning",
+      text: "game will reset",
+      onDoneText: "proceed",
+      icon: Icons.warning,
+      onDone: (value) {
+        if (value == 'ok') _onlineGameController.finallyCreateGameCode();
+      },
     );
   }
 
-  void _onWarning() {
+  void _onLeaveOnlineGame() {
+    //show dialog to leave the online game
     showAnimatedDialog(
-        title: "warning",
-        forceCancelText: 'no',
-        onDoneText: 'yes',
-        icon: Icons.warning,
-        onDone: (value) {},
-        children: [Image.asset('assets/res/drawable/moo.png')]);
+      title: "leave online game",
+      text: "Since you are hosting the game, leaving it means deleting it.",
+      icon: Icons.warning,
+      onDoneText: "ok",
+      onDone: (value) {
+        if (value == 'ok') _onlineGameController.leaveGame();
+      },
+    );
   }
-
-  // void _onJoinCode() {
-  //   //dialog to enter a code
-  //   showAnimatedDialog(
-  //       title: "enter game id",
-  //       onDoneText: "join",
-  //       icon: Icons.transit_enterexit,
-  //       withInputField: true,
-  //       inputFieldHint: "ex.: KDFGHQ",
-  //       onDone: (value) {
-  //         _onlineGameController.joinGame(value);
-  //       });
-  // }
-
-  // void _onCreateCode() {
-  //   //if is currently in a game, this will disconnect from all local games, reset the board and create a firestore document
-  //   showAnimatedDialog(
-  //     title: "warning",
-  //     text: "game reset join code warning",
-  //     onDoneText: "proceed",
-  //     icon: Icons.warning,
-  //     onDone: (value) {
-  //       if (value == 'ok') _onlineGameController.finallyCreateGameCode();
-  //     },
-  //   );
-  // }
-
-  // void _onLeaveOnlineGame() {
-  //   //show dialog to leave the online game
-  //   showAnimatedDialog(
-  //     title: strings.leave_online_game,
-  //     text: strings.deleting_as_host_info,
-  //     icon: Icons.warning,
-  //     onDoneText: strings.ok,
-  //     onDone: (value) {
-  //       if (value == 'ok') _onlineGameController.leaveGame();
-  //     },
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -366,7 +255,7 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
     //set the update method
     _chessController.update = update;
     //set the update method in the online game controller
-    // _onlineGameController.update = update;
+    _onlineGameController.update = update;
     //the default scaffold
     return WillPopScope(
       onWillPop: _onWillPop,
@@ -378,11 +267,11 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
           style: Theme.of(context).textTheme.subtitle2,
         )
             : Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
           // children: [
           //   CircularProgressIndicator(),
           //   Text(
-          //     strings.moves_done(_chessController.progress),
+          //     "${_chessController.progress} boards processed",
           //     style: Theme.of(context).textTheme.bodyText1,
           //   ),
           // ],
@@ -421,17 +310,17 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                                       //make move if needed
                                       _chessController.makeBotMoveIfRequired();
                                     },
-                                    child: Text(
-                                        (_chessController.botColor ==
-                                                chess_sub.Color.WHITE)
-                                            ? "white"
-                                            : "black",
-                                        style:
-                                            Theme.of(context).textTheme.button),
+                                    // child: Text(
+                                    //     (_chessController.botColor ==
+                                    //             chess_sub.Color.WHITE)
+                                    //         ? "white"
+                                    //         : "black",
+                                    //     style:
+                                    //         Theme.of(context).textTheme.button),
                                   ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
+                                  // SizedBox(
+                                  //   width: 8,
+                                  // ),
                                   AbsorbPointer(
                                     child:LiteRollingSwitch(
                                       value: (prefs?.getBool("bot") ?? true),
@@ -442,8 +331,8 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                                       },
                                       iconOn: Icons.done,
                                       iconOff: Icons.close,
-                                      // textOff: strings.bot_off,
-                                      // textOn: strings.bot_on,
+                                      textOff: "bot off",
+                                      textOn: "bot on",
                                       colorOff: Colors.red[800],
                                       colorOn: Colors.green[800],
                                     ),
@@ -458,31 +347,32 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 // SelectableText(
-                                //   // currentGameCode,
+                                //   currentGameCode,
                                 //   style: Theme.of(context).textTheme.subtitle2,
                                 // ),
-                                // Text(
-                                //     strings.turn_of_x(
-                                //         (_chessController?.game?.game?.turn ==
-                                //                 chess_sub.Color.BLACK)
-                                //             ? "black"
-                                //             : "white"),
-                                //     style: Theme.of(context)
-                                //         .textTheme
-                                //         .subtitle1
-                                //         .copyWith(
-                                //           inherit: true,
-                                //           color: (_chessController?.game
-                                //                       ?.in_check() ??
-                                //                   false)
-                                //               ? ((_chessController.game
-                                //                       .inCheckmate(
-                                //                           _chessController.game
-                                //                               .moveCountIsZero()))
-                                //                   ? Colors.purple
-                                //                   : Colors.red)
-                                //               : Colors.black,
-                                //         )),
+                                Text(
+                                    // strings.turn_of_x(
+                                    //     ,
+                                    (_chessController?.game?.game?.turn ==
+                                                    chess_sub.Color.BLACK
+                                                ? "black's turn"
+                                                : "white's turn"),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle1
+                                        .copyWith(
+                                          inherit: true,
+                                          color: (_chessController?.game
+                                                      ?.in_check() ??
+                                                  false)
+                                              ? ((_chessController.game
+                                                      .inCheckmate(
+                                                          _chessController.game
+                                                              .moveCountIsZero()))
+                                                  ? Colors.purple
+                                                  : Colors.red)
+                                              : Colors.black,
+                                        )),
                               ],
                             ),
                           ),
@@ -491,8 +381,7 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                             // in the middle of the parent.
                             child: SafeArea(
                               child: ChessBoard(
-                                boardType: boardTypeFromString(
-                                    prefs.getString('board_style') ?? 'o'),
+                                boardType: boardTypeFromString('o'),
                                 size: min(MediaQuery.of(context).size.width,
                                     availableHeight),
                                 onCheckMate: _chessController.onCheckMate,
@@ -536,33 +425,34 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  // FancyOptions(
-                                  //   up: true,
-                                  //   rootIcon: Icons.online_prediction,
-                                  //   rootText: "online game",
-                                  //   children: [
-                                  //     FancyButton(
-                                  //       onPressed: _onJoinCode,
-                                  //       text: "join_code",
-                                  //       icon: Icons.transit_enterexit,
-                                  //       animation: FancyButtonAnimation.pulse,
-                                  //     ),
-                                  //     FancyButton(
-                                  //       onPressed: _onCreateCode,
-                                  //       text: "create game",
-                                  //       icon: Icons.add,
-                                  //       animation: FancyButtonAnimation.pulse,
-                                  //     ),
-                                  //     FancyButton(
-                                  //       text: "leave online game",
-                                  //       animation: FancyButtonAnimation.pulse,
-                                  //       icon: Icons.exit_to_app,
-                                  //       visible: inOnlineGame,
-                                  //       onPressed: _onLeaveOnlineGame,
-                                  //     ),
-                                  //   ],
-                                  // ),
+                                  FancyOptions(
+                                    up: true,
+                                    rootIcon: Icons.online_prediction,
+                                    rootText: "online game",
+                                    children: [
+                                      FancyButton(
+                                        onPressed: _onJoinCode,
+                                        text: "join_code",
+                                        icon: Icons.transit_enterexit,
+                                        animation: FancyButtonAnimation.pulse,
+                                      ),
+                                      FancyButton(
+                                        onPressed: _onCreateCode,
+                                        text: "create game",
+                                        icon: Icons.add,
+                                        animation: FancyButtonAnimation.pulse,
+                                      ),
+                                      FancyButton(
+                                        text: "leave online game",
+                                        animation: FancyButtonAnimation.pulse,
+                                        icon: Icons.exit_to_app,
+                                        visible: inOnlineGame,
+                                        onPressed: _onLeaveOnlineGame,
+                                      ),
+                                    ],
+                                  ),
                                   Divider8(),
+                                  DividerIfOffline(),
                                   FancyButton(
                                     visible: true,
                                     onPressed: _chessController.undo,
@@ -578,13 +468,13 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                                     text: "replay",
                                   ),
                                   DividerIfOffline(),
-                                  Divider8(),
-                                  FancyButton(
-                                    visible: true,
-                                    onPressed: _chessController.switchColors,
-                                    icon: Icons.switch_left,
-                                    text: "switch_colors",
-                                  ),
+                                  // Divider8(),
+                                  // FancyButton(
+                                  //   visible: true,
+                                  //   onPressed: _chessController.switchColors,
+                                  //   icon: Icons.switch_left,
+                                  //   text: "switch_colors",
+                                  // ),
                                   // DividerIfOffline(),
                                   // FancyButton(
                                   //   visible: !inOnlineGame,
@@ -634,38 +524,7 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                                   //     ),
                                   //   ),
                                   // ),
-                                  // DividerIfOffline(),
-                                  // FancyOptions(
-                                  //   up: true,
-                                  //   rootIcon: Icons.devices,
-                                  //   rootText:
-                                  //       strings.availability_other_devices,
-                                  //   // children: [
-                                  //   //   FancyButton(
-                                  //   //     onPressed: () =>
-                                  //   //         launch(strings.playstore_url),
-                                  //   //     text: strings.android,
-                                  //   //     icon: Icons.android,
-                                  //   //     animation: FancyButtonAnimation.pulse,
-                                  //   //   ),
-                                  //   //   // FancyButton(
-                                  //   //   //   onPressed: () =>
-                                  //   //   //       launch(strings.website_url),
-                                  //   //   //   text: strings.web,
-                                  //   //   //   icon: Icons.web,
-                                  //   //   //   animation: FancyButtonAnimation.pulse,
-                                  //   //   // ),
-                                  //   // ],
-                                  // ),
-                                  // Divider8(),
-                                  // FancyButton(
-                                  //   onPressed: () =>
-                                  //       (random.nextInt(80100) == 420)
-                                  //           ? _onWarning()
-                                  //           : _onAbout(),
-                                  //   icon: Icons.info,
-                                  //   animation: FancyButtonAnimation.pulse,
-                                  // ),
+
                                 ],
                               ),
                             ),

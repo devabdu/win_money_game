@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../chess_control/chess_controller.dart';
-import '../../game.dart';
+import 'package:win_money_game/main.dart';
 import 'board_model.dart';
 
 class BoardSquare extends StatefulWidget {
@@ -137,7 +137,7 @@ class _BoardSquareState extends State<BoardSquare>
       barrierDismissible: false,
       builder: (BuildContext context) {
         return new AlertDialog(
-          title: Text(strings.choose_promotion),
+          title: Text("choose promotion"),
           content: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
@@ -226,16 +226,6 @@ class _BoardSquareState extends State<BoardSquare>
       default:
         imageToDisplay = WhitePawn(size: size);
     }
-
-    /*//turn the image in if is needed
-    if ((ChessController.whiteSideTowardsUser &&
-            piece0.color == chess.Color.BLACK) ||
-        (!ChessController.whiteSideTowardsUser &&
-            piece0.color == chess.Color.WHITE))
-      return Transform.rotate(
-        angle: pi,
-        child: imageToDisplay,
-      );*/
 
     return imageToDisplay;
   }
