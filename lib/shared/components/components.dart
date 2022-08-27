@@ -17,6 +17,10 @@ bool select5x5 = false;
 bool playOnline = false;
 bool playOffline = false;
 
+bool dailyMissionsShown = false;
+bool weeklyMissionsShown = false;
+bool StatisticsShown = false;
+
 bool chose50 = false;
 bool chose100 = false;
 bool chose500 = false;

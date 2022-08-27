@@ -994,7 +994,7 @@ class UsersProvider extends ChangeNotifier {
     });
 
     userCash = userCash + 250;
-    userCoins = userCoins + 25000;
+    userCoins = userCoins + 50000;
     await FirebaseFirestore.instance
         .collection('users')
         .doc(id)
