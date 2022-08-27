@@ -297,6 +297,10 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                             onTap: () async {
                               if (await rewardAd.isLoaded) {
                                 rewardAd.show(); // showing rewarded ad
+                                //look below
+                                setState(() {});
+                                stopMusic();
+                                ////////////
                                 final provider = Provider.of<UsersProvider>(
                                     context, listen: false);
                                 await provider.updateUserDailyMissionProgress(
@@ -331,7 +335,12 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                         actions: <Widget>[
                                           TextButton(
                                             onPressed: () {
-                                              Navigator.pop(context);
+                                              //look below
+                                              final provider = Provider.of<UsersProvider>(
+                                                  context, listen: false);
+                                              provider.turnOnMusicAfterBackground();
+                                              setState(() {});
+                                              /////////////
                                               Navigator.pop(context);
                                             },
                                             child: const Text('OK'),
