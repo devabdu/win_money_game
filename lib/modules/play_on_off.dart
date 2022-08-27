@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:win_money_game/modules/xo-online/responsive/responsive.dart';
 import 'package:win_money_game/modules/xo/xo_select_level_xo_screen.dart';
 import 'package:win_money_game/shared/components/components.dart';
+import 'package:win_money_game/modules/chess/Old/components/play_game_page.dart';
 import 'package:win_money_game/main.dart';
 class Play_On_Off extends StatelessWidget {
   const Play_On_Off({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class Play_On_Off extends StatelessWidget {
                   playOffline = true;
                   playOnline = false;
 
-                  navigateTo(context, chessGame());
+                  navigateTo(context, PlayGamePage());
                 }
               },
               backgroundColorBox: Colors.amberAccent,
@@ -47,7 +48,7 @@ class Play_On_Off extends StatelessWidget {
                 else if(selectChess){
                   playOffline = true;
                   playOnline = false;
-                  navigateTo(context, chessGame());
+                  navigateTo(context, PlayGamePage());
                 }
               },
               backgroundColorBox: Colors.amberAccent,
