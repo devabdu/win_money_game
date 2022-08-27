@@ -57,29 +57,38 @@ class SocketMethods {
     }
   }
 
-  void joinRoom(String nickname, String roomId) {
+  void joinRoom(String nickname, String roomId , String uId, int avatar , int coins) {
     if (nickname.isNotEmpty && roomId.isNotEmpty) {
       _socketClient.emit('joinRoom', {
         'nickname': nickname,
         'roomId': roomId,
+        'uId': uId,
+        'avatar': avatar,
+        'coins': coins,
       });
     }
   }
 
-  void joinRoom4(String nickname, String roomId) {
+  void joinRoom4(String nickname, String roomId, String uId, int avatar , int coins) {
     if (nickname.isNotEmpty && roomId.isNotEmpty) {
       _socketClient.emit('joinRoom4', {
         'nickname': nickname,
         'roomId': roomId,
+        'uId': uId,
+        'avatar': avatar,
+        'coins': coins,
       });
     }
   }
 
-  void joinRoom5(String nickname, String roomId) {
+  void joinRoom5(String nickname, String roomId, String uId, int avatar , int coins) {
     if (nickname.isNotEmpty && roomId.isNotEmpty) {
       _socketClient.emit('joinRoom5', {
         'nickname': nickname,
         'roomId': roomId,
+        'uId': uId,
+        'avatar': avatar,
+        'coins': coins,
       });
     }
   }
@@ -114,14 +123,6 @@ class SocketMethods {
     _socketClient.on('createRoomSuccess', (room) {
       final provider = Provider.of<RoomDataProvider>(context, listen: false);
       provider.updateRoomData(room);
-
-      // Map<String,dynamic> map = {};
-      // map['nickname'] = room['players'][0]['nickname'];
-      // map['socketID'] = room['players'][0]['socketID'];
-      // map['points'] = room['players'][0]['points'];
-      // map['playerType'] = room['players'][0]['playerType'];
-      //
-      // provider.updatePlayer1(map);
       navigateTo(context, GameScreen());
       print(room);
     });

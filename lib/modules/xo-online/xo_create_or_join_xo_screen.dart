@@ -271,12 +271,11 @@ class _CreateOrJoinXOScreenState extends State<CreateOrJoinXOScreen> {
                   const SizedBox(height: 20),
                   defaultButton(
                     function: () {
-                      if(select3x3)
                         navigateTo(context, JoinRoomScreen());
-                      else if(select4x4)
-                        navigateTo(context, JoinRoomScreen2());
-                      else if(select5x5)
-                        navigateTo(context, JoinRoomScreen3());
+                      // else if(select4x4)
+                      //   navigateTo(context, JoinRoomScreen2());
+                      // else if(select5x5)
+                      //   navigateTo(context, JoinRoomScreen3());
                     },
                     backgroundColorBox: Colors.amberAccent,
                     textColor: Colors.deepPurple,
