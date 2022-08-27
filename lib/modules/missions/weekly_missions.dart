@@ -57,7 +57,7 @@ class _WeeklyMissionsScreenState extends State<WeeklyMissionsScreen> {
                   actions: <Widget>[
                     TextButton(
                       onPressed: () {
-                        selectTasaly = true;
+
                         Navigator.pop(context);
                       },
                       child: const Text('OK'),

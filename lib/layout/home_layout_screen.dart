@@ -199,36 +199,39 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                 }
                               }
                               navigateTo(context, DailyMissionsScreen());
-                              showDialog<String>(
-                                context: context,
-                                builder: (BuildContext context) =>
-                                    AlertDialog(
-                                      title: const Text(
-                                        'Hint',
-                                        style: TextStyle(
+                              if(!dailyMissionsShown) {
+                                showDialog<String>(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                        title: const Text(
+                                          'Hint',
+                                          style: TextStyle(
+                                              color: Colors.deepPurple,
+                                              fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                        content: Text(
+                                          'Complete Daily Missions to Win ${user
+                                              .dailyAmount} Cash and 5k Coins!!',
+                                          style: TextStyle(
+                                            fontSize: 18,
                                             color: Colors.deepPurple,
-                                            fontWeight: FontWeight.bold
+                                          ),
                                         ),
+                                        backgroundColor: Colors.amberAccent,
+                                        actions: <Widget>[
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('OK'),
+                                          ),
+                                        ],
                                       ),
-                                      content: const Text(
-                                        'Complete Daily Missions to Win 20 Cash and 5k Coins!!',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.deepPurple,
-                                        ),
-                                      ),
-                                      backgroundColor: Colors.amberAccent,
-                                      actions: <Widget>[
-                                        TextButton(
-                                          onPressed: () {
-                                            selectTasaly = true;
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text('OK'),
-                                        ),
-                                      ],
-                                    ),
-                              );
+                                );
+                                dailyMissionsShown = true;
+                              }
                             },
                             child: Image.asset(
                               "assets/images/daily_missions.png",
@@ -249,36 +252,39 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                 }
                               }
                               navigateTo(context, WeeklyMissionsScreen());
-                              showDialog<String>(
-                                context: context,
-                                builder: (BuildContext context) =>
-                                    AlertDialog(
-                                      title: const Text(
-                                        'Hint',
-                                        style: TextStyle(
+                              if(!weeklyMissionsShown) {
+                                showDialog<String>(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                        title: const Text(
+                                          'Hint',
+                                          style: TextStyle(
+                                              color: Colors.deepPurple,
+                                              fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                        content: Text(
+                                          'Complete Weekly Missions to Win ${user
+                                              .weeklyAmount} Cash and 10k Coins!!',
+                                          style: TextStyle(
+                                            fontSize: 18,
                                             color: Colors.deepPurple,
-                                            fontWeight: FontWeight.bold
+                                          ),
                                         ),
+                                        backgroundColor: Colors.amberAccent,
+                                        actions: <Widget>[
+                                          TextButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('OK'),
+                                          ),
+                                        ],
                                       ),
-                                      content: const Text(
-                                        'Complete Weekly Missions to Win 40 Cash and 10k Coins!!',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.deepPurple,
-                                        ),
-                                      ),
-                                      backgroundColor: Colors.amberAccent,
-                                      actions: <Widget>[
-                                        TextButton(
-                                          onPressed: () {
-                                            selectTasaly = true;
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text('OK'),
-                                        ),
-                                      ],
-                                    ),
-                              );
+                                );
+                                weeklyMissionsShown = true;
+                              }
                             },
                             child: Image.asset(
                               "assets/images/weekly_missions.png",
@@ -291,6 +297,10 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                             onTap: () async {
                               if (await rewardAd.isLoaded) {
                                 rewardAd.show(); // showing rewarded ad
+                                //look below
+                                setState(() {});
+                                stopMusic();
+                                ////////////
                                 final provider = Provider.of<UsersProvider>(
                                     context, listen: false);
                                 await provider.updateUserDailyMissionProgress(
@@ -302,6 +312,42 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                   missionName: 'Watch 12 ads',
                                 );
                                 await provider.watchAdReward();
+
+                                showDialog<String>(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                        title: const Text(
+                                          'Congratulations!',
+                                          style: TextStyle(
+                                              color: Colors.deepPurple,
+                                              fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                        content: Text(
+                                          'You got 1,000 coins!',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.deepPurple,
+                                          ),
+                                        ),
+                                        backgroundColor: Colors.amberAccent,
+                                        actions: <Widget>[
+                                          TextButton(
+                                            onPressed: () {
+                                              //look below
+                                              final provider = Provider.of<UsersProvider>(
+                                                  context, listen: false);
+                                              provider.turnOnMusicAfterBackground();
+                                              setState(() {});
+                                              /////////////
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('OK'),
+                                          ),
+                                        ],
+                                      ),
+                                );
                               } else {
                                 showSnackBar('Reward ad is still loading...');
                               }

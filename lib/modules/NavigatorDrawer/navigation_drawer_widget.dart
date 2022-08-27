@@ -93,36 +93,38 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 0:
       {
         navigateTo(context, const StatisticsScreen());
-        showDialog<String>(
-          context: context,
-          builder: (BuildContext context) =>
-              AlertDialog(
-                title: const Text(
-                  'Hint',
-                  style: TextStyle(
+        if(!StatisticsShown) {
+          showDialog<String>(
+            context: context,
+            builder: (BuildContext context) =>
+                AlertDialog(
+                  title: const Text(
+                    'Hint',
+                    style: TextStyle(
+                        color: Colors.deepPurple,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  content: const Text(
+                    'Complete Tasaly Statistics to Earn 25k Coins from each target.\n\nAnd Rebh Statistics to Earn 250 Cash and 50k Coins from each target.',
+                    style: TextStyle(
+                      fontSize: 18,
                       color: Colors.deepPurple,
-                      fontWeight: FontWeight.bold
+                    ),
                   ),
+                  backgroundColor: Colors.amberAccent,
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('OK'),
+                    ),
+                  ],
                 ),
-                content: const Text(
-                  'Win 50 game to Earn 250 Cash and 50k Coins!!',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.deepPurple,
-                  ),
-                ),
-                backgroundColor: Colors.amberAccent,
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () {
-                      selectTasaly = true;
-                      Navigator.pop(context);
-                    },
-                    child: const Text('OK'),
-                  ),
-                ],
-              ),
-        );
+          );
+          StatisticsShown = true;
+        }
       }
         break;
       case 1:

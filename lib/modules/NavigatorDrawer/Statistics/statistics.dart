@@ -47,7 +47,7 @@ class StatisticsScreen extends StatelessWidget {
                                 ),
                               ),
                               content: const Text(
-                                'Win 50 game to Earn 250 Cash and 50k Coins!!',
+                                'Complete Tasaly Statistics to Earn 25k Coins from each target.\n\nAnd Rebh Statistics to Earn 250 Cash and 50k Coins from each target.',
                                 style: TextStyle(
                                   fontSize: 18,
                                   color: Colors.deepPurple,
@@ -57,7 +57,6 @@ class StatisticsScreen extends StatelessWidget {
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () {
-                                    selectTasaly = true;
                                     Navigator.pop(context);
                                   },
                                   child: const Text('OK'),
