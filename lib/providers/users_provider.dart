@@ -30,6 +30,14 @@ class UsersProvider extends ChangeNotifier {
   int userDailyAmount = 0;
   int userWeeklyAmount = 0;
   bool userMusicState = false;
+  String userName = '';
+  int userXoTwins = 0;
+  int userXoRwins = 0;
+  int userLevel = 0;
+  double userExp = 0;
+  int userCurrentCoins = 0;
+  Map<String, dynamic> userDailyCounts = {};
+  Map<String, dynamic> userWeeklyCounts = {};
 
   Future<void> updateAvatar({
     required int avatarIndex,
@@ -1052,5 +1060,90 @@ class UsersProvider extends ChangeNotifier {
         if(userMusicState)
           playTillTab('music.ogg.mp3');
       });
+  }
+
+
+
+  Future<void> gameXOEnd({
+    required String result,
+    required int coinsPlayedOn,
+  }) async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      dynamic docData = documentSnapshot.data();
+      userName = docData['name'];
+      userXoTwins = docData['xoTwins'];
+      userXoRwins = docData['xoRwins'];
+      userLevel = docData['level'];
+      userExp = docData['exp'];
+      userCurrentCoins = docData['coins'];
+      userDailyCounts = docData['dailyCounts'];
+      userWeeklyCounts = docData['weeklyCounts'];
+
+      //tasaly winner
+      if(userName == result && selectTasaly){
+        updateUserXoTasalyWins(
+          userTasalyWins: userXoTwins,
+        );
+      }
+      //rebh winner
+      else if(userName == result && selectRebh){
+        updateUserXoRebhWins(
+          userRebhWins: userXoRwins,
+        );
+      }
+
+      //winner
+      if(userName == result){
+        updateUserDailyMissionProgress(
+          missionName: 'Win 3 games',
+          userCounts: userDailyCounts,
+        );
+        updateUserWeeklyMissionProgress(
+          missionName: 'Win 9 games',
+          userCounts: userWeeklyCounts,
+        );
+        updateWinnerCoins(
+          userCoins: userCurrentCoins,
+          coinsWon: coinsPlayedOn,
+        );
+        updateUserDailyCoinsMissionProgress(
+          missionName: 'Collect 500 coins',
+          userCounts: userDailyCounts,
+          coinsWon: coinsPlayedOn,
+        );
+        updateUserWeeklyCoinsMissionProgress(
+          missionName: 'Collect 10k coins',
+          userCounts: userWeeklyCounts,
+          coinsWon: coinsPlayedOn,
+        );
+      }
+      //loser
+      else if(userName != result && result != ''){
+        updateLoserCoins(
+          userCoins: userCurrentCoins,
+          coinsLost: coinsPlayedOn,
+        );
+      }
+
+      //loser, winner and draw
+      updateUserLevelAndExp(
+        userExp: userExp,
+        userLevel: userLevel,
+      );
+      updateUserDailyMissionProgress(
+        missionName: 'Play 5 games',
+        userCounts: userDailyCounts,
+      );
+      updateUserWeeklyMissionProgress(
+        missionName: 'Play 10 games',
+        userCounts: userWeeklyCounts,
+      );
+    });
   }
 }

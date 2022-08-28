@@ -282,14 +282,32 @@ class SocketMethods {
 
   void endGameListener(BuildContext context) {
     _socketClient.on('endGame', (playerData) {
-      showGameDialog(context, '${playerData['nickname']} won the game!');
+      showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
+        backgroundColor: Colors.amberAccent,
+        title: Text('${playerData['nickname']} won the game!',
+          style: TextStyle(
+            color: Colors.deepPurple,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: (){
+            GameMethods().clearBoard(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+          }, child: const Text('Play Again'),
+          ),
+        ],
+      ));
+      final provider = Provider.of<UsersProvider>(context, listen: false);
+
+      provider.gameXOEnd(result: playerData['nickname'], coinsPlayedOn: playerData['coins']);
       // Navigator.popUntil(context, (route) => false);
-      Navigator.pop(context);
-      Navigator.pop(context);
-      Navigator.pop(context);
-      Navigator.pop(context);
-      Navigator.pop(context);
-      Navigator.pop(context);
     });
   }
 }
