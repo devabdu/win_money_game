@@ -4,6 +4,7 @@ import 'package:win_money_game/modules/XO/xo_utils.dart';
 import 'package:win_money_game/providers/room_data_provider.dart';
 import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
 import 'package:provider/provider.dart';
+
 class Player {
   static const none = '';
   static const X = 'X';
@@ -42,6 +43,7 @@ class MainPageState extends State<FirstXOOnlineScreen> {
       // backgroundColor: Color.fromRGBO(16, 13, 34, 1),
       backgroundColor: Colors.deepPurple,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         //centerTitle: true,
         //backgroundColor: Color.fromRGBO(16, 13, 34, 1),
         backgroundColor: Colors.amberAccent,
@@ -54,7 +56,45 @@ class MainPageState extends State<FirstXOOnlineScreen> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () async{
+              showDialog<String>(
+                barrierDismissible: false,
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  title: const Text(
+                    'Exit',
+                    style: TextStyle(
+                        color: Colors.deepPurple,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  content: const Text(
+                    'Are you sure you want to exit the game?',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                  backgroundColor: Colors.amberAccent,
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, 'Cancel'),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Exit'),
+                    ),
+                  ],
+                ),
+              );
+            },
             icon: const Icon(Icons.logout_outlined),
             color: Colors.deepPurple,
           ),

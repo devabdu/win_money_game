@@ -74,10 +74,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/' : (context) => const SplashScreen(),
         '/xo' : (context) => CreateOrJoinXOScreen(),
-
         '/joinroom' : (context) => JoinRoomScreen(),
-        // '/joinroom2' : (context) => JoinRoomScreen2(),
-        // '/joinroom3' : (context) => JoinRoomScreen3(),
         '/game' : (context) => FirstXOOnlineScreen(),
         '/game2' : (context) => SecondXOOnlineScreen(),
         '/game3' : (context) => ThirdXOOnlineScreen(),

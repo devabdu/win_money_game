@@ -3,7 +3,6 @@ import 'package:admob_flutter/admob_flutter.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:win_money_game/Ads/adsManager.dart';
-import 'package:win_money_game/layout/home_layout_screen.dart';
 import 'package:win_money_game/modules/xo/xo_utils.dart';
 import 'package:win_money_game/shared/components/components.dart';
 class Player {
@@ -113,52 +112,90 @@ class MainPageState extends State<FirstXOScreen> {
       ));
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        // backgroundColor: Color.fromRGBO(16, 13, 34, 1),
-        backgroundColor: Colors.deepPurple,
-        appBar: AppBar(
-          //centerTitle: true,
-          //backgroundColor: Color.fromRGBO(16, 13, 34, 1),
-          backgroundColor: Colors.amberAccent,
-          iconTheme: const IconThemeData(
-            color: Colors.deepPurple,
-          ),
-          title: const Text(
-            'XO',
-            style: TextStyle(color: Colors.deepPurple),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () async{
-                //ads
-                if(selectTasaly){
-                  final isLoaded = await interstitialAd.isLoaded;
-                  if (isLoaded ?? false) {
-                    interstitialAd.show(); //interstital ad show
-                  } else {
-                    showSnackBar(
-                        'Interstitial ad is still loading...');
-                  }
-                }
-                navigateTo(context, const HomeLayoutScreen());
-              },
-              icon: const Icon(Icons.logout_outlined),
+  Widget build(BuildContext context) => WillPopScope(
+    onWillPop: () async => false,
+    child: Scaffold(
+          // backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+          backgroundColor: Colors.deepPurple,
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            //centerTitle: true,
+            //backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+            backgroundColor: Colors.amberAccent,
+            iconTheme: const IconThemeData(
               color: Colors.deepPurple,
             ),
-          ],
-        ),
-        body: Center(
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                ...Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x)),
-              ],
+            title: const Text(
+              'XO',
+              style: TextStyle(color: Colors.deepPurple),
+            ),
+            actions: [
+              IconButton(
+                onPressed: () async{
+                  //ads
+                  if(selectTasaly){
+                    final isLoaded = await interstitialAd.isLoaded;
+                    if (isLoaded ?? false) {
+                      interstitialAd.show(); //interstital ad show
+                    } else {
+                      showSnackBar(
+                          'Interstitial ad is still loading...');
+                    }
+                  }
+                  showDialog<String>(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: const Text(
+                        'Exit',
+                        style: TextStyle(
+                            color: Colors.deepPurple,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      content: const Text(
+                        'Are you sure you want to exit the game?',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.deepPurple,
+                        ),
+                      ),
+                      backgroundColor: Colors.amberAccent,
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'Cancel'),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                            Navigator.pop(context);
+                          },
+                          child: const Text('Exit'),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.logout_outlined),
+                color: Colors.deepPurple,
+              ),
+            ],
+          ),
+          body: Center(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ...Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x)),
+                ],
+              ),
             ),
           ),
         ),
-      );
+  );
 
   Widget buildRow(int x) {
     final values = matrix[x];

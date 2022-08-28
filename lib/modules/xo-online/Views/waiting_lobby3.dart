@@ -3,14 +3,14 @@ import 'package:win_money_game/providers/room_data_provider_5_5.dart';
 import 'package:win_money_game/modules/xo-online/widgets/custom_textfield.dart';
 import 'package:provider/provider.dart';
 
-class WaitingLobby extends StatefulWidget {
-  const WaitingLobby({Key? key}) : super(key: key);
+class WaitingLobbyFive extends StatefulWidget {
+  const WaitingLobbyFive({Key? key}) : super(key: key);
 
   @override
-  State<WaitingLobby> createState() => _WaitingLobbyState();
+  State<WaitingLobbyFive> createState() => _WaitingLobbyFiveState();
 }
 
-class _WaitingLobbyState extends State<WaitingLobby> {
+class _WaitingLobbyFiveState extends State<WaitingLobbyFive> {
   late TextEditingController roomIdController;
 
   @override
