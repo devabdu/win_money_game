@@ -473,7 +473,7 @@ class MainPageState extends State<ThirdXOOnlineScreen> {
         ),
       ),
       actions: [
-        ElevatedButton(
+        TextButton(
           onPressed: () {
             setEmptyFields();
             Navigator.of(context).pop();

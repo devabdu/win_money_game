@@ -403,7 +403,7 @@ class MainPageState extends State<FirstXOOnlineScreen> {
         ),
       ),
       actions: [
-        ElevatedButton(
+        TextButton(
           onPressed: () {
             setEmptyFields();
             Navigator.of(context).pop();

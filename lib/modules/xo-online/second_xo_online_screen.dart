@@ -437,7 +437,7 @@ class MainPageState extends State<SecondXOOnlineScreen> {
             ),
           ),
           actions: [
-            ElevatedButton(
+            TextButton(
               onPressed: () {
                 setEmptyFields();
                 Navigator.of(context).pop();
