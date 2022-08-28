@@ -86,13 +86,13 @@ class OnlineGameController {
     joinGameCodeWithoutFirebaseCreation(gameCode: code.toUpperCase());
     //check if the code exists
     currentGameDoc.get().then((event) {
-      print(event);
+      print(event.data());
       //check if doc exists and white is not already this user
       if (event.exists) {
         //set the local bot disabled etc
         _chessController.botBattle = false;
-        prefs.setBool('bot', false);
-        prefs.setBool('botbattle', false);
+        prefs?.setBool('bot', false) ?? false;
+        prefs?.setBool('botbattle', false) ?? false;
         //the player is not white, not rejoining
         if(event.get('white') != uuid) {
 
@@ -105,14 +105,14 @@ class OnlineGameController {
           currentGameDoc.update(<String, dynamic>{'black': uuid});
           //black towards user
           _chessController.whiteSideTowardsUser = false;
-          prefs.setBool('whiteSideTowardsUser', false);
+          prefs?.setBool('whiteSideTowardsUser', false) ?? false;
         }else {
           //reset the local
           _chessController.controller.resetBoard();
           //rejoin the game
           //black towards user
           _chessController.whiteSideTowardsUser = true;
-          prefs.setBool('whiteSideTowardsUser', true);
+          prefs?.setBool('whiteSideTowardsUser', true) ?? true;
         }
         //lock the listener since the game exists
         lockListener();
@@ -140,7 +140,7 @@ class OnlineGameController {
       //refresh views
       update();
       _chessController.controller.resetBoard();
-      prefs.setBool("bot", true);
+      prefs?.setBool("bot", true) ?? true;
     });
   }
 

@@ -147,7 +147,6 @@ class SocketMethods {
     _socketClient.on('joinRoomSuccess', (room) {
       final provider = Provider.of<RoomDataProvider>(context, listen: false);
       provider.updateRoomData(room);
-
       navigateTo(context, GameScreen());
       print(room);
     });
