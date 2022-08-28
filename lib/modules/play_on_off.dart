@@ -22,12 +22,12 @@ class Play_On_Off extends StatelessWidget {
                   playOnline = false;
                   navigateTo(context, SelectLevelXoScreen());
                 }
-                else if(selectChess){
-                  playOffline = true;
-                  playOnline = false;
-
-                  navigateTo(context, chessGame());
-                }
+                // else if(selectChess){
+                //   playOffline = true;
+                //   playOnline = false;
+                //
+                //   navigateTo(context, chessGame());
+                // }
               },
               backgroundColorBox: Colors.amberAccent,
               textColor: Colors.deepPurple,
@@ -44,11 +44,11 @@ class Play_On_Off extends StatelessWidget {
                   playOnline = true;
                   navigateTo(context, SelectLevelXoScreen());
                 }
-                else if(selectChess){
-                  playOffline = true;
-                  playOnline = false;
-                  navigateTo(context, chessGame());
-                }
+                // else if(selectChess){
+                //   playOffline = true;
+                //   playOnline = false;
+                //   navigateTo(context, chessGame());
+                // }
               },
               backgroundColorBox: Colors.amberAccent,
               textColor: Colors.deepPurple,
