@@ -292,19 +292,21 @@ class MainPageState extends State<ThirdXOScreen> {
     context: context,
     barrierDismissible: false,
     builder: (context) => AlertDialog(
-      backgroundColor: Color.fromRGBO(54, 51, 76, 1.0),
+      backgroundColor: Colors.amberAccent,
       title: Text(title,
         style: TextStyle(
-          color: Colors.white,
+          color: Colors.deepPurple,
+          fontWeight: FontWeight.bold,
         ),
       ),
       content: Text('Press to Restart the Game',
         style: TextStyle(
-          color: Colors.white,
+          fontSize: 18,
+          color: Colors.deepPurple,
         ),
       ),
       actions: [
-        ElevatedButton(
+        TextButton(
           onPressed: () {
             setEmptyFields();
             Navigator.of(context).pop();
