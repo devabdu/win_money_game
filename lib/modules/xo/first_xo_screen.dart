@@ -153,7 +153,7 @@ class MainPageState extends State<FirstXOScreen> {
                             fontWeight: FontWeight.bold),
                       ),
                       content: const Text(
-                        'Are you sure you want to exit the game?',
+                        'Are you sure you want to Exit the Game?',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.deepPurple,
