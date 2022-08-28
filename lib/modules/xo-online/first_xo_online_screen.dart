@@ -100,79 +100,63 @@ class MainPageState extends State<FirstXOOnlineScreen> {
           ),
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          SafeArea(
-              child: Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.all(30),
-                    child: Column(
-                      children: <Widget>[
-
-                        // Row(
-                        //   children: [
-                        //     // const CircleAvatar(
-                        //     //   backgroundColor: Colors.white,
-                        //     //   radius: 22,
-                        //     //   child: CircleAvatar(
-                        //     //     radius: 20,
-                        //     //     backgroundImage: NetworkImage(
-                        //     //         'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
-                        //     //   ),
-                        //     // ),
-                        //     // const SizedBox(
-                        //     //   width: 10,
-                        //     // ),
-                        //     Text(
-                        //       roomDataProvider.player1.nickname,//print registered username here
-                        //       style: TextStyle(
-                        //         color: Colors.white,
-                        //         fontSize: 17,
-                        //         // fontWeight: FontWeight.bold,
-                        //       ),
-                        //     ),
-                        //
-                        //   ],
-                        // ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 22,
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundImage: AssetImage(
-                                  'assets/images/avatar_${roomDataProvider.player2.avatar}.png',
+      body: Center(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SafeArea(
+                  child: Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 20, left: 170),
+                        child: Column(
+                          children: <Widget>[
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  radius: 22,
+                                  child: CircleAvatar(
+                                    radius: 20,
+                                    backgroundImage: AssetImage(
+                                      'assets/images/avatar_${roomDataProvider.player2.avatar}.png',
+                                    ),
+                                  ),
                                 ),
-                              ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  roomDataProvider.player2.nickname,//
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17,
+                                    // fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                // const SizedBox(width: 5),
+                                // IconButton(
+                                //   onPressed: () {},
+                                //   icon: const Icon(
+                                //     Icons.mic_rounded,
+                                //     color: Colors.white,
+                                //     size: 20,
+                                //   ),
+                                // ),
+                              ],
                             ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              roomDataProvider.player2.nickname,//print registered username here
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                // fontWeight: FontWeight.bold,
-                              ),
-                            ),
-
                           ],
                         ),
-                      ],
-                    ),
-                  ))),
-          ...Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x,roomDataProvider)),
-          SafeArea(
-              child: Align(
-                  alignment: Alignment.center,
+                      ))),
+              ...Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x,roomDataProvider)),
+              SafeArea(
+                child: Align(
+                  alignment: Alignment.bottomLeft,
                   child: Padding(
-                    padding: const EdgeInsets.all(30),
+                    padding: const EdgeInsets.only(left: 20, top: 20),
                     child: Column(
-
                       children: <Widget>[
                         Row(
                           children: [
@@ -190,30 +174,60 @@ class MainPageState extends State<FirstXOOnlineScreen> {
                               width: 10,
                             ),
                             Text(
-                              roomDataProvider.player1.nickname,// print registered username here
+                              roomDataProvider.player1.nickname,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 17,
                                 // fontWeight: FontWeight.bold,
                               ),
                             ),
+                            // const SizedBox(width: 5),
+                            // IconButton(
+                            //   onPressed: () {},
+                            //   icon: const Icon(
+                            //     Icons.mic_rounded,
+                            //     color: Colors.white,
+                            //     size: 20,
+                            //   ),
+                            // ),
                           ],
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                            '${roomDataProvider.roomData['turn']['nickname']}\'s turn',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            // fontWeight: FontWeight.bold,
-                          ),
                         ),
                       ],
                     ),
-                  ))),
-        ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 60,
+              ),
+              SafeArea(
+                child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: Container(
+                    height: 25,
+                    width: double.infinity,
+                    color: Colors.amberAccent,
+                    child: Center(
+                      child: Text(
+                        '${roomDataProvider.roomData['turn']['nickname']}\'s turn',
+                        style: TextStyle(
+                          color: Colors.deepPurple,
+                          fontSize: 19,
+                          // fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -221,12 +235,14 @@ class MainPageState extends State<FirstXOOnlineScreen> {
   Widget buildRow(int x , RoomDataProvider roomDataProvider) {
     final values = matrix[x];
 
-    return Row(
-
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: Xo_Utils.modelBuilder(
-        values,
-            (y, value) => buildField(x, y ,roomDataProvider),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: Xo_Utils.modelBuilder(
+          values,
+              (y, value) => buildField(x, y ,roomDataProvider),
+        ),
       ),
     );
   }
@@ -371,17 +387,19 @@ class MainPageState extends State<FirstXOOnlineScreen> {
     context: context,
     barrierDismissible: false,
     builder: (context) => AlertDialog(
-      backgroundColor: Color.fromRGBO(54, 51, 76, 1.0),
+      backgroundColor: Colors.amberAccent,
       title: Text(
         title,
         style: TextStyle(
-          color: Colors.white,
+          color: Colors.deepPurple,
+          fontWeight: FontWeight.bold,
         ),
       ),
       content: Text(
         'Press to Restart the Game',
         style: TextStyle(
-          color: Colors.white,
+          fontSize: 18,
+          color: Colors.deepPurple,
         ),
       ),
       actions: [
