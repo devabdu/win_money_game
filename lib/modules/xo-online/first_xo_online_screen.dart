@@ -159,6 +159,17 @@ class MainPageState extends State<FirstXOOnlineScreen> {
                             ),
                           ],
                         ),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Text(
+                            '${roomDataProvider.roomData['turn']['nickname']}\'s turn',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            // fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ],
                     ),
                   ))),
