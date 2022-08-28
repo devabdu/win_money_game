@@ -66,7 +66,7 @@ class SignInProvider extends ChangeNotifier {
             content = 'The user you tried to log into was not found';
             break;
         }
-        showDialog(context: context, builder: (context) => AlertDialog(
+        showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
           title: const Text('log in with google failed'),
           content: Text(content),
           actions: [
@@ -78,7 +78,7 @@ class SignInProvider extends ChangeNotifier {
         ));
       });
     } catch (error) {
-      showDialog(context: context, builder: (context) => AlertDialog(
+      showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
         title: const Text('log in with google failed'),
         content: const Text('An unknown error occurred'),
         actions: [
@@ -147,7 +147,7 @@ class SignInProvider extends ChangeNotifier {
             content = 'The user you tried to log into was not found';
             break;
         }
-        showDialog(context: context, builder: (context) => AlertDialog(
+        showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
           title: const Text('log in with facebook failed'),
           content: Text(content),
           actions: [

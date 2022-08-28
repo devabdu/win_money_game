@@ -201,6 +201,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                               navigateTo(context, DailyMissionsScreen());
                               if(!dailyMissionsShown) {
                                 showDialog<String>(
+                                  barrierDismissible: false,
                                   context: context,
                                   builder: (BuildContext context) =>
                                       AlertDialog(
@@ -254,6 +255,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                               navigateTo(context, WeeklyMissionsScreen());
                               if(!weeklyMissionsShown) {
                                 showDialog<String>(
+                                  barrierDismissible: false,
                                   context: context,
                                   builder: (BuildContext context) =>
                                       AlertDialog(
@@ -314,6 +316,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                 await provider.watchAdReward();
 
                                 showDialog<String>(
+                                  barrierDismissible: false,
                                   context: context,
                                   builder: (BuildContext context) =>
                                       AlertDialog(

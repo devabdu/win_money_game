@@ -45,7 +45,7 @@ class UsersProvider extends ChangeNotifier {
           'avatar' : avatarIndex,
         }
     ).then((value) {
-      showDialog(context: context, builder: (context) => AlertDialog(
+      showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
         backgroundColor: Colors.amberAccent,
         title: const Text('Avatar Updated',
           style: TextStyle(
@@ -153,7 +153,7 @@ class UsersProvider extends ChangeNotifier {
             'dailyCounts' : user.dailyCounts,
           });
     });
-    showDialog(context: context, builder: (context) => AlertDialog(
+    showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
       backgroundColor: Colors.amberAccent,
       title: const Text('Mission Added',
         style: TextStyle(
@@ -206,7 +206,7 @@ class UsersProvider extends ChangeNotifier {
             'weeklyCounts' : user.weeklyCounts,
           });
     });
-    showDialog(context: context, builder: (context) => AlertDialog(
+    showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
       backgroundColor: Colors.amberAccent,
       title: const Text('Mission Added',
         style: TextStyle(
@@ -262,7 +262,7 @@ class UsersProvider extends ChangeNotifier {
                 'dailyCounts.${missionId}' : FieldValue.delete(),
               });
         });
-        showDialog(context: context, builder: (context) => AlertDialog(
+        showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
           backgroundColor: Colors.amberAccent,
           title: const Text('Mission Deleted',
             style: TextStyle(
@@ -286,7 +286,7 @@ class UsersProvider extends ChangeNotifier {
           ],
         ));
       } else {
-        showDialog(context: context, builder: (context) => AlertDialog(
+        showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
           backgroundColor: Colors.amberAccent,
           title: const Text('Mission Not Found',
             style: TextStyle(
@@ -341,7 +341,7 @@ class UsersProvider extends ChangeNotifier {
                 'weeklyCounts.${missionId}' : FieldValue.delete(),
               });
         });
-        showDialog(context: context, builder: (context) => AlertDialog(
+        showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
           backgroundColor: Colors.amberAccent,
           title: const Text('Mission Deleted',
             style: TextStyle(
@@ -365,7 +365,7 @@ class UsersProvider extends ChangeNotifier {
           ],
         ));
       } else {
-        showDialog(context: context, builder: (context) => AlertDialog(
+        showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
           backgroundColor: Colors.amberAccent,
           title: const Text('Mission Not Found',
             style: TextStyle(
@@ -399,7 +399,7 @@ class UsersProvider extends ChangeNotifier {
             'dailyCounts' : usersResetDailyCounts,
           });
     });
-    showDialog(context: context, builder: (context) => AlertDialog(
+    showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
       backgroundColor: Colors.amberAccent,
       title: const Text('Daily missions progress reset',
         style: TextStyle(
@@ -434,7 +434,7 @@ class UsersProvider extends ChangeNotifier {
             'weeklyCounts' : usersResetWeeklyCounts,
           });
     });
-    showDialog(context: context, builder: (context) => AlertDialog(
+    showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
         backgroundColor: Colors.amberAccent,
         title: const Text('Weekly missions progress reset',
           style: TextStyle(
@@ -667,7 +667,6 @@ class UsersProvider extends ChangeNotifier {
         .doc('target')
         .get()
         .then((DocumentSnapshot documentSnapshot) {
-      print(documentSnapshot.data());
       dynamic docData = documentSnapshot.data();
       targetWins = docData['targetWins'];
     }).then((value) async {
@@ -698,7 +697,6 @@ class UsersProvider extends ChangeNotifier {
         .doc('target')
         .get()
         .then((DocumentSnapshot documentSnapshot) {
-      print(documentSnapshot.data());
       dynamic docData = documentSnapshot.data();
       targetWins = docData['targetWins'];
     }).then((value) async {
@@ -729,7 +727,6 @@ class UsersProvider extends ChangeNotifier {
         .doc('target')
         .get()
         .then((DocumentSnapshot documentSnapshot) {
-      print(documentSnapshot.data());
       dynamic docData = documentSnapshot.data();
       targetWins = docData['targetWins'];
     }).then((value) async {
@@ -760,7 +757,6 @@ class UsersProvider extends ChangeNotifier {
         .doc('target')
         .get()
         .then((DocumentSnapshot documentSnapshot) {
-      print(documentSnapshot.data());
       dynamic docData = documentSnapshot.data();
       targetWins = docData['targetWins'];
     }).then((value) async {
@@ -789,7 +785,6 @@ class UsersProvider extends ChangeNotifier {
         .doc(id)
         .get()
         .then((DocumentSnapshot documentSnapshot) {
-      print(documentSnapshot.data());
       dynamic docData = documentSnapshot.data();
       userCash = docData['cash'];
       userCoins = docData['coins'];
@@ -874,7 +869,6 @@ class UsersProvider extends ChangeNotifier {
         .doc(id)
         .get()
         .then((DocumentSnapshot documentSnapshot) {
-      print(documentSnapshot.data());
       dynamic docData = documentSnapshot.data();
       userCash = docData['cash'];
       userCoins = docData['coins'];
@@ -941,7 +935,6 @@ class UsersProvider extends ChangeNotifier {
         .doc(id)
         .get()
         .then((DocumentSnapshot documentSnapshot) {
-      print(documentSnapshot.data());
       dynamic docData = documentSnapshot.data();
       userCoins = docData['coins'];
     });
@@ -964,7 +957,6 @@ class UsersProvider extends ChangeNotifier {
         .doc(id)
         .get()
         .then((DocumentSnapshot documentSnapshot) {
-      print(documentSnapshot.data());
       dynamic docData = documentSnapshot.data();
       userCoins = docData['coins'];
     });
@@ -987,7 +979,6 @@ class UsersProvider extends ChangeNotifier {
         .doc(id)
         .get()
         .then((DocumentSnapshot documentSnapshot) {
-      print(documentSnapshot.data());
       dynamic docData = documentSnapshot.data();
       userCash = docData['cash'];
       userCoins = docData['coins'];
@@ -1013,7 +1004,6 @@ class UsersProvider extends ChangeNotifier {
         .doc(id)
         .get()
         .then((DocumentSnapshot documentSnapshot) {
-      print(documentSnapshot.data());
       dynamic docData = documentSnapshot.data();
 
       player = AudioPlayer();
@@ -1056,7 +1046,6 @@ class UsersProvider extends ChangeNotifier {
           .doc(id)
           .get()
           .then((DocumentSnapshot documentSnapshot) {
-        print(documentSnapshot.data());
         dynamic docData = documentSnapshot.data();
         userMusicState = docData['musicOn'];
 

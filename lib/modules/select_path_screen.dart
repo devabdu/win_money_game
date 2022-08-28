@@ -41,6 +41,7 @@ class _SelectPathScreenState extends State<SelectPathScreen> with WidgetsBinding
                 child: InkWell(
                   onTap: () {
                     showDialog<String>(
+                      barrierDismissible: false,
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
                         title: const Text(
@@ -94,6 +95,7 @@ class _SelectPathScreenState extends State<SelectPathScreen> with WidgetsBinding
                 child: InkWell(
                   onTap: () {
                     showDialog<String>(
+                      barrierDismissible: false,
                       context: context,
                       builder: (BuildContext context) => AlertDialog(
                         title: const Text(

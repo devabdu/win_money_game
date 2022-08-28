@@ -37,6 +37,7 @@ class StatisticsScreen extends StatelessWidget {
                       IconButton(
                         onPressed: () {
                           showDialog<String>(
+                            barrierDismissible: false,
                             context: context,
                             builder: (BuildContext context) => AlertDialog(
                               title: const Text(
