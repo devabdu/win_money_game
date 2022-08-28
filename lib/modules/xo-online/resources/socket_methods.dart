@@ -300,7 +300,8 @@ class SocketMethods {
             Navigator.pop(context);
             Navigator.pop(context);
             Navigator.pop(context);
-          }, child: const Text('Play Again'),
+            Navigator.pop(context);
+          }, child: const Text('Leave'),
           ),
         ],
       ));

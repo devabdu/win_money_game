@@ -612,6 +612,11 @@ class UsersProvider extends ChangeNotifier {
       if(userCounts[dailyMissionId] < dailyMissionCount) {
         userCounts[dailyMissionId] = userCounts[dailyMissionId] + coinsWon;
 
+        if(userCounts[dailyMissionId] > dailyMissionCount) {
+          userCounts[dailyMissionId] = dailyMissionCount;
+          await dailyMissionReward();
+        }
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -619,11 +624,6 @@ class UsersProvider extends ChangeNotifier {
             {
               'dailyCounts' : userCounts,
             });
-
-        if(userCounts[dailyMissionId] > dailyMissionCount) {
-          userCounts[dailyMissionId] = dailyMissionCount;
-          await dailyMissionReward();
-        }
       }
     });
   }
@@ -649,6 +649,11 @@ class UsersProvider extends ChangeNotifier {
       if(userCounts[weeklyMissionId] < weeklyMissionCount) {
         userCounts[weeklyMissionId] = userCounts[weeklyMissionId] + coinsWon;
 
+        if(userCounts[weeklyMissionId] > weeklyMissionCount) {
+          userCounts[weeklyMissionId] = weeklyMissionCount;
+          await weeklyMissionReward();
+        }
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -656,11 +661,6 @@ class UsersProvider extends ChangeNotifier {
             {
               'weeklyCounts' : userCounts,
             });
-
-        if(userCounts[weeklyMissionId] > weeklyMissionCount) {
-          userCounts[weeklyMissionId] = weeklyMissionCount;
-          await weeklyMissionReward();
-        }
       }
     });
   }
@@ -719,7 +719,7 @@ class UsersProvider extends ChangeNotifier {
               'xoRwins' : userRebhWins,
             });
 
-        if(userRebhWins < targetWins)
+        if(userRebhWins == targetWins)
           rebhStatisticsReward();
       }
     });
@@ -1074,7 +1074,7 @@ class UsersProvider extends ChangeNotifier {
         .collection('users')
         .doc(id)
         .get()
-        .then((DocumentSnapshot documentSnapshot) {
+        .then((DocumentSnapshot documentSnapshot) async {
       dynamic docData = documentSnapshot.data();
       userName = docData['name'];
       userXoTwins = docData['xoTwins'];
@@ -1087,37 +1087,37 @@ class UsersProvider extends ChangeNotifier {
 
       //tasaly winner
       if(userName == result && selectTasaly){
-        updateUserXoTasalyWins(
+        await updateUserXoTasalyWins(
           userTasalyWins: userXoTwins,
         );
       }
       //rebh winner
       else if(userName == result && selectRebh){
-        updateUserXoRebhWins(
+        await updateUserXoRebhWins(
           userRebhWins: userXoRwins,
         );
       }
 
       //winner
       if(userName == result){
-        updateUserDailyMissionProgress(
+        await updateUserDailyMissionProgress(
           missionName: 'Win 3 games',
           userCounts: userDailyCounts,
         );
-        updateUserWeeklyMissionProgress(
+        await updateUserWeeklyMissionProgress(
           missionName: 'Win 9 games',
           userCounts: userWeeklyCounts,
         );
-        updateWinnerCoins(
+        await updateWinnerCoins(
           userCoins: userCurrentCoins,
           coinsWon: coinsPlayedOn,
         );
-        updateUserDailyCoinsMissionProgress(
+        await updateUserDailyCoinsMissionProgress(
           missionName: 'Collect 500 coins',
           userCounts: userDailyCounts,
           coinsWon: coinsPlayedOn,
         );
-        updateUserWeeklyCoinsMissionProgress(
+        await updateUserWeeklyCoinsMissionProgress(
           missionName: 'Collect 10k coins',
           userCounts: userWeeklyCounts,
           coinsWon: coinsPlayedOn,
@@ -1125,22 +1125,22 @@ class UsersProvider extends ChangeNotifier {
       }
       //loser
       else if(userName != result && result != ''){
-        updateLoserCoins(
+        await updateLoserCoins(
           userCoins: userCurrentCoins,
           coinsLost: coinsPlayedOn,
         );
       }
 
       //loser, winner and draw
-      updateUserLevelAndExp(
+      await updateUserLevelAndExp(
         userExp: userExp,
         userLevel: userLevel,
       );
-      updateUserDailyMissionProgress(
+      await updateUserDailyMissionProgress(
         missionName: 'Play 5 games',
         userCounts: userDailyCounts,
       );
-      updateUserWeeklyMissionProgress(
+      await updateUserWeeklyMissionProgress(
         missionName: 'Play 10 games',
         userCounts: userWeeklyCounts,
       );
