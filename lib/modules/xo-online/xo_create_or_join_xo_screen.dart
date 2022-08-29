@@ -20,7 +20,7 @@ class CreateOrJoinXOScreen extends StatefulWidget {
 class _CreateOrJoinXOScreenState extends State<CreateOrJoinXOScreen> {
 
   final SocketMethods _socketMethods = SocketMethods();
-
+  var isPressed = true;
   @override
   void initState() {
     super.initState();
@@ -50,7 +50,10 @@ class _CreateOrJoinXOScreenState extends State<CreateOrJoinXOScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   defaultButton(
+
                     function: () {
+                      if(isPressed){
+                        isPressed= false;
                       if(select3x3){
                         if(chose50){
                         _socketMethods.createRoom(
@@ -261,6 +264,7 @@ class _CreateOrJoinXOScreenState extends State<CreateOrJoinXOScreen> {
                               100000
                           );
                         }
+                      }
                     },
                     backgroundColorBox: Colors.amberAccent,
                     textColor: Colors.deepPurple,
@@ -271,7 +275,10 @@ class _CreateOrJoinXOScreenState extends State<CreateOrJoinXOScreen> {
                   const SizedBox(height: 20),
                   defaultButton(
                     function: () {
-                        navigateTo(context, JoinRoomScreen());
+                          if(isPressed) {
+                            isPressed = false;
+                            navigateTo(context, JoinRoomScreen());
+                          }
                       // else if(select4x4)
                       //   navigateTo(context, JoinRoomScreen2());
                       // else if(select5x5)

@@ -284,12 +284,12 @@ class SocketMethods {
     _socketClient.on('endGame', (playerData) {
       showGameDialog(context, '${playerData['nickname']} won the game!');
       // Navigator.popUntil(context, (route) => false);
-      Navigator.pop(context);
-      Navigator.pop(context);
-      Navigator.pop(context);
-      Navigator.pop(context);
-      Navigator.pop(context);
-      Navigator.pop(context);
+      // Navigator.pop(context);
+      // Navigator.pop(context);
+      // Navigator.pop(context);
+      // Navigator.pop(context);
+      // Navigator.pop(context);
+      // Navigator.pop(context);
     });
   }
 }
