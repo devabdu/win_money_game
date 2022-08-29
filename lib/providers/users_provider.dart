@@ -1064,7 +1064,7 @@ class UsersProvider extends ChangeNotifier {
 
 
 
-  Future<void> gameXOEnd({
+  Future<void> gameXOWinEnded({
     required String result,
     required int coinsPlayedOn,
   }) async {
@@ -1131,7 +1131,36 @@ class UsersProvider extends ChangeNotifier {
         );
       }
 
-      //loser, winner and draw
+      //loser, winner
+      await updateUserLevelAndExp(
+        userExp: userExp,
+        userLevel: userLevel,
+      );
+      await updateUserDailyMissionProgress(
+        missionName: 'Play 5 games',
+        userCounts: userDailyCounts,
+      );
+      await updateUserWeeklyMissionProgress(
+        missionName: 'Play 10 games',
+        userCounts: userWeeklyCounts,
+      );
+    });
+  }
+
+  Future<void> gameXODrawEnded() async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) async {
+      dynamic docData = documentSnapshot.data();
+      userLevel = docData['level'];
+      userExp = docData['exp'];
+      userDailyCounts = docData['dailyCounts'];
+      userWeeklyCounts = docData['weeklyCounts'];
+
       await updateUserLevelAndExp(
         userExp: userExp,
         userLevel: userLevel,

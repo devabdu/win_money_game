@@ -78,7 +78,30 @@ class GameMethods {
       winner = roomDataProvider.displayElements[2];
     } else if (roomDataProvider.filledBoxes == 9) {
       winner = '';
-      showGameDialog(context, 'Draw');
+      showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
+        backgroundColor: Colors.amberAccent,
+        title: Text('Draw',
+          style: TextStyle(
+            color: Colors.deepPurple,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: (){
+            GameMethods().clearBoard(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+          }, child: const Text('Leave'),
+          ),
+        ],
+      ));
+      final provider = Provider.of<UsersProvider>(context, listen: false);
+      provider.gameXODrawEnded();
     }
 
     if (winner != '') {

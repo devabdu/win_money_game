@@ -306,9 +306,7 @@ class SocketMethods {
         ],
       ));
       final provider = Provider.of<UsersProvider>(context, listen: false);
-
-      provider.gameXOEnd(result: playerData['nickname'], coinsPlayedOn: playerData['coins']);
-      // Navigator.popUntil(context, (route) => false);
+      provider.gameXOWinEnded(result: playerData['nickname'], coinsPlayedOn: playerData['coins']);
     });
   }
 }
