@@ -1,5 +1,6 @@
 // import 'dart:js';
 import 'package:flutter/material.dart';
+import 'package:win_money_game/layout/home_layout_screen.dart';
 import 'package:win_money_game/modules/xo-online/components/GameScreen2.dart';
 import 'package:win_money_game/modules/xo-online/components/GameScreen3.dart';
 import 'package:win_money_game/providers/room_data_provider_4_4.dart';
@@ -301,8 +302,12 @@ class SocketMethods {
             Navigator.pop(context);
             Navigator.pop(context);
             Navigator.pop(context);
+            Navigator.pop(context);
+            navigateTo(context, HomeLayoutScreen());
             if(isAJoiner) {
               Navigator.pop(context);
+              Navigator.pop(context);
+              navigateTo(context, HomeLayoutScreen());
               isAJoiner = false;
             }
           }, child: const Text('Leave'),
