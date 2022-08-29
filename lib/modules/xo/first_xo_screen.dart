@@ -46,10 +46,6 @@ class MainPageState extends State<FirstXOScreen> {
     ); //interstital Ad init
     interstitialAd.load();
     //////////
-
-    //music
-    player = AudioPlayer();
-    cache = AudioCache(fixedPlayer: player);
     setEmptyFields();
   }
 
