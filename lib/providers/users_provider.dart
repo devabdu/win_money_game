@@ -25,19 +25,6 @@ class UsersProvider extends ChangeNotifier {
   int? weeklyMissionCount;
 
   int targetWins = 0;
-  int userCash = 0;
-  int userCoins = 0;
-  int userDailyAmount = 0;
-  int userWeeklyAmount = 0;
-  bool userMusicState = false;
-  String userName = '';
-  int userXoTwins = 0;
-  int userXoRwins = 0;
-  int userLevel = 0;
-  double userExp = 0;
-  int userCurrentCoins = 0;
-  Map<String, dynamic> userDailyCounts = {};
-  Map<String, dynamic> userWeeklyCounts = {};
 
   Future<void> updateAvatar({
     required int avatarIndex,
@@ -787,6 +774,9 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> dailyMissionReward() async{
     final id = FirebaseAuth.instance.currentUser!.uid;
+    int userCash = 0;
+    int userCoins = 0;
+    int userDailyAmount = 0;
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -871,6 +861,9 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> weeklyMissionReward() async{
     final id = FirebaseAuth.instance.currentUser!.uid;
+    int userCash = 0;
+    int userCoins = 0;
+    int userWeeklyAmount = 0;
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -937,6 +930,7 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> watchAdReward() async{
     final id = FirebaseAuth.instance.currentUser!.uid;
+    int userCoins = 0;
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -959,6 +953,7 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> tasalyStatisticsReward() async {
     final id = FirebaseAuth.instance.currentUser!.uid;
+    int userCoins = 0;
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -981,6 +976,8 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> rebhStatisticsReward() async {
     final id = FirebaseAuth.instance.currentUser!.uid;
+    int userCash = 0;
+    int userCoins = 0;
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -1048,6 +1045,7 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> turnOnMusicAfterBackground() async {
     final id = FirebaseAuth.instance.currentUser!.uid;
+    bool userMusicState = false;
 
       await FirebaseFirestore.instance
           .collection('users')
@@ -1069,6 +1067,14 @@ class UsersProvider extends ChangeNotifier {
     required int coinsPlayedOn,
   }) async {
     final id = FirebaseAuth.instance.currentUser!.uid;
+    String userName = '';
+    int userXoTwins = 0;
+    int userXoRwins = 0;
+    int userLevel = 0;
+    double userExp = 0;
+    int userCurrentCoins = 0;
+    Map<String, dynamic> userDailyCounts = {};
+    Map<String, dynamic> userWeeklyCounts = {};
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -1149,6 +1155,10 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> gameXODrawEnded() async {
     final id = FirebaseAuth.instance.currentUser!.uid;
+    int userLevel = 0;
+    double userExp = 0;
+    Map<String, dynamic> userDailyCounts = {};
+    Map<String, dynamic> userWeeklyCounts = {};
 
     await FirebaseFirestore.instance
         .collection('users')
