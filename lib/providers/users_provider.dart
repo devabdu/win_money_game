@@ -528,10 +528,38 @@ class UsersProvider extends ChangeNotifier {
 }) async{
     final id = FirebaseAuth.instance.currentUser!.uid;
 
-    userExp = userExp + 0.25;
-    if(userExp == 1) {
-      userLevel++;
-      userExp = 0;
+    // until level 5
+    if(userLevel < 5){
+      //every 4 games played level++
+      userExp = userExp + 0.25;
+      if(userExp == 1) {
+        userLevel++;
+        userExp = 0;
+      }
+      // until level 10
+    } else if(userLevel >= 5 && userLevel < 10){
+      //every 5 games played level++
+      userExp = userExp + 0.20;
+      if(userExp == 1) {
+        userLevel++;
+        userExp = 0;
+      }
+      // until level 20
+    } else if(userLevel >= 10 && userLevel < 20) {
+      //every 10 games played level++
+      userExp = userExp + 0.10;
+      if(userExp == 1) {
+        userLevel++;
+        userExp = 0;
+      }
+      // after level 20
+    } else {
+      //every 20 games played level++
+      userExp = userExp + 0.05;
+      if(userExp == 1) {
+        userLevel++;
+        userExp = 0;
+      }
     }
 
      await FirebaseFirestore.instance
@@ -1106,6 +1134,10 @@ class UsersProvider extends ChangeNotifier {
 
       //winner
       if(userName == result){
+        await updateWinnerCoins(
+          userCoins: userCurrentCoins,
+          coinsWon: coinsPlayedOn,
+        );
         await updateUserDailyMissionProgress(
           missionName: 'Win 3 games',
           userCounts: userDailyCounts,
@@ -1113,10 +1145,6 @@ class UsersProvider extends ChangeNotifier {
         await updateUserWeeklyMissionProgress(
           missionName: 'Win 9 games',
           userCounts: userWeeklyCounts,
-        );
-        await updateWinnerCoins(
-          userCoins: userCurrentCoins,
-          coinsWon: coinsPlayedOn,
         );
         await updateUserDailyCoinsMissionProgress(
           missionName: 'Collect 500 coins',

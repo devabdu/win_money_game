@@ -284,6 +284,7 @@ class SocketMethods {
 
   void endGameListener(BuildContext context) {
     _socketClient.on('endGame', (playerData) {
+
       showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
         backgroundColor: Colors.amberAccent,
         title: Text('${playerData['nickname']} won the game!',
