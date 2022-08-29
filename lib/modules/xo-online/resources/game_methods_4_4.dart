@@ -126,7 +126,6 @@ class GameMethodsFour {
             Navigator.pop(context);
             Navigator.pop(context);
             Navigator.pop(context);
-            Navigator.pop(context);
             if(isAJoiner) {
               Navigator.pop(context);
               isAJoiner = false;
