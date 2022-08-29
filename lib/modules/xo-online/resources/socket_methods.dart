@@ -57,6 +57,7 @@ class SocketMethods {
 
   void joinRoom(String nickname, String roomId , String uId, int avatar , int coins) {
     if (nickname.isNotEmpty && roomId.isNotEmpty) {
+      isAJoiner = true;
       _socketClient.emit('joinRoom', {
         'nickname': nickname,
         'roomId': roomId,
@@ -69,6 +70,7 @@ class SocketMethods {
 
   void joinRoom4(String nickname, String roomId, String uId, int avatar , int coins) {
     if (nickname.isNotEmpty && roomId.isNotEmpty) {
+      isAJoiner = true;
       _socketClient.emit('joinRoom4', {
         'nickname': nickname,
         'roomId': roomId,
@@ -81,6 +83,7 @@ class SocketMethods {
 
   void joinRoom5(String nickname, String roomId, String uId, int avatar , int coins) {
     if (nickname.isNotEmpty && roomId.isNotEmpty) {
+      isAJoiner = true;
       _socketClient.emit('joinRoom5', {
         'nickname': nickname,
         'roomId': roomId,
@@ -299,6 +302,10 @@ class SocketMethods {
             Navigator.pop(context);
             Navigator.pop(context);
             Navigator.pop(context);
+            if(isAJoiner) {
+              Navigator.pop(context);
+              isAJoiner = false;
+            }
           }, child: const Text('Leave'),
           ),
         ],

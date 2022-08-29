@@ -30,7 +30,10 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
   @override
   void initState() {
+
     super.initState();
+
+    setState(() {});
 
     // You should execute `Admob.requestTrackingAuthorization()` here before showing any ad.
 
@@ -380,8 +383,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
                         InkWell(
                           onTap: () async {
-                            selectXo = true;
-                            selectChess = false;
                             if (selectTasaly) {
                               final isLoaded = await interstitialAd.isLoaded;
                               if (isLoaded ?? false) {
@@ -404,8 +405,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                         ),
                         InkWell(
                           onTap: () async {
-                            selectXo = false;
-                            selectChess = true;
                             if (selectTasaly) {
                               final isLoaded = await interstitialAd.isLoaded;
                               if (isLoaded ?? false) {

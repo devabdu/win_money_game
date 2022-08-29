@@ -16,17 +16,9 @@ class Play_On_Off extends StatelessWidget {
           children: [
             defaultButton(
               function: () {
-                if(selectXo){
-                  playOffline = true;
-                  playOnline = false;
-                  navigateTo(context, SelectLevelXoScreen());
-                }
-                // else if(selectChess){
-                //   playOffline = true;
-                //   playOnline = false;
-                //
-                //   navigateTo(context, chessGame());
-                // }
+                playOffline = true;
+                playOnline = false;
+                navigateTo(context, SelectLevelXoScreen());
               },
               backgroundColorBox: Colors.amberAccent,
               textColor: Colors.deepPurple,
@@ -38,16 +30,9 @@ class Play_On_Off extends StatelessWidget {
 
             defaultButton(
               function: () {
-                if(selectXo){
-                  playOffline = false;
-                  playOnline = true;
-                  navigateTo(context, SelectLevelXoScreen());
-                }
-                // else if(selectChess){
-                //   playOffline = true;
-                //   playOnline = false;
-                //   navigateTo(context, chessGame());
-                // }
+                playOffline = false;
+                playOnline = true;
+                navigateTo(context, SelectLevelXoScreen());
               },
               backgroundColorBox: Colors.amberAccent,
               textColor: Colors.deepPurple,

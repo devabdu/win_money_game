@@ -20,6 +20,8 @@ bool dailyMissionsShown = false;
 bool weeklyMissionsShown = false;
 bool StatisticsShown = false;
 
+bool isAJoiner = false;
+
 bool chose50 = false;
 bool chose100 = false;
 bool chose500 = false;
@@ -30,9 +32,6 @@ bool chose10k = false;
 bool chose25k = false;
 bool chose50k = false;
 bool chose100k = false;
-
-bool selectXo = false;
-bool selectChess = false;
 
 RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
 String Function(Match) mathFunc = (Match match) => '${match[1]},';
@@ -318,6 +317,7 @@ playMusic(String song)
 }
 stopMusic()
 {// to pause the Audio
+  print('I\'m in stopMusic Function');
   player.pause();
 }
 resumeMusic(){
