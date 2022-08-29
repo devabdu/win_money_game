@@ -317,7 +317,6 @@ playMusic(String song)
 }
 stopMusic()
 {// to pause the Audio
-  print('I\'m in stopMusic Function');
   player.pause();
 }
 resumeMusic(){
