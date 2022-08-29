@@ -303,13 +303,11 @@ class SocketMethods {
             Navigator.pop(context);
             Navigator.pop(context);
             Navigator.pop(context);
-            navigateTo(context, HomeLayoutScreen());
             if(isAJoiner) {
               Navigator.pop(context);
-              Navigator.pop(context);
-              navigateTo(context, HomeLayoutScreen());
               isAJoiner = false;
             }
+            navigateTo(context, HomeLayoutScreen());
           }, child: const Text('Leave'),
           ),
         ],

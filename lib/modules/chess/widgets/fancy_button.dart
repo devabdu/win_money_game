@@ -20,9 +20,9 @@ class FancyButton extends StatefulWidget {
     this.visible = true,
     this.text = "",
     this.icon,
-    this.splashColor = Colors.white60,
-    this.fillColor = Colors.brown,
-    this.iconColor = Colors.white60,
+    this.splashColor = Colors.deepPurple,
+    this.fillColor = Colors.amberAccent,
+    this.iconColor = Colors.deepPurple,
     this.animation = FancyButtonAnimation.rotate_right,
   }) : super(key: key);
 

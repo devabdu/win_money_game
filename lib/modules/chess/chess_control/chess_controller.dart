@@ -282,11 +282,11 @@ class ChessController {
 
   void resetBoard() {
     showAnimatedDialog(
-        title: "replay",
+        title: "Replay",
         text: "Are you sure to restart the game and reset the board?",
-        onDoneText: "ok",
+        onDoneText: "Ok",
         onDone: (value) {
-          if (value == 'ok') {
+          if (value == 'Ok') {
             //reset all boards
             moveTo = null;
             moveFrom = null;
@@ -327,7 +327,7 @@ class ChessController {
     game.undo() != null
         ? controller.refreshBoard()
         : showAnimatedDialog(
-            title: "undo", text: "impossible");
+            title: "Undo", text: "Impossible");
   }
 
   void switchColors() {

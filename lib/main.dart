@@ -16,7 +16,8 @@ import 'package:win_money_game/providers/room_data_provider_5_5.dart';
 import 'package:win_money_game/providers/users_provider.dart';
 import 'providers/sign_in_provider.dart';
 import 'package:win_money_game/modules/chess/chess_board/flutter_chess_board.dart';
-import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart' as chess_sub;
+import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart'
+    as chess_sub;
 import 'package:win_money_game/modules/chess/generated/i18n.dart';
 import 'package:win_money_game/modules/chess/util/online_game_utils.dart';
 import 'package:win_money_game/modules/chess/util/utils.dart';
@@ -143,14 +144,14 @@ class _chessGameState extends State<chessGame> {
                   print('$error');
                   return Center(child: Text(strings.error));
                 }
-
                 return MyHomePageAfterLoading();
               } else {
                 return Center(
                     child: ModalProgressHUD(
-                  child: Container(),
+                      child: Container(),
                   inAsyncCall: true,
-                ));
+                ),
+                );
               }
             },
           )
@@ -203,11 +204,11 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
   void _onJoinCode() {
     //dialog to enter a code
     showAnimatedDialog(
-        title: "enter game id",
-        onDoneText: "join",
+        title: "Enter game id",
+        onDoneText: "Join",
         icon: Icons.transit_enterexit,
         withInputField: true,
-        inputFieldHint: "ex.: KDFGHQ",
+        inputFieldHint: "Ex.: KDFGHQ",
         onDone: (value) {
           _onlineGameController.joinGame(value);
         });
@@ -216,12 +217,12 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
   void _onCreateCode() {
     //if is currently in a game, this will disconnect from all local games, reset the board and create a firestore document
     showAnimatedDialog(
-      title: "warning",
-      text: "game will reset",
-      onDoneText: "proceed",
+      title: "Warning",
+      text: "Game will reset",
+      onDoneText: "Proceed",
       icon: Icons.warning,
       onDone: (value) {
-        if (value == 'ok') _onlineGameController.finallyCreateGameCode();
+        if (value == 'Ok') _onlineGameController.finallyCreateGameCode();
       },
     );
   }
@@ -229,12 +230,12 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
   void _onLeaveOnlineGame() {
     //show dialog to leave the online game
     showAnimatedDialog(
-      title: "leave online game",
+      title: "Leave online game",
       text: "Since you are hosting the game, leaving it means deleting it.",
       icon: Icons.warning,
-      onDoneText: "ok",
+      onDoneText: "Ok",
       onDone: (value) {
-        if (value == 'ok') _onlineGameController.leaveGame();
+        if (value == 'Ok') _onlineGameController.leaveGame();
       },
     );
   }
@@ -269,7 +270,18 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                 ),
         child: SafeArea(
           child: Scaffold(
-            backgroundColor: Colors.brown[50],
+            backgroundColor: Colors.deepPurple,
+            appBar: AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: Colors.amberAccent,
+              iconTheme: const IconThemeData(
+                color: Colors.deepPurple,
+              ),
+              title: const Text(
+                'Chess',
+                style: TextStyle(color: Colors.deepPurple),
+              ),
+            ),
             body: Stack(
               children: [
                 Column(
@@ -363,7 +375,7 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                                                               .moveCountIsZero()))
                                                   ? Colors.purple
                                                   : Colors.red)
-                                              : Colors.black,
+                                              : Colors.white,
                                         )),
                               ],
                             ),
@@ -390,9 +402,6 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                           ),
                         ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 40,
                     ),
                   ],
                 ),
@@ -424,18 +433,18 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                                     children: [
                                       FancyButton(
                                         onPressed: _onJoinCode,
-                                        text: "join_code",
+                                        text: "Join Room",
                                         icon: Icons.transit_enterexit,
                                         animation: FancyButtonAnimation.pulse,
                                       ),
                                       FancyButton(
                                         onPressed: _onCreateCode,
-                                        text: "create game",
+                                        text: "Create Room",
                                         icon: Icons.add,
                                         animation: FancyButtonAnimation.pulse,
                                       ),
                                       FancyButton(
-                                        text: "leave online game",
+                                        text: "Leave Online Game",
                                         animation: FancyButtonAnimation.pulse,
                                         icon: Icons.exit_to_app,
                                         visible: inOnlineGame,
@@ -450,14 +459,14 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                                     onPressed: _chessController.undo,
                                     animation: FancyButtonAnimation.pulse,
                                     icon: Icons.undo,
-                                    text: "undo",
+                                    text: "Undo",
                                   ),
                                   DividerIfOffline(),
                                   FancyButton(
                                     visible: true,
                                     onPressed: _chessController.resetBoard,
                                     icon: Icons.autorenew,
-                                    text: "replay",
+                                    text: "Replay",
                                   ),
                                   DividerIfOffline(),
                                   // Divider8(),
@@ -524,7 +533,7 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

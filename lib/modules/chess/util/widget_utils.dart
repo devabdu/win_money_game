@@ -51,37 +51,41 @@ void showAnimatedDialog({
             if (setStateCallback != null) setStateCallback(context, setState);
             //create the alert dialog object
             return AlertDialog(
-              title: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      icon == null ? Container() : Icon(icon),
-                      Divider8(),
-                      Text(
-                        title ?? "",
-                        style: Theme.of(context).textTheme.subtitle1,
-                      ),
-                    ],
-                  )),
+              backgroundColor: Colors.amberAccent,
+              title: Row(
+                children: [
+                  icon == null ? Container() : Icon(
+                      icon,
+                    color: Colors.deepPurple,
+                  ),
+                  Divider(),
+                  Text(
+                    title ?? "",
+                    style: TextStyle(
+                        color: Colors.deepPurple,
+                        fontWeight: FontWeight.bold
+                    ),
+
+                  ),
+                ],
+              ),
               content: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   (text == null)
                       ? SizedBox()
-                      : Center(
-                          child: Container(
-                            constraints: BoxConstraints(maxWidth: 400),
-                            child: Text(
-                              text ?? "",
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.subtitle2,
-                            ),
+                      : Container(
+                        constraints: BoxConstraints(maxWidth: 400),
+                        child: Text(
+                          text ?? "",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.deepPurple,
                           ),
                         ),
+                      ),
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -113,19 +117,24 @@ void showAnimatedDialog({
                           shape: roundButtonShape,
                           child: Text(forceCancelText != null
                               ? forceCancelText
-                              : (onDone == null ? "ok" : "cancel")),
+                              : (onDone == null ? "Ok" : "Cancel"),
+                            style: TextStyle(color: Colors.deepPurple),
+                          ),
                           onPressed: () {
                             _showing = false;
                             Navigator.of(context)
-                                .pop(onDone == null ? 'ok' : null);
+                                .pop(onDone == null ? 'Ok' : null);
                           }),
                       onDone != null
                           ? FlatButton(
                               shape: roundButtonShape,
-                              child: Text(onDoneText ?? ""),
+                              child: Text(
+                                onDoneText ?? "",
+                                style: TextStyle(color: Colors.deepPurple),
+                              ),
                               onPressed: () {
                                 _showing = false;
-                                Navigator.of(context).pop('ok');
+                                Navigator.of(context).pop('Ok');
                               })
                           : Container()
                     ]
