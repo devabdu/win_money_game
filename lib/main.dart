@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:win_money_game/modules/Splash%20Screen/splash_screen.dart';
-import 'package:win_money_game/modules/xo-online/components/join_room_screen.dart';
+import 'package:win_money_game/modules/xo-online/Views/join_room_screen.dart';
 import 'package:win_money_game/modules/xo-online/first_xo_online_screen.dart';
 import 'package:win_money_game/modules/xo-online/second_xo_online_screen.dart';
 import 'package:win_money_game/modules/xo-online/third_xo_online_screen.dart';

@@ -4,7 +4,7 @@ import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
 import 'package:win_money_game/modules/xo-online/responsive/responsive.dart';
 import 'package:win_money_game/shared/components/components.dart';
 
-import '../xo-online/components/join_room_screen.dart';
+import '../xo-online/Views/join_room_screen.dart';
 
 class CreateOrJoinXOScreen extends StatefulWidget {
 
