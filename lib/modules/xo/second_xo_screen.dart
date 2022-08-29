@@ -1,6 +1,6 @@
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:win_money_game/Ads/adsManager.dart';
+import 'package:win_money_game/modules/Ads/adsManager.dart';
 import 'package:win_money_game/modules/xo/xo_utils.dart';
 import 'package:win_money_game/shared/components/components.dart';
 
