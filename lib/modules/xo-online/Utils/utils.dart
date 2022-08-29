@@ -15,7 +15,14 @@ void showGameDialog(BuildContext context, String text) {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(text),
+          backgroundColor: Colors.amberAccent,
+          title: Text(
+            text,
+            style: TextStyle(
+              color: Colors.deepPurple,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           actions: [
             TextButton(
               onPressed: () {

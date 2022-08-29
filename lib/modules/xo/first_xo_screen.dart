@@ -3,6 +3,7 @@ import 'package:admob_flutter/admob_flutter.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:win_money_game/Ads/adsManager.dart';
+import 'package:win_money_game/modules/xo-online/Views/scoreboard.dart';
 import 'package:win_money_game/modules/xo/xo_utils.dart';
 import 'package:win_money_game/shared/components/components.dart';
 class Player {
@@ -189,6 +190,7 @@ class MainPageState extends State<FirstXOScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  Scoreboard(),
                   ...Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x)),
                 ],
               ),
