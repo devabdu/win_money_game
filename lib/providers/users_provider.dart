@@ -1124,7 +1124,7 @@ class UsersProvider extends ChangeNotifier {
         );
       }
       //loser
-      else if(userName != result && result != ''){
+      else{
         await updateLoserCoins(
           userCoins: userCurrentCoins,
           coinsLost: coinsPlayedOn,
