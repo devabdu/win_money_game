@@ -10,7 +10,7 @@ import 'package:win_money_game/modules/missions/daily_missions.dart';
 import 'package:win_money_game/modules/missions/weekly_missions.dart';
 import 'package:win_money_game/modules/selectScreens/play_on_off.dart';
 import 'package:win_money_game/providers/users_provider.dart';
-import '../shared/components/components.dart';
+import 'package:win_money_game/shared/components/components.dart';
 
 class HomeLayoutScreen extends StatefulWidget {
   const HomeLayoutScreen({Key? key}) : super(key: key);

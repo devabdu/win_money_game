@@ -6,11 +6,11 @@ import 'package:provider/provider.dart';
 import 'package:win_money_game/models/user_model.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/drawer_item.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/Profile/profile.dart';
-import 'package:win_money_game/modules/NavigatorDrawer/settings.dart';
+import 'package:win_money_game/modules/NavigatorDrawer/Settings/settings.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/Statistics/statistics.dart';
 import 'package:win_money_game/modules/selectScreens/select_path_screen.dart';
-import '../../shared/components/components.dart';
-import '../../providers/sign_in_provider.dart';
+import 'package:win_money_game/providers/sign_in_provider.dart';
+import 'package:win_money_game/shared/components/components.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   const NavigationDrawerWidget({Key? key}) : super(key: key);

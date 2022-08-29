@@ -2,8 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:win_money_game/models/user_model.dart';
 import 'package:win_money_game/modules/selectScreens/xo_create_or_join_xo_screen.dart';
-
-import '../../shared/components/components.dart';
+import 'package:win_money_game/shared/components/components.dart';
 
 class XoSelectBetScreen extends StatelessWidget {
   XoSelectBetScreen({Key? key}) : super(key: key);

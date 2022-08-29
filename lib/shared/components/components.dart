@@ -4,8 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:win_money_game/models/missions_model.dart';
 import 'package:win_money_game/models/statistics_model.dart';
-
-import '../../models/user_model.dart';
+import 'package:win_money_game/models/user_model.dart';
 
 bool selectTasaly = false;
 bool selectRebh = false;

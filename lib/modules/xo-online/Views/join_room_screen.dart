@@ -6,7 +6,6 @@ import 'package:win_money_game/modules/xo-online/widgets/custom_text.dart';
 import 'package:win_money_game/modules/xo-online/widgets/custom_textfield.dart';
 import 'package:win_money_game/shared/components/components.dart';
 
-
 class JoinRoomScreen extends StatefulWidget {
   static String routeName = '/join-room';
   const JoinRoomScreen({Key? key}) : super(key: key);

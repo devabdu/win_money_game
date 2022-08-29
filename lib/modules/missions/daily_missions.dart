@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:win_money_game/models/missions_model.dart';
+import 'package:win_money_game/models/user_model.dart';
 import 'package:win_money_game/shared/components/components.dart';
-
-import '../../models/missions_model.dart';
-import '../../models/user_model.dart';
 
 class DailyMissionsScreen extends StatefulWidget {
   const DailyMissionsScreen({Key? key}) : super(key: key);
