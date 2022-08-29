@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:win_money_game/modules/xo-online/xo_create_or_join_xo_screen.dart';
+import 'package:win_money_game/modules/selectScreens/xo_select_bet_screen.dart';
+import 'package:win_money_game/modules/xo-online/responsive/responsive.dart';
 import 'package:win_money_game/modules/xo/first_xo_screen.dart';
 import 'package:win_money_game/modules/xo/second_xo_screen.dart';
 import 'package:win_money_game/modules/xo/third_xo_screen.dart';
 import 'package:win_money_game/shared/components/components.dart';
-
-import '../xo-online/responsive/responsive.dart';
-import '../xo-online/xo_select_bet_screen.dart';
 
 class SelectLevelXoScreen extends StatelessWidget {
   const SelectLevelXoScreen({Key? key}) : super(key: key);

@@ -2,9 +2,10 @@ import 'dart:ui';
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:win_money_game/Ads/adsManager.dart';
+import 'package:win_money_game/modules/Ads/adsManager.dart';
 import 'package:win_money_game/modules/xo/xo_utils.dart';
 import 'package:win_money_game/shared/components/components.dart';
+
 class Player {
   static const none = '';
   static const X = 'X';
@@ -45,10 +46,6 @@ class MainPageState extends State<FirstXOScreen> {
     ); //interstital Ad init
     interstitialAd.load();
     //////////
-
-    //music
-    player = AudioPlayer();
-    cache = AudioCache(fixedPlayer: player);
     setEmptyFields();
   }
 
@@ -153,7 +150,7 @@ class MainPageState extends State<FirstXOScreen> {
                             fontWeight: FontWeight.bold),
                       ),
                       content: const Text(
-                        'Are you sure you want to exit the game?',
+                        'Are you sure you want to Exit the Game?',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.deepPurple,
@@ -300,21 +297,23 @@ class MainPageState extends State<FirstXOScreen> {
         context: context,
         barrierDismissible: false,
         builder: (context) => AlertDialog(
-          backgroundColor: Color.fromRGBO(54, 51, 76, 1.0),
+          backgroundColor: Colors.amberAccent,
           title: Text(
             title,
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.deepPurple,
+              fontWeight: FontWeight.bold,
             ),
           ),
           content: Text(
             'Press to Restart the Game',
             style: TextStyle(
-              color: Colors.white,
+              fontSize: 18,
+              color: Colors.deepPurple,
             ),
           ),
           actions: [
-            ElevatedButton(
+            TextButton(
               onPressed: () {
                 setEmptyFields();
                 Navigator.of(context).pop();
@@ -330,7 +329,6 @@ class MainPageState extends State<FirstXOScreen> {
   @override
   void dispose() {
     interstitialAd.dispose();
-    player.dispose();
     super.dispose();
   }
 ///////////////

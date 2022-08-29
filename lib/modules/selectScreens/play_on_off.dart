@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-// import 'package:win_money_game/modules/chess/game.dart';
 import 'package:win_money_game/modules/xo-online/responsive/responsive.dart';
-import 'package:win_money_game/modules/xo/xo_select_level_xo_screen.dart';
+import 'package:win_money_game/modules/selectScreens/xo_select_level_xo_screen.dart';
 import 'package:win_money_game/shared/components/components.dart';
-import 'package:win_money_game/main.dart';
+
 class Play_On_Off extends StatelessWidget {
   const Play_On_Off({Key? key}) : super(key: key);
 
@@ -17,17 +16,9 @@ class Play_On_Off extends StatelessWidget {
           children: [
             defaultButton(
               function: () {
-                if(selectXo){
-                  playOffline = true;
-                  playOnline = false;
-                  navigateTo(context, SelectLevelXoScreen());
-                }
-                else if(selectChess){
-                  playOffline = true;
-                  playOnline = false;
-
-                  navigateTo(context, chessGame());
-                }
+                playOffline = true;
+                playOnline = false;
+                navigateTo(context, SelectLevelXoScreen());
               },
               backgroundColorBox: Colors.amberAccent,
               textColor: Colors.deepPurple,
@@ -39,16 +30,9 @@ class Play_On_Off extends StatelessWidget {
 
             defaultButton(
               function: () {
-                if(selectXo){
-                  playOffline = false;
-                  playOnline = true;
-                  navigateTo(context, SelectLevelXoScreen());
-                }
-                else if(selectChess){
-                  playOffline = true;
-                  playOnline = false;
-                  navigateTo(context, chessGame());
-                }
+                playOffline = false;
+                playOnline = true;
+                navigateTo(context, SelectLevelXoScreen());
               },
               backgroundColorBox: Colors.amberAccent,
               textColor: Colors.deepPurple,

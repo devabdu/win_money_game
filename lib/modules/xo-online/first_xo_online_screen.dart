@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:win_money_game/modules/XO/xo_utils.dart';
+import 'package:win_money_game/modules/xo-online/widgets/xo_utils.dart';
 import 'package:win_money_game/providers/room_data_provider.dart';
 import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
 import 'package:provider/provider.dart';
@@ -39,181 +39,198 @@ class MainPageState extends State<FirstXOOnlineScreen> {
   Widget build(BuildContext context) {
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context, listen: false);
 
-    return Scaffold(
-      // backgroundColor: Color.fromRGBO(16, 13, 34, 1),
-      backgroundColor: Colors.deepPurple,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        //centerTitle: true,
-        //backgroundColor: Color.fromRGBO(16, 13, 34, 1),
-        backgroundColor: Colors.amberAccent,
-        iconTheme: const IconThemeData(
-          color: Colors.deepPurple,
-        ),
-        title: const Text(
-          'XO',
-          style: TextStyle(color: Colors.deepPurple),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () async{
-              showDialog<String>(
-                barrierDismissible: false,
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                  title: const Text(
-                    'Exit',
-                    style: TextStyle(
-                        color: Colors.deepPurple,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  content: const Text(
-                    'Are you sure you want to exit the game?',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.deepPurple,
-                    ),
-                  ),
-                  backgroundColor: Colors.amberAccent,
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () => Navigator.pop(context, 'Cancel'),
-                      child: const Text('Cancel'),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Exit'),
-                    ),
-                  ],
-                ),
-              );
-            },
-            icon: const Icon(Icons.logout_outlined),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        // backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+        backgroundColor: Colors.deepPurple,
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          //centerTitle: true,
+          //backgroundColor: Color.fromRGBO(16, 13, 34, 1),
+          backgroundColor: Colors.amberAccent,
+          iconTheme: const IconThemeData(
             color: Colors.deepPurple,
           ),
-        ],
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          SafeArea(
-              child: Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.all(30),
-                    child: Column(
-                      children: <Widget>[
-
-                        // Row(
-                        //   children: [
-                        //     // const CircleAvatar(
-                        //     //   backgroundColor: Colors.white,
-                        //     //   radius: 22,
-                        //     //   child: CircleAvatar(
-                        //     //     radius: 20,
-                        //     //     backgroundImage: NetworkImage(
-                        //     //         'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg'),
-                        //     //   ),
-                        //     // ),
-                        //     // const SizedBox(
-                        //     //   width: 10,
-                        //     // ),
-                        //     Text(
-                        //       roomDataProvider.player1.nickname,//print registered username here
-                        //       style: TextStyle(
-                        //         color: Colors.white,
-                        //         fontSize: 17,
-                        //         // fontWeight: FontWeight.bold,
-                        //       ),
-                        //     ),
-                        //
-                        //   ],
-                        // ),
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 22,
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundImage: AssetImage(
-                                  'assets/images/avatar_${roomDataProvider.player2.avatar}.png',
-                                ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              roomDataProvider.player2.nickname,//print registered username here
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                // fontWeight: FontWeight.bold,
-                              ),
-                            ),
-
-                          ],
-                        ),
-                      ],
+          title: const Text(
+            'XO',
+            style: TextStyle(color: Colors.deepPurple),
+          ),
+          actions: [
+            IconButton(
+              onPressed: () async{
+                showDialog<String>(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text(
+                      'Exit',
+                      style: TextStyle(
+                          color: Colors.deepPurple,
+                          fontWeight: FontWeight.bold),
                     ),
-                  ))),
-          ...Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x,roomDataProvider)),
-          SafeArea(
-              child: Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.all(30),
-                    child: Column(
-
-                      children: <Widget>[
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: Colors.white,
-                              radius: 22,
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundImage: AssetImage(
-                                  'assets/images/avatar_${roomDataProvider.player1.avatar}.png',
+                    content: const Text(
+                      'Are you sure you want to exit the game?',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.deepPurple,
+                      ),
+                    ),
+                    backgroundColor: Colors.amberAccent,
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Cancel'),
+                        child: const Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Exit'),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              icon: const Icon(Icons.logout_outlined),
+              color: Colors.deepPurple,
+            ),
+          ],
+        ),
+        body: Center(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SafeArea(
+                    child: Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 20, left: 170),
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    radius: 22,
+                                    child: CircleAvatar(
+                                      radius: 20,
+                                      backgroundImage: AssetImage(
+                                        'assets/images/avatar_${roomDataProvider.player2.avatar}.png',
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    roomDataProvider.player2.nickname,//
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 17,
+                                      // fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  // const SizedBox(width: 5),
+                                  // IconButton(
+                                  //   onPressed: () {},
+                                  //   icon: const Icon(
+                                  //     Icons.mic_rounded,
+                                  //     color: Colors.white,
+                                  //     size: 20,
+                                  //   ),
+                                  // ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ))),
+                ...Xo_Utils.modelBuilder(matrix, (x, value) => buildRow(x,roomDataProvider)),
+                SafeArea(
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20, top: 20),
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: Colors.white,
+                                radius: 22,
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundImage: AssetImage(
+                                    'assets/images/avatar_${roomDataProvider.player1.avatar}.png',
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              roomDataProvider.player1.nickname,// print registered username here
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                // fontWeight: FontWeight.bold,
+                              const SizedBox(
+                                width: 10,
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text(
-                            '${roomDataProvider.roomData['turn']['nickname']}\'s turn',
+                              Text(
+                                roomDataProvider.player1.nickname,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  // fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              // const SizedBox(width: 5),
+                              // IconButton(
+                              //   onPressed: () {},
+                              //   icon: const Icon(
+                              //     Icons.mic_rounded,
+                              //     color: Colors.white,
+                              //     size: 20,
+                              //   ),
+                              // ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 60,
+                ),
+                SafeArea(
+                  child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ),
+                    child: Container(
+                      height: 25,
+                      width: double.infinity,
+                      color: Colors.amberAccent,
+                      child: Center(
+                        child: Text(
+                          '${roomDataProvider.roomData['turn']['nickname']}\'s turn',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
+                            color: Colors.deepPurple,
+                            fontSize: 19,
                             // fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ))),
-        ],
+                  ),
+                ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -221,12 +238,14 @@ class MainPageState extends State<FirstXOOnlineScreen> {
   Widget buildRow(int x , RoomDataProvider roomDataProvider) {
     final values = matrix[x];
 
-    return Row(
-
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: Xo_Utils.modelBuilder(
-        values,
-            (y, value) => buildField(x, y ,roomDataProvider),
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: Xo_Utils.modelBuilder(
+          values,
+              (y, value) => buildField(x, y ,roomDataProvider),
+        ),
       ),
     );
   }
@@ -371,21 +390,23 @@ class MainPageState extends State<FirstXOOnlineScreen> {
     context: context,
     barrierDismissible: false,
     builder: (context) => AlertDialog(
-      backgroundColor: Color.fromRGBO(54, 51, 76, 1.0),
+      backgroundColor: Colors.amberAccent,
       title: Text(
         title,
         style: TextStyle(
-          color: Colors.white,
+          color: Colors.deepPurple,
+          fontWeight: FontWeight.bold,
         ),
       ),
       content: Text(
         'Press to Restart the Game',
         style: TextStyle(
-          color: Colors.white,
+          fontSize: 18,
+          color: Colors.deepPurple,
         ),
       ),
       actions: [
-        ElevatedButton(
+        TextButton(
           onPressed: () {
             setEmptyFields();
             Navigator.of(context).pop();

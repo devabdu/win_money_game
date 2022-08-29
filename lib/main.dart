@@ -1,22 +1,20 @@
 // @dart=2.9
+import 'dart:math';
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:win_money_game/modules/Splash%20Screen/splash_screen.dart';
-import 'package:win_money_game/modules/xo-online/components/join_room_screen.dart';
-import 'package:win_money_game/modules/xo-online/components/join_room_screen_4_4.dart';
-import 'package:win_money_game/modules/xo-online/components/join_room_screen_5_5.dart';
+import 'package:win_money_game/modules/xo-online/Views/join_room_screen.dart';
 import 'package:win_money_game/modules/xo-online/first_xo_online_screen.dart';
 import 'package:win_money_game/modules/xo-online/second_xo_online_screen.dart';
 import 'package:win_money_game/modules/xo-online/third_xo_online_screen.dart';
-import 'package:win_money_game/modules/xo-online/xo_create_or_join_xo_screen.dart';
+import 'package:win_money_game/modules/selectScreens/xo_create_or_join_xo_screen.dart';
 import 'package:win_money_game/providers/room_data_provider.dart';
 import 'package:win_money_game/providers/room_data_provider_4_4.dart';
 import 'package:win_money_game/providers/room_data_provider_5_5.dart';
 import 'package:win_money_game/providers/users_provider.dart';
 import 'providers/sign_in_provider.dart';
-import 'dart:math';
 import 'package:win_money_game/modules/chess/chess_board/flutter_chess_board.dart';
 import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart' as chess_sub;
 import 'package:win_money_game/modules/chess/generated/i18n.dart';
@@ -40,7 +38,6 @@ OnlineGameController _onlineGameController;
 SharedPreferences prefs;
 String uuid;
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -49,37 +46,35 @@ void main() async {
   //ads
   Admob.initialize();
 
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (context)=>SignInProvider()),
-      ChangeNotifierProvider(create: (context)=>UsersProvider()),
-      ChangeNotifierProvider(create: (context)=>RoomDataProvider()),
-      ChangeNotifierProvider(create: (context)=>RoomDataProviderFour()),
-      ChangeNotifierProvider(create: (context)=>RoomDataProviderFive()),
-    ],
-    child: const MyApp(),
-  ),);
-
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => SignInProvider()),
+        ChangeNotifierProvider(create: (context) => UsersProvider()),
+        ChangeNotifierProvider(create: (context) => RoomDataProvider()),
+        ChangeNotifierProvider(create: (context) => RoomDataProviderFour()),
+        ChangeNotifierProvider(create: (context) => RoomDataProviderFive()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
 
   @override
-
   Widget build(BuildContext context) {
     return MaterialApp(
-
-       initialRoute: '/',
+      initialRoute: '/',
       routes: {
-        '/' : (context) => const SplashScreen(),
-        '/xo' : (context) => CreateOrJoinXOScreen(),
-        '/joinroom' : (context) => JoinRoomScreen(),
-        '/game' : (context) => FirstXOOnlineScreen(),
-        '/game2' : (context) => SecondXOOnlineScreen(),
-        '/game3' : (context) => ThirdXOOnlineScreen(),
-        '/chess' : (context) => chessGame(),
-
+        '/': (context) => const SplashScreen(),
+        '/xo': (context) => CreateOrJoinXOScreen(),
+        '/joinroom': (context) => JoinRoomScreen(),
+        '/game': (context) => FirstXOOnlineScreen(),
+        '/game2': (context) => SecondXOOnlineScreen(),
+        '/game3': (context) => ThirdXOOnlineScreen(),
+        '/chess': (context) => chessGame(),
       },
       supportedLocales: const [
         Locale('en', 'US'),
@@ -89,7 +84,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
-
     );
   }
 }
@@ -138,28 +132,28 @@ class _chessGameState extends State<chessGame> {
     else
       _chessController.context = context;
     //create the online game controller if is null
-     _onlineGameController = OnlineGameController(_chessController);
+    _onlineGameController = OnlineGameController(_chessController);
     return (_chessController.game == null)
         ? FutureBuilder(
-      future: _loadEverythingUp(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.hasError) {
-            var error = snapshot.error;
-            print('$error');
-            return Center(child: Text(strings.error));
-          }
+            future: _loadEverythingUp(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasError) {
+                  var error = snapshot.error;
+                  print('$error');
+                  return Center(child: Text(strings.error));
+                }
 
-          return MyHomePageAfterLoading();
-        } else {
-          return Center(
-              child: ModalProgressHUD(
-                child: Container(),
-                inAsyncCall: true,
-              ));
-        }
-      },
-    )
+                return MyHomePageAfterLoading();
+              } else {
+                return Center(
+                    child: ModalProgressHUD(
+                  child: Container(),
+                  inAsyncCall: true,
+                ));
+              }
+            },
+          )
         : MyHomePageAfterLoading();
   }
 }
@@ -260,19 +254,19 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
         inAsyncCall: ChessController.loadingBotMoves,
         progressIndicator: kIsWeb
             ? Text(
-          strings.loading_moves_web,
-          style: Theme.of(context).textTheme.subtitle2,
-        )
+                strings.loading_moves_web,
+                style: Theme.of(context).textTheme.subtitle2,
+              )
             : Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          // children: [
-          //   CircularProgressIndicator(),
-          //   Text(
-          //     "${_chessController.progress} boards processed",
-          //     style: Theme.of(context).textTheme.bodyText1,
-          //   ),
-          // ],
-        ),
+                // mainAxisAlignment: MainAxisAlignment.center,
+                // children: [
+                //   CircularProgressIndicator(),
+                //   Text(
+                //     "${_chessController.progress} boards processed",
+                //     style: Theme.of(context).textTheme.bodyText1,
+                //   ),
+                // ],
+                ),
         child: SafeArea(
           child: Scaffold(
             backgroundColor: Colors.brown[50],
@@ -319,12 +313,13 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                                   //   width: 8,
                                   // ),
                                   AbsorbPointer(
-                                    child:LiteRollingSwitch(
+                                    child: LiteRollingSwitch(
                                       value: (prefs?.getBool("bot") ?? true),
                                       onChanged: (pos) {
                                         prefs.setBool("bot", true);
                                         //make move if needed
-                                        _chessController?.makeBotMoveIfRequired();
+                                        _chessController
+                                            ?.makeBotMoveIfRequired();
                                       },
                                       iconOn: Icons.done,
                                       iconOff: Icons.close,
@@ -351,9 +346,9 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                                     // strings.turn_of_x(
                                     //     ,
                                     (_chessController?.game?.game?.turn ==
-                                                    chess_sub.Color.BLACK
-                                                ? "black's turn"
-                                                : "white's turn"),
+                                            chess_sub.Color.BLACK
+                                        ? "black's turn"
+                                        : "white's turn"),
                                     style: Theme.of(context)
                                         .textTheme
                                         .subtitle1
@@ -386,10 +381,10 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                                 onMove: _chessController.onMove,
                                 onCheck: _chessController.onCheck,
                                 chessBoardController:
-                                _chessController.controller,
+                                    _chessController.controller,
                                 chess: _chessController.game,
                                 whiteSideTowardsUser:
-                                _chessController.whiteSideTowardsUser,
+                                    _chessController.whiteSideTowardsUser,
                               ),
                             ),
                           ),
@@ -521,7 +516,6 @@ class _MyHomePageAfterLoadingState extends State<MyHomePageAfterLoading>
                                   //     ),
                                   //   ),
                                   // ),
-
                                 ],
                               ),
                             ),

@@ -1,6 +1,6 @@
 import 'package:admob_flutter/admob_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:win_money_game/Ads/adsManager.dart';
+import 'package:win_money_game/modules/Ads/adsManager.dart';
 import 'package:win_money_game/modules/xo/xo_utils.dart';
 import 'package:win_money_game/shared/components/components.dart';
 
@@ -145,7 +145,7 @@ class MainPageState extends State<ThirdXOScreen> {
                         fontWeight: FontWeight.bold),
                   ),
                   content: const Text(
-                    'Are you sure you want to exit the game?',
+                    'Are you sure you want to Exit the Game?',
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.deepPurple,
@@ -292,19 +292,21 @@ class MainPageState extends State<ThirdXOScreen> {
     context: context,
     barrierDismissible: false,
     builder: (context) => AlertDialog(
-      backgroundColor: Color.fromRGBO(54, 51, 76, 1.0),
+      backgroundColor: Colors.amberAccent,
       title: Text(title,
         style: TextStyle(
-          color: Colors.white,
+          color: Colors.deepPurple,
+          fontWeight: FontWeight.bold,
         ),
       ),
       content: Text('Press to Restart the Game',
         style: TextStyle(
-          color: Colors.white,
+          fontSize: 18,
+          color: Colors.deepPurple,
         ),
       ),
       actions: [
-        ElevatedButton(
+        TextButton(
           onPressed: () {
             setEmptyFields();
             Navigator.of(context).pop();

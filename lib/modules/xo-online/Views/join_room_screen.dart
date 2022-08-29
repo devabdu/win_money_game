@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:win_money_game/models/user_model.dart';
 import 'package:win_money_game/modules/xo-online/responsive/responsive.dart';
 import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
-import 'package:win_money_game/modules/xo-online/widgets/custom_button.dart';
 import 'package:win_money_game/modules/xo-online/widgets/custom_text.dart';
 import 'package:win_money_game/modules/xo-online/widgets/custom_textfield.dart';
 import 'package:win_money_game/shared/components/components.dart';
-
 
 class JoinRoomScreen extends StatefulWidget {
   static String routeName = '/join-room';

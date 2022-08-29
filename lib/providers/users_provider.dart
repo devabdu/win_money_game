@@ -25,11 +25,6 @@ class UsersProvider extends ChangeNotifier {
   int? weeklyMissionCount;
 
   int targetWins = 0;
-  int userCash = 0;
-  int userCoins = 0;
-  int userDailyAmount = 0;
-  int userWeeklyAmount = 0;
-  bool userMusicState = false;
 
   Future<void> updateAvatar({
     required int avatarIndex,
@@ -533,10 +528,38 @@ class UsersProvider extends ChangeNotifier {
 }) async{
     final id = FirebaseAuth.instance.currentUser!.uid;
 
-    userExp = userExp + 0.25;
-    if(userExp == 1) {
-      userLevel++;
-      userExp = 0;
+    // until level 5
+    if(userLevel < 5){
+      //every 4 games played level++
+      userExp = userExp + 0.25;
+      if(userExp == 1) {
+        userLevel++;
+        userExp = 0;
+      }
+      // until level 10
+    } else if(userLevel >= 5 && userLevel < 10){
+      //every 5 games played level++
+      userExp = userExp + 0.20;
+      if(userExp == 1) {
+        userLevel++;
+        userExp = 0;
+      }
+      // until level 20
+    } else if(userLevel >= 10 && userLevel < 20) {
+      //every 10 games played level++
+      userExp = userExp + 0.10;
+      if(userExp == 1) {
+        userLevel++;
+        userExp = 0;
+      }
+      // after level 20
+    } else {
+      //every 20 games played level++
+      userExp = userExp + 0.05;
+      if(userExp == 1) {
+        userLevel++;
+        userExp = 0;
+      }
     }
 
      await FirebaseFirestore.instance
@@ -604,6 +627,11 @@ class UsersProvider extends ChangeNotifier {
       if(userCounts[dailyMissionId] < dailyMissionCount) {
         userCounts[dailyMissionId] = userCounts[dailyMissionId] + coinsWon;
 
+        if(userCounts[dailyMissionId] > dailyMissionCount) {
+          userCounts[dailyMissionId] = dailyMissionCount;
+          await dailyMissionReward();
+        }
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -611,11 +639,6 @@ class UsersProvider extends ChangeNotifier {
             {
               'dailyCounts' : userCounts,
             });
-
-        if(userCounts[dailyMissionId] > dailyMissionCount) {
-          userCounts[dailyMissionId] = dailyMissionCount;
-          await dailyMissionReward();
-        }
       }
     });
   }
@@ -641,6 +664,11 @@ class UsersProvider extends ChangeNotifier {
       if(userCounts[weeklyMissionId] < weeklyMissionCount) {
         userCounts[weeklyMissionId] = userCounts[weeklyMissionId] + coinsWon;
 
+        if(userCounts[weeklyMissionId] > weeklyMissionCount) {
+          userCounts[weeklyMissionId] = weeklyMissionCount;
+          await weeklyMissionReward();
+        }
+
         await FirebaseFirestore.instance
             .collection('users')
             .doc(id)
@@ -648,11 +676,6 @@ class UsersProvider extends ChangeNotifier {
             {
               'weeklyCounts' : userCounts,
             });
-
-        if(userCounts[weeklyMissionId] > weeklyMissionCount) {
-          userCounts[weeklyMissionId] = weeklyMissionCount;
-          await weeklyMissionReward();
-        }
       }
     });
   }
@@ -711,7 +734,7 @@ class UsersProvider extends ChangeNotifier {
               'xoRwins' : userRebhWins,
             });
 
-        if(userRebhWins < targetWins)
+        if(userRebhWins == targetWins)
           rebhStatisticsReward();
       }
     });
@@ -779,6 +802,9 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> dailyMissionReward() async{
     final id = FirebaseAuth.instance.currentUser!.uid;
+    int userCash = 0;
+    int userCoins = 0;
+    int userDailyAmount = 0;
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -863,6 +889,9 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> weeklyMissionReward() async{
     final id = FirebaseAuth.instance.currentUser!.uid;
+    int userCash = 0;
+    int userCoins = 0;
+    int userWeeklyAmount = 0;
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -929,6 +958,7 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> watchAdReward() async{
     final id = FirebaseAuth.instance.currentUser!.uid;
+    int userCoins = 0;
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -951,6 +981,7 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> tasalyStatisticsReward() async {
     final id = FirebaseAuth.instance.currentUser!.uid;
+    int userCoins = 0;
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -973,6 +1004,8 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> rebhStatisticsReward() async {
     final id = FirebaseAuth.instance.currentUser!.uid;
+    int userCash = 0;
+    int userCoins = 0;
 
     await FirebaseFirestore.instance
         .collection('users')
@@ -1040,6 +1073,7 @@ class UsersProvider extends ChangeNotifier {
 
   Future<void> turnOnMusicAfterBackground() async {
     final id = FirebaseAuth.instance.currentUser!.uid;
+    bool userMusicState = false;
 
       await FirebaseFirestore.instance
           .collection('users')
@@ -1052,5 +1086,131 @@ class UsersProvider extends ChangeNotifier {
         if(userMusicState)
           playTillTab('music.ogg.mp3');
       });
+  }
+
+
+
+  Future<void> gameXOWinEnded({
+    required String result,
+    required int coinsPlayedOn,
+  }) async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+    String userName = '';
+    int userXoTwins = 0;
+    int userXoRwins = 0;
+    int userLevel = 0;
+    double userExp = 0;
+    int userCurrentCoins = 0;
+    Map<String, dynamic> userDailyCounts = {};
+    Map<String, dynamic> userWeeklyCounts = {};
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) async {
+      dynamic docData = documentSnapshot.data();
+      userName = docData['name'];
+      userXoTwins = docData['xoTwins'];
+      userXoRwins = docData['xoRwins'];
+      userLevel = docData['level'];
+      userExp = docData['exp'];
+      userCurrentCoins = docData['coins'];
+      userDailyCounts = docData['dailyCounts'];
+      userWeeklyCounts = docData['weeklyCounts'];
+
+      //tasaly winner
+      if(userName == result && selectTasaly){
+        await updateUserXoTasalyWins(
+          userTasalyWins: userXoTwins,
+        );
+      }
+      //rebh winner
+      else if(userName == result && selectRebh){
+        await updateUserXoRebhWins(
+          userRebhWins: userXoRwins,
+        );
+      }
+
+      //winner
+      if(userName == result){
+        await updateWinnerCoins(
+          userCoins: userCurrentCoins,
+          coinsWon: coinsPlayedOn,
+        );
+        await updateUserDailyMissionProgress(
+          missionName: 'Win 3 games',
+          userCounts: userDailyCounts,
+        );
+        await updateUserWeeklyMissionProgress(
+          missionName: 'Win 9 games',
+          userCounts: userWeeklyCounts,
+        );
+        await updateUserDailyCoinsMissionProgress(
+          missionName: 'Collect 500 coins',
+          userCounts: userDailyCounts,
+          coinsWon: coinsPlayedOn,
+        );
+        await updateUserWeeklyCoinsMissionProgress(
+          missionName: 'Collect 10k coins',
+          userCounts: userWeeklyCounts,
+          coinsWon: coinsPlayedOn,
+        );
+      }
+      //loser
+      else{
+        await updateLoserCoins(
+          userCoins: userCurrentCoins,
+          coinsLost: coinsPlayedOn,
+        );
+      }
+
+      //loser, winner
+      await updateUserLevelAndExp(
+        userExp: userExp,
+        userLevel: userLevel,
+      );
+      await updateUserDailyMissionProgress(
+        missionName: 'Play 5 games',
+        userCounts: userDailyCounts,
+      );
+      await updateUserWeeklyMissionProgress(
+        missionName: 'Play 10 games',
+        userCounts: userWeeklyCounts,
+      );
+    });
+  }
+
+  Future<void> gameXODrawEnded() async {
+    final id = FirebaseAuth.instance.currentUser!.uid;
+    int userLevel = 0;
+    double userExp = 0;
+    Map<String, dynamic> userDailyCounts = {};
+    Map<String, dynamic> userWeeklyCounts = {};
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) async {
+      dynamic docData = documentSnapshot.data();
+      userLevel = docData['level'];
+      userExp = docData['exp'];
+      userDailyCounts = docData['dailyCounts'];
+      userWeeklyCounts = docData['weeklyCounts'];
+
+      await updateUserLevelAndExp(
+        userExp: userExp,
+        userLevel: userLevel,
+      );
+      await updateUserDailyMissionProgress(
+        missionName: 'Play 5 games',
+        userCounts: userDailyCounts,
+      );
+      await updateUserWeeklyMissionProgress(
+        missionName: 'Play 10 games',
+        userCounts: userWeeklyCounts,
+      );
+    });
   }
 }

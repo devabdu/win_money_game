@@ -3,6 +3,8 @@ import 'package:win_money_game/providers/room_data_provider_4_4.dart';
 import 'package:win_money_game/modules/xo-online/Utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart';
+import 'package:win_money_game/providers/users_provider.dart';
+import 'package:win_money_game/shared/components/components.dart';
 
 class GameMethodsFour {
   void checkWinner(BuildContext context, Socket socketClent) {
@@ -107,7 +109,35 @@ class GameMethodsFour {
       winner = roomDataProvider.displayElements[3];
     } else if (roomDataProvider.filledBoxes == 16) {
       winner = '';
-      showGameDialog(context, 'Draw');
+      showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
+        backgroundColor: Colors.amberAccent,
+        title: Text('Draw',
+          style: TextStyle(
+            color: Colors.deepPurple,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: (){
+            clearBoard(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            if(isAJoiner) {
+              Navigator.pop(context);
+              isAJoiner = false;
+            }
+          }, child: const Text('Leave'),
+          ),
+        ],
+      ));
+      final provider = Provider.of<UsersProvider>(context, listen: false);
+      provider.gameXODrawEnded();
     }
 
     if (winner != '') {

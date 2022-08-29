@@ -4,8 +4,6 @@ import 'package:win_money_game/modules/chess/util/utils.dart';
 import 'package:win_money_game/modules/chess/widgets/divider.dart';
 import 'package:flutter/material.dart';
 
-import 'package:win_money_game/main.dart';
-
 RoundedRectangleBorder roundButtonShape =
     RoundedRectangleBorder(borderRadius: BorderRadius.circular(45));
 

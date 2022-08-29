@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 import '../../chess_control/chess_controller.dart';
-import 'package:win_money_game/main.dart';
 import 'board_model.dart';
 
 class BoardSquare extends StatefulWidget {

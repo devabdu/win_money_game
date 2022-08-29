@@ -1,17 +1,16 @@
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:win_money_game/Ads/adsManager.dart';
+import 'package:win_money_game/main.dart';
 import 'package:win_money_game/models/user_model.dart';
+import 'package:win_money_game/modules/Ads/adsManager.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.dart';
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
 import 'package:win_money_game/modules/missions/daily_missions.dart';
 import 'package:win_money_game/modules/missions/weekly_missions.dart';
-import 'package:win_money_game/modules/play_on_off.dart';
-import 'package:win_money_game/modules/select_room.dart';
+import 'package:win_money_game/modules/selectScreens/play_on_off.dart';
 import 'package:win_money_game/providers/users_provider.dart';
-import '../shared/components/components.dart';
+import 'package:win_money_game/shared/components/components.dart';
 
 class HomeLayoutScreen extends StatefulWidget {
   const HomeLayoutScreen({Key? key}) : super(key: key);
@@ -31,7 +30,10 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
   @override
   void initState() {
+
     super.initState();
+
+    setState(() {});
 
     // You should execute `Admob.requestTrackingAuthorization()` here before showing any ad.
 
@@ -362,11 +364,11 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                               fit: BoxFit.fill,
                             ),
                           ),
-                          IconButton(
-                              onPressed: () {
-                                navigateTo(context, SelectRoom());
-                              },
-                              icon: Icon(Icons.ads_click)),
+                          // IconButton(
+                          //     onPressed: () {
+                          //       navigateTo(context, SelectRoom());
+                          //     },
+                          //     icon: Icon(Icons.ads_click)),
                         ],
                       ),
                     ),
@@ -381,8 +383,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
                         InkWell(
                           onTap: () async {
-                            selectXo = true;
-                            selectChess = false;
                             if (selectTasaly) {
                               final isLoaded = await interstitialAd.isLoaded;
                               if (isLoaded ?? false) {
@@ -405,8 +405,6 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                         ),
                         InkWell(
                           onTap: () async {
-                            selectXo = false;
-                            selectChess = true;
                             if (selectTasaly) {
                               final isLoaded = await interstitialAd.isLoaded;
                               if (isLoaded ?? false) {
@@ -416,7 +414,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                     'Interstitial ad is still loading...');
                               }
                             }
-                            navigateTo(context, Play_On_Off());
+                            navigateTo(context, chessGame());
                           },
                           child: Image.asset("assets/images/chess.png",
                             fit: BoxFit.fill,

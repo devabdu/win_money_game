@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:win_money_game/modules/admin/addDailyMission.dart';
 import 'package:win_money_game/modules/admin/addWeeklyMission.dart';
 import 'package:win_money_game/modules/admin/deleteDailyMission.dart';
-import '../../providers/users_provider.dart';
-import '../../shared/components/components.dart';
-import 'deleteWeeklyMission.dart';
+import 'package:win_money_game/modules/admin/deleteWeeklyMission.dart';
+import 'package:win_money_game/providers/users_provider.dart';
+import 'package:win_money_game/shared/components/components.dart';
 
 class AdminScreen extends StatelessWidget {
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:win_money_game/modules/XO/xo_utils.dart';
 import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
 import 'package:provider/provider.dart';
+import 'package:win_money_game/modules/xo-online/widgets/xo_utils.dart';
 import 'package:win_money_game/providers/room_data_provider_5_5.dart';
 
 class Player {
@@ -138,15 +138,15 @@ class MainPageState extends State<ThirdXOOnlineScreen> {
                                       // fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  const SizedBox(width: 5),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.mic_rounded,
-                                      color: Colors.white,
-                                      size: 20,
-                                    ),
-                                  ),
+                                  // const SizedBox(width: 5),
+                                  // IconButton(
+                                  //   onPressed: () {},
+                                  //   icon: const Icon(
+                                  //     Icons.mic_rounded,
+                                  //     color: Colors.white,
+                                  //     size: 20,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ],
@@ -183,31 +183,50 @@ class MainPageState extends State<ThirdXOOnlineScreen> {
                                       // fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  const SizedBox(width: 5),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.mic_rounded,
-                                      color: Colors.white,
-                                      size: 20,
-                                    ),
-                                  ),
+                                  // const SizedBox(width: 5),
+                                  // IconButton(
+                                  //   onPressed: () {},
+                                  //   icon: const Icon(
+                                  //     Icons.mic_rounded,
+                                  //     color: Colors.white,
+                                  //     size: 20,
+                                  //   ),
+                                  // ),
                                 ],
-                              ),
-                              SizedBox(
-                                height: 10.0,
-                              ),
-                              Text(
-                                '${roomDataProvider.roomData['turn']['nickname']}\'s turn',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  // fontWeight: FontWeight.bold,
-                                ),
                               ),
                             ],
                           ),
-                        ))),
+                        ),
+                    ),
+                ),
+                SizedBox(
+                  height: 60,
+                ),
+                SafeArea(
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: Container(
+                        height: 25,
+                        width: double.infinity,
+                        color: Colors.amberAccent,
+                        child: Center(
+                          child: Text(
+                            '${roomDataProvider.roomData['turn']['nickname']}\'s turn',
+                            style: TextStyle(
+                              color: Colors.deepPurple,
+                              fontSize: 19,
+                              // fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -438,19 +457,23 @@ class MainPageState extends State<ThirdXOOnlineScreen> {
     context: context,
     barrierDismissible: false,
     builder: (context) => AlertDialog(
-      backgroundColor: Color.fromRGBO(54, 51, 76, 1.0),
-      title: Text(title,
+      backgroundColor: Colors.amberAccent,
+      title: Text(
+        title,
         style: TextStyle(
-          color: Colors.white,
+          color: Colors.deepPurple,
+          fontWeight: FontWeight.bold,
         ),
       ),
-      content: Text('Press to Restart the Game',
+      content: Text(
+        'Press to Restart the Game',
         style: TextStyle(
-          color: Colors.white,
+          fontSize: 18,
+          color: Colors.deepPurple,
         ),
       ),
       actions: [
-        ElevatedButton(
+        TextButton(
           onPressed: () {
             setEmptyFields();
             Navigator.of(context).pop();

@@ -4,8 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:win_money_game/models/missions_model.dart';
 import 'package:win_money_game/models/statistics_model.dart';
-
-import '../../models/user_model.dart';
+import 'package:win_money_game/models/user_model.dart';
 
 bool selectTasaly = false;
 bool selectRebh = false;
@@ -21,6 +20,8 @@ bool dailyMissionsShown = false;
 bool weeklyMissionsShown = false;
 bool StatisticsShown = false;
 
+bool isAJoiner = false;
+
 bool chose50 = false;
 bool chose100 = false;
 bool chose500 = false;
@@ -31,9 +32,6 @@ bool chose10k = false;
 bool chose25k = false;
 bool chose50k = false;
 bool chose100k = false;
-
-bool selectXo = false;
-bool selectChess = false;
 
 RegExp reg = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
 String Function(Match) mathFunc = (Match match) => '${match[1]},';

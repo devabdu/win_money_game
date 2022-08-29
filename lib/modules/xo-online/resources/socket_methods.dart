@@ -1,7 +1,6 @@
 // import 'dart:js';
-
 import 'package:flutter/material.dart';
-import 'package:win_money_game/models/user_model.dart';
+import 'package:win_money_game/layout/home_layout_screen.dart';
 import 'package:win_money_game/modules/xo-online/components/GameScreen2.dart';
 import 'package:win_money_game/modules/xo-online/components/GameScreen3.dart';
 import 'package:win_money_game/providers/room_data_provider_4_4.dart';
@@ -59,6 +58,7 @@ class SocketMethods {
 
   void joinRoom(String nickname, String roomId , String uId, int avatar , int coins) {
     if (nickname.isNotEmpty && roomId.isNotEmpty) {
+      isAJoiner = true;
       _socketClient.emit('joinRoom', {
         'nickname': nickname,
         'roomId': roomId,
@@ -71,6 +71,7 @@ class SocketMethods {
 
   void joinRoom4(String nickname, String roomId, String uId, int avatar , int coins) {
     if (nickname.isNotEmpty && roomId.isNotEmpty) {
+      isAJoiner = true;
       _socketClient.emit('joinRoom4', {
         'nickname': nickname,
         'roomId': roomId,
@@ -83,6 +84,7 @@ class SocketMethods {
 
   void joinRoom5(String nickname, String roomId, String uId, int avatar , int coins) {
     if (nickname.isNotEmpty && roomId.isNotEmpty) {
+      isAJoiner = true;
       _socketClient.emit('joinRoom5', {
         'nickname': nickname,
         'roomId': roomId,
@@ -282,14 +284,37 @@ class SocketMethods {
 
   void endGameListener(BuildContext context) {
     _socketClient.on('endGame', (playerData) {
-      showGameDialog(context, '${playerData['nickname']} won the game!');
-      // Navigator.popUntil(context, (route) => false);
-      // Navigator.pop(context);
-      // Navigator.pop(context);
-      // Navigator.pop(context);
-      // Navigator.pop(context);
-      // Navigator.pop(context);
-      // Navigator.pop(context);
+
+      showDialog(context: context, barrierDismissible: false, builder: (context) => AlertDialog(
+        backgroundColor: Colors.amberAccent,
+        title: Text('${playerData['nickname']} won the game!',
+          style: TextStyle(
+            color: Colors.deepPurple,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: (){
+            GameMethods().clearBoard(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            Navigator.pop(context);
+            if(isAJoiner) {
+              Navigator.pop(context);
+              isAJoiner = false;
+            }
+            navigateTo(context, HomeLayoutScreen());
+          }, child: const Text('Leave'),
+          ),
+        ],
+      ));
+      final provider = Provider.of<UsersProvider>(context, listen: false);
+      provider.gameXOWinEnded(result: playerData['nickname'], coinsPlayedOn: playerData['coins']);
     });
   }
 }

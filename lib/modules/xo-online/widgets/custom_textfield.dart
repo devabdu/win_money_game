@@ -30,6 +30,9 @@ class CustomTextField extends StatelessWidget {
         readOnly: isReadOnly,
         controller: controller,
         decoration: InputDecoration(
+          hintStyle: TextStyle(
+            color: Colors.deepPurple,
+          ),
           fillColor: Colors.amberAccent,
           filled: true,
           hintText: hintText,
