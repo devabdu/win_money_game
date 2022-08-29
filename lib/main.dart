@@ -8,7 +8,7 @@ import 'package:win_money_game/modules/xo-online/components/join_room_screen.dar
 import 'package:win_money_game/modules/xo-online/first_xo_online_screen.dart';
 import 'package:win_money_game/modules/xo-online/second_xo_online_screen.dart';
 import 'package:win_money_game/modules/xo-online/third_xo_online_screen.dart';
-import 'package:win_money_game/modules/xo-online/xo_create_or_join_xo_screen.dart';
+import 'package:win_money_game/modules/selectScreens/xo_create_or_join_xo_screen.dart';
 import 'package:win_money_game/providers/room_data_provider.dart';
 import 'package:win_money_game/providers/room_data_provider_4_4.dart';
 import 'package:win_money_game/providers/room_data_provider_5_5.dart';
@@ -16,8 +16,7 @@ import 'package:win_money_game/providers/users_provider.dart';
 import 'providers/sign_in_provider.dart';
 import 'dart:math';
 import 'package:win_money_game/modules/chess/chess_board/flutter_chess_board.dart';
-import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart'
-    as chess_sub;
+import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart' as chess_sub;
 import 'package:win_money_game/modules/chess/generated/i18n.dart';
 import 'package:win_money_game/modules/chess/util/online_game_utils.dart';
 import 'package:win_money_game/modules/chess/util/utils.dart';

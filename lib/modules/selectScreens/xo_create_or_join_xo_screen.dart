@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:win_money_game/models/user_model.dart';
-// import 'package:win_money_game/modules/xo-online/components/createroom_screen.dart';
-// import 'package:win_money_game/modules/xo-online/components/createroom_screen_4_4.dart';
-// import 'package:win_money_game/modules/xo-online/components/createroom_screen_5_5.dart';
-import 'package:win_money_game/modules/xo-online/components/join_room_screen_4_4.dart';
-import 'package:win_money_game/modules/xo-online/components/join_room_screen_5_5.dart';
 import 'package:win_money_game/modules/xo-online/resources/socket_methods.dart';
 import 'package:win_money_game/modules/xo-online/responsive/responsive.dart';
 import 'package:win_money_game/shared/components/components.dart';
 
-import 'components/join_room_screen.dart';
+import '../xo-online/components/join_room_screen.dart';
 
 class CreateOrJoinXOScreen extends StatefulWidget {
 

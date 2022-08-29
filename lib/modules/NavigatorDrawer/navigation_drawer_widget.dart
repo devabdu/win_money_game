@@ -1,16 +1,14 @@
 /*import 'dart:html';*/
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:win_money_game/models/user_model.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/drawer_item.dart';
-import 'package:win_money_game/modules/NavigatorDrawer/help.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/Profile/profile.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/settings.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/Statistics/statistics.dart';
-import 'package:win_money_game/modules/select_path_screen.dart';
+import 'package:win_money_game/modules/selectScreens/select_path_screen.dart';
 import '../../shared/components/components.dart';
 import '../../providers/sign_in_provider.dart';
 

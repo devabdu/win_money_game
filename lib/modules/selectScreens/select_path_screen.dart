@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:win_money_game/layout/home_layout_screen.dart';
 import 'package:win_money_game/shared/components/components.dart';
 
-import '../providers/users_provider.dart';
+import '../../providers/users_provider.dart';
 
 class SelectPathScreen extends StatefulWidget {
   const SelectPathScreen({Key? key}) : super(key: key);

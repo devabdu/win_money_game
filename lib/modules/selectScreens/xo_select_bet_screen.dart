@@ -1,8 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:win_money_game/layout/home_layout_screen.dart';
 import 'package:win_money_game/models/user_model.dart';
-import 'package:win_money_game/modules/xo-online/xo_create_or_join_xo_screen.dart';
+import 'package:win_money_game/modules/selectScreens/xo_create_or_join_xo_screen.dart';
 
 import '../../shared/components/components.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.dart';
 import 'package:win_money_game/shared/components/components.dart';
 
 import '../../models/missions_model.dart';

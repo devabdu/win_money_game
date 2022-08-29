@@ -1,13 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:win_money_game/models/user_model.dart';
 import 'package:win_money_game/providers/room_data_provider.dart';
-import 'package:win_money_game/modules/xo-online/Utils/utils.dart';
 import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 import 'package:win_money_game/providers/users_provider.dart';
-
-import '../../../shared/components/components.dart';
 
 class GameMethods {
   void checkWinner(BuildContext context, Socket socketClent) {
@@ -106,27 +101,17 @@ class GameMethods {
 
     if (winner != '') {
       if (roomDataProvider.player1.playerType == winner) {
-        // showGameDialog(context, '${roomDataProvider.player1.nickname} won!');
-
         socketClent.emit('winner', {
           'winnerSocketId': roomDataProvider.player1.socketID,
           'roomId': roomDataProvider.roomData['_id'],
         });
       } else {
-        // showGameDialog(context, '${roomDataProvider.player2.nickname} won!');
-
         socketClent.emit('winner', {
           'winnerSocketId': roomDataProvider.player2.socketID,
           'roomId': roomDataProvider.roomData['_id'],
         });
       }
     }
-    // else if(winner == ''){
-      // socketClent.emit('winner', {
-      //   'winnerSocketId': 0,
-      //   'roomId': roomDataProvider.roomData['_id'],
-      // });
-    // }
   }
 
   void clearBoard(BuildContext context) {

@@ -1,5 +1,4 @@
 import 'package:admob_flutter/admob_flutter.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:win_money_game/Ads/adsManager.dart';
@@ -9,8 +8,7 @@ import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
 import 'package:win_money_game/modules/missions/daily_missions.dart';
 import 'package:win_money_game/modules/missions/weekly_missions.dart';
-import 'package:win_money_game/modules/play_on_off.dart';
-import 'package:win_money_game/modules/select_room.dart';
+import 'package:win_money_game/modules/selectScreens/play_on_off.dart';
 import 'package:win_money_game/providers/users_provider.dart';
 import '../shared/components/components.dart';
 
@@ -363,11 +361,11 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                               fit: BoxFit.fill,
                             ),
                           ),
-                          IconButton(
-                              onPressed: () {
-                                navigateTo(context, SelectRoom());
-                              },
-                              icon: Icon(Icons.ads_click)),
+                          // IconButton(
+                          //     onPressed: () {
+                          //       navigateTo(context, SelectRoom());
+                          //     },
+                          //     icon: Icon(Icons.ads_click)),
                         ],
                       ),
                     ),

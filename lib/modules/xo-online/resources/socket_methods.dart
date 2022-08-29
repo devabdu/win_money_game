@@ -1,7 +1,6 @@
 // import 'dart:js';
 
 import 'package:flutter/material.dart';
-import 'package:win_money_game/models/user_model.dart';
 import 'package:win_money_game/modules/xo-online/components/GameScreen2.dart';
 import 'package:win_money_game/modules/xo-online/components/GameScreen3.dart';
 import 'package:win_money_game/providers/room_data_provider_4_4.dart';
