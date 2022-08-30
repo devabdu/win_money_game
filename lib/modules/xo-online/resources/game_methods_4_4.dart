@@ -142,13 +142,11 @@ class GameMethodsFour {
 
     if (winner != '') {
       if (roomDataProvider.player1.playerType == winner) {
-        showGameDialog(context, '${roomDataProvider.player1.nickname} won!');
         socketClent.emit('winner', {
           'winnerSocketId': roomDataProvider.player1.socketID,
           'roomId': roomDataProvider.roomData['_id'],
         });
       } else {
-        showGameDialog(context, '${roomDataProvider.player2.nickname} won!');
         socketClent.emit('winner', {
           'winnerSocketId': roomDataProvider.player2.socketID,
           'roomId': roomDataProvider.roomData['_id'],

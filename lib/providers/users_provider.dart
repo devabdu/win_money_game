@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -522,6 +524,11 @@ class UsersProvider extends ChangeNotifier {
     });
   }
 
+  double roundDouble(double value, int places){
+    double mod = pow(10.0, places).toDouble();
+    return ((value * mod).round().toDouble() / mod);
+  }
+
   Future<void> updateUserLevelAndExp({
     required double userExp,
     required int userLevel,
@@ -539,7 +546,7 @@ class UsersProvider extends ChangeNotifier {
       // until level 10
     } else if(userLevel >= 5 && userLevel < 10){
       //every 5 games played level++
-      userExp = userExp + 0.20;
+      userExp = userExp + 0.2;
       if(userExp == 1) {
         userLevel++;
         userExp = 0;
@@ -547,7 +554,7 @@ class UsersProvider extends ChangeNotifier {
       // until level 20
     } else if(userLevel >= 10 && userLevel < 20) {
       //every 10 games played level++
-      userExp = userExp + 0.10;
+      userExp = userExp + 0.1;
       if(userExp == 1) {
         userLevel++;
         userExp = 0;
@@ -561,6 +568,8 @@ class UsersProvider extends ChangeNotifier {
         userExp = 0;
       }
     }
+
+    userExp = roundDouble(userExp, 2);
 
      await FirebaseFirestore.instance
         .collection('users')
