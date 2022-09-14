@@ -2,6 +2,7 @@
 
 import 'package:win_money_game/modules/chess/chess_board/chess.dart';
 import 'package:win_money_game/modules/chess/chess_control/chess_controller.dart';
+import 'package:win_money_game/modules/chess/chess_game.dart';
 import 'package:win_money_game/modules/chess/util/utils.dart';
 import 'package:win_money_game/modules/chess/util/widget_utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

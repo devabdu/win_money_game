@@ -7,6 +7,7 @@ import 'package:win_money_game/modules/chess/chess_board/chess.dart';
 import 'package:win_money_game/modules/chess/chess_board/flutter_chess_board.dart';
 import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart';
 import 'package:win_money_game/main.dart';
+import 'package:win_money_game/modules/chess/chess_game.dart';
 import 'package:win_money_game/modules/chess/util/online_game_utils.dart';
 import 'package:win_money_game/modules/chess/util/utils.dart';
 import 'package:win_money_game/modules/chess/util/widget_utils.dart';

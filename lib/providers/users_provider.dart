@@ -169,6 +169,7 @@ class UsersProvider extends ChangeNotifier {
           Navigator.pop(context);
           Navigator.pop(context);
           Navigator.pop(context);
+          Navigator.pop(context);
         }, child: const Text('Ok'),
         ),
       ],
@@ -218,6 +219,7 @@ class UsersProvider extends ChangeNotifier {
       ),
       actions: [
         TextButton(onPressed: (){
+          Navigator.pop(context);
           Navigator.pop(context);
           Navigator.pop(context);
           Navigator.pop(context);
@@ -274,6 +276,7 @@ class UsersProvider extends ChangeNotifier {
           ),
           actions: [
             TextButton(onPressed: (){
+              Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
@@ -357,6 +360,7 @@ class UsersProvider extends ChangeNotifier {
               Navigator.pop(context);
               Navigator.pop(context);
               Navigator.pop(context);
+              Navigator.pop(context);
             }, child: const Text('Ok'),
             ),
           ],
@@ -415,6 +419,7 @@ class UsersProvider extends ChangeNotifier {
           Navigator.pop(context);
           Navigator.pop(context);
           Navigator.pop(context);
+          Navigator.pop(context);
         }, child: const Text('Ok'),
         ),
       ],
@@ -446,6 +451,7 @@ class UsersProvider extends ChangeNotifier {
         ),
         actions: [
           TextButton(onPressed: (){
+            Navigator.pop(context);
             Navigator.pop(context);
             Navigator.pop(context);
             Navigator.pop(context);

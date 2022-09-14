@@ -22,6 +22,59 @@
           }
         },
         {
+          "client_id": "630067440176-mct04920hi5976grqud9405efvohimnb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.win_money_game",
+            "certificate_hash": "007b1d40490a1c0fe069161da645c22270d3d9f5"
+          }
+        },
+        {
+          "client_id": "630067440176-r3vemfs3r2avff6tupct3dnlejgjuu2a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.win_money_game",
+            "certificate_hash": "17dcc84ff946237b43c9c1a7beead3f1db22c87c"
+          }
+        },
+        {
+          "client_id": "630067440176-rnj27ra9sth2evq3ju83vjk82hk182a2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmPOf9TcDwOk4cyjbHQY_3TleI-xHf0ZI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630067440176-rnj27ra9sth2evq3ju83vjk82hk182a2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630067440176:android:10946fcaa197f818731bf5",
+        "android_client_info": {
+          "package_name": "com.ludoapp.win_money_game"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630067440176-mj6o3uqv2lhm7oc37su6eo5b605k2tor.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ludoapp.win_money_game",
+            "certificate_hash": "c706f762131dfdfdb226ea7c9a188f493c192db9"
+          }
+        },
+        {
           "client_id": "630067440176-rnj27ra9sth2evq3ju83vjk82hk182a2.apps.googleusercontent.com",
           "client_type": 3
         }
