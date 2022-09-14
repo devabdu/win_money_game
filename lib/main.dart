@@ -3,7 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:win_money_game/modules/Splash%20Screen/splash_screen.dart';
-import 'package:win_money_game/modules/chess/chess_game.dart';
 import 'package:win_money_game/providers/room_data_provider.dart';
 import 'package:win_money_game/providers/room_data_provider_4_4.dart';
 import 'package:win_money_game/providers/room_data_provider_5_5.dart';
@@ -40,7 +39,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const SplashScreen(),
-        '/chess': (context) => chessGame(),
+        // '/chess': (context) => chessGame(),
       },
       supportedLocales: const [
         Locale('en', 'US'),
@@ -53,5 +52,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
 

@@ -5,6 +5,7 @@ import 'package:win_money_game/main.dart';
 import 'package:win_money_game/models/user_model.dart';
 import 'package:win_money_game/modules/Ads/adsManager.dart';
 import 'package:win_money_game/modules/NavigatorDrawer/navigation_drawer_widget.dart';
+import 'package:win_money_game/modules/chess/Old/components/home_screen.dart';
 import 'package:win_money_game/modules/chess/chess_game.dart';
 import 'package:win_money_game/modules/ludo/ludo_screen.dart';
 import 'package:win_money_game/modules/missions/daily_missions.dart';
@@ -415,7 +416,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                                     'Interstitial ad is still loading...');
                               }
                             }
-                            navigateTo(context, chessGame());
+                            navigateTo(context, MainMenuScreen());
                           },
                           child: Image.asset("assets/images/chess.png",
                             fit: BoxFit.fill,

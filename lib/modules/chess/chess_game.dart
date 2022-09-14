@@ -1,6 +1,5 @@
 // @dart=2.9
 import 'dart:math';
-import 'package:flutter/foundation.dart';
 import 'package:win_money_game/modules/chess/chess_board/flutter_chess_board.dart';
 import 'package:win_money_game/modules/chess/chess_board/src/chess_sub.dart'
 as chess_sub;
@@ -12,6 +11,7 @@ import 'package:win_money_game/modules/chess/widgets/divider.dart';
 import 'package:win_money_game/modules/chess/widgets/fancy_button.dart';
 import 'package:win_money_game/modules/chess/widgets/fancy_options.dart';
 import 'package:win_money_game/modules/chess/widgets/modal_progress_hud.dart';
+import 'package:flutter/foundation.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
